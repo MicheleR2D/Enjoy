@@ -1,0 +1,26 @@
+---
+/*
+ * Rotta dinamica per le pagine "a dati": ogni file in src/data/pagine/ diventa una pagina
+ * allo stesso URL del vecchio sito (/yoga, /acqua-gym, /privacy…), disegnata dal template
+ * indicato in `tipo`. Le pagine con un file proprio in src/pages (home, orari) hanno la
+ * precedenza.
+ */
+import PaginaScheda from '../templates/PaginaScheda.astro';
+import PaginaElenco from '../templates/PaginaElenco.astro';
+import PaginaTesto from '../templates/PaginaTesto.astro';
+import PaginaSede from '../templates/PaginaSede.astro';
+import PaginaInfo from '../templates/PaginaInfo.astro';
+
+export function getStaticPaths() {
+	const file = import.meta.glob('../data/pagine/*.json', { eager: true, import: 'default' }) as Record<string, any>;
+	return Object.values(file).map((pagina) => ({ params: { slug: pagina.slug }, props: { pagina } }));
+}
+
+const { pagina } = Astro.props;
+---
+
+{(pagina.tipo === 'corso' || pagina.tipo === 'servizio') && <PaginaScheda pagina={pagina} />}
+{pagina.tipo === 'elenco' && <PaginaElenco pagina={pagina} />}
+{pagina.tipo === 'testo' && <PaginaTesto pagina={pagina} />}
+{pagina.tipo === 'sede' && <PaginaSede pagina={pagina} />}
+{pagina.tipo === 'info' && <PaginaInfo pagina={pagina} />}

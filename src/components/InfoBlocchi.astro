@@ -1,0 +1,75 @@
+---
+/*
+ * Mostra, in ordine, i blocchi di una pagina "info" (vedi scripts/migrazione/normalizza-info.mjs):
+ * titoli, paragrafi, riquadri gialli (prezzi e orari), fisarmoniche e il pulsante per
+ * fissare un appuntamento. E' ricorsivo: riquadri e fisarmoniche contengono altri blocchi.
+ */
+interface Blocco {
+	t: 'titolo' | 'testo' | 'riquadro' | 'fisarmonica' | 'linea' | 'appuntamento';
+	testo?: string;
+	html?: string;
+	href?: string;
+	blocchi?: Blocco[];
+	voci?: { titolo: string; blocchi: Blocco[] }[];
+}
+
+interface Props {
+	blocchi: Blocco[];
+	/** Profondita': i titoli dentro una fisarmonica sono sottotitoli. */
+	livello?: number;
+}
+
+const { blocchi, livello = 0 } = Astro.props;
+const Self = Astro.self;
+
+// Nel sito originale i "titoli" servivano anche per intere frasi: se sono lunghe si
+// mostrano come paragrafo, non come titolo.
+const eFrase = (t: string) => t.length > 90 || /[.;]$/.test(t);
+---
+
+{
+	blocchi.map((b) => {
+		if (b.t === 'titolo') {
+			return eFrase(b.testo!) ? (
+				<p class="info__frase">{b.testo}</p>
+			) : livello === 0 ? (
+				<h2 class="info__h2">{b.testo}</h2>
+			) : (
+				<h3 class="info__h3">{b.testo}</h3>
+			);
+		}
+		if (b.t === 'testo') return <div class="info__testo" set:html={b.html} />;
+		if (b.t === 'linea') return <hr class="info__linea" />;
+		if (b.t === 'appuntamento') {
+			return (
+				<p class="info__cta">
+					<a class="btn btn--lg" href={b.href} target="_blank" rel="noopener">
+						Prenota un appuntamento
+					</a>
+				</p>
+			);
+		}
+		if (b.t === 'riquadro') {
+			return (
+				<div class="info__box">
+					<Self blocchi={b.blocchi!} livello={livello + 1} />
+				</div>
+			);
+		}
+		if (b.t === 'fisarmonica') {
+			return (
+				<div class="info__acc">
+					{b.voci!.map((v) => (
+						<details class="info__voce">
+							<summary>{v.titolo}</summary>
+							<div class="info__voce-corpo">
+								<Self blocchi={v.blocchi} livello={livello + 1} />
+							</div>
+						</details>
+					))}
+				</div>
+			);
+		}
+		return null;
+	})
+}

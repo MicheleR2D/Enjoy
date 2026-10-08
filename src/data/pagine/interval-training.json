@@ -1,0 +1,88 @@
+{
+	"tipo": "corso",
+	"slug": "interval-training",
+	"nome": "Interval Training",
+	"seo": {
+		"title": "Interval Training - Enjoy Club | Meda e Camuzzago",
+		"description": "L’Interval Training di Enjoy Club è un allenamento dinamico che combina circuiti di esercizi ad alta e bassa intensità , ideali per aumentare il…"
+	},
+	"hero": {
+		"titolo": "interval",
+		"parole": [
+			"training"
+		],
+		"immagine": "/wp-content/uploads/2025/06/Varie-Camuzzago-6-scaled.jpg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "interval training",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>L’Interval Training di Enjoy Club è un allenamento dinamico che combina circuiti di esercizi ad <strong>alta e bassa intensità</strong>, ideali per aumentare il metabolismo e favorire il dimagrimento in modo efficace.<br>Un programma adatto a chi cerca risultati concreti e sessioni sempre diverse, guidate da trainer esperti per allenarsi in sicurezza e con la massima motivazione.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/INTERVAL-TRAINING-2048x1366-enjoy.jpg"
+			],
+			"dettagli": [
+				{
+					"testo": "30 - 45 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "SCARPE",
+					"immagine": "/wp-content/uploads/2025/06/sneakers.svg"
+				},
+				{
+					"etichetta": "ASCIUGAMANO",
+					"immagine": "/wp-content/uploads/2025/06/bath-towel.svg"
+				},
+				{
+					"etichetta": "ACQUA",
+					"immagine": "/wp-content/uploads/2025/06/bottle.svg"
+				},
+				{
+					"etichetta": "CARDIO FREQUENZIMETRO",
+					"immagine": "/wp-content/uploads/2025/06/smartwatch.svg"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 30
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 65
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 10
+				}
+			]
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sulla Technogym App!</p>"
+		}
+	],
+	"sedi": [
+		"camuzzago"
+	]
+}

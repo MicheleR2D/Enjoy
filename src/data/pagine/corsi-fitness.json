@@ -1,0 +1,146 @@
+{
+	"tipo": "elenco",
+	"slug": "corsi-fitness",
+	"nome": "Corsi Fitness",
+	"seo": {
+		"title": "Corsi Fitness a Meda e Camuzzago - Enjoy Club",
+		"description": "Scopri tutti i corsi fitness di Enjoy Club: Camuzzago : oltre 90 lezioni settimanali tra attività in acqua e a terra. Meda : più di 100 corsi a settimana…"
+	},
+	"hero": {
+		"titolo": "corsi",
+		"parole": [
+			"fitness"
+		],
+		"immagine": "/wp-content/uploads/2025/06/Outdoor-Meda-1-scaled.jpg",
+		"badge": "200+ CORSI A SETTIMANA"
+	},
+	"introHtml": "<p>Scopri tutti i corsi fitness di Enjoy Club:</p><ul><li><p><strong>Camuzzago</strong>: oltre 90 lezioni settimanali tra attività in acqua e a terra.</p></li><li><p><strong>Meda</strong>: più di 100 corsi a settimana con mix di sessioni in acqua, a terra e all’aperto.</p></li></ul><p>I nostri istruttori qualificati ti accompagneranno in un ambiente professionale e stimolante, con orari flessibili e programmi sempre aggiornati. Allenati nei nostri centri e scegli il corso che fa per te!</p>",
+	"corsi": [
+		{
+			"titolo": "Body Pump",
+			"descrizione": null,
+			"href": "/body-pump",
+			"immagine": "/wp-content/uploads/2025/06/BODY-PUMP-2048x1365-enjoy.png"
+		},
+		{
+			"titolo": "Antalgica",
+			"descrizione": null,
+			"href": "/antalgica",
+			"immagine": "/wp-content/uploads/2025/06/Corsi-Meda-3-scaled.jpg"
+		},
+		{
+			"titolo": "Back School",
+			"descrizione": null,
+			"href": "/back-school",
+			"immagine": "/wp-content/uploads/2025/06/BACK-SCHOOL-scaled-1-enjoy.jpg"
+		},
+		{
+			"titolo": "Body Balance",
+			"descrizione": null,
+			"href": "/body-balance",
+			"immagine": "/wp-content/uploads/2025/06/BODY-BALANCE-scaled-1-enjoy.jpg"
+		},
+		{
+			"titolo": "Core Training",
+			"descrizione": null,
+			"href": "/core-training",
+			"immagine": "/wp-content/uploads/2025/06/CORE-TRAINING-2048x1366-enjoy.jpg"
+		},
+		{
+			"titolo": "Dancing Fit",
+			"descrizione": null,
+			"href": "/dancing-fit",
+			"immagine": "/wp-content/uploads/2025/06/DANCING-fit-enjoy.png"
+		},
+		{
+			"titolo": "Fit&boxe",
+			"descrizione": null,
+			"href": "/fit-boxe",
+			"immagine": "/wp-content/uploads/2025/06/FIT-BOX-scaled-1-enjoy.jpeg"
+		},
+		{
+			"titolo": "G.a.g.",
+			"descrizione": null,
+			"href": "/gg",
+			"immagine": "/wp-content/uploads/2025/06/GAG-scaled-1-enjoy.jpg"
+		},
+		{
+			"titolo": "Group Cycling",
+			"descrizione": null,
+			"href": "/groupcycling",
+			"immagine": "/wp-content/uploads/2025/06/GROUP-CYCLING-enjoy.jpg"
+		},
+		{
+			"titolo": "Interval Training",
+			"descrizione": null,
+			"href": "/interval-training",
+			"immagine": "/wp-content/uploads/2025/06/INTERVAL-TRAINING-2048x1366-enjoy.jpg"
+		},
+		{
+			"titolo": "Olistic Tone",
+			"descrizione": null,
+			"href": "/olistic-tone",
+			"immagine": "/wp-content/uploads/2025/06/OLISTIC-TONE-2048x1366-enjoy.png"
+		},
+		{
+			"titolo": "Postural Pil",
+			"descrizione": null,
+			"href": "/postural-pil",
+			"immagine": "/wp-content/uploads/2025/06/POSTURAL-PIL-scaled-1-enjoy.jpeg"
+		},
+		{
+			"titolo": "Spartan Fit",
+			"descrizione": null,
+			"href": "/spartan-fit",
+			"immagine": "/wp-content/uploads/2025/06/SPARTAN-scaled-1-enjoy.jpeg"
+		},
+		{
+			"titolo": "Step Tone",
+			"descrizione": null,
+			"href": "/step-tone",
+			"immagine": "/wp-content/uploads/2025/06/CARDIO-STEP-2048x1366-enjoy.png"
+		},
+		{
+			"titolo": "Suspension",
+			"descrizione": null,
+			"href": "/suspension",
+			"immagine": "/wp-content/uploads/2025/06/SUSPENSION-enjoy.jpeg"
+		},
+		{
+			"titolo": "Tabata",
+			"descrizione": null,
+			"href": "/tabata",
+			"immagine": "/wp-content/uploads/2025/06/TABATA-enjoy.png"
+		},
+		{
+			"titolo": "Total Body",
+			"descrizione": null,
+			"href": "/total-body",
+			"immagine": "/wp-content/uploads/2025/06/TOTAL-BODY-scaled-1-enjoy.jpeg"
+		},
+		{
+			"titolo": "Yoga",
+			"descrizione": null,
+			"href": "/yoga",
+			"immagine": "/wp-content/uploads/2025/06/yoga-enjoy.jpeg"
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sulla Technogym App.</p>"
+		}
+	]
+}

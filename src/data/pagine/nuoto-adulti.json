@@ -1,0 +1,84 @@
+{
+	"tipo": "corso",
+	"slug": "nuoto-adulti",
+	"nome": "Nuoto Adulti",
+	"seo": {
+		"title": "Nuoto Adulti - Enjoy Club | Meda e Camuzzago",
+		"description": "Ti darà l’opportunità di goderti in serenità mare e piscina , sia in vacanza che in città. Per chi parte da zero, consigliamo un percorso continuativo di…"
+	},
+	"hero": {
+		"titolo": "nuoto",
+		"parole": [
+			"adulti"
+		],
+		"immagine": "/wp-content/uploads/2025/06/Piscina-Meda-1-scaled.jpg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "nuoto adulti",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Ti darà l’opportunità di goderti in serenità <strong>mare e piscina</strong>, sia in vacanza che in città.<br>Per chi parte da zero, consigliamo un percorso continuativo di una o due volte a settimana da <strong>settembre a maggio</strong>, oppure almeno da settembre a gennaio.<br>Il nostro staff, preparato e sempre disponibile, ti accompagnerà a scoprire tutti i benefici dell’acqua: imparare a galleggiare, muoverti con sicurezza e ritrovare il tuo <strong>benessere psico-fisico</strong>.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/Piscina-Camuzzago-11-scaled.jpg"
+			],
+			"dettagli": [],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "COSTUME",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced-1.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 60
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 30
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 10
+				}
+			]
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sulla Technogym App!</p>"
+		}
+	],
+	"sedi": [
+		"camuzzago",
+		"meda"
+	]
+}

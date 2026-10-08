@@ -1,0 +1,63 @@
+---
+/*
+ * Template "elenco": la pagina dei Corsi Fitness. Hero, introduzione e una griglia di card
+ * (una per corso, con la foto della card originale e il collegamento alla scheda) seguita
+ * dalle domande frequenti. Il vecchio sito non aveva descrizioni per le card.
+ */
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import IntroTitolo from '../components/IntroTitolo.astro';
+import ActivityGrid from '../components/ActivityGrid.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import { formUrl } from '../data/site';
+
+interface Props {
+	pagina: {
+		slug: string;
+		nome: string;
+		seo: { title: string; description: string };
+		hero: { titolo: string; parole?: string[]; immagine: string; badge?: string };
+		introHtml: string;
+		corsi: { titolo: string; href: string | null; immagine: string }[];
+		faq: { domanda: string; risposta: string | null }[];
+	};
+}
+
+const { pagina } = Astro.props;
+const card = pagina.corsi.filter((c) => c.href).map((c) => ({ href: c.href as string, image: c.immagine, title: c.titolo }));
+---
+
+<Layout title={pagina.seo.title} description={pagina.seo.description} headerTone="overlay">
+	<PageHero image={pagina.hero.immagine} title={pagina.hero.titolo} words={pagina.hero.parole}>
+		<a class="btn btn--lg" href={formUrl('prova', pagina.slug)} target="_blank" rel="noopener">Prova ora</a>
+		<a class="btn btn--light btn--lg" href="/orari">Planning settimanale</a>
+	</PageHero>
+
+	<IntroTitolo titolo={pagina.hero.badge ?? pagina.nome} html={pagina.introHtml} />
+
+	<section class="elenco on-dark" aria-label="I nostri corsi">
+		<ActivityGrid items={card} columns={3} gapTop={0} />
+	</section>
+
+	<FaqAccordion faq={pagina.faq} />
+</Layout>
+
+<style>
+	.elenco {
+		padding-block: 8px 56px;
+		background: var(--bg-dark);
+		color: var(--text-on-dark);
+	}
+
+	@media (max-width: 900px) {
+		.elenco :global(.grid) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 560px) {
+		.elenco :global(.grid) {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

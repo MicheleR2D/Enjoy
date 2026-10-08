@@ -1,0 +1,126 @@
+---
+/*
+ * Planning orari: una card per sede che porta al PDF del planning settimanale (come la
+ * pagina "Planning Orari" del sito originale, dove ogni sede e' un flip-box con il
+ * pulsante "Scarica gli orari"). Dati in src/data/orari-pagina.json, estratti da WordPress.
+ */
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import IntroTitolo from '../components/IntroTitolo.astro';
+import Img from '../components/Img.astro';
+import orari from '../data/orari-pagina.json';
+import { sedi, formUrl } from '../data/site';
+
+const testo = orari.intro.join('');
+const schede = orari.sedi.map((s) => ({ ...s, sede: sedi.find((x) => x.nome.toLowerCase() === s.nome.toLowerCase()) }));
+---
+
+<Layout title={orari.seo.title} description={orari.seo.description} headerTone="overlay">
+	<PageHero image={orari.hero.immagine} title={orari.hero.titolo} words={orari.hero.parole}>
+		<a class="btn btn--lg" href={formUrl('prova', 'Orari')} target="_blank" rel="noopener">Prova ora</a>
+	</PageHero>
+
+	<IntroTitolo titolo="Pianifica la tua routine" html={testo} />
+
+	<section class="orari on-dark" aria-labelledby="orari-titolo">
+		<h2 class="orari__titolo container-wide" id="orari-titolo">{orari.titolo}</h2>
+		<ul class="orari__lista container-wide">
+			{
+				schede.map((s, i) => (
+					<li data-anim="scale" data-anim-delay={String(i * 150)}>
+						<a class="scheda" href={s.pdf} target="_blank" rel="noopener">
+							<Img src={s.immagine} alt="" class="img-cover" sizes="(max-width: 900px) 90vw, 46vw" />
+							<span class="scheda__velo"></span>
+							<span class="scheda__corpo">
+								<span class="scheda__nome">{s.nome}</span>
+								{s.sede && (
+									<span class="scheda__via">
+										{s.sede.via}, {s.sede.citta}
+									</span>
+								)}
+								<span class="btn scheda__btn">Scarica gli orari</span>
+							</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</Layout>
+
+<style>
+	.orari {
+		padding-block: clamp(40px, 6vw, 80px);
+		background: var(--bg-dark-soft);
+		color: var(--text-on-dark);
+	}
+
+	.orari__titolo {
+		margin: 0 0 32px;
+	}
+
+	.orari__lista {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+		gap: 24px;
+		margin: 0;
+		padding-block: 0;
+		list-style: none;
+	}
+
+	.scheda {
+		position: relative;
+		display: flex;
+		align-items: flex-end;
+		min-height: clamp(280px, 32vw, 420px);
+		overflow: hidden;
+		border-radius: var(--radius-lg);
+		background: var(--bg-dark);
+		color: var(--text-on-dark);
+		text-decoration: none;
+		transition: transform var(--dur-base) var(--ease-spring), box-shadow var(--dur-base) var(--ease-out-crit);
+	}
+
+	.scheda:hover,
+	.scheda:focus-visible {
+		transform: translateY(-8px);
+		box-shadow: 0 0 0 2px var(--accent), 0 12px 34px rgba(0, 0, 0, 0.4);
+	}
+
+	.scheda__velo {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 30%, rgba(0, 0, 0, 0.8));
+	}
+
+	.scheda__corpo {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 6px;
+		padding: 28px;
+	}
+
+	.scheda__nome {
+		font-family: var(--font-heading);
+		font-size: clamp(1.75rem, 3vw, 2.5rem);
+		font-weight: 900;
+		text-transform: uppercase;
+		letter-spacing: -0.01em;
+		color: var(--accent);
+	}
+
+	.scheda__via {
+		margin-bottom: 12px;
+		color: var(--text-muted-on-dark);
+	}
+
+	.scheda:hover .scheda__btn {
+		color: var(--on-accent);
+	}
+
+	.scheda:hover .scheda__btn::before {
+		transform: scaleX(1);
+	}
+</style>

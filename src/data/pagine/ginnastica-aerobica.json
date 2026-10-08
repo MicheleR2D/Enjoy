@@ -1,0 +1,58 @@
+{
+	"tipo": "corso",
+	"slug": "ginnastica-aerobica",
+	"nome": "Ginnastica Aerobica",
+	"seo": {
+		"title": "Ginnastica Aerobica - Enjoy Club | Meda e Camuzzago",
+		"description": "La Ginnastica Aerobica è una disciplina F.G.I. in forte crescita, che unisce musica, coordinazione e movimenti acrobatici in coreografie coinvolgenti,…"
+	},
+	"hero": {
+		"titolo": "ginnastica",
+		"parole": [
+			"aerobica"
+		],
+		"immagine": "/wp-content/uploads/2025/05/foto_ginnastica_home-copia-scaled-1.webp"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "Ginnastica Aerobica",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>La Ginnastica Aerobica è una disciplina F.G.I. in forte crescita, che unisce musica, coordinazione e movimenti acrobatici in coreografie coinvolgenti, individuali e di gruppo.<br>Presso Enjoy Club Camuzzago offriamo corsi dinamici e stimolanti, seguiti da tecnici federali qualificati.</p><p>Il progetto si distingue grazie alla società <strong>Aerobic Fusion</strong>, nata dalla fusione tra <strong>Delfino</strong> e <strong>Amico Sport Legnano</strong>, protagonista ai massimi livelli nazionali e internazionali: <strong>Campioni del Mondo</strong>, medaglie agli <strong>Europei</strong> e alla <strong>Suzuki World Cup</strong>.</p><p>In collaborazione con il <strong>Consulting Medical Center</strong>, i nostri atleti ricevono supporto medico e test di performance, per allenarsi in modo sicuro e professionale.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/davide-michela-1-e1751030323524.jpeg"
+			],
+			"dettagli": [],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "SCARPE DA GINNASTICA",
+					"immagine": "/wp-content/uploads/2025/06/sneakers.svg"
+				},
+				{
+					"etichetta": "ACQUA",
+					"immagine": "/wp-content/uploads/2025/06/bottle.svg"
+				},
+				{
+					"etichetta": "ASCIUGAMANO TERGISUDORE",
+					"immagine": "/wp-content/uploads/2025/06/bath-towel.svg"
+				}
+			],
+			"intensita": []
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		}
+	],
+	"sedi": [
+		"camuzzago"
+	]
+}

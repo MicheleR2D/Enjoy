@@ -1,0 +1,60 @@
+{
+	"tipo": "corso",
+	"slug": "health-fitness-camuzzago",
+	"nome": "Health Fitness Camuzzago",
+	"seo": {
+		"title": "Health Fitness Camuzzago - Enjoy Club | Meda e Camuzzago",
+		"description": "Il Consulting Medical Center è un centro di alta specializzazione per la riabilitazione, pensato per offrire un percorso completo di salute e benessere.…"
+	},
+	"hero": {
+		"titolo": "health",
+		"parole": [
+			"fitness"
+		],
+		"immagine": "/wp-content/uploads/2025/07/dji_fly_20250614_112102_437_1749893087543_photo_optimized-scaled.jpg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "health fitness",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Il <strong>Consulting Medical Center</strong> è un centro di alta specializzazione per la riabilitazione, pensato per offrire un percorso completo di salute e benessere.<br>All’interno del nostro <strong>Poliambulatorio</strong>, medici e professionisti lavorano individualmente o in sinergia per aiutare ogni paziente a scegliere la strada giusta, rispondendo in modo mirato a esigenze di prevenzione, recupero e miglioramento della performance.</p><p><strong>Attività e trattamenti:</strong><br>Grazie a percorsi innovativi come <strong>EMS (Elettrostimolazione Muscolare)</strong>, sessioni brevi e ad alta efficacia per tonificare e potenziare i muscoli anche in poco tempo; <strong>Pilates Reformer</strong>, per lavorare in profondità su postura, core e flessibilità; <strong>Crioterapia</strong>, trattamento rigenerante a freddo che accelera il recupero muscolare e riduce infiammazioni.<br>Completano l’offerta la <strong>Ginnastica Terapeutica in acqua</strong>, ad indirizzo riabilitativo, la consulenza con <strong>Nutrizionisti</strong> per piani alimentari personalizzati e i trattamenti di <strong>Osteopatia e Fisioterapia</strong>, per prevenire e curare infortuni, migliorare la postura e liberare il corpo da tensioni e blocchi.</p><p><strong>La nostra missione è chiara: il benessere della persona.</strong></p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/05/coach-planning-workout-schedule-and-training-with-athlete-for-active-fitness-and-wellness-in-a-gy.jpg"
+			],
+			"dettagli": [],
+			"portareTitolo": null,
+			"portare": [],
+			"intensita": [],
+			"pulsanti": [
+				{
+					"testo": "Medical center",
+					"href": "https://www.consultingmc.info/",
+					"esterno": true
+				}
+			]
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sull'App di Body Studio!</p>"
+		}
+	],
+	"sedi": [
+		"camuzzago"
+	]
+}

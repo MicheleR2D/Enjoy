@@ -1,0 +1,53 @@
+{
+	"tipo": "corso",
+	"slug": "wellness-lab-meda",
+	"nome": "Wellness Lab Meda",
+	"seo": {
+		"title": "Wellness Lab Meda - Enjoy Club | Meda e Camuzzago",
+		"description": "Il Wellness Lab di Enjoy Club nasce per offrire risultati concreti per ogni esigenza , aiutandoti a prevenire e curare mal di schiena, cervicalgie,…"
+	},
+	"hero": {
+		"titolo": "wellness",
+		"parole": [
+			"lab"
+		],
+		"immagine": "/wp-content/uploads/2025/07/IMG_3843-2-scaled.jpg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "wellness lab",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Il Wellness Lab di Enjoy Club nasce per offrire <strong>risultati concreti per ogni esigenza</strong>, aiutandoti a <strong>prevenire e curare</strong> mal di schiena, cervicalgie, coxartrosi, problemi articolari e retrazioni muscolari.<br>Il cuore di questo percorso è il sistema <strong>PANCA WBS 4.0</strong>, una panca innovativa che permette di lavorare sulla postura ottimale della schiena, grazie alla regolazione elettronica che garantisce una seduta comoda e sicura, ideale anche per persone con esigenze particolari.</p><p>Le <strong>attività</strong> del Wellness Lab includono allenamenti mirati al <strong>recupero funzionale e alla rieducazione motoria</strong>, lavori di riequilibrio posturale, decontratturante, tonificazione e flessibilità.<br>In più, puoi scegliere corsi specifici come:</p><ul><li><p><strong>WBS Physio</strong>, programma con elastici per una tonificazione sicura.</p></li><li><p><strong>WBS Pilates</strong>, che integra la filosofia Pilates con la metodologia WBS, migliorando postura e stabilità con esercizi su piani variabili.</p></li><li><p><strong>WBS Postural</strong>, che allunga le catene muscolari, decomprime la colonna vertebrale e riequilibra la postura, offrendo un beneficio superiore al tradizionale lavoro di pancafit.</p></li><li><p><strong>Ginnastica Terapeutica in Acqua</strong>, un corso riabilitativo per recuperare e mantenere le normali funzioni corporee.</p></li></ul><p><strong>Wellness Lab</strong> è la risposta di Enjoy Club per ritrovare benessere, movimento e qualità della vita, in modo sicuro e personalizzato.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/07/IMG_5139-scaled.jpg"
+			],
+			"dettagli": [],
+			"portareTitolo": null,
+			"portare": [],
+			"intensita": []
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sull'App di Body Studio!</p>"
+		}
+	],
+	"sedi": [
+		"meda"
+	]
+}

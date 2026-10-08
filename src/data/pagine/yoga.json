@@ -1,0 +1,87 @@
+{
+	"tipo": "corso",
+	"slug": "yoga",
+	"nome": "Yoga",
+	"seo": {
+		"title": "Yoga - Enjoy Club | Meda e Camuzzago",
+		"description": "Lo Yoga di Enjoy Club è una pratica che unisce asana, respiro, meditazione e mantra, per trasformare e armonizzare corpo, mente e spirito. Ideale per chi…"
+	},
+	"hero": {
+		"titolo": "yoga",
+		"parole": [],
+		"immagine": "/wp-content/uploads/2025/06/yoga-enjoy.jpeg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "yoga",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Lo<strong> Yoga di Enjoy Club</strong> è una pratica che unisce asana, respiro, meditazione e mantra, per trasformare e armonizzare corpo, mente e spirito. Ideale per chi <strong>cerca benessere, concentrazione e rilassamento profondo</strong>, in un ambiente accogliente e guidato da insegnanti qualificati..</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/07/PHOTO-2025-07-22-14-40-02.jpg"
+			],
+			"dettagli": [
+				{
+					"testo": "45 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "SCARPE",
+					"immagine": "/wp-content/uploads/2025/06/sneakers.svg"
+				},
+				{
+					"etichetta": "ASCIUGAMANO",
+					"immagine": "/wp-content/uploads/2025/06/bath-towel.svg"
+				},
+				{
+					"etichetta": "ACQUA",
+					"immagine": "/wp-content/uploads/2025/06/bottle.svg"
+				},
+				{
+					"etichetta": "TAPPETINO",
+					"immagine": "/wp-content/uploads/2025/05/06-Yoga-Matt-1.png"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 15
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 20
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 80
+				}
+			]
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sull'App di Body Studio!</p>"
+		}
+	],
+	"sedi": [
+		"camuzzago",
+		"meda"
+	]
+}

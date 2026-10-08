@@ -1,0 +1,118 @@
+{
+	"tipo": "corso",
+	"slug": "gym-floor",
+	"nome": "Gym Floor",
+	"seo": {
+		"title": "Gym Floor - Enjoy Club | Meda e Camuzzago",
+		"description": "Enjoy Club ti aspetta a Meda e Camuzzago con sale attrezzi moderne, spaziose e attrezzate con le migliori tecnologie per l’allenamento. Il nostro gym…"
+	},
+	"hero": {
+		"titolo": "gym",
+		"parole": [
+			"floor"
+		],
+		"immagine": "/wp-content/uploads/2026/06/IMG_7992-1-scaled.jpg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "Via del Borgo, 6",
+			"sottotitolo": "Camuzzago",
+			"descrizioneHtml": "<p><strong>Enjoy Club</strong> ti aspetta a <strong>Meda</strong> e <strong>Camuzzago</strong> con sale attrezzi moderne, spaziose e attrezzate con le migliori tecnologie per l’allenamento.<br>Il nostro <strong>gym floor</strong> è pensato per ogni livello: che tu voglia tonificare, aumentare la massa muscolare o migliorare la resistenza, troverai un ambiente motivante, pulito e supportato da trainer sempre presenti.<br>Allenati al meglio, con programmi personalizzati e attrezzature all’avanguardia.</p><p>La palestra di Enjoy Club Camuzzago, luminosa e immersa nel verde dei campi da golf, è un punto di riferimento per chi vive nell’area di Vimercate. Dotata di attrezzature Technogym di ultima generazione e due ampie sale corsi, offre anche un’area benessere con sauna, bagno turco e zona relax.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/Sala-Pesi-Meda-1-scaled.jpg",
+				"/wp-content/uploads/2025/06/Sala-Pesi-Meda-3-scaled.jpg",
+				"/wp-content/uploads/2025/06/Sala-Pesi-Meda-2-scaled.jpg",
+				"/wp-content/uploads/2025/06/Sala-Pesi-Meda-4-scaled.jpg"
+			],
+			"dettagli": [
+				{
+					"testo": "Attrezzature e sale corsi di ultima generazione",
+					"icona": null
+				},
+				{
+					"testo": "Palestra luminosa con vista sul verde",
+					"icona": null
+				},
+				{
+					"testo": "Area benessere completa",
+					"icona": null
+				},
+				{
+					"testo": "Programma EnjoyIT​",
+					"icona": null
+				}
+			],
+			"portareTitolo": null,
+			"portare": [],
+			"intensita": [],
+			"pulsanti": [
+				{
+					"testo": "Scopri la sede",
+					"href": "/camuzzago",
+					"esterno": false
+				}
+			]
+		},
+		{
+			"id": null,
+			"titolo": "Via Trieste, s/n",
+			"sottotitolo": "Meda",
+			"descrizioneHtml": "<p>Il club si sviluppa su tre livelli, ognuno pensato per offrirti il massimo del comfort e dell'efficienza. Al piano terra, un ampio open space accoglie la reception, la sala pesi, l’area dedicata al corpo libero, una spaziosa sala corsi e gli spogliatoi fitness.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2026/06/IMG_7996-scaled.jpg",
+				"/wp-content/uploads/2026/06/IMG_8010-scaled.jpg",
+				"/wp-content/uploads/2026/06/IMG_7998-1-scaled.jpg",
+				"/wp-content/uploads/2026/06/IMG_7993-1-scaled.jpg"
+			],
+			"dettagli": [
+				{
+					"testo": "Attrezzature e sale corsi di ultima generazione",
+					"icona": null
+				},
+				{
+					"testo": "Struttura su tre livelli",
+					"icona": null
+				},
+				{
+					"testo": "Piani panoramici e multifunzionali",
+					"icona": null
+				},
+				{
+					"testo": "Programma EnjoyIT​",
+					"icona": null
+				}
+			],
+			"portareTitolo": null,
+			"portare": [],
+			"intensita": [],
+			"pulsanti": [
+				{
+					"testo": "Scopri la sede",
+					"href": "/meda",
+					"esterno": false
+				}
+			]
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sulla Technogym App</p>"
+		}
+	]
+}

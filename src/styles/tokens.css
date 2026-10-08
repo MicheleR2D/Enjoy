@@ -1,0 +1,86 @@
+/*
+ * Brand kit di Enjoy Club, ricavato dal Global Kit di Elementor del sito
+ * WordPress originale (post ID 4: colore accento #FFE600, testo #212121,
+ * font Inter) e dal sito live (header nero, logo bianco, giallo come accento).
+ */
+:root {
+  /* Sfondi */
+  --bg: #ffffff;
+  --bg-alt: #f3f3f1; /* sezioni/card alternate su fondo chiaro */
+  --bg-cream: #f3f3f1;
+
+  /* Testo */
+  --text: #212121;
+  --text-on-dark: #ffffff;
+  --text-muted: #4a4a4a;
+  --text-muted-on-dark: rgba(255, 255, 255, 0.72);
+
+  /* Sfondo nero delle sezioni/blocchi scuri e dell'header */
+  --bg-dark: #0d0d0d;
+  --bg-dark-deep: #000000;
+  --bg-dark-soft: #181818;
+
+  /* Bordi (semi-trasparenti) */
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.12);
+  --border-on-dark: rgba(255, 255, 255, 0.16);
+
+  /* Accento (giallo del brand). Sul giallo il testo e' sempre nero. */
+  --accent: #ffe600;
+  --accent-secondary: #fff27a;
+  --accent-hover: #e6cf00;
+  --accent-tint: rgba(255, 230, 0, 0.12);
+  --on-accent: #000000;
+
+  /* Tipografia: Inter ovunque (titoli e testo), come nel kit di Elementor */
+  --font-heading: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  /* Scala dimensioni testo (h1/h2 seguono Heading XL 60px e Heading L 48px del kit, ridotti) */
+  --text-xs: 0.8rem;
+  --text-sm: 0.9rem;
+  --text-base: 1rem;
+  --text-md: 1.15rem;
+  --text-lg: 1.4rem;
+  --text-xl: clamp(1.75rem, 3vw, 2.25rem); /* h2 */
+  --text-2xl: clamp(2rem, 5vw, 2.75rem); /* h1 */
+
+  /* Curve e durate di movimento per le animazioni "reveal on scroll" e hover */
+  --ease-out-crit: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-press: 0.05s;
+  --dur-base: 0.35s;
+
+  /* Raggi */
+  --radius: 10px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* Larghezza massima contenuto, dai breakpoint del kit Elementor */
+  --container-max-width: 1140px;
+
+  /* Margine laterale delle sezioni a tutta larghezza. In vw (non %) cosi'
+     le righe dei titoli, che partono dal bordo pagina, si allineano al pixel. */
+  --gutter: 5vw;
+
+  /* Altezza dell'header fisso: tutto il resto (sezioni a schermo intero,
+     anchor, menu mobile) la legge da qui. */
+  --header-h: 61px;
+  --screen-h: calc(100vh - var(--header-h));
+}
+
+/* Altezza utile = schermo meno header; svh evita i salti della barra URL
+   sui telefoni. */
+@supports (height: 100svh) {
+  :root {
+    --screen-h: calc(100svh - var(--header-h));
+  }
+}
+
+/*
+ * Breakpoint condivisi (le media query non leggono le variabili, quindi vanno
+ * scritti a mano: usare SOLO questi tre):
+ *   560px  telefono
+ *   900px  tablet / header a hamburger
+ *   1100px desktop stretto
+ */

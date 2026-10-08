@@ -1,0 +1,123 @@
+{
+	"tipo": "sede",
+	"slug": "meda",
+	"nome": "Meda",
+	"seo": {
+		"title": "Enjoy Club Meda | Palestra e Piscina",
+		"description": "Dove il design incontra il fitness e la luce diventa energia. Un centro sportivo esclusivo nel cuore della Brianza, dove design, benessere e funzionalità…"
+	},
+	"hero": {
+		"titolo": "enjoy",
+		"parole": [
+			"meda",
+			"montecarlo"
+		],
+		"sottotitolo": "",
+		"immagine": "/wp-content/uploads/2025/06/Meda-2-scaled.jpg",
+		"pulsanti": [
+			{
+				"testo": "Prova Ora",
+				"href": "#prova"
+			},
+			{
+				"testo": "Richiedi Informazioni",
+				"href": "https://automazione.n8ndevelop.it/form/8422e735-00f7-4ddd-b27b-f03dbef75dc8?source=SitoWeb&medium=HeroMeda"
+			}
+		]
+	},
+	"orari": {
+		"titolo": "Scegli ogni giorno il tuo benessere",
+		"html": "Lunedì - Martedì - Mercoledì - Giovedì - Venerdì dalle 7.00 alle 22.30<br>Sabato - Domenica dalle 09.00 alle 18.00"
+	},
+	"struttura": {
+		"titolo": "La Struttura",
+		"sottotitolo": "Dove il design incontra il fitness e la luce diventa energia",
+		"testi": [
+			"Un centro sportivo esclusivo nel cuore della Brianza, dove design, benessere e funzionalità si fondono per offrire un’esperienza di allenamento senza paragoni, tutto l’anno. Con 2800 m² di spazi moderni, attrezzati con macchinari Technogym di ultima generazione e ampie sale corsi, il club propone oltre 100 attività settimanali, tra allenamenti in acqua, a terra e outdoor, pensati per ogni esigenza. La palestra, luminosa e panoramica, è dotata di un innovativo tetto apribile, che in estate si apre completamente per un allenamento ancora più immersivo e a contatto con l’ambiente esterno.",
+			"Il vero gioiello del centro è la piscina panoramica da 25 metri con 4 corsie, un ambiente spettacolare dove l’acqua cristallina riflette la luce naturale, regalando la sensazione di “nuotare vicino al cielo”. La temperatura dell’acqua è mantenuta costante a 29 gradi, per un comfort ideale in ogni stagione. Al piano piscina si trova il Thermarium, uno spazio dedicato al relax e al recupero, con sauna, bagno turco, vasca di ghiaccio e idromassaggio. Completa l’offerta il Risto Bar panoramico, perfetto per una pausa pranzo salutare o un momento di relax dopo l’allenamento, con un servizio veloce e attento al benessere"
+		]
+	},
+	"ambienti": [
+		{
+			"titolo": "Gym Floor",
+			"immagini": [
+				"/wp-content/uploads/2025/06/Sala-Pesi-Meda-7-scaled.jpg",
+				"/wp-content/uploads/2025/06/Sala-Pesi-Meda-1-scaled.jpg",
+				"/wp-content/uploads/2025/06/Sala-Pesi-Meda-3-scaled.jpg",
+				"/wp-content/uploads/2025/06/Sala-Pesi-Meda-2-scaled.jpg"
+			],
+			"html": "<p><strong>Area Cardio Technogym®</strong><br> Tapis roulant, ellittiche, cyclette e hand bike per migliorare resistenza e salute del cuore.</p> <p><strong>Area Valutativa</strong><br> Check-up e analisi Technogym per monitorare i progressi in modo preciso.</p> <p><strong>Area Biostrength Technogym®</strong><br> Allenamento smart e guidato per sviluppare forza, postura e performance.</p> <p><strong>Area Stretching</strong><br> Attrezzi Technogym e Canali per mobilità, recupero e benessere muscolare.</p> <p><strong>Area Isotonica</strong><br> Macchinari Technogym per un potenziamento muscolare completo e sicuro.</p> <p><strong>Area Pesi Liberi</strong><br> Panche, manubri, bilancieri e rack per squat per un allenamento libero e versatile.</p>"
+		},
+		{
+			"titolo": "Sale Fitness",
+			"immagini": [
+				"/wp-content/uploads/2025/06/Sala-Pesi-Meda-7-scaled.jpg",
+				"/wp-content/uploads/2025/06/Corsi-Meda-3-scaled.jpg",
+				"/wp-content/uploads/2025/06/Sala-Pesi-Meda-3-scaled.jpg",
+				"/wp-content/uploads/2025/06/Sala-Pesi-Meda-2-scaled.jpg"
+			],
+			"html": "<p><strong>X Room</strong><br> Sala tecnologica e dinamica per allenamenti ad alta intensità.<br> Classi a piccoli gruppi, attrezzatura <strong>TECHNOGYM</strong> e tracciamento dei dati biometrici per stimolare forza, resistenza e spirito di squadra.</p> <p><strong>Y Room</strong><br> Ambiente polifunzionale e flessibile per corsi posturali, coreografici e a bassa intensità.<br> Perfetta per offrire varietà e benessere in un’unica sala.</p> <p><strong>Sala Energy</strong><br> Il cuore dei corsi collettivi Enjoy: alta, media e bassa intensità in uno spazio professionale e motivante.<br> Dai Les Mills ai corsi funzionali, tutto in una sola sala.</p>"
+		},
+		{
+			"titolo": "Outdoor Training",
+			"immagini": [
+				"/wp-content/uploads/2025/06/Outdoor-Meda-1-scaled.jpg"
+			],
+			"html": "<p><strong>Allenati in una stazione di allenamento funzionale</strong> dotata di accessori e attrezzature pensate per offrire un’ampia varietà di esercizi.<br>Questa struttura è perfetta per allenamenti in sospensione, circuiti funzionali,sessioni individuali o corsi di gruppo.<br>Il focus è su un allenamento completo del corpo, con movimenti che coinvolgono più gruppi muscolari, migliorando forza, resistenza e coordinazione.<br>Puoi scegliere tra <strong>HIIT outdoor</strong>, sessioni libere o allenamenti personalizzati con i nostri trainer qualificati.</p>"
+		},
+		{
+			"titolo": "Wellness Lab",
+			"immagini": [
+				"/wp-content/uploads/2025/06/Wellness-Meda-1-scaled.jpg"
+			],
+			"html": "<p>Nel Wellness Lab puoi prevenire e alleviare fastidi come mal di schiena, cervicalgie, coxartrosi, problemi articolari e retrazioni muscolari, grazie al sistema innovativo <strong>PANCA WBS 4.0</strong>.<br>Questa panca regolabile garantisce una postura corretta, comfort e sicurezza durante gli esercizi, anche per chi ha esigenze particolari o sovrappeso.<br>L’attività è mirata al recupero funzionale, alla rieducazione motoria, al riequilibrio posturale, alla tonificazione e alla flessibilità, per ritrovare benessere e libertà di movimento in modo sicuro ed efficace.</p>"
+		},
+		{
+			"titolo": "Piscina",
+			"immagini": [
+				"/wp-content/uploads/2025/06/Corsi-Meda-1-scaled.jpg",
+				"/wp-content/uploads/2025/06/Piscina-Meda-1-scaled.jpg",
+				"/wp-content/uploads/2025/06/Corsi-Meda-2-scaled.jpg",
+				"/wp-content/uploads/2025/06/Piscina-Meda-11-scaled.jpg"
+			],
+			"html": "<p><strong>Una piscina da vivere tutto l’anno, con una vista che lascia senza fiato.</strong><br>La vasca, lunga <strong>25 metri con 4 corsie</strong>, ha una temperatura costante di <strong>29°C</strong>, ideale per allenarsi o rilassarsi in ogni stagione.</p><p><strong>“Nuotare sospesi tra i tetti e la luce del cielo”</strong>: l’atmosfera è unica, con l’acqua cristallina che riflette i raggi del sole e trasforma ogni bracciata in un momento di benessere.</p><p>Il <strong>tetto apribile</strong> rende questa piscina straordinaria: chiusa e riscaldata d’inverno, aperta e ariosa d’estate. Nei mesi caldi si trasforma in un vero e proprio attico d’acqua, dove prendere il sole, respirare aria fresca e tuffarsi quando vuoi.</p><p>Un angolo esclusivo di sport e relax, sospeso tra cielo e città.</p>"
+		},
+		{
+			"titolo": "Thermarium",
+			"immagini": [
+				"/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-24-at-13.04.31.jpeg",
+				"/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-24-at-13.09.23-scaled.jpeg"
+			],
+			"html": "Un’esperienza di benessere completa per corpo e mente. La <strong>sauna</strong>, con calore secco tra 80 e 100°C, favorisce una sudorazione intensa che libera tossine e tensioni in un ambiente silenzioso e rigenerante. Il <strong>bagno turco</strong>, con vapore umido a 45°C e umidità al 100%, purifica la pelle, libera le vie respiratorie e scioglie le tensioni muscolari, regalando un momento di relax avvolgente. L’<strong>idromassaggio</strong>, grazie ai getti multidirezionali, stimola la circolazione, riduce la ritenzione idrica e rilassa i muscoli, aiutando anche a sciogliere lo stress. L’<strong>Ice Bath</strong>, ispirato al metodo Wim Hof, prevede un’immersione in acqua fredda tra 8 e 12°C per attivare la termoregolazione, rinforzare il sistema immunitario e ridurre infiammazioni e dolori muscolari post-allenamento."
+		},
+		{
+			"titolo": "Ristobar",
+			"immagini": [
+				"/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-24-at-13.56.56-scaled.jpeg",
+				"/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-24-at-13.56.59-scaled.jpeg",
+				"/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-24-at-13.56.58-scaled.jpeg"
+			],
+			"html": "Il <strong>Risto Bar di Enjoy Club Meda</strong>, situato accanto alla piscina, è il luogo ideale per una pausa gustosa e rilassante. Con tavolini all’aperto e vista suggestiva, offre <strong>colazioni, pranzi leggeri e aperitivi</strong> in un ambiente accogliente e informale. Perfetto per chi si allena o accompagna i bambini a nuoto, permette di godersi un momento di tranquillità in area lounge. <strong>Benessere e gusto si incontrano... proprio accanto alla piscina!</strong>"
+		}
+	],
+	"attivita": {
+		"titolo": "Le attività nella sede di Meda",
+		"card": [
+			{
+				"titolo": "Gym Floor",
+				"href": "/gym-floor",
+				"immagine": "/wp-content/uploads/2025/06/Sala-Pesi-Meda-3-scaled.jpg"
+			},
+			{
+				"titolo": "Corsi Fitness",
+				"href": "/corsi-fitness",
+				"immagine": "/wp-content/uploads/2025/06/Corsi-Meda-9-scaled.jpg"
+			},
+			{
+				"titolo": "Acqua Gym",
+				"href": "/acqua-gym",
+				"immagine": "/wp-content/uploads/2025/06/Piscina-Meda-8-scaled.jpg"
+			}
+		]
+	}
+}

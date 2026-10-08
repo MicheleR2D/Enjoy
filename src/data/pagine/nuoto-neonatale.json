@@ -1,0 +1,135 @@
+{
+	"tipo": "servizio",
+	"slug": "nuoto-neonatale",
+	"nome": "Nuoto Neonatale",
+	"seo": {
+		"title": "Nuoto Neonatale - Enjoy Club | Meda e Camuzzago",
+		"description": "Il nostro percorso di acquaticità neonatale segue ed accompagna lo sviluppo psicomotorio del vostro bambino o della vostra bambina durante i suoi primi…"
+	},
+	"hero": {
+		"titolo": "nuoto",
+		"parole": [
+			"neonatale"
+		],
+		"immagine": "/wp-content/uploads/2025/06/nuoto-neonatale-2263cc58-enjoy.webp"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "Nuoto Neonatale",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Il nostro percorso di acquaticità neonatale segue ed accompagna lo sviluppo psicomotorio del vostro bambino o della vostra bambina durante i suoi primi tre anni di vita, arricchendosi via via che i bambini crescono, di proposte sempre adeguate all’età ed alle capacità di ogni singolo piccolo partecipante, accompagnato e sostenuto da uno dei genitori.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/nuoto-neonatale-2263cc58-enjoy.webp"
+			],
+			"dettagli": [
+				{
+					"testo": "30 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "PANNOLINO ACQUATICO",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced.svg"
+				},
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": []
+		},
+		{
+			"id": null,
+			"titolo": "Il Percorso in 3 fasi",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Il percorso è per semplicità suddiviso in tre fasi successive, ognuna caratterizzata da uno specifico tema educativo:</p>",
+			"video": null,
+			"immagini": [],
+			"dettagli": [],
+			"portareTitolo": null,
+			"portare": [],
+			"intensita": []
+		},
+		{
+			"id": null,
+			"titolo": "PRIMA FASE dai 3 ai 12 mesi",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Le scoperte senso-motorie: vengono proposti giochi ed attività che partendo dalla libera esplorazione di ciascuno, permettano al bambino e alla bambina di scoprire il proprio corpo, l’ambiente acqua e le relazioni tra essi, attraverso la mediazione e il contenimento del proprio genitore.</p>",
+			"video": null,
+			"immagini": [],
+			"dettagli": [],
+			"portareTitolo": null,
+			"portare": [],
+			"intensita": []
+		},
+		{
+			"id": null,
+			"titolo": "SECONDA FASE dai 13 ai 24 mesi",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>In questa fase del <strong>nuoto neonatale</strong>, il bambino è più attivo, curioso e desideroso di autonomia. Le attività in acqua si evolvono per stimolare <strong>movimento, coordinazione e fiducia</strong>, favorendo le prime esperienze di distacco graduale dal genitore.<br>Attraverso giochi strutturati, percorsi motori e attività ludico-educative, il piccolo esplora nuove possibilità di movimento, interagisce con l’ambiente e rafforza il legame con il genitore in modo più dinamico.</p>",
+			"video": null,
+			"immagini": [],
+			"dettagli": [],
+			"portareTitolo": null,
+			"portare": [],
+			"intensita": []
+		},
+		{
+			"id": null,
+			"titolo": "TERZA FASE dai 25 ai 36 mesi​",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Nel percorso di <strong>nuoto per bambini da 2 a 3 anni</strong>, il bambino sviluppa maggiore autonomia, sicurezza e controllo motorio. Le lezioni propongono attività che favoriscono il movimento indipendente in acqua, sempre supportato dalla presenza rassicurante del genitore e guidato da istruttori specializzati.</p>",
+			"video": null,
+			"immagini": [],
+			"dettagli": [],
+			"portareTitolo": null,
+			"portare": [],
+			"intensita": []
+		}
+	],
+	"faq": [
+		{
+			"domanda": "A che età si può iniziare?",
+			"risposta": "<p>I corsi partono già dal <strong>terzo mese</strong> di vita, con attività suddivise in fasce: 3–12 mesi, 13–24 mesi e 25–36 mesi.</p>"
+		},
+		{
+			"domanda": "Quanto dura ogni lezione?",
+			"risposta": "<p>Ogni lezione dura <strong>30 minuti</strong>, pensati appositamente per il benessere psicofisico del bambino.</p>"
+		},
+		{
+			"domanda": "È obbligatorio avere un certificato medico?",
+			"risposta": "<p>No, per i bambini sotto i 6 anni non è necessario. Solo dai 6 anni in poi, o per la scuola primaria, è richiesto un certificato.</p>"
+		},
+		{
+			"domanda": "Che attrezzature servono?",
+			"risposta": "<p>È necessario il <strong>costume contenitivo</strong> (noto anche come pannolino acquatico). Per i bambini con capelli, consigliamo anche <strong>cuffia</strong> o bandana.</p>"
+		},
+		{
+			"domanda": "E' presente uno spogliatoio per i bambini?",
+			"risposta": "<p>Il centro offre <strong>spogliatoi attrezzati con fasciatoi</strong> per garantire comodità e sicurezza alle famiglie.</p>"
+		},
+		{
+			"domanda": "Chi può accompagnare il bambino?",
+			"risposta": "<p>È necessario il <strong>costume contenitivo</strong> (noto anche come pannolino acquatico). Per i bambiCon la <strong>family card</strong> possono partecipare mamma e papà oppure mamma e nonna.ni con capelli, consigliamo anche <strong>cuffia</strong> o bandana.</p>"
+		},
+		{
+			"domanda": "In cosa consiste ogni fase del percorso?",
+			"risposta": "<ul><li><p><strong>3–12 mesi:</strong> focus sulle scoperte senso-motorie con la presenza del genitore.</p></li><li><p><strong>13–24 mesi:</strong> stimolazione della coordinazione e primi tentativi di autonomia.</p></li><li><p><strong>25–36 mesi:</strong> giochi simbolici, galleggiamento e avvio ai corsi senza genitore.</p></li></ul>"
+		}
+	],
+	"sedi": [
+		"camuzzago"
+	]
+}

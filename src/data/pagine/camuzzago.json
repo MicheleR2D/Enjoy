@@ -1,0 +1,143 @@
+{
+	"tipo": "sede",
+	"slug": "camuzzago",
+	"nome": "Camuzzago",
+	"seo": {
+		"title": "Enjoy Club Camuzzago | Palestra e Piscina vicino Vimercate",
+		"description": "Palestra, piscine, Thermarium e corsi fitness nel verde di Camuzzago di Bellusco, vicino a Vimercate. Richiedi informazioni o prova ora!"
+	},
+	"hero": {
+		"titolo": "enjoy",
+		"parole": [
+			"camuzzago",
+			"bellusco"
+		],
+		"sottotitolo": "Palestra e piscina a Camuzzago di Bellusco, vicino a Vimercate",
+		"immagine": "/wp-content/uploads/2025/06/Piscina-Camuzzago-3-scaled.jpg",
+		"pulsanti": [
+			{
+				"testo": "Prova Ora",
+				"href": "#prova"
+			},
+			{
+				"testo": "Richiedi Informazioni",
+				"href": "https://automazione.n8ndevelop.it/form/8422e735-00f7-4ddd-b27b-f03dbef75dc8?source=SitoWeb&medium=HeroCamuzzago"
+			}
+		]
+	},
+	"orari": {
+		"titolo": "Scegli ogni giorno il tuo benessere",
+		"html": "Lunedì - Mercoledì - venerdì 7.00 - 22.00<br>martedì - giovedì 07.00 - 22.30<br>sabato 8.30 - 18.30<br>domenica 9.00 - 18.00"
+	},
+	"struttura": {
+		"titolo": "La Struttura",
+		"sottotitolo": "Performance e relax, in un luogo unico immerso nel verde.",
+		"testi": [
+			"La sede di Camuzzago si trova a Bellusco, a pochi minuti da Vimercate e dalle principali vie di accesso della Brianza. Un’oasi di benessere e allenamento immersa nel verde dei campi da golf e con vista sulle montagne del Resegone. Con oltre 500 m² dedicati al fitness, il centro offre spazi interni luminosi ed eleganti, dotati di macchinari Technogym di ultima generazione, sale corsi e un’area dedicata al Group Cycling. L’allenamento è vario e stimolante grazie a una proposta che supera i 90 corsi settimanali, sia in acqua che a terra, adatta a ogni esigenza e livello.",
+			"A rendere unica l’esperienza ci pensano le due aree fitness: una interna con vista panoramica e una esterna per allenarsi all’aria aperta nei mesi più miti. Il vero fiore all’occhiello del centro è la splendida piscina coperta da 25 metri con 6 corsie, affacciata sul verde circostante: nuotare qui regala un senso di libertà e connessione con la natura difficile da descrivere. A completare l’offerta: area benessere con saune, bagno turco, stanza del sale e zona relax, oltre a percorsi personalizzati 1to1 e 1to2 per un'attenzione sartoriale ai tuoi obiettivi."
+		]
+	},
+	"ambienti": [
+		{
+			"titolo": "Gym Floor",
+			"immagini": [
+				"/wp-content/uploads/2025/06/Gym-Floor-Camuzzago-3-scaled.jpg",
+				"/wp-content/uploads/2025/06/Gym-Floor-Camuzzago-2-scaled.jpg",
+				"/wp-content/uploads/2025/06/Gym-Floor-Camuzzago-1-scaled.jpg",
+				"/wp-content/uploads/2025/05/Xspace_-03-63a053a4.webp"
+			],
+			"html": "<p>Area cardio (Technogym) - zona cardio con tapis roulant, ellittiche, cyclette, handbike.</p><p>Area valutativa</p><p>Area Stretching- Corpo libero</p><p>Area Isotonica (macchinari) (Technogym)</p><p>Area Pesi Liberi (manubri, panche, rack per lo squat etc) (Technogym)</p>"
+		},
+		{
+			"titolo": "Sale Fitness",
+			"immagini": [
+				"/wp-content/uploads/2025/06/Corsi-Meda-3-scaled.jpg",
+				"/wp-content/uploads/2025/06/Sala-Pesi-Meda-2-scaled.jpg"
+			],
+			"html": "<em><strong>Sala Energy: </strong></em>sala progettata per ospitare tutti i corsi collettivi ad alta, media e bassa intensità — da Les Mills a corsi funzionali, coreografici e posturali — in un unico spazio dinamico, professionale e motivante.<em><strong>X Space: </strong></em>con la sua la varietà di esercizi, equipment TECHNOGYM e tecniche di allenamento utilizzati farà in modo che ogni partecipante esca dalla lezione stanco, soddisfatto e motivato a dare sempre qualcosa in più sessione dopo sessione.<em><em><strong>Sala Emotion: </strong></em></em>una sala polifunzionale, progettata per ospitare diversi corsi in orari diﬀerenti, con un solo ambiente attrezzato in modo flessibile e funzionale."
+		},
+		{
+			"titolo": "Piscine",
+			"immagini": [
+				"/wp-content/uploads/2025/06/Piscina-Camuzzago-8-scaled.jpg",
+				"/wp-content/uploads/2025/06/Piscina-Camuzzago-3-scaled.jpg",
+				"/wp-content/uploads/2025/06/Piscina-Camuzzago-4-scaled.jpg",
+				"/wp-content/uploads/2025/06/Piscina-Camuzzago-10-scaled.jpg"
+			],
+			"html": "<p><em><strong>Piscina Grande:</strong></em> da 6 corsie da 25 metri di lunghezza regolamentari.</p><p><em><strong>Piscina Piccola:</strong></em> da una seconda vasca dedicata ai più piccoli, riscaldata a 32° un toccasana per adulti e bambini.</p><p><em><strong>Piscina Esterna:</strong></em> Da giugno a settembre, la nostra piscina all’aperto è il luogo ideale per rilassarsi, nuotare e godersi il sole.</p>"
+		},
+		{
+			"titolo": "Thermarium",
+			"immagini": [
+				"/wp-content/uploads/2025/06/Thermarium-Camuzzago-1-scaled.jpg",
+				"/wp-content/uploads/2025/06/Thermarium-Camuzzago-2-scaled.jpg"
+			],
+			"html": "<p><em><strong>Sauna</strong></em>: Perfetta per chi cerca rigenerazione fisica e mentale in un ambiente caldo e silenzioso, Il calore secco (80–100°C) stimola la sudorazione intensa, liberando il corpo da tossine e tensioni.</p><p><em><strong>Bagno Turco</strong></em>: l vapore umido e profumato del bagno turco coccola corpo e mente a circa 45°C con un’umidità al 100%. </p><p><em><strong>Stanza del Sale:</strong></em> Respirazione profonda e pelle rigenerata. Immergersi nella stanza del sale significa respirare aria micro-climatica, arricchita di particelle saline finissime in un ambiente controllato. </p><p><em><strong>Sauna Infrarossi</strong></em>: Calore penetrante per corpo e mente, La sauna a infrarossi riscalda direttamente il corpo, grazie alla luce infrarossa che penetra fino a 3–4 cm sotto la pelle. </p>"
+		},
+		{
+			"titolo": "Spogliatoi",
+			"immagini": [],
+			"html": "<p>Dopo l’allenamento o un momento di relax, entra in uno spazio pensato per farti sentire a tuo agio, rigenerato e curato. Il nostro spogliatoio è ampio, pulito e progettato per oﬀrire funzionalità e benessere.</p><p>Docce spaziose, Armadietti personali, Zona beauty dedicata.</p><p>Spogliatoi fitness (uomo) (donna) + Thermarium</p><p>Spogliatoi piscina (uomo) (donna)</p>"
+		},
+		{
+			"titolo": "Consulting Medical Center",
+			"immagini": [],
+			"html": "<p>Centro di alta specializzazione di riabilitazione.</p><p>Il Consulting Medical Center è un Poliambulatorio dove medici e professionisti operano in modo individuale o in sinergia per oﬀrire benessere a 360° al paziente.</p><p>La nostra missione è il benessere della persona; scegliere il percorso giusto, trovare la soluzione alle varie esigenze: <strong>EMS, Pilates Reformer, Crioterapia, Ginnastica Terapeutica in Acqua, Nutrizionista, Osteopatia </strong>e<strong> Fisioterapia</strong></p>"
+		}
+	],
+	"attivita": {
+		"titolo": "Le attività nella sede di Camuzzago",
+		"card": [
+			{
+				"titolo": "Gym Floor",
+				"href": "/gym-floor",
+				"immagine": "/wp-content/uploads/2025/06/Sala-Pesi-Meda-3-scaled.jpg"
+			},
+			{
+				"titolo": "Corsi Fitness",
+				"href": "/corsi-fitness",
+				"immagine": "/wp-content/uploads/2025/06/Corsi-Meda-9-scaled.jpg"
+			},
+			{
+				"titolo": "Acqua Gym",
+				"href": "/acqua-gym",
+				"immagine": "/wp-content/uploads/2025/06/Piscina-Meda-8-scaled.jpg"
+			},
+			{
+				"titolo": "X-class",
+				"href": "/x-class",
+				"immagine": "/wp-content/uploads/2025/06/X-CLASS-enjoy.png"
+			},
+			{
+				"titolo": "Nuoto Libero",
+				"href": "/nuoto-libero",
+				"immagine": "/wp-content/uploads/2025/06/Piscina-Camuzzago-11-scaled.jpg"
+			},
+			{
+				"titolo": "Nuoto Adulti",
+				"href": "/nuoto-adulti",
+				"immagine": "/wp-content/uploads/2025/06/Varie-Camuzzago-3-scaled.jpg"
+			},
+			{
+				"titolo": "Health Fitness",
+				"href": "/health-fitness-camuzzago",
+				"immagine": "/wp-content/uploads/2025/06/Varie-Camuzzago-3-1-scaled.jpg"
+			},
+			{
+				"titolo": "Personal Training",
+				"href": "/personal-training",
+				"immagine": "/wp-content/uploads/2025/05/personal-trainer-with-a-woman-in-a-gym.jpg"
+			},
+			{
+				"titolo": "Nuoto Neonatale",
+				"href": "/nuoto-neonatale",
+				"immagine": "/wp-content/uploads/2025/06/nuoto-neonatale-2263cc58-enjoy.webp"
+			},
+			{
+				"titolo": "Nuoto Bambini",
+				"href": "/nuoto-bambini",
+				"immagine": "/wp-content/uploads/2025/06/nuoto-ragazzi-f01d8c42-enjoy.webp"
+			}
+		]
+	}
+}

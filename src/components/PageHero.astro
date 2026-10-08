@@ -1,0 +1,153 @@
+---
+/*
+ * Hero di una pagina interna: foto a tutta larghezza con velo scuro, titolo grande
+ * (con parole che ruotano, se sono piu' d'una) e i pulsanti passati come slot.
+ * Va usata con <Layout headerTone="overlay">: la foto passa sotto l'header (fisso,
+ * chiaro e un po' trasparente). Alta come la hero della home. Nessun sottotitolo.
+ *
+ *   <PageHero image="/wp-content/uploads/…jpg" title="group" words={['cycling']}>
+ *     <a class="btn btn--lg" href="/…">…</a>
+ *   </PageHero>
+ */
+import Img from './Img.astro';
+
+interface Props {
+	image: string;
+	title: string;
+	/** Parola/e che chiudono il titolo. Se sono piu' di una ruotano (la prima si vede subito). */
+	words?: string[];
+	/** Descrizione della foto (vuota se e' solo decorativa). */
+	imageAlt?: string;
+}
+
+const { image, title, words = [], imageAlt = '' } = Astro.props;
+---
+
+<section class="ph">
+	<Img src={image} alt={imageAlt} class="img-cover" sizes="100vw" priority />
+	<div class="ph__overlay"></div>
+	<div class="ph__content">
+		<h1 class="display-title ph__title" data-intro style="--intro-delay: 0.1s">
+			{title}
+			{
+				words.length > 0 && (
+					<>
+						{' '}
+						<span class="ph__rot" data-rot={words.length > 1 ? '' : undefined}>
+							{words.map((w, i) => (
+								<>
+									{i > 0 && ' '}
+									<span class:list={['ph__word', { 'is-on': i === 0 }]} aria-hidden={i === 0 ? undefined : 'true'}>
+										{w}
+									</span>
+								</>
+							))}
+						</span>
+					</>
+				)
+			}
+		</h1>
+		{
+			Astro.slots.has('default') && (
+				<div class="ph__actions" data-intro style="--intro-delay: 0.25s">
+					<slot />
+				</div>
+			)
+		}
+	</div>
+</section>
+
+<style>
+	.ph {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		/* Stessa altezza della hero della home (HeroCarousel). */
+		min-height: 100vh;
+		min-height: 100svh;
+		padding: calc(var(--header-h) + 32px) var(--gutter) 56px;
+		overflow: hidden;
+		background: var(--bg-dark);
+		color: var(--text-on-dark);
+	}
+
+	.ph__overlay {
+		position: absolute;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.61);
+	}
+
+	.ph__content {
+		position: relative;
+		z-index: 1;
+		text-align: center;
+	}
+
+	.ph__title {
+		color: var(--bg-alt);
+		text-transform: uppercase;
+	}
+
+	/* Le parole che ruotano stanno tutte nella stessa cella: il titolo non cambia
+	   larghezza (e non scatta) quando una sostituisce l'altra. */
+	.ph__rot {
+		display: inline-grid;
+		color: var(--accent-secondary);
+	}
+
+	.ph__word {
+		grid-area: 1 / 1;
+		text-align: left;
+	}
+
+	.ph__rot[data-rot] .ph__word {
+		opacity: 0;
+		transform: translateY(0.35em);
+		transition: opacity 0.5s ease, transform 0.6s var(--ease-out-crit);
+	}
+
+	.ph__rot[data-rot] .ph__word.is-on {
+		opacity: 1;
+		transform: none;
+	}
+
+	.ph__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 16px;
+		margin-top: 36px;
+	}
+
+	@media (max-width: 900px) {
+		.ph {
+			min-height: 74vh;
+			min-height: 74svh;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.ph__actions {
+			flex-direction: column;
+			align-items: stretch;
+		}
+	}
+</style>
+
+<script>
+	// Fa ruotare le parole del titolo; con "riduci movimento" resta la prima.
+	if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		document.querySelectorAll<HTMLElement>('[data-rot]').forEach((rot) => {
+			const parole = [...rot.querySelectorAll<HTMLElement>('.ph__word')];
+			let i = 0;
+			setInterval(() => {
+				parole[i].classList.remove('is-on');
+				parole[i].setAttribute('aria-hidden', 'true');
+				i = (i + 1) % parole.length;
+				parole[i].classList.add('is-on');
+				parole[i].removeAttribute('aria-hidden');
+			}, 2800);
+		});
+	}
+</script>

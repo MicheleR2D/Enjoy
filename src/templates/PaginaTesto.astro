@@ -1,0 +1,119 @@
+---
+/*
+ * Template "testo": pagine di solo testo (privacy policy).
+ * Header pieno, titolo grande e una colonna di lettura. Il testo e' gia' ripulito dallo
+ * script di migrazione: qui si dà solo la tipografia.
+ */
+import Layout from '../layouts/Layout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import Img from '../components/Img.astro';
+
+interface Props {
+	pagina: {
+		nome: string;
+		seo: { title: string; description: string };
+		titolo: string;
+		html: string;
+		immagine: string | null;
+	};
+}
+
+const { pagina } = Astro.props;
+---
+
+<Layout title={pagina.seo.title} description={pagina.seo.description}>
+	<article class="testo on-dark">
+		<SectionTitle as="h1" tone="dark-bg" gap={40}>{pagina.titolo}</SectionTitle>
+		<div class="testo__corpo container-wide">
+			<div class="testo__prosa" set:html={pagina.html} />
+			{
+				pagina.immagine && (
+					<figure class="testo__fig" data-anim="up">
+						<Img src={pagina.immagine} alt={pagina.titolo} sizes="(max-width: 900px) 90vw, 60rem" />
+					</figure>
+				)
+			}
+		</div>
+	</article>
+</Layout>
+
+<style>
+	.testo {
+		padding-block: clamp(40px, 6vw, 80px);
+		background: var(--bg-dark);
+		color: var(--text-on-dark);
+	}
+
+	.testo__corpo {
+		max-width: calc(60rem + 2 * var(--gutter));
+	}
+
+	.testo__prosa {
+		font-size: var(--text-base);
+		line-height: 1.75;
+	}
+
+	.testo__prosa :global(h2) {
+		margin: 2.2em 0 0.7em;
+		font-size: var(--text-lg);
+		font-weight: 800;
+		color: var(--text-on-dark);
+	}
+
+	.testo__prosa :global(h2:first-child) {
+		margin-top: 0;
+	}
+
+	.testo__prosa :global(h3) {
+		margin: 1.6em 0 0.5em;
+		font-size: var(--text-md);
+		font-weight: 800;
+		color: var(--accent);
+	}
+
+	.testo__prosa :global(p),
+	.testo__prosa :global(ul),
+	.testo__prosa :global(ol) {
+		margin: 0 0 1em;
+	}
+
+	.testo__prosa :global(ul),
+	.testo__prosa :global(ol) {
+		padding-left: 1.4em;
+	}
+
+	.testo__prosa :global(li p) {
+		margin: 0 0 0.4em;
+	}
+
+	.testo__prosa :global(hr) {
+		margin: 2.4em 0;
+		border: 0;
+		border-top: 1px solid var(--border-on-dark);
+	}
+
+	.testo__prosa :global(blockquote) {
+		margin: 1.4em 0;
+		padding: 0.2em 0 0.2em 1.2em;
+		border-left: 4px solid var(--accent);
+		color: var(--text-muted-on-dark);
+	}
+
+	.testo__prosa :global(a) {
+		color: var(--accent);
+		overflow-wrap: anywhere;
+	}
+
+	/* Il logo ha fondo chiaro: sta su un pannello bianco, non sul nero della pagina. */
+	.testo__fig {
+		margin: 2.4em 0 0;
+		padding: clamp(12px, 3vw, 28px);
+		border-radius: var(--radius-lg);
+		background: #fff;
+	}
+
+	.testo__fig :global(img) {
+		width: 100%;
+		height: auto;
+	}
+</style>

@@ -1,0 +1,29 @@
+{
+	"seo": {
+		"title": "Planning Orari - Enjoy Club",
+		"description": "Gli orari aggiornati dei corsi di Enjoy Club a Meda e Camuzzago: scarica il planning della sede che ti interessa."
+	},
+	"hero": {
+		"titolo": "planning",
+		"parole": [
+			"orari"
+		],
+		"immagine": null
+	},
+	"intro": [
+		"<p><strong>Organizza al meglio i tuoi allenamenti con gli orari aggiornati dei nostri corsi!</strong><br>Organizza al meglio i tuoi allenamenti con gli orari aggiornati dei corsi Enjoy Club!<br>Che tu preferisca un’attività in piscina o un allenamento a terra, su questa pagina trovi tutti gli orari delle lezioni proposte nei nostri centri. Il calendario è pensato per offrire la massima flessibilità, con corsi adatti a ogni livello di preparazione e a ogni stile di vita.<br>Scegli l’attività che fa per te, scopri quando allenarti e vivi il tuo benessere con costanza, energia e motivazione.</p>"
+	],
+	"titolo": "Clicca sulla Sede per scaricare gli orari",
+	"sedi": [
+		{
+			"nome": "Camuzzago",
+			"immagine": "/wp-content/uploads/2025/06/Gym-Floor-Camuzzago-3-scaled.jpg",
+			"pdf": "/wp-content/uploads/2026/09/Planning-Camuzzago-2627-verisione-20.pdf"
+		},
+		{
+			"nome": "Meda",
+			"immagine": "/wp-content/uploads/2025/06/Sala-Pesi-Meda-4-scaled.jpg",
+			"pdf": "/wp-content/uploads/2026/04/Planning-Meda-2025-2026-250226-1.pdf"
+		}
+	]
+}

@@ -1,0 +1,219 @@
+{
+	"tipo": "corso",
+	"slug": "nuoto-bambini",
+	"nome": "Nuoto Bambini",
+	"seo": {
+		"title": "Nuoto Bambini - Enjoy Club | Meda e Camuzzago",
+		"description": "Per bambini dai 2,5 ai 3 anni Un percorso dedicato ai più piccoli per scoprire l’acqua nella vasca grande, guidati da un istruttore. In acqua alta i…"
+	},
+	"hero": {
+		"titolo": "nuoto",
+		"parole": [
+			"pre-baby",
+			"baby",
+			"ragazzi",
+			"teenager"
+		],
+		"immagine": "/wp-content/uploads/2025/05/IMG_6543-scaled-1.jpeg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "Nuoto Pre-Baby",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p><strong>Per bambini dai 2,5 ai 3 anni</strong> </p> Un percorso dedicato ai più piccoli per scoprire l’acqua nella vasca grande, guidati da un istruttore. In acqua alta i bambini imparano a fidarsi, muoversi con autonomia e vivere l’acqua come ambiente naturale. <p><strong>Benefici principali: </strong></p> <ul> <li>Maggiore confidenza e riduzione delle paure future</li> <li>Sviluppo di autonomia e sicurezza in acqua</li> <li>Miglioramento di equilibrio, forza e coordinazione</li> <li>Esperienza positiva, tra gioco e divertimento</li> <li>Vantaggio duraturo: nuotatori più sicuri e capaci fin da piccoli</li> </ul></p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/nuoto-neonatale-2263cc58-enjoy.webp"
+			],
+			"dettagli": [
+				{
+					"testo": "45 min.",
+					"icona": "far fa-clock"
+				},
+				{
+					"testo": "Sede: Meda",
+					"icona": null
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "COSTUME",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced.svg"
+				},
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": []
+		},
+		{
+			"id": null,
+			"titolo": "Nuoto Baby",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Dai 3 ai 6 anni. Un percorso acquatico pensato per accompagnare i bambini alla scoperta dell’acqua in modo graduale e sicuro.</p> <p>Ambientamento in <strong>vasca piccola</strong>, confortevole e riscaldata a <strong>32°C</strong></p> <p><strong>Personale qualificato</strong> in <strong>Scienze Motorie</strong> e con abilitazione <strong>FIN-CONI</strong></p> <ul> <li>Possibilità di frequenza: <strong>Monosettimanale</strong> o<strong> </strong><strong>Bisettimanale</strong></li> </ul> <p><strong>Orari dei corsi:</strong></p> <ul> <li><strong>Lunedì – Venerdì</strong>: dalle <strong>16:30 alle 18:00</strong></li> <li><strong>Sabato</strong>: 10:30, 11:15, 12:00, 14:00, 14:45, 15:30</li> </ul> <p>Attività in <strong>vasca grande</strong>, con <strong>gruppi omogenei</strong> per favorire la crescita tecnica</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/nuoto-baby-9e2f55a8-renjoy.webp"
+			],
+			"dettagli": [
+				{
+					"testo": "45 min.",
+					"icona": "far fa-clock"
+				},
+				{
+					"testo": "Sede: Meda e Camuzzago",
+					"icona": null
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "COSTUME",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced.svg"
+				},
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": []
+		},
+		{
+			"id": null,
+			"titolo": "Nuoto Ragazzi",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p><strong>Dai 6 ai 13 anni</strong></p> <p>Progressione didattica attraverso un percorso acquatico di ambientamento fino all’acquisizione dei <strong>4 stili</strong>.</p> <p>Possibilità di frequenza <strong>bisettimanale</strong> oppure <strong>monosettimanale.</strong></p> <p><strong>Orari:</strong> Da lunedì a venerdì alle 16:30 ,17:15 e 18:00.<br>Sabato 10:30 – 11:15 – 12:00 – 14:00 – 14:45 – 15:30</p> <p>Si svolgono in vasca grande e permettono una crescita tecnica in gruppi omogenei</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/nuoto-ragazzi-f01d8c42-enjoy.webp"
+			],
+			"dettagli": [
+				{
+					"testo": "45 min.",
+					"icona": "far fa-clock"
+				},
+				{
+					"testo": "Sede: Meda e Camuzzago",
+					"icona": null
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "COSTUME",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced.svg"
+				},
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": []
+		},
+		{
+			"id": null,
+			"titolo": "Nuoto Teenager",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p><strong>Per ragazzi dai 13 ai 18 anni</strong>, un’attività pensata per:</p> <ul> <li>Allenarsi in gruppo divertendosi</li> <li>Mantenere la forma fisica</li> <li>Perfezionare gli stili di nuoto</li> </ul> <p>Possibilità di frequenza: <strong>Monosettimanale </strong>o<strong> Bisettimanale</strong></p> <strong>Orari delle lezioni:</strong> <ul> <li><strong>Martedì e Giovedì</strong> alle <strong>18:45</strong></li> <li><strong>Mercoledì</strong> alle <strong>15:45</strong></li> </ul> <p><strong>Le lezioni durano 45 minuti e si svolgono in vasca grande</strong></p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/nuoto-teenagers-e1b39597-enjoy.webp"
+			],
+			"dettagli": [
+				{
+					"testo": "45 min.",
+					"icona": "far fa-clock"
+				},
+				{
+					"testo": "Sede: Meda e Camuzzago",
+					"icona": null
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "COSTUME",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced.svg"
+				},
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": []
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Qual è l’età consigliata per iniziare il corso Baby?",
+			"risposta": "<p>Il corso Baby è pensato per bambini dai <strong>3 ai 5 anni</strong>, ideale per continuare il percorso iniziato nel nuoto neonatale.Attraverso giochi e percorsi ludici, i bambini migliorano <strong>galleggiamento, respirazione e coordinazione</strong>, sempre seguiti da istruttori qualificati.</p>"
+		},
+		{
+			"domanda": "In cosa consiste l’attività Baby?",
+			"risposta": "<p>Attraverso giochi e percorsi ludici, i bambini migliorano <strong>galleggiamento, respirazione e coordinazione</strong>, sempre seguiti da istruttori qualificati.</p>"
+		},
+		{
+			"domanda": "Quanti anni compiono i partecipanti del corso Ragazzi?",
+			"risposta": "<p>Il corso Ragazzi è dedicato ai bambini dai <strong>6 ai 13 anni</strong>.I ragazzi imparano progressivamente i <strong>quattro stili natatori</strong> (crawl, dorso, rana e farfalla), migliorando tecnica, resistenza e confidenza in acqua.</p>"
+		},
+		{
+			"domanda": "Cosa si insegna nel corso Ragazzi?",
+			"risposta": "<p>Il corso Ragazzi è dedicato ai bambini dai <strong>6 ai 13 anni</strong>.I ragazzi imparano progressivamente i <strong>quattro stili natatori</strong> (crawl, dorso, rana e farfalla), migliorando tecnica, resistenza e confidenza in acqua.</p>"
+		},
+		{
+			"domanda": "Per quale età è rivolto il corso Teenager?",
+			"risposta": "<p>Il corso è pensato per adolescenti dai <strong>13 ai 19 anni</strong>, per continuare e perfezionare le abilità natatorie.</p>"
+		},
+		{
+			"domanda": "Cosa caratterizza il corso Teenager?",
+			"risposta": "<p>Le lezioni sono strutturate per migliorare tecnica, resistenza e performance, con esercizi adeguati all'età e al livello di ciascun partecipante.</p>"
+		},
+		{
+			"domanda": "È necessario presentare un certificato medico?",
+			"risposta": "<p>No, per bambini sotto i 6 anni non è richiesto. Per gli over 6 o chi frequenta la scuola primaria, serve il certificato medico per nuoto.</p>"
+		},
+		{
+			"domanda": "Come mi iscrivo o prenoto il corso?",
+			"risposta": "<p>Controlla le disponibilità sul sito, poi prenota online o contattaci via telefono/email: il nostro staff ti aiuterà a scegliere il corso più adatto.</p>"
+		}
+	],
+	"sedi": [
+		"meda",
+		"camuzzago"
+	]
+}

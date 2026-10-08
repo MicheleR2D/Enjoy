@@ -1,0 +1,88 @@
+{
+	"tipo": "corso",
+	"slug": "ginnastica-terapeutica-acquatica",
+	"nome": "Ginnastica Terapeutica Acquatica",
+	"seo": {
+		"title": "Ginnastica Terapeutica Acquatica - Enjoy Club | Meda e Camuzzago",
+		"description": "Un corso ad indirizzo riabilitativo , pensato per aiutarti a recuperare e mantenere le normali funzioni corporee grazie ai benefici dell’acqua. Ideale per…"
+	},
+	"hero": {
+		"titolo": "ginnastica",
+		"parole": [
+			"acquatica terapeutica"
+		],
+		"immagine": "/wp-content/uploads/2025/06/Corsi-Meda-1-scaled.jpg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "ginnastica acquatica terapeutica",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Un corso ad <strong>indirizzo riabilitativo</strong>, pensato per aiutarti a <strong>recuperare e mantenere le normali funzioni corporee</strong> grazie ai benefici dell’acqua.<br>Ideale per chi necessita di un’attività dolce ma efficace, seguita da professionisti in un ambiente sicuro e controllato.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/Corsi-Meda-6-scaled.jpg"
+			],
+			"dettagli": [
+				{
+					"testo": "60 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "COSTUME",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced-1.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 15
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 35
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 55
+				}
+			]
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sulla Technogym App!</p>"
+		}
+	],
+	"sedi": [
+		"camuzzago"
+	]
+}

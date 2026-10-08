@@ -1,0 +1,117 @@
+{
+	"tipo": "corso",
+	"slug": "x-class",
+	"nome": "X-Class",
+	"seo": {
+		"title": "X-Class - Enjoy Club | Meda e Camuzzago",
+		"description": "L’esperienza di allenamento più efficace e coinvolgente per migliorare le qualità atletiche, con programmi ad alta intensità sempre diversi che alternano…"
+	},
+	"hero": {
+		"titolo": "X -",
+		"parole": [
+			"Room",
+			"Space"
+		],
+		"immagine": "/wp-content/uploads/2025/05/Xspace_-03-63a053a4.webp"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "X - Room",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>L’esperienza di allenamento più efficace e coinvolgente per migliorare le qualità atletiche, con programmi ad alta intensità sempre diversi che alternano esercizi cardio e di potenza.<br>Migliora tutte le qualità fisiche alla base della performance atletica in un allenamento dal profilo bilanciato e completo. Con attrezzature Technogym Skill Line.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/05/X-room-09-183a6403.webp"
+			],
+			"dettagli": [
+				{
+					"testo": "30 - 45 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "ASCIUGAMANO",
+					"immagine": "/wp-content/uploads/2025/06/bath-towel.svg"
+				},
+				{
+					"etichetta": "SCARPE DA GINNASTICA",
+					"immagine": "/wp-content/uploads/2025/06/sneakers.svg"
+				},
+				{
+					"etichetta": "ACQUA",
+					"immagine": "/wp-content/uploads/2025/06/bottle.svg"
+				},
+				{
+					"etichetta": "CARDIO FREQUENZIMETRO",
+					"immagine": "/wp-content/uploads/2025/06/smartwatch.svg"
+				}
+			],
+			"intensita": []
+		},
+		{
+			"id": null,
+			"titolo": "X - Space",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Uno spazio dedicato all'interno della Gym Floor di Camuzzago. L’esperienza di allenamento più efficace e coinvolgente per migliorare le qualità atletiche, con programmi ad alta intensità sempre diversi che alternano esercizi cardio e di potenza.<br>Migliora tutte le qualità fisiche alla base della performance atletica in un allenamento dal profilo bilanciato e completo. Con attrezzature Technogym Skill Line.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/05/Xspace_-04-13e6ba33.webp"
+			],
+			"dettagli": [
+				{
+					"testo": "30 - 45 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "ASCIUGAMANO",
+					"immagine": "/wp-content/uploads/2025/06/bath-towel.svg"
+				},
+				{
+					"etichetta": "SCARPE DA GINNASTICA",
+					"immagine": "/wp-content/uploads/2025/06/sneakers.svg"
+				},
+				{
+					"etichetta": "ACQUA",
+					"immagine": "/wp-content/uploads/2025/06/bottle.svg"
+				},
+				{
+					"etichetta": "CARDIO FREQUENZIMETRO",
+					"immagine": "/wp-content/uploads/2025/06/smartwatch.svg"
+				}
+			],
+			"intensita": []
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con Abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua lezione in autonomia sull'App o rivolgendoti alla Reception.</p>"
+		},
+		{
+			"domanda": "Il cardio frequenzimetro è obbligatorio?",
+			"risposta": "<p>Sì, al fine di garantire un allenamento più efficace è fortemente consigliato l'utilizzo del Cardio Frequenzimetro.</p>"
+		},
+		{
+			"domanda": "Dove si tengono X-Space e X-Room?",
+			"risposta": "<p>I due corsi si tengono in diverse sedi. X-Room e Y-Room sono presenti solo nel nostro centro di Meda, X-Space è presente solo nel nostro centro di Camuzzago.</p>"
+		}
+	],
+	"sedi": [
+		"meda",
+		"camuzzago"
+	]
+}

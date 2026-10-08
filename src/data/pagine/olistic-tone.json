@@ -1,0 +1,89 @@
+{
+	"tipo": "corso",
+	"slug": "olistic-tone",
+	"nome": "Olistic Tone",
+	"seo": {
+		"title": "Olistic Tone - Enjoy Club | Meda e Camuzzago",
+		"description": "Il corso Olistic Tone di Enjoy Club è pensato per favorire il riequilibrio posturale attraverso esercizi mirati di mobilitazione e allungamento .…"
+	},
+	"hero": {
+		"titolo": "olistic",
+		"parole": [
+			"tone"
+		],
+		"immagine": "/wp-content/uploads/2025/06/Corsi-Meda-9-scaled.jpg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "olistic tone",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Il corso Olistic Tone di Enjoy Club è pensato per favorire il <strong>riequilibrio posturale</strong> attraverso esercizi mirati di <strong>mobilitazione e allungamento</strong>.<br>Un’attività dolce ed efficace, ideale per chi desidera migliorare la flessibilità, sciogliere tensioni e ritrovare armonia tra corpo e mente.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/OLISTIC-TONE-2048x1366-enjoy.png"
+			],
+			"dettagli": [
+				{
+					"testo": "30 - 45 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "SCARPE",
+					"immagine": "/wp-content/uploads/2025/06/sneakers.svg"
+				},
+				{
+					"etichetta": "ASCIUGAMANO",
+					"immagine": "/wp-content/uploads/2025/06/bath-towel.svg"
+				},
+				{
+					"etichetta": "ACQUA",
+					"immagine": "/wp-content/uploads/2025/06/bottle.svg"
+				},
+				{
+					"etichetta": "CARDIO FREQUENZIMETRO",
+					"immagine": "/wp-content/uploads/2025/06/smartwatch.svg"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 15
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 35
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 70
+				}
+			]
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sulla Technogym App!</p>"
+		}
+	],
+	"sedi": [
+		"camuzzago",
+		"meda"
+	]
+}

@@ -1,0 +1,37 @@
+# build output
+dist/
+.output/
+
+# dependencies
+node_modules/
+
+# generated types
+.astro/
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
+
+# Vercel
+.vercel/
+
+# foto ottimizzate (generate da scripts/optimize-images.mjs)
+public/_img/
+
+# backup originale WordPress/Elementor e dump (non vanno nel repo)
+Backup Elementor.gz
+*.sql
+*.sql.gz
+*.tar.gz
+
+# originali del vecchio sito (si copiano in public/ solo quelli usati: scripts/copia-media.mjs)
+_media-originali/
+
+# cartella di lavoro degli script di migrazione
+.migrazione/

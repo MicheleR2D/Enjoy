@@ -1,0 +1,236 @@
+{
+	"tipo": "info",
+	"slug": "info-scuola-nuoto-meda",
+	"nome": "Info Scuola Nuoto Meda",
+	"noindex": true,
+	"seo": {
+		"title": "Scuola Nuoto 2025/2026 - MEDA - Enjoy Club",
+		"description": "Orari, costi e regole della scuola nuoto di Enjoy Club a Meda."
+	},
+	"titolo": "Scuola Nuoto 2025/2026 - MEDA",
+	"blocchi": [
+		{
+			"t": "titolo",
+			"testo": "Orari e Costi"
+		},
+		{
+			"t": "testo",
+			"html": "<p>La Scuola Nuoto si compone di quattro fasce diverse a seconda dell'età dei partecipanti. <strong>Seleziona una fascia tra Corso Baby, Corso Ragazzi, Corso Teenagers per saperne di più.</strong></p>"
+		},
+		{
+			"t": "fisarmonica",
+			"voci": [
+				{
+					"titolo": "Corso Baby (Nati dal 2020 al 2022)",
+					"blocchi": [
+						{
+							"t": "titolo",
+							"testo": "ORARI"
+						},
+						{
+							"t": "testo",
+							"html": "<p><strong>dal Lunedì e Mercoledì:</strong> 16.30</p><p><strong>Lunedì - Martedì - Venerdì: </strong>17:15</p><p><strong>Sabato</strong>: 10:15 - 11:00 – 11:45</p>"
+						},
+						{
+							"t": "titolo",
+							"testo": "COSTI"
+						},
+						{
+							"t": "testo",
+							"html": "<p>I Costi indicati sono relativi ad abbonamenti con data di inizio 7 settembre 2026</p><p><strong>Periodo 1 </strong><em>(dal 7 settembre 2026 al 24 Gennaio 2027):</em></p><ul><li>Monosettimanale: <strong>€250</strong></li><li>Bisettimanale: <strong>€500</strong></li></ul><strong> </strong><p><strong>Stagionale </strong><em>(fino al 24 Maggio 2027):</em></p><ul><li>Monosettimanale: <strong>€500</strong></li><li>Bisettimanale: <strong>€1000</strong></li></ul><strong> </strong><p>Quota di iscrizione <strong>30€</strong> <em>(valida fino al 31/08/2027)</em></p><p>Durata - 45 minuti che si svolgeranno tra la vasca grande.</p>"
+						}
+					]
+				},
+				{
+					"titolo": "Corso Ragazzi (Nati dal 2019 al 2013)",
+					"blocchi": [
+						{
+							"t": "titolo",
+							"testo": "ORARI"
+						},
+						{
+							"t": "testo",
+							"html": "<p><strong>dal Lunedì al Venerdì</strong>: 17.15</p><p><br><strong>Venerdì</strong>: 18.00</p><p><br><strong>Sabato</strong>: 10.15 - 11.00 – 11.45</p>"
+						},
+						{
+							"t": "titolo",
+							"testo": "COSTI"
+						},
+						{
+							"t": "testo",
+							"html": "<p>I Costi indicati sono relativi ad abbonamenti con data di inizio 7 Settembre 2026</p><p>1 Periodo <em>(</em><i>dal 1 Settembre 2026 al </i><i>24 Gennaio 2027</i><em>):</em></p><ul><li>Monosettimanale: €250</li><li>Bisettimanale: €500</li></ul><strong> </strong><p><strong>Stagionale </strong><em>(fino al 24 Maggio 2027):</em></p><ul><li>Monosettimanale:</li><li>Bisettimanale:</li></ul><strong> </strong><p>Quota di iscrizione <strong>30€</strong> <em>(valida fino al 31/08/2027)</em></p><p>Durata - 45 minuti che si svolgeranno tra la vasca grande.</p>"
+						}
+					]
+				},
+				{
+					"titolo": "Corso Teenagers (Nati dal 2012 al 2008)",
+					"blocchi": [
+						{
+							"t": "titolo",
+							"testo": "ORARI"
+						},
+						{
+							"t": "testo",
+							"html": "<p><strong>Mercoledì</strong>: 18.00</p><p><br><strong>Venerdì</strong>: 18:45</p>"
+						},
+						{
+							"t": "titolo",
+							"testo": "COSTI"
+						},
+						{
+							"t": "testo",
+							"html": "<p>I Costi indicati sono relativi ad abbonamenti con data di inizio 7 Settembre 2026</p><p>1 Periodo <em>(</em><i>dal 1 Settembre 2026 al </i><i>24 Gennaio 2027</i><em>):</em></p><ul><li>Monosettimanale: €250</li><li>Bisettimanale: €500</li></ul><strong> </strong><p><strong>Stagionale </strong><em>(fino al 24 Maggio 2027):</em></p><ul><li>Monosettimanale:</li><li>Bisettimanale:</li></ul><strong> </strong><p>Quota di iscrizione <strong>30€</strong> <em>(valida fino al 31/08/2027)</em></p><p>Durata - 45 minuti che si svolgeranno tra la vasca grande.</p>"
+						}
+					]
+				}
+			]
+		},
+		{
+			"t": "linea"
+		},
+		{
+			"t": "titolo",
+			"testo": "Informazioni utili e Domande frequenti"
+		},
+		{
+			"t": "testo",
+			"html": "<p>Di seguito, troverai tutte le informazioni utili sui Corsi. Clicca sulla Categoria che ti interessa per saperne di più.</p>"
+		},
+		{
+			"t": "fisarmonica",
+			"voci": [
+				{
+					"titolo": "Certificato medico e Accesso",
+					"blocchi": [
+						{
+							"t": "titolo",
+							"testo": "Certificato medico"
+						},
+						{
+							"t": "testo",
+							"html": "<ul><li><p>Il certificato medico di attività sportiva non agonistica è obbligatorio per tutti i bambini in età scolare al compimento del sesto anno di età; presso il nostro centro è possibile effettuare visita medica con cardiogramma a 50 euro con specialisti in medicina dello sport.</p></li><li><p><strong>SENZA CERTIFICATO VALIDO NON SARA’ POSSIBILE ACCEDERE AL CORSO</strong></p></li></ul>"
+						},
+						{
+							"t": "linea"
+						},
+						{
+							"t": "titolo",
+							"testo": "Accesso"
+						},
+						{
+							"t": "testo",
+							"html": "<ul><li><p>I bambini verranno accolti dal nostro personale 15 minuti prima dell’inizio corsi al piano Bar.</p></li><li><p>Gli allievi saranno accolti alla prima lezione dal coordinatore della Scuola Nuoto in prossimità della vasca, qui attenderanno seduti sulle panchine l’arrivo del loro Istruttore.</p></li><li><p>Durante le prime lezioni verranno definiti i livelli, che verranno rivisti periodicamente in caso di miglioramenti diversi fra bambini.</p></li></ul>"
+						}
+					]
+				},
+				{
+					"titolo": "Materiale e svolgimento lezioni",
+					"blocchi": [
+						{
+							"t": "titolo",
+							"testo": "Materiale"
+						},
+						{
+							"t": "testo",
+							"html": "<ul><li><p>Cuffia (possibilmente in lattice)</p></li><li><p>Ciabatte (possibilmente non chiuse)</p></li><li><p>Accappatoio</p></li><li><p>Asciugamano</p></li><li><p>Shampoo e docciaschiuma</p></li></ul>"
+						},
+						{
+							"t": "linea"
+						},
+						{
+							"t": "titolo",
+							"testo": "Svolgimento Lezioni"
+						},
+						{
+							"t": "testo",
+							"html": "<ul><li><p>Si accede alle vasche esclusivamente attraverso le vaschette lava piedi.</p></li><li><p>La lezione dura 45 minuti.</p></li></ul>"
+						},
+						{
+							"t": "testo",
+							"html": "<p>Ricordiamo che se non riceviamo ordini diversi da chi esercita la patria podestà, i bambini verranno riconsegnati a chi è riconosciuto dal bambino e confermato dal nostro personale.</p>"
+						}
+					]
+				},
+				{
+					"titolo": "Spogliatoi e Regole per Genitori",
+					"blocchi": [
+						{
+							"t": "testo",
+							"html": "<ul><li><p>L’ingresso negli spogliatoi non è consentito al genitore/accompagnatore se non in casi del tutto eccezionali concordati con il coordinatore. In questo caso sarà obbligatorio indossare ciabatte da piscina pulite fin dall’ingresso. Chi ne fosse sprovvisto potrà acquistare i copri-scarpe presso la reception.</p></li><li><p>Le mamme non potranno accompagnare i figli di sesso maschile nello spogliatoio degli uomini, come i papà non potranno accompagnare le figlie nello spogliatoio femminile.</p></li><li><p>Per limitare il più possibile la permanenza nello spogliatoio invitiamo i genitori a far arrivare i bambini con il costume già indossato.</p></li><li><p>Al termine della lezione il personale prenderà in affido i bimbi per aiutarli a vestirsi e provvederanno all’asciugatura dei capelli.</p></li><li><p>Si esce dagli spogliatoi non più di 30 minuti dopo la fine del corso; per richieste occasionali di uscite diverse o anticipate, ove non possiamo accontentare il genitore, dietro autorizzazione del coordinatore, lo stesso potrà scendere a cambiare il bambino/a seguendo le indicazioni del personale di spogliatoio.</p></li><li><p>Alla fine del corso, i genitori ritireranno il bambino all’uscita.</p></li></ul>"
+						}
+					]
+				},
+				{
+					"titolo": "Recuperi e iscrizioni",
+					"blocchi": [
+						{
+							"t": "titolo",
+							"testo": "Festivi"
+						},
+						{
+							"t": "testo",
+							"html": "<p>Nei giorni di festa nazionale ed il sabato di Pasqua i corsi sono sospesi. Le lezioni non possono essere recuperate.</p>"
+						},
+						{
+							"t": "linea"
+						},
+						{
+							"t": "titolo",
+							"testo": "Recuperi"
+						},
+						{
+							"t": "testo",
+							"html": "<ul><li><p>Le lezioni perse non possono essere recuperate.</p></li><li><p>Ove l’assenza sia prolungata di almeno di 2 lezioni, causate da malattia esantematica (morbillo, varicella, rosolia, scarlattina, 5° e 6° malattia, bocca-mani-piedi) o ricovero ospedaliero, dietro presentazione del relativo certificato medico (con prognosi dettagliata) potranno essere recuperate solo nell’ambito dell’abbonamento in corso (inserendo una seconda giornata) oppure saranno convertite in entrate di nuoto libero (solo per genitori) da consumarsi comunque entro la fine dell’abbonamento in corso.</p></li></ul>"
+						},
+						{
+							"t": "linea"
+						},
+						{
+							"t": "titolo",
+							"testo": "Ritiro"
+						},
+						{
+							"t": "testo",
+							"html": "<p>Il ritiro dai corsi, per qualsiasi motivo avvenga, non dà diritto al recupero della quota versata.</p>"
+						},
+						{
+							"t": "linea"
+						},
+						{
+							"t": "titolo",
+							"testo": "Rinnovo"
+						},
+						{
+							"t": "testo",
+							"html": "<p>L’iscrizione ai corsi successivi non è automatica, ma deve essere comunicata in segreteria ed è confermata solo al pagamento della quota.</p>"
+						}
+					]
+				},
+				{
+					"titolo": "Responsabilità",
+					"blocchi": [
+						{
+							"t": "testo",
+							"html": "<ul><li><p>La Direzione non risponde di eventuali furti, chiediamo quindi, da parte del genitore, di segnare con una sigla il materiale del bambino/a (accappatoio, cuffia, ciabatte) per non incorrere, ove l’attrezzatura sia uguale, in fastidiosi scambi o accumulo di effetti personali che non vengono mai ritirati.</p></li><li><p>Invitiamo inoltre i genitori dei bambini più piccoli a contrassegnare il materiale con una toppa e/o un disegno che possa essere facilmente riconosciuto anche dai bambini che non sanno ancora leggere.</p></li><li><p>Ricordiamo che, se non riceviamo ordini diversi da chi esercita la patria podestà, i bambini verranno riconsegnati a chi è riconosciuto dal bambino e confermato dal nostro personale.</p></li></ul>"
+						}
+					]
+				}
+			]
+		},
+		{
+			"t": "linea"
+		},
+		{
+			"t": "titolo",
+			"testo": "Fissa un Appuntamento telefonico"
+		},
+		{
+			"t": "titolo",
+			"testo": "Un nostro operatore di fornirà tutte le informazioni aggiuntive"
+		},
+		{
+			"t": "appuntamento",
+			"href": "https://calendly.com/front-desk-montecarlofitnessclub/10min"
+		}
+	]
+}

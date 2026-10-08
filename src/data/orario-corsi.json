@@ -1,0 +1,854 @@
+{
+	"stagione": "2026/27",
+	"validita": "Valido dal 14 Settembre 2026 · Gli orari possono subire variazioni",
+	"note": "<strong>Note:</strong> È obbligatorio fornire il certificato medico di buona salute per attività agonistica o non agonistica. Per l'accesso alla piscina sono necessari cuffia e ciabatte, con doccia obbligatoria prima dell'ingresso. <strong>LM</strong> = LesMills · <strong>★ NEW</strong> = Novità Stagione 2026/27",
+	"categorie": {
+		"d": "Dinamica",
+		"a": "Attiva",
+		"r": "Respira",
+		"q": "Acqua",
+		"f": "Forma"
+	},
+	"giorni": {
+		"LUN": [
+			{
+				"ora": "6:30",
+				"nome": "Pilates",
+				"cat": "r"
+			},
+			{
+				"ora": "7:15",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "8:15",
+				"nome": "Pilates",
+				"cat": "r"
+			},
+			{
+				"ora": "8:15",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "8:15",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "9:15",
+				"nome": "Body Pump",
+				"cat": "d",
+				"lesMills": true
+			},
+			{
+				"ora": "9:15",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "9:15",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "10:15",
+				"nome": "Balance",
+				"cat": "r",
+				"lesMills": true
+			},
+			{
+				"ora": "10:15",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "13:00",
+				"nome": "Strength Devel.",
+				"cat": "d",
+				"nuovo": true
+			},
+			{
+				"ora": "13:00",
+				"nome": "Pilates",
+				"cat": "r"
+			},
+			{
+				"ora": "13:00",
+				"nome": "Acqua Bike",
+				"cat": "q"
+			},
+			{
+				"ora": "13:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "14:00",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "14:00",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "17:00",
+				"nome": "Core",
+				"cat": "d",
+				"lesMills": true
+			},
+			{
+				"ora": "17:00",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "17:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Pilates",
+				"cat": "r"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Funct. Training",
+				"cat": "a"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Shapes",
+				"cat": "d",
+				"lesMills": true
+			},
+			{
+				"ora": "18:00",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Strength Devel.",
+				"cat": "d",
+				"nuovo": true
+			},
+			{
+				"ora": "19:00",
+				"nome": "Power Lifting",
+				"cat": "a"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Yoga",
+				"cat": "r"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "20:00",
+				"nome": "Group Cycling",
+				"cat": "d"
+			},
+			{
+				"ora": "20:00",
+				"nome": "Reformer",
+				"cat": "f"
+			}
+		],
+		"MAR": [
+			{
+				"ora": "6:30",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "8:15",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "8:15",
+				"nome": "Yoga",
+				"cat": "r"
+			},
+			{
+				"ora": "8:15",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "8:30",
+				"nome": "Reformer Intro 30'",
+				"cat": "f"
+			},
+			{
+				"ora": "9:15",
+				"nome": "Core",
+				"cat": "d",
+				"lesMills": true
+			},
+			{
+				"ora": "9:15",
+				"nome": "Balance",
+				"cat": "r",
+				"lesMills": true
+			},
+			{
+				"ora": "9:15",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "9:15",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "10:15",
+				"nome": "TRX",
+				"cat": "a"
+			},
+			{
+				"ora": "10:15",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "10:15",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "10:15",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "12:45",
+				"nome": "Group Cycling",
+				"cat": "d"
+			},
+			{
+				"ora": "13:00",
+				"nome": "Power Lifting",
+				"cat": "a"
+			},
+			{
+				"ora": "13:00",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "13:00",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "14:00",
+				"nome": "Acqua Bike",
+				"cat": "q"
+			},
+			{
+				"ora": "16:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "17:00",
+				"nome": "Balance",
+				"cat": "r",
+				"lesMills": true
+			},
+			{
+				"ora": "17:00",
+				"nome": "Pilates",
+				"cat": "r"
+			},
+			{
+				"ora": "17:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Core",
+				"cat": "d",
+				"lesMills": true
+			},
+			{
+				"ora": "18:00",
+				"nome": "TRX",
+				"cat": "a"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "18:50",
+				"nome": "Zumba",
+				"cat": "d"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Funct. Training",
+				"cat": "a"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Balance",
+				"cat": "r",
+				"lesMills": true
+			},
+			{
+				"ora": "19:00",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "20:00",
+				"nome": "Group Cycling",
+				"cat": "d"
+			}
+		],
+		"MER": [
+			{
+				"ora": "8:15",
+				"nome": "Pilates",
+				"cat": "r"
+			},
+			{
+				"ora": "8:15",
+				"nome": "Yoga",
+				"cat": "r"
+			},
+			{
+				"ora": "8:15",
+				"nome": "Acqua Bike",
+				"cat": "q"
+			},
+			{
+				"ora": "9:15",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "9:15",
+				"nome": "Acqua Bike",
+				"cat": "q"
+			},
+			{
+				"ora": "9:15",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "10:15",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "10:15",
+				"nome": "Acqua Bike",
+				"cat": "q"
+			},
+			{
+				"ora": "12:30",
+				"nome": "Reformer Intro 30'",
+				"cat": "f"
+			},
+			{
+				"ora": "13:00",
+				"nome": "TRX",
+				"cat": "a"
+			},
+			{
+				"ora": "13:00",
+				"nome": "Balance",
+				"cat": "r",
+				"lesMills": true
+			},
+			{
+				"ora": "13:00",
+				"nome": "Acqua Bike",
+				"cat": "q"
+			},
+			{
+				"ora": "13:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "14:00",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "14:00",
+				"nome": "Acqua Bike",
+				"cat": "q"
+			},
+			{
+				"ora": "16:30",
+				"nome": "Reformer Intro 30'",
+				"cat": "f"
+			},
+			{
+				"ora": "17:00",
+				"nome": "Pilates",
+				"cat": "r"
+			},
+			{
+				"ora": "17:00",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "17:00",
+				"nome": "Acqua Bike",
+				"cat": "q"
+			},
+			{
+				"ora": "17:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Body Pump",
+				"cat": "d",
+				"lesMills": true
+			},
+			{
+				"ora": "18:00",
+				"nome": "Funct. Training",
+				"cat": "a"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Pilates",
+				"cat": "r"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Acqua Bike",
+				"cat": "q"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Shapes",
+				"cat": "d",
+				"lesMills": true
+			},
+			{
+				"ora": "19:00",
+				"nome": "Yoga",
+				"cat": "r"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			}
+		],
+		"GIO": [
+			{
+				"ora": "6:30",
+				"nome": "Yoga",
+				"cat": "r"
+			},
+			{
+				"ora": "6:30",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "7:15",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "8:15",
+				"nome": "Balance",
+				"cat": "r",
+				"lesMills": true
+			},
+			{
+				"ora": "8:15",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "8:30",
+				"nome": "Reformer Intro 30'",
+				"cat": "f"
+			},
+			{
+				"ora": "9:15",
+				"nome": "Shapes",
+				"cat": "d",
+				"lesMills": true
+			},
+			{
+				"ora": "9:15",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "9:15",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "9:15",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "10:15",
+				"nome": "Strength Devel.",
+				"cat": "d",
+				"nuovo": true
+			},
+			{
+				"ora": "10:15",
+				"nome": "TRX",
+				"cat": "a"
+			},
+			{
+				"ora": "10:15",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "10:15",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "12:45",
+				"nome": "Group Cycling",
+				"cat": "d"
+			},
+			{
+				"ora": "13:00",
+				"nome": "Power Lifting",
+				"cat": "a"
+			},
+			{
+				"ora": "13:00",
+				"nome": "Pilates",
+				"cat": "r"
+			},
+			{
+				"ora": "13:00",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "14:00",
+				"nome": "Acqua Bike",
+				"cat": "q"
+			},
+			{
+				"ora": "17:00",
+				"nome": "Strength Devel.",
+				"cat": "d",
+				"nuovo": true
+			},
+			{
+				"ora": "17:00",
+				"nome": "Pilates",
+				"cat": "r"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Step",
+				"cat": "d"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Power Lifting",
+				"cat": "a"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Balance",
+				"cat": "r",
+				"lesMills": true
+			},
+			{
+				"ora": "18:00",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Core",
+				"cat": "d",
+				"lesMills": true
+			},
+			{
+				"ora": "19:00",
+				"nome": "Funct. Training",
+				"cat": "a"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Pilates",
+				"cat": "r"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "20:00",
+				"nome": "Reformer Intro 30'",
+				"cat": "f"
+			}
+		],
+		"VEN": [
+			{
+				"ora": "8:15",
+				"nome": "Pilates",
+				"cat": "r"
+			},
+			{
+				"ora": "8:15",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "9:15",
+				"nome": "Core",
+				"cat": "d",
+				"lesMills": true
+			},
+			{
+				"ora": "9:15",
+				"nome": "Yoga",
+				"cat": "r"
+			},
+			{
+				"ora": "9:15",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "9:15",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "10:15",
+				"nome": "Funct. Training",
+				"cat": "a"
+			},
+			{
+				"ora": "10:15",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "10:15",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "13:00",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "13:00",
+				"nome": "Acqua Bike",
+				"cat": "q"
+			},
+			{
+				"ora": "14:00",
+				"nome": "Pilates",
+				"cat": "r"
+			},
+			{
+				"ora": "17:00",
+				"nome": "Body Pump",
+				"cat": "d",
+				"lesMills": true
+			},
+			{
+				"ora": "17:00",
+				"nome": "Balance",
+				"cat": "r",
+				"lesMills": true
+			},
+			{
+				"ora": "17:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Pilates",
+				"cat": "r"
+			},
+			{
+				"ora": "18:00",
+				"nome": "Shapes",
+				"cat": "d",
+				"lesMills": true
+			},
+			{
+				"ora": "18:00",
+				"nome": "Acqua Bike",
+				"cat": "q"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Group Cycling",
+				"cat": "d"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Power Lifting",
+				"cat": "a"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "19:00",
+				"nome": "Reformer",
+				"cat": "f"
+			}
+		],
+		"SAB": [
+			{
+				"ora": "8:15",
+				"nome": "Acqua Bike",
+				"cat": "q"
+			},
+			{
+				"ora": "8:30",
+				"nome": "Yoga",
+				"cat": "r"
+			},
+			{
+				"ora": "8:30",
+				"nome": "Reformer Intro 30'",
+				"cat": "f"
+			},
+			{
+				"ora": "9:00",
+				"nome": "Strength Devel.",
+				"cat": "d",
+				"nuovo": true
+			},
+			{
+				"ora": "9:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "9:15",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "10:00",
+				"nome": "Balance",
+				"cat": "r",
+				"lesMills": true
+			},
+			{
+				"ora": "10:00",
+				"nome": "Reformer",
+				"cat": "f"
+			},
+			{
+				"ora": "11:00",
+				"nome": "Back School",
+				"cat": "r"
+			},
+			{
+				"ora": "12:45",
+				"nome": "Group Cycling",
+				"cat": "d"
+			}
+		],
+		"DOM": [
+			{
+				"ora": "9:00",
+				"nome": "Acqua Gym",
+				"cat": "q"
+			},
+			{
+				"ora": "10:00",
+				"nome": "Group Cycling",
+				"cat": "d"
+			},
+			{
+				"ora": "10:00",
+				"nome": "Acqua Bike",
+				"cat": "q"
+			}
+		]
+	}
+}

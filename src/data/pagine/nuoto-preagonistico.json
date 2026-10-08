@@ -1,0 +1,70 @@
+{
+	"tipo": "corso",
+	"slug": "nuoto-preagonistico",
+	"nome": "Nuoto Pre-agonistico",
+	"seo": {
+		"title": "Nuoto Pre-agonistico - Enjoy Club | Meda e Camuzzago",
+		"description": "Il corso di nuoto pre-agonistico dell’ Enjoy Club è pensato per bambini e ragazzi che hanno già una buona padronanza dei quattro stili (dorso, rana, stile…"
+	},
+	"hero": {
+		"titolo": "nuoto",
+		"parole": [
+			"pre-agonistico"
+		],
+		"immagine": "/wp-content/uploads/2025/06/Piscina-Meda-2-scaled.jpg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "nuoto pre-agonistico",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Il corso di nuoto pre-agonistico dell’<strong>Enjoy Club</strong> è pensato per bambini e ragazzi che hanno già una buona padronanza dei quattro stili (dorso, rana, stile libero e farfalla) e desiderano intraprendere un percorso più tecnico e strutturato, in preparazione al nuoto agonistico.</p><p>Si tratta di un livello intermedio, ideale per chi vuole migliorare le proprie capacità natatorie in un ambiente stimolante ma senza le pressioni dell’agonismo vero e proprio. Gli obiettivi:</p><ul><li><p><strong>Perfezionamento tecnico</strong> dei quattro stili.</p></li><li><p><strong>Introduzione alla preparazione atletica</strong>, con esercizi mirati a supportare l’attività in acqua.</p></li><li><p><strong>Apprendimento delle regole di gara</strong>, comprese partenze, virate e arrivi.</p></li><li><p><strong>Sviluppo delle capacità motorie</strong>: resistenza, forza, coordinazione e mobilità.</p></li><li><p><strong>Avvicinamento graduale alla competizione</strong>, con attenzione allo spirito di squadra, all’impegno e al divertimento.</p></li></ul>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/Piscina-Camuzzago-4-scaled.jpg"
+			],
+			"dettagli": [],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "COSTUME",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced-1.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": []
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sull'App di Body Studio!</p>"
+		}
+	],
+	"sedi": [
+		"camuzzago"
+	]
+}

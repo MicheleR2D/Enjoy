@@ -1,0 +1,87 @@
+{
+	"tipo": "corso",
+	"slug": "gg",
+	"nome": "G.A.G.",
+	"seo": {
+		"title": "G.A.G. - Enjoy Club | Meda e Camuzzago",
+		"description": "Il corso G.A.G. di Enjoy Club è pensato per chi desidera tonificare e definire le zone più critiche del corpo in modo mirato ed efficace. Attraverso una…"
+	},
+	"hero": {
+		"titolo": "G.A.G.",
+		"parole": [],
+		"immagine": "/wp-content/uploads/2025/06/Gym-Floor-Camuzzago-3-scaled.jpg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "G.A.G.",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Il corso G.A.G. di Enjoy Club è pensato per chi desidera tonificare e definire le zone più critiche del corpo in modo mirato ed efficace.<br>Attraverso una <strong>sequenza strutturata di esercizi</strong>, lavorerai su gambe, addominali e glutei, migliorando tono muscolare, resistenza e postura.<br>Un allenamento dinamico e coinvolgente, adatto a tutti i livelli, che ti aiuta a raggiungere i tuoi obiettivi di forma fisica divertendoti e con il supporto dei nostri trainer qualificati.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/GAG-scaled-1-enjoy.jpg"
+			],
+			"dettagli": [
+				{
+					"testo": "30-45 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "SCARPE",
+					"immagine": "/wp-content/uploads/2025/06/sneakers.svg"
+				},
+				{
+					"etichetta": "ASCIUGAMANO",
+					"immagine": "/wp-content/uploads/2025/06/bath-towel.svg"
+				},
+				{
+					"etichetta": "ACQUA",
+					"immagine": "/wp-content/uploads/2025/06/bottle.svg"
+				},
+				{
+					"etichetta": "CARDIO FREQUENZIMETRO",
+					"immagine": "/wp-content/uploads/2025/06/smartwatch.svg"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 30
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 40
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 30
+				}
+			]
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sulla Technogym App!</p>"
+		}
+	],
+	"sedi": [
+		"camuzzago",
+		"meda"
+	]
+}

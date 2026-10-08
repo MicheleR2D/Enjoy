@@ -1,0 +1,86 @@
+{
+	"tipo": "corso",
+	"slug": "antalgica",
+	"nome": "Antalgica",
+	"seo": {
+		"title": "Antalgica - Enjoy Club | Meda e Camuzzago",
+		"description": "Un corso fitness dolce e mirato, che utilizza movimenti fluidi in acqua per alleviare tensioni, ridurre dolori muscolari e articolari e restituire armonia…"
+	},
+	"hero": {
+		"titolo": "antalgica",
+		"parole": [],
+		"immagine": "/wp-content/uploads/2025/07/PHOTO-2025-07-22-14-44-47-scaled.jpg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "antalgica",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Un corso fitness dolce e mirato, che utilizza movimenti fluidi in acqua per alleviare tensioni, ridurre dolori muscolari e articolari e restituire armonia e mobilità al corpo. Ideale per chi cerca un’attività sicura, rilassante ed efficace per migliorare la qualità del movimento.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/BRUCIA-GRASSI-scaled-enjoy.webp"
+			],
+			"dettagli": [
+				{
+					"testo": "45 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "COSTUME",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced-1.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 15
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 45
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 40
+				}
+			]
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sulla Technogym App!</p>"
+		}
+	],
+	"sedi": [
+		"camuzzago"
+	]
+}

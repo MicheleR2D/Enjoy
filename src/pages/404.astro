@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Pagina non trovata - Enjoy Club" description="La pagina che cerchi non esiste più o è stata spostata." noindex>
+	<section class="nf on-dark">
+		<p class="pill">Errore 404</p>
+		<h1 class="display-title nf__titolo">Questa pagina <span class="nf__accento">non c'è</span></h1>
+		<p class="nf__testo">Il link potrebbe essere vecchio o digitato male. Da qui puoi tornare in palestra.</p>
+		<div class="nf__azioni">
+			<a class="btn btn--lg" href="/">Torna alla home</a>
+			<a class="btn btn--light btn--lg" href="/orari">Planning settimanale</a>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.nf {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		gap: 20px;
+		min-height: calc(100svh - var(--header-h));
+		padding: 60px var(--gutter);
+		background: var(--bg-dark);
+		color: var(--text-on-dark);
+	}
+
+	.nf__titolo {
+		margin: 0;
+		color: var(--text-on-dark);
+	}
+
+	.nf__accento {
+		color: var(--accent);
+		font-style: italic;
+	}
+
+	.nf__testo {
+		max-width: 32rem;
+		margin: 0;
+		font-size: var(--text-md);
+		color: var(--text-muted-on-dark);
+	}
+
+	.nf__azioni {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16px;
+		margin-top: 12px;
+	}
+</style>

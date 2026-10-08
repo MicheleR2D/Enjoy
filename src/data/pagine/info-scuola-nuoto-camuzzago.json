@@ -1,0 +1,598 @@
+{
+	"tipo": "info",
+	"slug": "info-scuola-nuoto-camuzzago",
+	"nome": "Info Scuola Nuoto Camuzzago",
+	"noindex": true,
+	"seo": {
+		"title": "Scuola Nuoto 2025/2026 - Camuzzago - Enjoy Club",
+		"description": "Orari, costi e regole della scuola nuoto di Enjoy Club a Camuzzago."
+	},
+	"titolo": "Scuola Nuoto 2025/2026 - Camuzzago",
+	"blocchi": [
+		{
+			"t": "titolo",
+			"testo": "Orari e Costi"
+		},
+		{
+			"t": "testo",
+			"html": "<p>La Scuola Nuoto si compone di quattro fasce diverse a seconda dell'età dei partecipanti. <strong>Seleziona una fascia tra Corso Neonatale, Baby, Corso Ragazzi, Corso Teenagers e Corso Adulti per saperne di più.</strong></p>"
+		},
+		{
+			"t": "fisarmonica",
+			"voci": [
+				{
+					"titolo": "Corso Neonatale (dai 3 ai 36 mesi)",
+					"blocchi": [
+						{
+							"t": "titolo",
+							"testo": "ORARI"
+						},
+						{
+							"t": "riquadro",
+							"blocchi": [
+								{
+									"t": "titolo",
+									"testo": "Lunedì"
+								},
+								{
+									"t": "titolo",
+									"testo": "16.00 (3/12 mesi)"
+								},
+								{
+									"t": "titolo",
+									"testo": "17.20 (12/24 mesi)"
+								},
+								{
+									"t": "titolo",
+									"testo": "18.45 (24/36 mesi)"
+								}
+							]
+						},
+						{
+							"t": "riquadro",
+							"blocchi": [
+								{
+									"t": "titolo",
+									"testo": "Mercoledì"
+								},
+								{
+									"t": "titolo",
+									"testo": "17.20 (3/12 mesi)"
+								},
+								{
+									"t": "titolo",
+									"testo": "18.45 (12/24 mesi)"
+								}
+							]
+						},
+						{
+							"t": "riquadro",
+							"blocchi": [
+								{
+									"t": "titolo",
+									"testo": "Venerdì"
+								},
+								{
+									"t": "titolo",
+									"testo": "17.20 (24/36 mesi)"
+								},
+								{
+									"t": "titolo",
+									"testo": "18.45 (12/24 mesi)"
+								}
+							]
+						},
+						{
+							"t": "riquadro",
+							"blocchi": [
+								{
+									"t": "titolo",
+									"testo": "Sabato"
+								},
+								{
+									"t": "titolo",
+									"testo": "9.00 (3/12 mesi)"
+								},
+								{
+									"t": "titolo",
+									"testo": "9.30 (12/24 mesi)"
+								},
+								{
+									"t": "titolo",
+									"testo": "10.00 (24/36 mesi)"
+								}
+							]
+						},
+						{
+							"t": "riquadro",
+							"blocchi": [
+								{
+									"t": "titolo",
+									"testo": "Domenica"
+								},
+								{
+									"t": "titolo",
+									"testo": "9.30 (3/12 mesi)"
+								},
+								{
+									"t": "titolo",
+									"testo": "10.00 (12/24 mesi)"
+								},
+								{
+									"t": "titolo",
+									"testo": "10.30 (24/36 mesi)"
+								},
+								{
+									"t": "titolo",
+									"testo": "11.00 (12/24 mesi)"
+								},
+								{
+									"t": "titolo",
+									"testo": "11.30 (24/36 mesi)"
+								}
+							]
+						},
+						{
+							"t": "riquadro",
+							"blocchi": [
+								{
+									"t": "titolo",
+									"testo": "COSTI"
+								}
+							]
+						},
+						{
+							"t": "riquadro",
+							"blocchi": [
+								{
+									"t": "titolo",
+									"testo": "Periodo Dal 07/09/2026, Fino a 24/01/2027"
+								},
+								{
+									"t": "titolo",
+									"testo": "€ 250"
+								}
+							]
+						},
+						{
+							"t": "riquadro",
+							"blocchi": [
+								{
+									"t": "titolo",
+									"testo": "Quota di Attivazione:"
+								}
+							]
+						},
+						{
+							"t": "riquadro",
+							"blocchi": [
+								{
+									"t": "titolo",
+									"testo": "- 50€ quota di iscrizione familiare composta da 2 genitori + 1 bimbo/a;"
+								}
+							]
+						},
+						{
+							"t": "riquadro",
+							"blocchi": [
+								{
+									"t": "titolo",
+									"testo": "- 70€ famiglia composta da 2 genitori e 2 bambini/e gemelli/e"
+								}
+							]
+						},
+						{
+							"t": "riquadro",
+							"blocchi": [
+								{
+									"t": "titolo",
+									"testo": "- 35€ per un solo genitore + 1 bimbo/a"
+								}
+							]
+						},
+						{
+							"t": "riquadro",
+							"blocchi": [
+								{
+									"t": "titolo",
+									"testo": "- 15€ se uno dei due genitori o entrambi i genitori fossero già soci enjoy"
+								}
+							]
+						},
+						{
+							"t": "riquadro",
+							"blocchi": [
+								{
+									"t": "titolo",
+									"testo": "La direzione di riserva di non avviare il corso se questo non raggiunge il numero minimo di 3 iscritti."
+								}
+							]
+						}
+					]
+				},
+				{
+					"titolo": "Corso Baby (Nati dal 2021 al 2023)",
+					"blocchi": [
+						{
+							"t": "titolo",
+							"testo": "ORARI"
+						},
+						{
+							"t": "testo",
+							"html": "<p><strong>dal Lunedì al Venerdì:</strong> 16.30 e 18:00</p><p><strong>Sabato</strong>: 10.30, 11.15, 12.00, 14.00, 14.45, 15.30, 16.15</p>"
+						},
+						{
+							"t": "titolo",
+							"testo": "COSTI"
+						},
+						{
+							"t": "testo",
+							"html": "<p>I Costi indicati sono relativi ad abbonamenti con data di inizio 7 Settembre 2026.</p><p><strong>1 Periodo </strong><em>(fino al 24 Gennaio 2027):</em></p><ul><li>Monosettimanale: <strong>€250</strong></li><li>Bisettimanale: <strong>€500</strong></li></ul><p><strong>Stagionale </strong><em>(fino al 23 Maggio 2026):</em></p><ul><li>Monosettimanale: <strong>500€</strong></li><li>Bisettimanale: <strong>1000€</strong></li></ul><p>Quota di iscrizione <strong>30€</strong> <em>(valida fino al 31/08/2027)</em></p><p>Durata - 45 minuti che si svolgeranno tra la vasca grande e vasca piccola in base all'abilità dei bambini.</p>"
+						}
+					]
+				},
+				{
+					"titolo": "Corso Ragazzi (Nati dal 2020 al 2014)",
+					"blocchi": [
+						{
+							"t": "titolo",
+							"testo": "ORARI"
+						},
+						{
+							"t": "testo",
+							"html": "<p><strong>dal Lunedì al Venerdì:</strong> 17.15 e 18:00</p><p><strong>Sabato</strong>: 9.45, 10.30, 11.15, 12.00, 14.00, 14.45, 15.30</p>"
+						},
+						{
+							"t": "titolo",
+							"testo": "COSTI"
+						},
+						{
+							"t": "testo",
+							"html": "<p>I Costi indicati sono relativi ad abbonamenti con data di inizio 7 Settembre 2026.</p><p><strong>1 Periodo </strong><em>(fino al 24 Gennaio 2027):</em></p><ul><li>Monosettimanale: <strong>€250</strong></li><li>Bisettimanale: <strong>€500</strong></li></ul><p><strong>Stagionale </strong><em>(fino al 23 Maggio 2026):</em></p><ul><li>Monosettimanale: <strong>500€</strong></li><li>Bisettimanale: <strong>1000€</strong></li></ul><p>Quota di iscrizione <strong>30€</strong> <em>(valida fino al 31/08/2027)</em></p><p>Durata - 45 minuti che si svolgeranno tra la vasca grande.</p>"
+						}
+					]
+				},
+				{
+					"titolo": "Corso Teenagers (Nati dal 2013 al 2009)",
+					"blocchi": [
+						{
+							"t": "titolo",
+							"testo": "ORARI"
+						},
+						{
+							"t": "testo",
+							"html": "<p><strong>Martedì:</strong> 18:45</p><p><strong>Giovedì</strong>: 18.45</p>"
+						},
+						{
+							"t": "titolo",
+							"testo": "COSTI"
+						},
+						{
+							"t": "testo",
+							"html": "<p>I Costi indicati sono relativi ad abbonamenti con data di inizio 7 Settembre 2026.</p><p><strong>1 Periodo </strong><em>(fino al 24 Gennaio 2027):</em></p><ul><li>Monosettimanale: <strong>€250</strong></li><li>Bisettimanale: <strong>€500</strong></li></ul><p><strong>Stagionale </strong><em>(fino al 23 Maggio 2026):</em></p><ul><li>Monosettimanale: <strong>500€</strong></li><li>Bisettimanale: <strong>1000€</strong></li></ul><p>Quota di iscrizione <strong>30€</strong> <em>(valida fino al 31/08/2027)</em></p><p>Durata - 45 minuti che si svolgeranno tra la vasca grande.</p>"
+						}
+					]
+				},
+				{
+					"titolo": "Corso Adulti (Nati dal 2008 in poi)",
+					"blocchi": [
+						{
+							"t": "titolo",
+							"testo": "ORARI"
+						},
+						{
+							"t": "testo",
+							"html": "<p><strong>Martedì:</strong> 19.30</p><p><strong>Giovedì</strong>: 11.15, 19.30</p>"
+						},
+						{
+							"t": "titolo",
+							"testo": "COSTI"
+						},
+						{
+							"t": "testo",
+							"html": "<p>I Costi indicati sono relativi ad abbonamenti con data di inizio 7 Settembre 2026</p><p><strong>1 Periodo </strong><em>(fino al 24 Gennaio 2027):</em></p><ul><li>Monosettimanale: <strong>€250</strong></li><li>Monosettimanale soci: <strong>€150</strong></li></ul><p>Quota di iscrizione <strong>35€</strong> <em>(valida fino al 31/08/2027)</em></p><p>Durata - 45 minuti che si svolgeranno tra la vasca grande.</p>"
+						}
+					]
+				}
+			]
+		},
+		{
+			"t": "linea"
+		},
+		{
+			"t": "titolo",
+			"testo": "Informazioni utili e Domande frequenti"
+		},
+		{
+			"t": "testo",
+			"html": "<p>Di seguito, troverai tutte le informazioni utili sui Corsi. Clicca sulla Categoria che ti interessa per saperne di più.</p>"
+		},
+		{
+			"t": "fisarmonica",
+			"voci": [
+				{
+					"titolo": "Certificato medico e Accesso",
+					"blocchi": [
+						{
+							"t": "titolo",
+							"testo": "Certificato medico"
+						},
+						{
+							"t": "testo",
+							"html": "<p>Il certificato medico è obbligatorio per tutti i bambini in età scolare al compimento del sesto anno di età. SENZA CERTIFICATO VALIDO NON SARA’ POSSIBILE ACCEDERE AL CORSO.</p>"
+						},
+						{
+							"t": "linea"
+						},
+						{
+							"t": "titolo",
+							"testo": "Accesso"
+						},
+						{
+							"t": "testo",
+							"html": "<p>I bambini verranno accolti dal nostro personale 15/20 minuti prima dell’inizio corsi in reception; in caso di ritardo il genitore/accompagnatore si rivolgerà alla reception che si occuperà di chiamare il personale addetto.</p><p>L’ingresso negli spogliatoi non è consentito al genitore/accompagnatore se non in casi del tutto eccezionali concordati con il Coordinatore. In questo caso sarà obbligatorio indossare ciabatte da piscina pulite fin dall’ingresso. Chi ne fosse sprovvisto potrà acquistare i copri-scarpe presso la reception.</p><p>L’ingresso al centro è consigliato ad un solo accompagnatore per bambino/bambina. Si fa inoltre presente che le mamme non potranno accompagnare i figli di sesso maschile nello spogliatoio degli uomini, come i papà non potranno accompagnare le figlie nello spogliatoio femminile.</p>"
+						}
+					]
+				},
+				{
+					"titolo": "Materiale e svolgimento lezioni",
+					"blocchi": [
+						{
+							"t": "titolo",
+							"testo": "Materiale"
+						},
+						{
+							"t": "testo",
+							"html": "<p>Cuffia (possibilmente in lattice), ciabatte (possibilmente non chiuse), accappatoio, un asciugamano, shampoo-docciaschiuma</p>"
+						},
+						{
+							"t": "linea"
+						},
+						{
+							"t": "titolo",
+							"testo": "Svolgimento Lezioni"
+						},
+						{
+							"t": "testo",
+							"html": "<p>Si accede alle vasche esclusivamente attraverso la vaschette lava piedi.</p><p>Gli allievi saranno accolti alla prima lezione dal Coordinatore della Scuola Nuoto in prossimità della vasca. Qui attenderanno seduti sulle panchine l’arrivo del loro Istruttore.<br>Durante le prime lezioni verranno definiti i livelli, che verranno rivisti periodicamente in caso di miglioramenti diversi fra bambini.</p><p>La lezione dura 45 minuti. Al termine il personale prenderà in affido i bimbi per aiutarli a vestirsi e provvederanno all’asciugatura dei capelli.</p><p>Si esce dagli spogliatoi non più di 30 minuti dopo la fine del corso; per richieste occasionali di uscite diverse o anticipate, ove non possiamo accontentare il genitore, dietro autorizzazione del coordinatore, lo stesso potrà scendere a cambiare il bambino/a seguendo le indicazioni del personale spogliatoio.</p>Alla fine del corso, i genitori ritireranno il bambino all’uscita."
+						},
+						{
+							"t": "testo",
+							"html": "<p>Ricordiamo che se non riceviamo ordini diversi da chi esercita la patria podestà, i bambini verranno riconsegnati a chi è riconosciuto dal bambino e confermato dal nostro personale.</p>"
+						}
+					]
+				},
+				{
+					"titolo": "Recuperi e iscrizioni",
+					"blocchi": [
+						{
+							"t": "titolo",
+							"testo": "Festivi"
+						},
+						{
+							"t": "testo",
+							"html": "<p>Periodo di sospensione corsi dal 24 dicembre al 6 gennaio (compresi) e tutti i giorni festivi, compreso il sabato di Pasqua e le lezioni non possono esser recuperate.</p>"
+						},
+						{
+							"t": "linea"
+						},
+						{
+							"t": "titolo",
+							"testo": "Recuperi"
+						},
+						{
+							"t": "testo",
+							"html": "<p>Le lezioni perse non possono essere recuperate; ove l’assenza sia prolungata di almeno di 2 lezioni causate da malattia esantematica (morbillo, varicella, rosolia, scarlattina , 5° e 6° malattia, bocca-mani-piedi) o ricovero ospedaliero, dietro presentazione del relativo certificato medico (con prognosi dettagliata) potranno essere recuperate solo nell’ambito dell’abbonamento in corso (inserendo la seconda volta) oppure ogni lezione persa, sarà convertita in entrate di nuoto libero (solo per genitori) da consumarsi comunque entro la fine dell’abbonamento in corso.</p>"
+						},
+						{
+							"t": "linea"
+						},
+						{
+							"t": "titolo",
+							"testo": "Ritiro"
+						},
+						{
+							"t": "testo",
+							"html": "<p>Il ritiro dai corsi, per qualsiasi motivo avvenga, non dà diritto al recupero della quota versata.</p>"
+						},
+						{
+							"t": "linea"
+						},
+						{
+							"t": "titolo",
+							"testo": "Rinnovo"
+						},
+						{
+							"t": "testo",
+							"html": "<p>L’iscrizione ai corsi successivi non è automatica, ma deve essere comunicata in segreteria ed è confermata solo al pagamento della quota.</p>"
+						}
+					]
+				},
+				{
+					"titolo": "Responsabilità",
+					"blocchi": [
+						{
+							"t": "testo",
+							"html": "<p>La Direzione non risponde di eventuali furti - chiediamo da parte del genitore di segnare con una sigla sia accappatoio, cuffia, ciabatte per non incorrere (ove l’attrezzatura sia uguale) in fastidiosi scambi o accumulo di effetti personali che non vengono mai ritirati. Invitiamo inoltre i genitori dei bambini più piccoli a contrassegnare il materiale con una toppa e/o un disegno che possa essere facilmente riconosciuto anche dai bambini che non sanno ancora leggere.</p>"
+						}
+					]
+				},
+				{
+					"titolo": "Corso Neonatale",
+					"blocchi": [
+						{
+							"t": "fisarmonica",
+							"voci": [
+								{
+									"titolo": "Modalità e Prezzi",
+									"blocchi": [
+										{
+											"t": "titolo",
+											"testo": "Quota di Attivazione:"
+										},
+										{
+											"t": "titolo",
+											"testo": "- 50€ quota di iscrizione familiare composta da 2 genitori + 1 bimbo/a;"
+										},
+										{
+											"t": "titolo",
+											"testo": "- 70€ famiglia composta da 2 genitori e 2 bambini/e gemelli/e"
+										},
+										{
+											"t": "titolo",
+											"testo": "- 35€ per un solo genitore + 1 bimbo/a"
+										},
+										{
+											"t": "titolo",
+											"testo": "- 15€ se uno dei due genitori o entrambi i genitori fossero già soci enjoy"
+										},
+										{
+											"t": "titolo",
+											"testo": "La direzione di riserva di non avviare il corso se questo non raggiunge il numero minimo di 3 iscritti."
+										}
+									]
+								},
+								{
+									"titolo": "Documentazione e Amministrazione",
+									"blocchi": [
+										{
+											"t": "titolo",
+											"testo": "Certificato Medico"
+										},
+										{
+											"t": "titolo",
+											"testo": "non è obbligatorio."
+										},
+										{
+											"t": "linea"
+										},
+										{
+											"t": "titolo",
+											"testo": "Quota d'iscrizione"
+										},
+										{
+											"t": "titolo",
+											"testo": "Per sostenere la frequenza di entrambi i genitori abbiamo istituito una sola quota di iscrizione, la “quota di iscrizione familiare” che dà diritto all’ingresso in spogliatoio e al corso ai due genitori e ad un bimbo/bimba (sempre e solo un genitore in acqua per lezione, mai in contemporanea in acqua e mai alternandosi in acqua nella stessa lezione, ad eccezione di famiglie con bimbi gemelli purché TUTTI REGOLARMENTE iscritti al corso). Eventuali familiari diversi dai genitori che necessitano di entrare in spogliatoio e/o in acqua con il bimbo/la bimba, potranno farlo solo se autorizzati espressamente dalla Direzione e a patto di pagare la propria quota di iscrizione extra (35 €)."
+										},
+										{
+											"t": "linea"
+										},
+										{
+											"t": "titolo",
+											"testo": "Rinnovi"
+										},
+										{
+											"t": "titolo",
+											"testo": "l’iscrizione ai corsi successivi (rinnovo) non è automatica, ma deve essere comunicata in segreteria e confermata dal pagamento della quota (o acconto)."
+										}
+									]
+								},
+								{
+									"titolo": "Accesso e Regole di Frequenza",
+									"blocchi": [
+										{
+											"t": "titolo",
+											"testo": "Accesso ai Corsi"
+										},
+										{
+											"t": "titolo",
+											"testo": "Le uniche persone autorizzate ad entrare negli spogliatoi per cambiare il bimbo/la bimba e ad accompagnare il bimbo/la bimba in acqua durante le lezioni sono i genitori. Ogni bimbo/bimba deve essere accompagnato da uno solo dei genitori per ogni lezione sia nello spogliatoio e sia in acqua. Non è mai consentito l’accesso in contemporanea ad entrambi i genitori né in spogliatoio né in acqua, ad eccezione di famiglie con gemelli. Mai e in nessun caso è prevista la presenza in contemporanea e/o l’alternanza dei genitori in acqua durante la stessa lezione (ad eccezione di famiglie con gemelli). Entrambi gli spogliatoi sono attrezzati con tutto il materiale necessario perché sia la mamma (nello spogliatoio femminile) sia il papà (nello spogliatoio maschile) possano cambiare il bimbo/la bimba in tutta sicurezza e comodità, senza aiuti esterni. Nessuna persona diversa dai genitori può accompagnare il bimbo/la bimba negli spogliatoi e in acqua, neanche in supporto ai genitori durante il cambio del bimbo/della bimba. Esigenze differenti saranno valutate solo ed esclusivamente dalla Direzione, prima di effettuare l’iscrizione e solo per il periodo di riferimento della stessa."
+										},
+										{
+											"t": "linea"
+										},
+										{
+											"t": "titolo",
+											"testo": "Corso"
+										},
+										{
+											"t": "titolo",
+											"testo": "Ogni lezione dura 30 minuti. L’accesso in acqua è consentito solo dopo l’ingresso in acqua dell’istruttore di riferimento. Tutti i bimbi e tutte le bimbe devono entrare in acqua accompagnati dal genitore di riferimento per quella lezione. Gli eventuali accompagnatori possono assistere alla lezione dalle vetrate panoramiche che si affacciano sulla vasca ludica. NON È PREVISTA UNA LEZIONE DI PROVA. Non è possibile assistere alla lezione sul bordo vasca.Mai e in nessun caso è prevista la presenza in contemporanea e/o l’alternanza dei genitori in acqua durante la stessa lezione (ad eccezione di famiglie con gemelli). Entrambi gli spogliatoi sono attrezzati con tutto il materiale necessario perché sia la mamma (nello spogliatoio femminile) sia il papà (nello spogliatoio maschile) possano cambiare il bimbo/la bimba in tutta sicurezza e comodità, senza aiuti esterni. Nessuna persona diversa dai genitori può accompagnare il bimbo/la bimba negli spogliatoi e in acqua, neanche in supporto ai genitori durante il cambio del bimbo/della bimba. Esigenze differenti saranno valutate solo ed esclusivamente dalla Direzione, prima di effettuare l’iscrizione e solo per il periodo di riferimento della stessa."
+										}
+									]
+								},
+								{
+									"titolo": "Materiale Necessario",
+									"blocchi": [
+										{
+											"t": "titolo",
+											"testo": "Materiale"
+										},
+										{
+											"t": "titolo",
+											"testo": "Per ogni bimbo/bimba sono necessari: cuffia, pannolino contenitivo specifico per l’acqua, costume, ciabatte (per i bimbi che già camminano), telo/accappatoio/poncho; per ogni genitore sono necessari: cuffia, costume, ciabatte, accappatoio/telo.Entrambi gli spogliatoi sono attrezzati con tutto il materiale necessario perché sia la mamma (nello spogliatoio femminile) sia il papà (nello spogliatoio maschile) possano cambiare il bimbo/la bimba in tutta sicurezza e comodità, senza aiuti esterni. Nessuna persona diversa dai genitori può accompagnare il bimbo/la bimba negli spogliatoi e in acqua, neanche in supporto ai genitori durante il cambio del bimbo/della bimba. Esigenze differenti saranno valutate solo ed esclusivamente dalla Direzione, prima di effettuare l’iscrizione e solo per il periodo di riferimento della stessa."
+										}
+									]
+								},
+								{
+									"titolo": "Calendario e Assenza",
+									"blocchi": [
+										{
+											"t": "titolo",
+											"testo": "Vacanze"
+										},
+										{
+											"t": "titolo",
+											"testo": "Nei giorni considerati feste nazionali laiche e/o religiose, durante le vacanze di Natale (dal 23/12 al 06/01 compresi) ed il sabato di Pasqua, i corsi sono sospesi e le lezioni non sono recuperabili in alcun modo.Nessuna persona diversa dai genitori può accompagnare il bimbo/la bimba negli spogliatoi e in acqua, neanche in supporto ai genitori durante il cambio del bimbo/della bimba. Esigenze differenti saranno valutate solo ed esclusivamente dalla Direzione, prima di effettuare l’iscrizione e solo per il periodo di riferimento della stessa."
+										},
+										{
+											"t": "linea"
+										},
+										{
+											"t": "titolo",
+											"testo": "Recupero lezioni perse"
+										},
+										{
+											"t": "titolo",
+											"testo": "Le lezioni perse possono essere recuperate nella misura di 3 lezioni perse/ 3 recuperate per ogni stagione (settembre-maggio), tramite l’acquisto di una recovery card dal costo di 60 euro. Suddette lezioni possono essere recuperate solo nell’ambito dell’abbonamento in corso e inserendo il secondo giorno di frequenza alla settimana in un corso adatto all’età del bimbo/della bimba, compatibilmente con le disponibilità di posto e con la possibilità del genitore di frequentare in un giorno/orario differente da quello scelto. Nel caso in cui l’assenza sia stata causata da malattia infettiva o da ricovero ospedaliero, le lezioni perse possono essere recuperate solo ed esclusivamente dietro presentazione del relativo certificato medico e solo nell’ambito dell’abbonamento in corso, inserendo il secondo giorno di frequenza alla settimana in un corso adatto all’età del bimbo/della bimba, compatibilmente con le disponibilità di posto e con la possibilità del genitore di frequentare in un giorno/orario differente da quello scelto. Nel caso in cui ciò non fosse possibile, ogni lezione persa viene convertita in altrettanti accessi di nuoto libero, da utilizzarsi SOLO DA PARTE DEI GENITORI entro 30 giorni dalla data di rientro indicata sul certificato medico. Il ritiro dai corsi, per qualsiasi motivo avvenga, non dà diritto al rimborso delle quote versate. Ogni eccezione è valutata a giudizio insindacabile della Direzione.Esigenze differenti saranno valutate solo ed esclusivamente dalla Direzione, prima di effettuare l’iscrizione e solo per il periodo di riferimento della stessa."
+										}
+									]
+								},
+								{
+									"titolo": "Raccomandazioni di Sicurezza",
+									"blocchi": [
+										{
+											"t": "titolo",
+											"testo": "Raccomandazioni"
+										},
+										{
+											"t": "titolo",
+											"testo": "- All’interno dello spogliatoio è consentita la sola somministrazione di latte e/o acqua e per motivi di sicurezza è SEVERAMENTE VIETATO l’utilizzo di qualsiasi contenitore/recipiente in vetro. Naturalmente l’allattamento al seno è sempre consentito e sostenuto."
+										},
+										{
+											"t": "titolo",
+											"testo": "- in caso di feci nel pannolino acquatico/costume, si raccomanda di non lavare il pannolino/costume sotto la doccia e/o il lavandino, per non intasare gli scarichi, ma di avvisare il nostro personale spogliatoio/segreteria che darà indicazioni in merito."
+										},
+										{
+											"t": "titolo",
+											"testo": "- per motivi di sicurezza E’ VIETATO l’accesso in spogliatoio con passeggini/carrozzine, i quali possono essere collocati nel corridoio del piano interrato prima del tornello di accesso agli spogliatoi e lontani dall’uscita di emergenza. E’ invece consentito l’accesso in spogliatoio con l’ovetto."
+										},
+										{
+											"t": "titolo",
+											"testo": "- la Direzione non si assume alcuna responsabilità in caso di eventuali danni/furti/smarrimenti di qualsiasi effetto personale (passeggini/carrozzine/ovetti compresi).Esigenze differenti saranno valutate solo ed esclusivamente dalla Direzione, prima di effettuare l’iscrizione e solo per il periodo di riferimento della stessa."
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"t": "linea"
+		},
+		{
+			"t": "titolo",
+			"testo": "Fissa un Appuntamento telefonico"
+		},
+		{
+			"t": "titolo",
+			"testo": "Un nostro operatore ti fornirà tutte le informazioni aggiuntive"
+		},
+		{
+			"t": "appuntamento",
+			"href": "https://calendly.com/front-desk-camuzzagofitnessclub/10"
+		}
+	]
+}

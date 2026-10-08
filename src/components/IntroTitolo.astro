@@ -1,0 +1,83 @@
+---
+/*
+ * Introduzione di una pagina: titolo grande giallo a sinistra, testo a destra. Su
+ * fondo nero (il grassetto del testo diventa giallo, vedi .on-dark). Lo slot, se
+ * presente, va nella colonna di destra sotto il testo (es. l'indice delle sezioni).
+ *
+ *   <IntroTitolo titolo="Respira, pedala, vivi la tua energia." html="<p>…</p>" />
+ */
+interface Props {
+	titolo: string;
+	/** Testo gia' ripulito (paragrafi, grassetti). */
+	html: string;
+}
+
+const { titolo, html } = Astro.props;
+const conExtra = Astro.slots.has('default');
+---
+
+<section class:list={['intro', 'on-dark', { 'intro--extra': conExtra }]}>
+	<div class="intro__grid container-wide">
+		<h2 class="intro__title display-title" data-anim="from-left">{titolo}</h2>
+		<div class="intro__col">
+			<div class="intro__text" data-anim="from-right" data-anim-delay="80" set:html={html} />
+			{
+				conExtra && (
+					<div class="intro__extra">
+						<slot />
+					</div>
+				)
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.intro {
+		padding-block: clamp(48px, 7vw, 96px);
+		background: var(--bg-dark);
+		color: var(--text-on-dark);
+	}
+
+	/* I link dell'indice sono alti 44px con il testo al centro: si toglie quello spazio
+	   interno cosi' sotto l'indice resta lo stesso vuoto che c'e' sopra il titolo. */
+	.intro--extra {
+		padding-bottom: calc(clamp(48px, 7vw, 96px) - 10px);
+	}
+
+	.intro__grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		gap: clamp(24px, 5vw, 72px);
+		align-items: center;
+	}
+
+	.intro__title {
+		font-size: clamp(2rem, 3.6vw, 3.25rem);
+		line-height: 1.05;
+		color: var(--accent);
+	}
+
+	.intro__text {
+		font-size: var(--text-md);
+		line-height: 1.7;
+	}
+
+	.intro__text :global(p) {
+		margin: 0 0 1em;
+	}
+
+	.intro__text :global(p:last-child) {
+		margin-bottom: 0;
+	}
+
+	.intro__extra {
+		margin-top: clamp(16px, 2vw, 24px);
+	}
+
+	@media (max-width: 900px) {
+		.intro__grid {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+</style>

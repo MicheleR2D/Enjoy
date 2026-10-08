@@ -1,0 +1,41 @@
+---
+/*
+ * Foto del sito: usa le varianti WebP leggere (480/960/1600px) e lascia scegliere
+ * al browser quella giusta per lo schermo. Di default si carica solo quando sta
+ * per entrare in vista; per la foto principale in cima alla pagina usare `priority`.
+ *
+ *   <Img src="/wp-content/uploads/…jpg" alt="…" sizes="(max-width: 900px) 100vw, 50vw" />
+ *
+ * `sizes` dice al browser quanto sara' larga la foto a schermo: serve a non
+ * scaricare una versione piu' grande del necessario (default: tutta la larghezza).
+ * Per riempire un contenitore (al posto di un background-image) aggiungere
+ * class="img-cover" e dare al contenitore position: relative.
+ */
+import { imgSources } from '../lib/img';
+
+interface Props {
+	src: string;
+	alt?: string;
+	sizes?: string;
+	/** Foto che compare subito in cima alla pagina: caricata per prima, mai differita. */
+	priority?: boolean;
+	loading?: 'lazy' | 'eager';
+	class?: string;
+	[attr: string]: unknown;
+}
+
+const { src, alt = '', sizes = '100vw', priority = false, loading, class: className, ...rest } = Astro.props;
+const img = imgSources(src);
+---
+
+<img
+	src={img.src}
+	srcset={img.srcset}
+	sizes={img.srcset ? sizes : undefined}
+	alt={alt}
+	class={className}
+	loading={priority ? 'eager' : (loading ?? 'lazy')}
+	fetchpriority={priority ? 'high' : undefined}
+	decoding="async"
+	{...rest}
+/>

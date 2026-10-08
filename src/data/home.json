@@ -1,0 +1,194 @@
+{
+	"seo": {
+		"title": "Enjoy Club - Palestra e Piscina a Meda e Camuzzago (Brianza)",
+		"description": "Enjoy Club: palestra, piscine e corsi a Meda e Camuzzago, in Brianza. Palestra della Salute riconosciuta da Regione Lombardia. Prova ora!"
+	},
+	"hero": {
+		"intro": "<p><strong>Enjoy Club è il tuo centro esclusivo per fitness, wellness e sport in Brianza</strong>, con due sedi d’eccellenza a Meda e Camuzzago.<br><strong>Riconosciuto come <em>Palestra della Salute</em> dalla Regione Lombardia</strong>, offre percorsi sicuri e di qualità per allenamento, benessere e prevenzione.</p>",
+		"immagini": [
+			"/wp-content/uploads/2025/06/Piscina-Meda-2-scaled.jpg",
+			"/wp-content/uploads/2025/06/Sala-Pesi-Meda-1-scaled.jpg",
+			"/wp-content/uploads/2025/06/Meda-scaled.jpg",
+			"/wp-content/uploads/2025/06/Wellness-Meda-2-scaled.jpg",
+			"/wp-content/uploads/2025/06/Outdoor-Meda-1-scaled.jpg",
+			"/wp-content/uploads/2025/06/Piscina-Camuzzago-4-scaled.jpg",
+			"/wp-content/uploads/2025/06/Gym-Floor-Camuzzago-2-scaled.jpg",
+			"/wp-content/uploads/2025/06/Piscina-Meda-7-scaled.jpg",
+			"/wp-content/uploads/2025/06/Piscina-Camuzzago-8-scaled.jpg"
+		]
+	},
+	"marquee": [
+		"/wp-content/uploads/2025/06/Corsi-Meda-9-scaled.jpg",
+		"/wp-content/uploads/2025/06/Corsi-Meda-6-scaled.jpg",
+		"/wp-content/uploads/2025/06/Piscina-Camuzzago-10-scaled.jpg",
+		"/wp-content/uploads/2025/06/Outdoor-Meda-2-scaled.jpg"
+	],
+	"storia": {
+		"titolo": "La Nostra Storia il Tuo Benessere",
+		"html": "<p><strong>Enjoy Club è il punto di riferimento per il benessere e il fitness in Brianza</strong>, con due sedi d’eccellenza a Meda e Camuzzago di Bellusco, in prossimità di Vimercate. Dal 1982, la nostra missione è offrire un’esperienza completa di salute, sport e relax, immersa nella natura e supportata da un team di professionisti qualificati.<br>Siamo orgogliosi di essere riconosciuti come <strong>Palestra della Salute dalla Regione Lombardia</strong>, a garanzia di percorsi sicuri, controllati e di qualità per ogni esigenza. In entrambe le sedi promuoviamo uno stile di vita attivo e consapevole, con programmi personalizzati e un ambiente accogliente per tutte le età. Che tu sia un atleta esperto o alle prime armi, troverai in Enjoy Club il partner ideale per il tuo benessere.</p>",
+		"immagine": "/wp-content/uploads/2025/07/b1ae5c65-9e50-45ff-850b-5130ca87d13a.jpg"
+	},
+	"contatori": [
+		{
+			"target": 160,
+			"suffisso": "+",
+			"titolo": "Corsi A Settimana"
+		},
+		{
+			"target": 50,
+			"suffisso": "+",
+			"titolo": "Trainers Qualificati"
+		},
+		{
+			"target": 4500,
+			"suffisso": "+",
+			"titolo": "Enjoyers"
+		}
+	],
+	"metodo": {
+		"intro": [
+			"<p><strong>Scopri il nostro approccio distintivo Sogna Credici Allenati<br></strong></p>",
+			"<p>che trasforma il benessere in una scelta semplice e quotidiana.</p>"
+		],
+		"punti": [
+			{
+				"titolo": "Non lasciamo nulla al caso",
+				"html": "<p>Ogni nuovo socio inizia con un incontro dedicato per conoscersi, fissare obiettivi e creare un piano su misura.</p>"
+			},
+			{
+				"titolo": "Monitoraggio costante",
+				"html": "<p>Valutazioni periodiche e confronto con i trainer garantiscono motivazione e risultati, sempre nel rispetto della tua unicità.</p>"
+			},
+			{
+				"titolo": "Benessere a 360°",
+				"html": "<p>Palestra, corsi a terra e in acqua, centro medico e area wellness lavorano insieme per offrirti un percorso completo.</p>"
+			},
+			{
+				"titolo": "Una vera Community",
+				"html": "<p>Trainer, staff e soci formano una rete di supporto che rende ogni progresso più motivante e condiviso.</p>"
+			}
+		],
+		"immagine": "/wp-content/uploads/2025/10/fumettoRisorsa-1.png"
+	},
+	"gruppi": [
+		{
+			"titolo": "Le nostre attività per adulti",
+			"html": "<p>Scopri i nostri <strong>corsi fitness</strong> per ogni livello: dinamici, coinvolgenti e sempre guidati da istruttori esperti.<br>Con il <strong>nuoto libero</strong> ti alleni in libertà, mentre <strong>acqua gym</strong> tonifica con leggerezza e divertimento.<br>La <strong>scuola nuoto adulti</strong> ti aiuta a migliorare o imparare da zero, con percorsi su misura e <strong>personal trainer</strong> dedicati.</p>",
+			"card": [
+				{
+					"titolo": "Sala Pesi",
+					"descrizione": "Le nostre Sale Pesi con i migliori macchinari Technogym",
+					"href": "/gym-floor",
+					"immagine": "/wp-content/uploads/2025/06/Sala-Pesi-Meda-1-scaled.jpg"
+				},
+				{
+					"titolo": "Acqua Gym",
+					"descrizione": "Fitness in Acqua e Nuoto Libero",
+					"href": "/acqua-gym",
+					"immagine": "/wp-content/uploads/2025/06/Piscina-Meda-4-scaled.jpg"
+				},
+				{
+					"titolo": "Corsi Fitness",
+					"descrizione": "Scopri i nostri corsi fitness: energia, benessere e varietà per ogni età e obiettivo. Trova il tuo allenamento!",
+					"href": "/corsi-fitness",
+					"immagine": "/wp-content/uploads/2025/06/Corsi-Meda-3-scaled.jpg"
+				},
+				{
+					"titolo": "X-class",
+					"descrizione": "Allenamento intenso per potenza e cardio con Technogym Skill Line.",
+					"href": "/x-class",
+					"immagine": "/wp-content/uploads/2025/05/Xspace_-03-63a053a4.webp"
+				},
+				{
+					"titolo": "Scuola Nuoto Adulti",
+					"descrizione": "Impara a nuotare o perfeziona lo stile",
+					"href": "/nuoto-adulti",
+					"immagine": "/wp-content/uploads/2025/06/Piscina-Camuzzago-11-scaled.jpg"
+				},
+				{
+					"titolo": "Nuoto Libero",
+					"descrizione": "Corso in acqua per nuotare e star bene, da settembre a maggio con staff esperto.",
+					"href": "/nuoto-libero",
+					"immagine": "/wp-content/uploads/2025/06/Piscina-Meda-1-scaled.jpg"
+				},
+				{
+					"titolo": "Personal Trainer",
+					"descrizione": "Affida i tuoi obiettivi ai nostri professionisti del movimento",
+					"href": "/personal-training",
+					"immagine": "/wp-content/uploads/2025/06/Varie-Camuzzago-1-scaled.jpg"
+				}
+			]
+		},
+		{
+			"titolo": "Health Fitness",
+			"html": "<p>Un programma dedicato al recupero e al benessere fisico, attivo in entrambe le sedi Enjoy Club, <strong>riconosciute come Palestra della Salute dalla Regione Lombardia</strong>. Grazie a macchinari specifici e al supporto di professionisti qualificati, questo percorso accompagna ogni persona nella fase di riabilitazione o post-riabilitazione, lavorando su mobilità, tono muscolare e funzionalità articolare in un ambiente sicuro, controllato e certificato.</p>",
+			"card": [
+				{
+					"titolo": "Wellness Lab Meda",
+					"descrizione": "Recupero, postura e benessere",
+					"href": "/wellness-lab-meda",
+					"immagine": "/wp-content/uploads/2025/06/Wellness-Meda-1-scaled.jpg"
+				},
+				{
+					"titolo": "Health Fitness Camuzzago",
+					"descrizione": "Recupero, postura e benessere",
+					"href": "/health-fitness-camuzzago",
+					"immagine": "/wp-content/uploads/2025/06/riabilitazione-in-acqua-1b3aacf4-enjoy.webp"
+				}
+			]
+		},
+		{
+			"titolo": "Le nostre attività per bambini",
+			"html": "<p>Scopri le attività dedicate ai più giovani: dalla <strong>scuola nuoto</strong> per imparare divertendosi alla <strong>ginnastica aerobica</strong> per sviluppare coordinazione, forza e passione per il movimento. Crescere attivi è il primo passo verso il benessere!</p>",
+			"card": [
+				{
+					"titolo": "Nuoto Neonatale",
+					"descrizione": "Gioco, acqua e prime esperienze in vasca per i più piccoli.",
+					"href": "/nuoto-neonatale",
+					"immagine": "/wp-content/uploads/2025/06/nuoto-neonatale-2263cc58-enjoy.webp"
+				},
+				{
+					"titolo": "Nuoto Bambini",
+					"descrizione": "La nostra scuola nuoto bambini unisce gioco e apprendimento per farli crescere sicuri e felici in acqua.",
+					"href": "/nuoto-bambini",
+					"immagine": "/wp-content/uploads/2025/06/nuoto-ragazzi-f01d8c42-enjoy.webp"
+				},
+				{
+					"titolo": "Ginnastica Aerobica",
+					"descrizione": "La ginnastica aerobica è l’attività ideale per sviluppare coordinazione, resistenza e ritmo in modo divertente.",
+					"href": "/ginnastica-aerobica",
+					"immagine": "/wp-content/uploads/2025/05/269b36e876e375e05083f78293992209_L.jpg"
+				},
+				{
+					"titolo": "Nuoto Agonistico",
+					"descrizione": "Cresci e supera i tuoi limiti in vasca.",
+					"href": "/nuoto-preagonistico",
+					"immagine": "/wp-content/uploads/2025/05/scuola_nuoto_camuzzago_wide.webp"
+				},
+				{
+					"titolo": "Nuoto Sincronizzato",
+					"descrizione": "Eleganza, ritmo e armonia in acqua.",
+					"href": "/nuoto-sincronizzato",
+					"immagine": "/wp-content/uploads/2025/07/nuoto-sincronizzato-enjoy.jpg"
+				}
+			]
+		}
+	],
+	"testimonianze": [
+		{
+			"nome": "Ermes Perera",
+			"testo": "Dopo oltre tre anni di frequentazione non posso che confermare, professionalità, serietà, pulizia, educazione e gentilezza."
+		},
+		{
+			"nome": "Dario Avoledo",
+			"testo": "Bellissima struttura con ampio parcheggio, che offre tantissimi servizi, e personale molto cortese."
+		},
+		{
+			"nome": "Armando Locatelli",
+			"testo": "Palestra stupenda, personale professionale e gentile"
+		}
+	],
+	"orari": {
+		"testo": "<p>Scopri il Planning delle nostre attività e programma la tua settimana di Sport e Benessere!</p>"
+	}
+}

@@ -1,0 +1,88 @@
+{
+	"tipo": "corso",
+	"slug": "core-training",
+	"nome": "Core Training",
+	"seo": {
+		"title": "Core Training - Enjoy Club | Meda e Camuzzago",
+		"description": "Il corso Core Training di Enjoy Club propone lezioni di Tabata dinamiche ed efficaci, con una parte finale interamente dedicata alla tonificazione del…"
+	},
+	"hero": {
+		"titolo": "core",
+		"parole": [
+			"training"
+		],
+		"immagine": "/wp-content/uploads/2025/06/Varie-Camuzzago-5-scaled.jpg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "core training",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Il corso Core Training di Enjoy Club propone <strong>lezioni di Tabata</strong> dinamiche ed efficaci, con una parte finale interamente dedicata alla <strong>tonificazione del core</strong>, per rinforzare addominali e migliorare equilibrio e postura.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/CORE-TRAINING-2048x1366-enjoy.jpg"
+			],
+			"dettagli": [
+				{
+					"testo": "30 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "SCARPE",
+					"immagine": "/wp-content/uploads/2025/06/sneakers.svg"
+				},
+				{
+					"etichetta": "ASCIUGAMANO",
+					"immagine": "/wp-content/uploads/2025/06/bath-towel.svg"
+				},
+				{
+					"etichetta": "ACQUA",
+					"immagine": "/wp-content/uploads/2025/06/bottle.svg"
+				},
+				{
+					"etichetta": "CARDIO FREQUENZIMETRO",
+					"immagine": "/wp-content/uploads/2025/06/smartwatch.svg"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 15
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 60
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 25
+				}
+			]
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sull'App di Body Studio!</p>"
+		}
+	],
+	"sedi": [
+		"camuzzago"
+	]
+}

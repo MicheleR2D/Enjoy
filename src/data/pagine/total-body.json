@@ -1,0 +1,89 @@
+{
+	"tipo": "corso",
+	"slug": "total-body",
+	"nome": "Total Body",
+	"seo": {
+		"title": "Total Body - Enjoy Club | Meda e Camuzzago",
+		"description": "Un corso mirato a migliorare tono muscolare e definizione attraverso esercizi con elastici, bilancieri, palle e step. Perfetto per chi vuole modellare il…"
+	},
+	"hero": {
+		"titolo": "total",
+		"parole": [
+			"body"
+		],
+		"immagine": "/wp-content/uploads/2025/06/Sala-Pesi-Meda-1-scaled.jpg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "total body",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Un corso <strong>mirato a migliorare</strong> <strong>tono muscolare e definizione</strong> attraverso esercizi con elastici, bilancieri, palle e step. Perfetto per chi vuole modellare il corpo in modo <strong>equilibrato ed efficace</strong>, allenandosi in gruppo con il supporto di trainer qualificati.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/TOTAL-BODY-scaled-1-enjoy.jpeg"
+			],
+			"dettagli": [
+				{
+					"testo": "45-60 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "SCARPE",
+					"immagine": "/wp-content/uploads/2025/06/sneakers.svg"
+				},
+				{
+					"etichetta": "ASCIUGAMANO",
+					"immagine": "/wp-content/uploads/2025/06/bath-towel.svg"
+				},
+				{
+					"etichetta": "ACQUA",
+					"immagine": "/wp-content/uploads/2025/06/bottle.svg"
+				},
+				{
+					"etichetta": "CARDIO FREQUENZIMETRO",
+					"immagine": "/wp-content/uploads/2025/06/smartwatch.svg"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 15
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 60
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 25
+				}
+			]
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sull'App di Body Studio!</p>"
+		}
+	],
+	"sedi": [
+		"camuzzago",
+		"meda"
+	]
+}

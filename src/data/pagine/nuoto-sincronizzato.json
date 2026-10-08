@@ -1,0 +1,83 @@
+{
+	"tipo": "corso",
+	"slug": "nuoto-sincronizzato",
+	"nome": "Nuoto Sincronizzato",
+	"seo": {
+		"title": "Nuoto Sincronizzato - Enjoy Club | Meda e Camuzzago",
+		"description": "Il corso pre-agonistico di nuoto artistico (ex nuoto sincronizzato) è pensato per bambine e bambini, solitamente tra gli 8 e i 13 anni, che possiedono già…"
+	},
+	"hero": {
+		"titolo": "nuoto",
+		"parole": [
+			"sincronizzato"
+		],
+		"immagine": "/wp-content/uploads/2025/07/nuoto-sincronizzato-enjoy.jpg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "nuoto sincronizzato",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Il corso pre-agonistico di nuoto artistico (ex nuoto sincronizzato) è pensato per bambine e bambini, solitamente tra gli 8 e i 13 anni, che possiedono già una buona confidenza con l’ambiente acquatico e hanno maturato una prima esperienza nel nuoto artistico. Rappresenta il naturale proseguimento del corso di avviamento e costituisce una fase di preparazione tecnica e atletica finalizzata all’ingresso nel settore agonistico.</p><p><strong>Obiettivi del corso:</strong></p><ul><li><p>Consolidare e perfezionare le abilità di base del nuoto artistico.</p></li><li><p>Apprendere le figure tecniche obbligatorie previste dai programmi federali.</p></li><li><p>Migliorare resistenza, forza, elasticità, controllo corporeo e tecnica respiratoria.</p></li><li><p>Lavorare sulla sincronizzazione e la coreografia di gruppo.</p></li><li><p>Iniziare a partecipare ad esibizioni e competizioni promozionali.</p></li></ul><p><strong>Requisiti di accesso:</strong></p><ul><li><p>Autonomia e padronanza nei principali stili del nuoto.</p></li><li><p>Capacità di eseguire le basi tecniche del nuoto artistico.</p></li><li><p>Motivazione, impegno costante e attitudine al lavoro di squadra.</p></li></ul>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/nuoto-ragazzi-f01d8c42-enjoy.webp"
+			],
+			"dettagli": [],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "COSTUME",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced-1.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 30
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 40
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 30
+				}
+			]
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sull'App di Body Studio!</p>"
+		}
+	],
+	"sedi": [
+		"camuzzago"
+	]
+}

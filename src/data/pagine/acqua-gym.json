@@ -1,0 +1,296 @@
+{
+	"tipo": "corso",
+	"slug": "acqua-gym",
+	"nome": "Acqua Gym",
+	"seo": {
+		"title": "Acqua Gym - Enjoy Club | Meda e Camuzzago",
+		"description": "Acqua Circuit è un allenamento aerobico in acqua, intenso e coinvolgente, pensato per chi ama mettersi alla prova. Grazie all’uso di grandi attrezzi…"
+	},
+	"hero": {
+		"titolo": "acqua",
+		"parole": [
+			"gym",
+			"fitness"
+		],
+		"immagine": "/wp-content/uploads/2025/06/Piscina-Camuzzago-10-scaled.jpg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "Acqua Circuit",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p><strong>Acqua Circuit è un allenamento aerobico in acqua, intenso e coinvolgente, pensato per chi ama mettersi alla prova.</strong><br>Grazie all’uso di grandi attrezzi acquatici, la lezione alterna stazioni di lavoro che stimolano resistenza, tono muscolare e capacità cardiovascolare.<br>Perfetto per bruciare calorie, migliorare la forma fisica e divertirsi in un ambiente sicuro e a basso impatto sulle articolazioni.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/ACQUA-CIRCUIT-scaled-enjoy.webp"
+			],
+			"dettagli": [
+				{
+					"testo": "45 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "COSTUME",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced.svg"
+				},
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 35
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 55
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 20
+				}
+			]
+		},
+		{
+			"id": null,
+			"titolo": "Acqua Tone",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p><strong>Acqua Tone è la lezione perfetta per tonificare il corpo in modo completo, sicuro e divertente.</strong><br>Grazie all’utilizzo di piccoli attrezzi e alla naturale resistenza dell’acqua, ogni allenamento stimola muscoli, circolazione e postura senza sovraccaricare le articolazioni. Ogni lezione è diversa, per offrirti sempre nuove sfide e mantenere alta la motivazione.<br>Ideale per chi cerca un’attività efficace, dinamica e adatta a tutte le età.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/ACQUA-TONE-scaled-enjoy.webp"
+			],
+			"dettagli": [
+				{
+					"testo": "45 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "COSTUME",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced.svg"
+				},
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 30
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 55
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 18
+				}
+			]
+		},
+		{
+			"id": null,
+			"titolo": "Brucia Grassi Acqua",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p><strong>Brucia Grassi Acqua è un allenamento cardio ad alta intensità studiato per favorire la perdita di peso in modo efficace e sicuro.</strong><br>Grazie al lavoro continuo e dinamico in acqua, stimola il metabolismo, tonifica tutto il corpo e aiuta a bruciare calorie in eccesso senza impattare sulle articolazioni.<br>Ideale per chi vuole dimagrire, migliorare la resistenza e sentirsi più in forma, divertendosi in piscina.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/BRUCIA-GRASSI-scaled-enjoy.webp"
+			],
+			"dettagli": [
+				{
+					"testo": "30-45 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "COSTUME",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced.svg"
+				},
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 75
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 25
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 10
+				}
+			]
+		},
+		{
+			"id": null,
+			"titolo": "Idrobike",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p><strong>Idrobike</strong> è un corso dinamico che unisce i benefici dell’allenamento cardiovascolare su bike in acqua con esercizi mirati per tonificare gambe, glutei, addome e braccia. Grazie alla resistenza naturale dell’acqua, ogni movimento è più efficace ma allo stesso tempo delicato sulle articolazioni. Ideale per chi vuole scolpire il corpo, migliorare la resistenza e divertirsi in piscina a ritmo di musica.</p>",
+			"video": "/wp-content/uploads/2025/06/Hydro-Bike-Enjoy.mp4",
+			"immagini": [],
+			"dettagli": [
+				{
+					"testo": "45 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "COSTUME",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced.svg"
+				},
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 70
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 15
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 10
+				}
+			]
+		},
+		{
+			"id": null,
+			"titolo": "Idrobike Tone",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p><strong>Idrobike Tone combina l’efficacia dell’allenamento aerobico in acqua con esercizi di tonificazione mirata.</strong><br>Durante la lezione si pedala sulla bike acquatica per stimolare il sistema cardiovascolare, alternando momenti di lavoro con piccoli attrezzi per rinforzare braccia, addome e parte alta del corpo.<br>Un’attività completa, dinamica e a basso impatto, ideale per migliorare tono muscolare, resistenza e forma fisica divertendosi.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/idrobike-tone-enjoy.webp"
+			],
+			"dettagli": [
+				{
+					"testo": "45 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "COSTUME",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced.svg"
+				},
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 65
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 30
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 20
+				}
+			]
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Cos'è Acqua Tone e a chi è consigliato?",
+			"risposta": "<p>Acqua Tone è una lezione di tonificazione completa e sicura, che sfrutta piccoli attrezzi e la resistenza naturale dell’acqua per lavorare su muscoli, postura e circolazione. È ideale per tutte le età e livelli di allenamento.</p>"
+		},
+		{
+			"domanda": "Le lezioni di Acqua Tone sono tutte uguali?",
+			"risposta": "<p>No! Ogni lezione è diversa, con esercizi e combinazioni nuove per stimolare il corpo e mantenere sempre alta la motivazione.</p>"
+		},
+		{
+			"domanda": "In cosa consiste Brucia Grassi Acqua?",
+			"risposta": "<p>È un allenamento cardio ad alta intensità progettato per stimolare il metabolismo, tonificare il corpo e aiutare nella perdita di peso, senza stressare le articolazioni.</p>"
+		},
+		{
+			"domanda": "Brucia Grassi Acqua è adatto a chi non ha mai fatto attività intensa?",
+			"risposta": "<p>Sì, perché anche se l’intensità è alta, l’acqua ammortizza i movimenti, rendendo l’attività accessibile e sicura.</p>"
+		},
+		{
+			"domanda": "Cosa si fa in una lezione di Idrobike?",
+			"risposta": "<p>Si pedala su una bike acquatica a ritmo di musica, svolgendo al contempo esercizi che tonificano gambe, glutei, addome e braccia. È un’attività efficace e divertente, con basso impatto sulle articolazioni.</p>"
+		},
+		{
+			"domanda": "Qual è la differenza tra Idrobike e Idrobike Tone?",
+			"risposta": "<p>Idrobike è più focalizzata sul cardio e il lavoro delle gambe, mentre Idrobike Tone alterna pedalata a esercizi mirati con piccoli attrezzi per tonificare anche la parte alta del corpo.</p>"
+		},
+		{
+			"domanda": "Qual è il beneficio principale di questi corsi in acqua?",
+			"risposta": "<p>L’acqua offre una resistenza naturale che rende ogni movimento più efficace, proteggendo al tempo stesso le articolazioni. I corsi permettono di migliorare tono muscolare, resistenza e forma fisica in modo piacevole e sicuro.</p>"
+		}
+	],
+	"sedi": [
+		"camuzzago",
+		"meda"
+	]
+}

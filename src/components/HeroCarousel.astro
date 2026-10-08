@@ -1,0 +1,113 @@
+---
+import Img from './Img.astro';
+
+interface Props {
+	images: string[];
+}
+const { images } = Astro.props;
+
+// Dissolvenza incrociata vera: la foto successiva inizia a comparire
+// mentre quella attuale sta ancora sparendo, cosi' non si vede mai
+// per un istante lo sfondo nudo dietro le immagini.
+const HOLD_MS = 3200; // quanto resta a piena opacita' ogni foto
+const FADE_MS = 900; // durata della dissolvenza (piu' rapida di prima)
+const STAGGER_MS = HOLD_MS + FADE_MS; // avanzamento tra una foto e la successiva
+const count = images.length;
+const totalMs = count * STAGGER_MS;
+
+const fadeInEnd = (FADE_MS / totalMs) * 100;
+const holdEnd = ((FADE_MS + HOLD_MS) / totalMs) * 100;
+const fadeOutEnd = ((2 * FADE_MS + HOLD_MS) / totalMs) * 100;
+
+const keyframesCss = `
+@keyframes hc-fade {
+	0% { opacity: 0; }
+	${fadeInEnd}% { opacity: 1; }
+	${holdEnd}% { opacity: 1; }
+	${fadeOutEnd}% { opacity: 0; }
+	100% { opacity: 0; }
+}
+`;
+---
+
+<section class="hc" style={`--hc-duration:${totalMs}ms`}>
+	<div class="hc__slides">
+		{
+			images.map((src, i) => (
+				<div class="hc__slide" style={`animation-delay:${i * STAGGER_MS}ms`}>
+					{/* Solo la prima foto e' in cima alla pagina: va caricata subito. */}
+					<Img src={src} class="img-cover" sizes="100vw" priority={i === 0} />
+				</div>
+			))
+		}
+	</div>
+	<div class="hc__overlay"></div>
+	<div class="hc__content">
+		<slot />
+	</div>
+</section>
+
+<style is:global set:html={keyframesCss} />
+
+<style>
+	.hc {
+		position: relative;
+		min-height: 100vh;
+		min-height: 100svh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		/* Lo spazio dell'header fisso: il contenuto non puo' finirgli sotto, neanche
+		   quando e' piu' alto dello schermo (telefoni). */
+		padding-top: var(--header-h);
+		overflow: hidden;
+		color: var(--text-on-dark);
+		background: var(--bg-dark);
+	}
+
+	.hc__slides {
+		position: absolute;
+		inset: 0;
+	}
+
+	.hc__slide {
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+		animation-name: hc-fade;
+		animation-duration: var(--hc-duration);
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-in-out;
+	}
+
+	.hc__overlay {
+		position: absolute;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.61);
+	}
+
+	.hc__content {
+		position: relative;
+		z-index: 1;
+		text-align: center;
+		padding: 32px 20px;
+	}
+
+	@media (max-width: 900px) {
+		.hc {
+			min-height: 74vh;
+			min-height: 74svh;
+		}
+	}
+
+	/* Con "riduci movimento" niente dissolvenze continue: resta ferma la prima foto. */
+	@media (prefers-reduced-motion: reduce) {
+		.hc__slide {
+			animation: none;
+		}
+
+		.hc__slide:first-child {
+			opacity: 1;
+		}
+	}
+</style>

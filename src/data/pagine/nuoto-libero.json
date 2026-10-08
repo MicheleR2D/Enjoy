@@ -1,0 +1,71 @@
+{
+	"tipo": "corso",
+	"slug": "nuoto-libero",
+	"nome": "Nuoto Libero",
+	"seo": {
+		"title": "Nuoto Libero - Enjoy Club | Meda e Camuzzago",
+		"description": "l nuoto libero all’Enjoy Club è sempre accessibile, anche durante i corsi. Presso le nostre sedi di Meda e Camuzzago , garantiamo corsie dedicate al nuoto…"
+	},
+	"hero": {
+		"titolo": "nuoto",
+		"parole": [
+			"libero"
+		],
+		"immagine": "/wp-content/uploads/2025/06/Varie-Camuzzago-3-scaled.jpg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "Nuoto Libero",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p><strong>l nuoto libero all’Enjoy Club è sempre accessibile, anche durante i corsi.</strong><br>Presso le nostre sedi di <strong>Meda</strong> e <strong>Camuzzago</strong>, garantiamo corsie dedicate al nuoto libero in ogni fascia oraria, così da permetterti di allenarti con tranquillità, quando vuoi.<br>Che tu voglia nuotare per rilassarti, migliorare la resistenza o mantenerti in forma, troverai spazi ben organizzati, acqua controllata e ambienti confortevoli.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/nuoto-libero-138e4c35-enjoy.webp"
+			],
+			"dettagli": [],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "COSTUME",
+					"immagine": "/wp-content/uploads/2025/06/swimwear-yellow-forced.svg"
+				},
+				{
+					"etichetta": "CUFFIA",
+					"immagine": "/wp-content/uploads/2025/06/swimming.svg"
+				},
+				{
+					"etichetta": "ACCAPPATOIO",
+					"immagine": "/wp-content/uploads/2025/06/bathrobe.svg"
+				},
+				{
+					"etichetta": "CIABATTE",
+					"immagine": "/wp-content/uploads/2025/06/flip-flops.svg"
+				}
+			],
+			"intensita": []
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sull'App di Body Studio!</p>"
+		}
+	],
+	"sedi": [
+		"camuzzago",
+		"meda"
+	]
+}

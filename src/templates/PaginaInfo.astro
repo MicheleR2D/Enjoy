@@ -1,0 +1,116 @@
+---
+/*
+ * Template "info": pagine informative (orari, costi e regole dei corsi di nuoto). Header
+ * pieno, titolo grande e una colonna di lettura. Il contenuto e' una lista di blocchi
+ * (vedi InfoBlocchi.astro) che conserva l'ordine del sito originale. Le pagine che nel
+ * vecchio sito erano "noindex" restano fuori dai motori di ricerca.
+ */
+import Layout from '../layouts/Layout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import InfoBlocchi from '../components/InfoBlocchi.astro';
+
+interface Props {
+	pagina: {
+		nome: string;
+		noindex?: boolean;
+		seo: { title: string; description: string };
+		titolo: string;
+		blocchi: any[];
+	};
+}
+
+const { pagina } = Astro.props;
+---
+
+<Layout title={pagina.seo.title} description={pagina.seo.description} noindex={pagina.noindex}>
+	<article class="info on-dark">
+		<SectionTitle as="h1" tone="dark-bg" gap={40}>{pagina.titolo}</SectionTitle>
+		<div class="info__corpo container-wide">
+			<InfoBlocchi blocchi={pagina.blocchi} />
+		</div>
+	</article>
+</Layout>
+
+<style>
+	.info {
+		padding-block: clamp(40px, 6vw, 80px);
+		background: var(--bg-dark);
+		color: var(--text-on-dark);
+	}
+
+	.info__corpo {
+		max-width: calc(60rem + 2 * var(--gutter));
+	}
+
+	.info :global(.info__h2) {
+		margin: 2.2rem 0 0.8rem;
+		font-size: var(--text-xl);
+	}
+
+	.info :global(.info__h3) {
+		margin: 1.4rem 0 0.4rem;
+		font-size: var(--text-md);
+		color: var(--accent);
+	}
+
+	.info :global(.info__frase),
+	.info :global(.info__testo p) {
+		margin: 0 0 1em;
+		font-size: var(--text-base);
+		line-height: 1.7;
+	}
+
+	.info :global(.info__linea) {
+		margin: 2rem 0;
+		border: 0;
+		border-top: 2px solid var(--accent);
+	}
+
+	/* Riquadro giallo (prezzi, orari): testo nero sul colore del brand. */
+	.info :global(.info__box) {
+		margin: 1.2rem 0;
+		padding: 20px 24px;
+		border-radius: var(--radius);
+		background: var(--accent);
+		color: var(--on-accent);
+	}
+
+	.info :global(.info__box .info__h2),
+	.info :global(.info__box .info__h3) {
+		margin: 0.2rem 0;
+		color: var(--on-accent);
+	}
+
+	.info :global(.info__box strong) {
+		color: var(--on-accent);
+	}
+
+	.info :global(.info__acc) {
+		margin: 1.2rem 0;
+		border-top: 1px solid var(--border-on-dark);
+	}
+
+	.info :global(.info__voce) {
+		border-bottom: 1px solid var(--border-on-dark);
+	}
+
+	.info :global(.info__voce summary) {
+		padding: 18px 0;
+		font-family: var(--font-heading);
+		font-weight: 700;
+		font-size: var(--text-md);
+		cursor: pointer;
+	}
+
+	.info :global(.info__voce[open] summary) {
+		color: var(--accent);
+	}
+
+	.info :global(.info__voce-corpo) {
+		padding-bottom: 20px;
+	}
+
+	.info :global(.info__cta) {
+		margin: 2rem 0 0;
+	}
+</style>

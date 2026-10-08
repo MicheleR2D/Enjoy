@@ -1,0 +1,135 @@
+---
+/*
+ * Titolo di sezione con riga animata sotto. Sostituisce i titoli ripetuti a
+ * mano (attivita, struttura, testimonianze) e il JS che ne misurava la riga:
+ * ora la riga e' posizionata in CSS rispetto al titolo.
+ *
+ *   <SectionTitle accent="per adulti" tone="dark-bg">Attività</SectionTitle>
+ *
+ * Il componente occupa tutta la larghezza della sezione e rispetta lo stesso
+ * margine laterale di .container-wide (--gutter), quindi va messo direttamente
+ * nella sezione, non dentro un .container-wide.
+ */
+interface Props {
+	/** Parola in corsivo giallo dopo il titolo (il titolo principale e' lo slot). */
+	accent?: string;
+	/** Da che lato sta il titolo. */
+	align?: 'left' | 'right';
+	/** Colori: "dark-bg" titolo bianco e riga giallo (sfondi neri);
+	 *  "light-bg" titolo nero e riga giallo (sfondi chiari);
+	 *  "on-accent" titolo bianco e riga nera (sfondo giallo). */
+	tone?: 'dark-bg' | 'light-bg' | 'on-accent';
+	/** "edge": la riga parte dal bordo della pagina e arriva a fine titolo.
+	 *  "text": la riga misura solo il titolo. "none": niente riga. */
+	line?: 'edge' | 'text' | 'none';
+	/** Spazio sotto il blocco titolo+riga, in px. */
+	gap?: number;
+	/** Livello del titolo (h2 di default). */
+	as?: 'h1' | 'h2' | 'h3';
+	/** Senza margine laterale: per usarlo dentro una colonna. La riga "edge" diventa "text". */
+	flush?: boolean;
+}
+
+const { accent, align = 'left', tone = 'dark-bg', line: lineProp = 'edge', gap = 35, as: Tag = 'h2', flush = false } = Astro.props;
+const line = flush && lineProp === 'edge' ? 'text' : lineProp;
+
+// Se c'e' una parola accento anima quella; altrimenti anima tutto il titolo.
+const titleAnim = accent ? undefined : align === 'right' ? 'from-right' : 'from-left';
+---
+
+<div class:list={['st', `st--${align}`, `st--${tone}`, `st--line-${line}`, { 'st--flush': flush }]} style={`--st-gap:${gap}px`}>
+	<div class="st__inner">
+		<Tag class="st__title" data-anim={titleAnim}>
+			<slot />
+			{
+				accent && (
+					<>
+						{' '}
+						<em class="st__accent" data-anim="from-left" data-anim-delay="120">
+							{accent}
+						</em>
+					</>
+				)
+			}
+		</Tag>
+		{line !== 'none' && <span class="st__line" data-anim="line" aria-hidden="true" />}
+	</div>
+</div>
+
+<style>
+	.st {
+		--st-color: var(--text-on-dark);
+		--st-line: var(--accent);
+		padding-inline: var(--gutter);
+		margin-bottom: var(--st-gap);
+	}
+
+	.st--flush {
+		padding-inline: 0;
+	}
+
+	.st--light-bg {
+		--st-color: var(--text);
+	}
+
+	.st--on-accent {
+		--st-color: var(--text-on-dark);
+		--st-line: var(--text);
+	}
+
+	/* Il box combacia col testo (non con tutta la larghezza): la riga e'
+	   posizionata rispetto a lui. */
+	.st__inner {
+		position: relative;
+		width: fit-content;
+		max-width: 100%;
+	}
+
+	.st--right .st__inner {
+		margin-left: auto;
+	}
+
+	/* Spazio per la riga (18px di distanza + 3px di spessore) sotto il testo,
+	   cosi' non sovrappone quello che segue. */
+	.st--line-edge .st__inner,
+	.st--line-text .st__inner {
+		padding-bottom: 21px;
+	}
+
+	.st__title {
+		margin: 0;
+		font-size: clamp(2rem, 4vw, 2.5rem);
+		font-weight: 800;
+		color: var(--st-color);
+	}
+
+	.st__accent {
+		display: inline-block; /* il transform non si applica ai testi inline */
+		font-style: italic;
+		font-weight: 400;
+		color: var(--accent);
+	}
+
+	.st__line {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 3px;
+		background: var(--st-line);
+		transform-origin: left;
+	}
+
+	.st--right .st__line {
+		transform-origin: right;
+	}
+
+	/* "edge": la riga esce dal margine laterale fino al bordo pagina. */
+	.st--left.st--line-edge .st__line {
+		left: calc(-1 * var(--gutter));
+	}
+
+	.st--right.st--line-edge .st__line {
+		right: calc(-1 * var(--gutter));
+	}
+</style>

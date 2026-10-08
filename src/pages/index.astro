@@ -1,0 +1,676 @@
+---
+/*
+ * Home di Enjoy Club. Testi e foto vengono da src/data/home.json, estratto dalla home di
+ * WordPress/Elementor con scripts/migrazione/normalizza-home.mjs; qui si disegna il layout.
+ */
+import Layout from '../layouts/Layout.astro';
+import ActivityGrid from '../components/ActivityGrid.astro';
+import PhotoMarquee from '../components/PhotoMarquee.astro';
+import HeroCarousel from '../components/HeroCarousel.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import Img from '../components/Img.astro';
+import home from '../data/home.json';
+import { formattaNumero } from '../data/stats';
+import { formUrl } from '../data/site';
+
+const heroImages = home.hero.immagini;
+const fotoCarosello = home.marquee.map((src) => ({ src }));
+const parole = ['club', 'fitness', 'wellness'];
+
+// "Le nostre attivita' per adulti" -> titolo + parola in evidenza ("per adulti").
+const dividiTitolo = (t: string) => {
+	const m = t.match(/^(.*?)\s+(per\s+\w+)$/i);
+	if (m) return { titolo: m[1], accento: m[2] };
+	const parti = t.split(' ');
+	return { titolo: parti.slice(0, -1).join(' '), accento: parti.at(-1)! };
+};
+
+const toCard = (c: { titolo: string; descrizione: string | null; href: string | null; immagine: string }) => ({
+	href: c.href ?? '#',
+	image: c.immagine,
+	title: c.titolo,
+	description: c.descrizione ?? undefined,
+});
+
+// Righe di card: fino a 4 in una riga; con 5 o piu', le prime 4 (o 3) e il resto sotto.
+const righe = (items: ReturnType<typeof toCard>[]) => {
+	if (items.length <= 4) return [items];
+	const prima = items.length % 4 === 0 ? 4 : items.length === 5 ? 3 : 4;
+	return [items.slice(0, prima), items.slice(prima)];
+};
+
+const gruppi = home.gruppi.map((g, i) => ({ ...g, ...dividiTitolo(g.titolo), righe: righe(g.card.map(toCard)), fondo: ['var(--bg-dark-deep)', 'var(--bg-dark)', 'var(--bg-dark-soft)'][i % 3] }));
+const introHero = home.hero.intro.replace(/<\/?p>/g, '');
+---
+
+<Layout headerTone="overlay" stack title={home.seo.title} description={home.seo.description}>
+	<HeroCarousel images={heroImages}>
+		<h1 class="hero__title" data-intro aria-label="Enjoy Club">
+			<span aria-hidden="true">
+				enjoy
+				<span class="hero__rot">
+					{parole.map((p, i) => <span style={`--i:${i}`}>{p}</span>)}
+				</span>
+			</span>
+		</h1>
+		<p class="hero__lead" data-intro style="--intro-delay: 0.2s" set:html={introHero} />
+		<div data-intro style="--intro-delay: 0.4s">
+			<a class="btn hero__btn" href={formUrl('prova', 'Home')} target="_blank" rel="noopener">Prova ora</a>
+		</div>
+	</HeroCarousel>
+
+	<section class="block--black">
+		<div data-anim="fade">
+			<PhotoMarquee images={fotoCarosello} />
+		</div>
+	</section>
+
+	<section class="block--accent">
+		<div class="storia__inner">
+			{
+				home.storia.immagine && (
+					<div class="storia__foto" data-anim="from-left">
+						<Img src={home.storia.immagine} alt="Enjoy Club: due sedi, un'unica visione di qualità" class="img-cover" sizes="(max-width: 900px) 100vw, 46vw" />
+					</div>
+				)
+			}
+			<div class="storia__testo-col">
+				<blockquote class="storia__quote" data-anim="from-right">{home.storia.titolo}</blockquote>
+				<div class="storia__testo" data-anim="fade" set:html={home.storia.html} />
+				<div class="storia__cta" data-anim="fade">
+					<a class="btn btn--outline" href="#sedi">Scopri le nostre sedi</a>
+				</div>
+			</div>
+		</div>
+		<div class="contatori">
+			{
+				home.contatori.map((c, i) => (
+					<div class="contatore" data-anim="up" data-anim-delay={String(i * 120)}>
+						<span class="contatore__numero" data-counter data-target={c.target} data-suffix={c.suffisso}>
+							{formattaNumero(c.target)}{c.suffisso}
+						</span>
+						<span class="contatore__titolo">{c.titolo}</span>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<script>
+		import { formattaNumero } from '../data/stats';
+
+		// L'HTML contiene gia' il valore finale (crawler, lettori di schermo, niente
+		// JS): qui lo si azzera e lo si fa salire solo come effetto, e solo se la
+		// persona non ha chiesto di ridurre i movimenti.
+		const counters = document.querySelectorAll('[data-counter]');
+		const riduciMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const anima = (el: Element) => {
+			const target = Number(el.getAttribute('data-target'));
+			const suffix = el.getAttribute('data-suffix') || '';
+			const durata = 1500;
+			const inizio = performance.now();
+			function tick(ora: number) {
+				const progresso = Math.min(1, (ora - inizio) / durata);
+				const valore = Math.floor(progresso * target);
+				el.textContent = formattaNumero(valore) + suffix;
+				if (progresso < 1) requestAnimationFrame(tick);
+				else el.textContent = formattaNumero(target) + suffix;
+			}
+			requestAnimationFrame(tick);
+		};
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						anima(entry.target);
+						observer.unobserve(entry.target);
+					}
+				});
+			},
+			{ threshold: 0.4 }
+		);
+		if (!riduciMovimento) {
+			counters.forEach((c) => {
+				c.textContent = '0' + (c.getAttribute('data-suffix') || '');
+				observer.observe(c);
+			});
+		}
+	</script>
+
+	<section class="metodo section on-dark">
+		<div class="metodo__inner container-wide">
+			<div class="metodo__intro" data-anim="from-left">
+				{home.metodo.immagine && <Img src={home.metodo.immagine} alt="" class="metodo__img" sizes="(max-width: 900px) 40vw, 18vw" />}
+				<h2 class="display-title metodo__titolo">Il nostro <span class="accent-text">Metodo</span></h2>
+				{home.metodo.intro.map((p) => <div class="metodo__frase" set:html={p} />)}
+			</div>
+			<ol class="metodo__punti">
+				{
+					home.metodo.punti.map((p, i) => (
+						<li data-anim="up" data-anim-delay={String(i * 120)}>
+							<span class="metodo__num">{String(i + 1).padStart(2, '0')}</span>
+							<h3>{p.titolo}</h3>
+							<div set:html={p.html} />
+						</li>
+					))
+				}
+			</ol>
+		</div>
+	</section>
+
+	<section class="attivita">
+		{
+			gruppi.map((g) => (
+				<div class="attivita__block" style={`--block-bg:${g.fondo}`}>
+					<SectionTitle accent={g.accento} gap={0}>
+						{g.titolo}
+					</SectionTitle>
+					<div class="attivita__desc container-wide on-dark" data-anim="fade" set:html={g.html} />
+					{(() => {
+						let n = 0;
+						return g.righe.map((riga) => {
+							const start = n;
+							n += riga.length;
+							return <ActivityGrid items={riga} columns={riga.length} startIndex={start} gapTop={start === 0 ? 28 : 20} />;
+						});
+					})()}
+				</div>
+			))
+		}
+	</section>
+
+	<section class="planning">
+		<div class="container-wide planning__wrap">
+			<div class="planning__inner" data-anim="up">
+				<div class="planning__media">
+					<Img
+						class="planning__img planning__img--main"
+						src={home.marquee[0]}
+						alt="Corsi di Enjoy Club"
+						sizes="(max-width: 900px) 90vw, 36vw"
+						data-anim="scale"
+					/>
+					<Img
+						class="planning__img planning__img--accent"
+						src={home.marquee[2] ?? home.marquee[1]}
+						alt="Piscina di Enjoy Club"
+						sizes="(max-width: 900px) 55vw, 22vw"
+						data-anim="scale"
+						data-anim-delay="150"
+					/>
+				</div>
+				<div class="planning__text" data-anim="from-right" data-anim-delay="250">
+					<h2>I nostri orari</h2>
+					<p><strong>Allenati con i migliori!</strong></p>
+					<div set:html={home.orari.testo} />
+					<a class="btn" href="/orari">Planning settimanale</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="block--black section testimonianze">
+		<SectionTitle align="right" line="text" gap={40}>Non fidarti solo di quello che diciamo noi</SectionTitle>
+		<div class="container-wide">
+			<div class="testimonianze__grid">
+				{
+					home.testimonianze.map((t, i) => (
+						<figure class="testimonianza" data-anim="scale" data-anim-delay={String(i * 120)}>
+							<div class="testimonianza__stars" aria-hidden="true">★★★★★</div>
+							<blockquote class="testimonianza__testo">{t.testo}</blockquote>
+							<figcaption class="testimonianza__autore">
+								<span class="testimonianza__avatar" aria-hidden="true">{t.nome.charAt(0)}</span>
+								<span class="testimonianza__nome">{t.nome}</span>
+							</figcaption>
+						</figure>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.hero__title {
+		color: var(--bg-alt);
+		font-size: clamp(2.25rem, 8.4vw, 5.5rem);
+		margin-bottom: 16px;
+	}
+
+	/* Parole che si alternano dopo "enjoy": stessa cella, una alla volta (solo CSS). */
+	.hero__rot {
+		display: inline-grid;
+		margin-left: 0.25em;
+		color: var(--accent);
+		text-align: left;
+	}
+
+	.hero__rot > span {
+		grid-area: 1 / 1;
+		opacity: 0;
+		animation: hero-rot 7.5s infinite;
+		animation-delay: calc(var(--i) * 2.5s);
+	}
+
+	@keyframes hero-rot {
+		0%,
+		30% {
+			opacity: 1;
+			transform: none;
+		}
+		33%,
+		100% {
+			opacity: 0;
+			transform: translateY(0.35em);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero__rot > span {
+			animation: none;
+		}
+		.hero__rot > span:first-child {
+			opacity: 1;
+		}
+	}
+
+	.accent-text {
+		color: var(--accent);
+		font-style: italic;
+	}
+
+	.hero__lead {
+		max-width: 680px;
+		margin: 0 auto 24px;
+		font-size: var(--text-md);
+		color: var(--text-on-dark);
+	}
+
+	.hero__lead :global(strong) {
+		color: var(--accent);
+	}
+
+	.hero__btn {
+		padding: 20px 55px;
+		font-size: 20px;
+	}
+
+	@media (max-width: 560px) {
+		.hero__lead {
+			font-size: var(--text-base);
+		}
+
+		.hero__btn {
+			padding: 16px 40px;
+			font-size: 17px;
+		}
+	}
+
+	.section {
+		padding-block: 56px;
+	}
+
+	/* Le sezioni sono gia' precedute dalla fascia di 56px tra sezioni (vedi
+	   ".main--stack" in global.css): niente doppio padding in alto. */
+	section.section {
+		padding-top: 0;
+	}
+
+	.attivita__block {
+		background: var(--block-bg);
+		padding-block: 56px;
+	}
+
+	/* Stesso discorso: il primo blocco della sezione "attivita" e' gia'
+	   preceduto dalla fascia tra sezioni. */
+	.attivita__block:first-child {
+		padding-top: 0;
+	}
+
+	.attivita__desc {
+		max-width: calc(60rem + 2 * var(--gutter));
+		margin-top: 20px;
+		font-size: var(--text-md);
+		line-height: 1.7;
+	}
+
+	.attivita__desc :global(p) {
+		margin: 0;
+	}
+
+	/* --- Storia: foto a sinistra, testo a destra, numeri sotto (su fondo giallo) --- */
+	.storia__inner {
+		display: grid;
+		grid-template-columns: 46% 1fr;
+		align-items: stretch;
+		min-height: 420px;
+	}
+
+	.storia__foto {
+		position: relative;
+		overflow: hidden;
+		min-height: 360px;
+		border-radius: 0 20px 20px 0;
+	}
+
+	.storia__testo-col {
+		padding: 40px 5% 32px;
+	}
+
+	.storia__quote {
+		margin: 0 0 24px;
+		font-family: var(--font-heading);
+		font-size: clamp(1.75rem, 3vw, 2.5rem);
+		line-height: 1.15;
+		font-weight: 800;
+		text-transform: uppercase;
+		color: var(--on-accent);
+	}
+
+	.storia__testo {
+		column-count: 2;
+		column-gap: 30px;
+	}
+
+	.storia__testo :global(p) {
+		margin: 0 0 1em;
+		color: var(--on-accent);
+	}
+
+	.storia__cta {
+		margin-top: 8px;
+	}
+
+	.contatori {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0;
+		padding: 24px var(--gutter) 12px;
+	}
+
+	.contatore {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding: 8px 32px;
+		border-left: 1px solid var(--on-accent);
+	}
+
+	.contatore:first-child {
+		border-left: none;
+		padding-left: 0;
+	}
+
+	.contatore__numero {
+		display: block;
+		font-family: var(--font-heading);
+		font-weight: 900;
+		font-size: clamp(2.75rem, 5vw, 4.5rem);
+		letter-spacing: -0.02em;
+		font-variant-numeric: tabular-nums;
+		color: var(--on-accent);
+		margin-bottom: 14px;
+	}
+
+	.contatore__titolo {
+		font-family: var(--font-heading);
+		font-size: var(--text-lg);
+		font-weight: 600;
+		line-height: 1.15;
+		text-transform: uppercase;
+		color: var(--on-accent);
+	}
+
+	/* --- Metodo: titolo e frase a sinistra, quattro punti numerati a destra --- */
+	.metodo {
+		background: var(--bg-dark-deep);
+		color: var(--text-on-dark);
+		padding-top: 56px !important;
+	}
+
+	.metodo__inner {
+		display: grid;
+		grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+		gap: 56px;
+		align-items: start;
+	}
+
+	.metodo__img {
+		width: 140px;
+		height: auto;
+		margin-bottom: 20px;
+	}
+
+	.metodo__titolo {
+		margin-bottom: 20px;
+		color: var(--text-on-dark);
+	}
+
+	.metodo__frase :global(p) {
+		margin: 0 0 0.6em;
+		font-size: var(--text-md);
+		line-height: 1.6;
+	}
+
+	.metodo__punti {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 28px 32px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.metodo__punti li {
+		padding-top: 18px;
+		border-top: 2px solid var(--accent);
+	}
+
+	.metodo__num {
+		font-size: var(--text-xs);
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		color: var(--accent);
+	}
+
+	.metodo__punti h3 {
+		margin: 6px 0 8px;
+		font-size: var(--text-lg);
+		color: var(--text-on-dark);
+	}
+
+	.metodo__punti :global(p) {
+		margin: 0;
+		color: var(--text-muted-on-dark);
+		line-height: 1.6;
+	}
+
+	/* Fondo scuro continuo con le testimonianze sotto; il contenuto sta in una card chiara. */
+	section.planning {
+		background: var(--bg-dark);
+	}
+
+	.planning__wrap {
+		padding-bottom: 56px;
+	}
+
+	.planning__inner {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 56px;
+		align-items: center;
+		padding: 40px;
+		border-radius: var(--radius-lg);
+		background: var(--bg-alt);
+		color: var(--text);
+	}
+
+	/* Foto principale verticale + seconda foto piu' piccola sovrapposta in
+	   basso a destra, con cornice. */
+	.planning__media {
+		position: relative;
+		padding: 0 1.5rem 2.5rem 0;
+	}
+
+	.planning__media :global(.planning__img) {
+		display: block;
+		width: 100%;
+		object-fit: cover;
+		border-radius: 16px;
+	}
+
+	.planning__media :global(.planning__img--main) {
+		height: clamp(300px, calc(var(--screen-h) - 235px), 580px);
+	}
+
+	.planning__media :global(.planning__img--accent) {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		width: 58%;
+		aspect-ratio: 4 / 3;
+		border: 6px solid var(--bg-alt);
+		box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.35);
+	}
+
+	.planning__text h2 {
+		color: var(--text);
+	}
+
+	.planning__text p {
+		color: var(--text);
+	}
+
+	.planning__text .btn {
+		margin-top: 12px;
+		--btn-border: var(--text);
+		--btn-hover-text: var(--accent);
+	}
+
+	.testimonianze__grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 24px;
+		text-align: left;
+	}
+
+	/* Card "recensione": voto in alto, testo e, in fondo, l'autore separato da una riga sottile. */
+	.testimonianza {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		background: var(--bg-alt);
+		border-radius: var(--radius-lg);
+		padding: 28px;
+		box-shadow: 0 16px 32px -16px rgba(0, 0, 0, 0.5);
+	}
+
+	.testimonianza__stars {
+		color: #e0a800;
+		font-size: 20px;
+		letter-spacing: 3px;
+		margin-bottom: 18px;
+	}
+
+	.testimonianza__testo {
+		flex-grow: 1;
+		margin: 0 0 20px;
+		color: var(--text);
+		font-size: var(--text-sm);
+		line-height: 1.6;
+	}
+
+	.testimonianza__autore {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding-top: 16px;
+		border-top: 1px solid var(--border);
+	}
+
+	.testimonianza__avatar {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		background: var(--accent);
+		color: var(--on-accent);
+		font-family: var(--font-heading);
+		font-weight: 800;
+	}
+
+	.testimonianza__nome {
+		font-weight: 700;
+		color: var(--text);
+		text-transform: uppercase;
+		font-size: var(--text-sm);
+	}
+
+	@media (max-width: 900px) {
+		.storia__inner {
+			grid-template-columns: 1fr;
+			min-height: 0;
+		}
+
+		.storia__foto {
+			height: 260px;
+			min-height: 0;
+			border-radius: 0 0 20px 20px;
+		}
+
+		.storia__testo {
+			column-count: 1;
+		}
+
+		.contatori {
+			grid-template-columns: repeat(3, 1fr);
+			padding-inline: 12px;
+		}
+
+		.contatore {
+			padding: 0 8px;
+		}
+
+		.metodo__inner {
+			grid-template-columns: 1fr;
+			gap: 36px;
+		}
+
+		.testimonianze__grid {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.planning__inner {
+			grid-template-columns: 1fr;
+			gap: 24px;
+			padding: 24px;
+		}
+
+		.planning__media {
+			max-width: 32rem;
+			width: 100%;
+			margin: 0 auto;
+			padding: 0 1.25rem 2.25rem 0;
+		}
+
+		/* In colonna le foto stanno sopra al testo: devono lasciargli abbastanza posto. */
+		.planning__media :global(.planning__img--main) {
+			height: clamp(170px, 26svh, 320px);
+		}
+	}
+
+	@media (max-width: 560px) {
+		.testimonianze__grid,
+		.metodo__punti {
+			grid-template-columns: 1fr;
+		}
+
+		.contatore__titolo {
+			font-size: var(--text-sm);
+		}
+	}
+</style>

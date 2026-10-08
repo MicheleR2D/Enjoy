@@ -1,0 +1,88 @@
+{
+	"tipo": "corso",
+	"slug": "fit-boxe",
+	"nome": "Fit&Boxe",
+	"seo": {
+		"title": "Fit&Boxe - Enjoy Club | Meda e Camuzzago",
+		"description": "Un corso adatto a tutti, dove calci e pugni al sacco si combinano con la musica per un allenamento divertente, dinamico e ad alto consumo calorico."
+	},
+	"hero": {
+		"titolo": "fit",
+		"parole": [
+			"boxe"
+		],
+		"immagine": "/wp-content/uploads/2025/06/FIT-BOX-scaled-1-enjoy.jpeg"
+	},
+	"blocchi": [
+		{
+			"id": null,
+			"titolo": "fit&boxe",
+			"sottotitolo": null,
+			"descrizioneHtml": "<p>Un corso adatto a tutti, dove <strong>calci e pugni al sacco</strong> si combinano con la musica per un allenamento divertente, dinamico e ad alto consumo calorico.</p>",
+			"video": null,
+			"immagini": [
+				"/wp-content/uploads/2025/06/TOTAL-BODY-scaled-1-enjoy.jpeg"
+			],
+			"dettagli": [
+				{
+					"testo": "45 min.",
+					"icona": "far fa-clock"
+				}
+			],
+			"portareTitolo": "Cosa portare",
+			"portare": [
+				{
+					"etichetta": "SCARPE",
+					"immagine": "/wp-content/uploads/2025/06/sneakers.svg"
+				},
+				{
+					"etichetta": "ASCIUGAMANO",
+					"immagine": "/wp-content/uploads/2025/06/bath-towel.svg"
+				},
+				{
+					"etichetta": "ACQUA",
+					"immagine": "/wp-content/uploads/2025/06/bottle.svg"
+				},
+				{
+					"etichetta": "CARDIO FREQUENZIMETRO",
+					"immagine": "/wp-content/uploads/2025/06/smartwatch.svg"
+				}
+			],
+			"intensita": [
+				{
+					"etichetta": "Cardio",
+					"valore": 60
+				},
+				{
+					"etichetta": "Forza",
+					"valore": 35
+				},
+				{
+					"etichetta": "Flessibilità",
+					"valore": 10
+				}
+			]
+		}
+	],
+	"faq": [
+		{
+			"domanda": "Ho bisogno del Certificato Medico?",
+			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
+		},
+		{
+			"domanda": "La lezione è adatta a tutti?",
+			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
+		},
+		{
+			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
+			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
+		},
+		{
+			"domanda": "E' necessaria la prenotazione?",
+			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sulla Technogym App!</p>"
+		}
+	],
+	"sedi": [
+		"camuzzago"
+	]
+}
