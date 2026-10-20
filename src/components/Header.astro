@@ -240,10 +240,10 @@ import { formUrl } from '../data/site';
 		top: 100%;
 		left: 0;
 		min-width: 220px;
-		background: var(--bg-dark);
-		border: 1px solid var(--border-on-dark);
+		background: var(--bg);
+		border: 1px solid var(--border-strong);
 		border-radius: var(--radius);
-		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 		opacity: 0;
 		visibility: hidden;
 		transform: translateY(4px);
@@ -260,14 +260,18 @@ import { formUrl } from '../data/site';
 
 	.hd__col > ul li a {
 		display: block;
-		padding: 6px 4px;
-		color: var(--text-on-dark);
+		padding: 6px 8px;
+		border-radius: 4px;
+		color: var(--text);
 		text-decoration: none;
 		font-size: var(--text-sm);
 	}
 
+	/* Tendina chiara: il giallo come testo su bianco non si legge, quindi al
+	   passaggio la voce prende il fondo giallo con testo nero. */
 	.hd__col > ul li a:hover {
-		color: var(--accent);
+		background: var(--accent);
+		color: var(--on-accent);
 	}
 
 	.hd__cta {
@@ -410,6 +414,7 @@ import { formUrl } from '../data/site';
 
 		.hd__col > ul li a:hover,
 		.hd__col > ul li a:active {
+			background: none;
 			color: var(--accent);
 		}
 
