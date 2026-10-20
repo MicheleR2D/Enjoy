@@ -32,7 +32,7 @@ non c'è un form interno né un database.
 I testi vengono estratti dal dump SQL del vecchio sito, non scritti a mano.
 
 ```bash
-gzip -dc database.sql.gz > database.sql
+gzip -dc "Backup Elementor/database.sql.gz" > database.sql
 node scripts/migrazione/migra-tutto.mjs database.sql
 ```
 
@@ -45,7 +45,7 @@ Le foto originali del vecchio sito (circa 2.200 file) non stanno nel repo: si es
 (ignorata da git) e se ne copiano in `public/` solo quelle usate, con gli stessi URL di WordPress:
 
 ```bash
-tar -xzf "Backup Elementor.gz" -C _media-originali --strip-components=1 files/wp-content/uploads
+tar -xzf "Backup Elementor/files.tar.gz" -C _media-originali --strip-components=1 files/wp-content/uploads
 node scripts/copia-media.mjs            # copia i file citati in src/
 node scripts/copia-media.mjs --verifica # elenca quelli citati ma mancanti
 ```

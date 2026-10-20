@@ -25,7 +25,7 @@ node_modules/
 public/_img/
 
 # backup originale WordPress/Elementor e dump (non vanno nel repo)
-Backup Elementor.gz
+Backup Elementor/
 *.sql
 *.sql.gz
 *.tar.gz

@@ -1,7 +1,7 @@
 // Lancia in sequenza tutti gli script di migrazione, dal dump SQL ai dati puliti in src/data.
 //
 // Uso:  node scripts/migrazione/migra-tutto.mjs <dump.sql> [cartella-di-lavoro]
-//   (il dump si ottiene con:  gzip -dc database.sql.gz > database.sql)
+//   (il dump si ottiene con:  gzip -dc "Backup Elementor/database.sql.gz" > database.sql)
 //
 // Cartella di lavoro (default: .migrazione/, ignorata da git): ci finiscono i JSON grezzi
 // estratti da WordPress. I dati puliti vanno in src/data/pagine, src/data/home.json,

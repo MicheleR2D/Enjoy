@@ -3,7 +3,7 @@
 // JSON in una cartella di lavoro, da cui poi si costruiscono le pagine Astro.
 //
 // Uso:  node scripts/migrazione/estrai-pagine.mjs <dump.sql> <cartella-output> [prefisso-tabelle]
-// (il dump si ottiene con:  gzip -dc "database.sql.gz" > dump.sql)
+// (il dump si ottiene con:  gzip -dc "Backup Elementor/database.sql.gz" > dump.sql)
 //
 // Output: <cartella>/<slug>.json per ogni pagina + indice.json con l'elenco.
 import fs from 'node:fs';

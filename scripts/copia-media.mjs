@@ -2,7 +2,7 @@
 //
 // Gli originali del vecchio sito (circa 2.200 file, 500 MB, con tutte le miniature generate da
 // WordPress) stanno in _media-originali/ (ignorata da git: si estrae dal backup con
-//   tar -xzf "Backup Elementor.gz" -C _media-originali --strip-components=1 files/wp-content/uploads ).
+//   tar -xzf "Backup Elementor/files.tar.gz" -C _media-originali --strip-components=1 files/wp-content/uploads ).
 // Questo script cerca in src/ ogni percorso /wp-content/uploads/... (pagine, dati JSON, CSS)
 // e copia quei file, con lo stesso percorso, in public/: mantengono quindi gli URL del vecchio sito.
 //
