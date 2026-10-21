@@ -86,7 +86,9 @@ export function pulisci(html, { abbassaTitoli = false } = {}) {
 		.replace(/<(p|strong|em|i|ul|ol|li|h[1-6]|blockquote|hr)\b[^>]*>/gi, '<$1>')
 		.replace(/<a\b([^>]*)>/gi, (_, attrs) => {
 			const href = attrs.match(/href="([^"]*)"/i);
-			return href ? `<a href="${percorso(href[1])}">` : '<a>';
+			// Nel vecchio sito alcuni link finiscono con una virgoletta di troppo
+			// (es. ...gaoptout?hl=it%22): la si toglie, altrimenti il link e' sbagliato.
+			return href ? `<a href="${percorso(href[1].replace(/(%22|&quot;|["'])+$/i, ''))}">` : '<a>';
 		})
 		.replace(/<br\b[^>]*>/gi, '<br>')
 		.replace(/<p>\s*(<br>)?\s*<\/p>/gi, '')
