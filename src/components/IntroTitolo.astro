@@ -13,12 +13,30 @@ interface Props {
 }
 
 const { titolo, html } = Astro.props;
+
+// Stesso titolo degli orari delle sedi: frase con l'iniziale maiuscola (anche se nei dati e'
+// tutta in maiuscolo), bianca, con l'ultima parola in giallo su una seconda riga.
+const frase = titolo === titolo.toUpperCase() ? titolo.charAt(0) + titolo.slice(1).toLowerCase() : titolo;
+const parole = frase.trim().split(/\s+/);
+const ultima = parole.length > 1 ? parole.pop() : null;
+const inizio = parole.join(' ');
 const conExtra = Astro.slots.has('default');
 ---
 
 <section class:list={['intro', 'on-dark', { 'intro--extra': conExtra }]}>
 	<div class="intro__grid container-wide">
-		<h2 class="intro__title display-title" data-anim="from-left">{titolo}</h2>
+		<h2 class="intro__title" data-anim="from-left">
+			{
+				ultima ? (
+					<>
+						<span>{inizio}</span>
+						<span class="intro__accento">{ultima}</span>
+					</>
+				) : (
+					inizio
+				)
+			}
+		</h2>
 		<div class="intro__col">
 			<div class="intro__text" data-anim="from-right" data-anim-delay="80" set:html={html} />
 			{
@@ -34,27 +52,39 @@ const conExtra = Astro.slots.has('default');
 
 <style>
 	.intro {
-		padding-block: clamp(48px, 7vw, 96px);
-		background: var(--bg-dark);
+		padding-block: clamp(32px, 4.5vw, 56px);
+		background: var(--bg-dark-deep);
 		color: var(--text-on-dark);
 	}
 
 	/* I link dell'indice sono alti 44px con il testo al centro: si toglie quello spazio
 	   interno cosi' sotto l'indice resta lo stesso vuoto che c'e' sopra il titolo. */
 	.intro--extra {
-		padding-bottom: calc(clamp(48px, 7vw, 96px) - 10px);
+		padding-bottom: calc(clamp(32px, 4.5vw, 56px) - 10px);
 	}
 
 	.intro__grid {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-		gap: clamp(24px, 5vw, 72px);
-		align-items: center;
+		gap: clamp(20px, 4vw, 56px);
+		align-items: start;
 	}
 
 	.intro__title {
-		font-size: clamp(2rem, 3.6vw, 3.25rem);
-		line-height: 1.05;
+		margin: 0;
+		font-size: clamp(2.2rem, 4vw, 3.5rem);
+		font-weight: 700;
+		line-height: 1.1;
+		letter-spacing: -0.01em;
+		text-transform: none;
+		color: var(--text-on-dark);
+	}
+
+	.intro__title span {
+		display: block;
+	}
+
+	.intro__accento {
 		color: var(--accent);
 	}
 
@@ -64,7 +94,35 @@ const conExtra = Astro.slots.has('default');
 	}
 
 	.intro__text :global(p) {
+		margin: 0 0 0.75em;
+	}
+
+	/* Elenchi: spunta gialla, senza pallini. */
+	.intro__text :global(ul) {
 		margin: 0 0 1em;
+		padding: 0;
+		list-style: none;
+	}
+
+	.intro__text :global(li) {
+		position: relative;
+		padding-left: 1.7em;
+	}
+
+	.intro__text :global(li p) {
+		margin: 0;
+	}
+
+	.intro__text :global(li::before) {
+		content: '';
+		position: absolute;
+		left: 0.2em;
+		top: 0.5em;
+		width: 0.4em;
+		height: 0.8em;
+		border: solid var(--accent);
+		border-width: 0 3px 3px 0;
+		transform: rotate(45deg);
 	}
 
 	.intro__text :global(p:last-child) {

@@ -17,7 +17,7 @@ interface Props {
 	align?: 'left' | 'right';
 	/** Colori: "dark-bg" titolo bianco e riga giallo (sfondi neri);
 	 *  "light-bg" titolo nero e riga giallo (sfondi chiari);
-	 *  "on-accent" titolo bianco e riga nera (sfondo giallo). */
+	 *  "on-accent" titolo e riga neri (sfondo giallo). */
 	tone?: 'dark-bg' | 'light-bg' | 'on-accent';
 	/** "edge": la riga parte dal bordo della pagina e arriva a fine titolo.
 	 *  "text": la riga misura solo il titolo. "none": niente riga. */
@@ -73,8 +73,8 @@ const titleAnim = accent ? undefined : align === 'right' ? 'from-right' : 'from-
 	}
 
 	.st--on-accent {
-		--st-color: var(--text-on-dark);
-		--st-line: var(--text);
+		--st-color: var(--bg-dark-deep);
+		--st-line: var(--bg-dark-deep);
 	}
 
 	/* Il box combacia col testo (non con tutta la larghezza): la riga e'

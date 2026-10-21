@@ -96,23 +96,6 @@ const accento = tone === 'accento';
 			<div class="cb__desc" set:html={blocco.descrizioneHtml} />
 
 			{
-				blocco.pulsanti && blocco.pulsanti.length > 0 && (
-					<div class="cb__actions">
-						{blocco.pulsanti.map((p) => (
-							<a
-								class:list={['btn', { 'btn--outline': accento }]}
-								href={p.href}
-								target={p.esterno ? '_blank' : undefined}
-								rel={p.esterno ? 'noopener' : undefined}
-							>
-								{p.testo}
-							</a>
-						))}
-					</div>
-				)
-			}
-
-			{
 				blocco.dettagli.length > 0 && (
 					<ul class="cb__chips">
 						{blocco.dettagli.map((d) => (
@@ -127,6 +110,23 @@ const accento = tone === 'accento';
 							</li>
 						))}
 					</ul>
+				)
+			}
+
+			{
+				blocco.pulsanti && blocco.pulsanti.length > 0 && (
+					<div class="cb__actions">
+						{blocco.pulsanti.map((p) => (
+							<a
+								class:list={['btn', { 'btn--outline': accento }]}
+								href={p.href}
+								target={p.esterno ? '_blank' : undefined}
+								rel={p.esterno ? 'noopener' : undefined}
+							>
+								{p.testo}
+							</a>
+						))}
+					</div>
 				)
 			}
 
@@ -180,6 +180,8 @@ const accento = tone === 'accento';
 					</div>
 				)
 			}
+
+			<slot />
 		</div>
 	</div>
 </section>
@@ -198,22 +200,29 @@ const accento = tone === 'accento';
 	/* ---- Variante giallo: fondo giallo, testo nero ---- */
 	.cb--accento {
 		background: var(--accent);
-		color: var(--text);
+		color: var(--bg-dark-deep);
 	}
 
 	.cb--accento .cb__desc,
 	.cb--accento .cb__h3 {
-		color: var(--text);
+		color: var(--bg-dark-deep);
 	}
 
 	.cb--accento .cb__desc :global(a) {
-		color: var(--text);
+		color: var(--bg-dark-deep);
 	}
 
 	.cb--accento .cb__chip {
-		border-color: var(--bg-dark);
-		background: var(--bg-dark);
-		color: var(--text-on-dark);
+		border-color: rgba(0, 0, 0, 0.2);
+		color: var(--bg-dark-deep);
+	}
+
+	.cb--accento .cb__chip::before {
+		border-color: var(--bg-dark-deep);
+	}
+
+	.cb--accento .cb__chip svg {
+		color: var(--bg-dark-deep);
 	}
 
 	.cb--accento .cb__extra {
@@ -234,7 +243,7 @@ const accento = tone === 'accento';
 	}
 
 	.cb--accento .cb__bar-val {
-		color: var(--text);
+		color: var(--bg-dark-deep);
 	}
 
 	.cb__grid {
@@ -362,32 +371,47 @@ const accento = tone === 'accento';
 		display: flex;
 		flex-wrap: wrap;
 		gap: 12px;
-		margin-top: 20px;
+		margin-top: 24px;
 	}
 
+	/* Dettagli: elenco con spunta gialla e filo sottile tra le voci (niente pillole). */
 	.cb__chips {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 10px;
-		margin: 8px 0 0;
+		display: grid;
+		margin: 12px 0 0;
 		padding: 0;
 		list-style: none;
 	}
 
 	.cb__chip {
-		display: inline-flex;
+		display: flex;
 		align-items: center;
-		gap: 8px;
-		padding: 8px 16px;
-		border-radius: var(--radius-pill);
-		border: 1px solid var(--border-on-dark);
-		background: rgba(255, 255, 255, 0.08);
+		gap: 14px;
+		padding: 12px 0;
+		border-bottom: 1px solid var(--border-on-dark);
 		color: var(--text-on-dark);
-		font-size: var(--text-sm);
-		font-weight: 700;
+		font-size: var(--text-md);
+		font-weight: 500;
+		line-height: 1.35;
+	}
+
+	.cb__chip:first-child {
+		border-top: 1px solid var(--border-on-dark);
+	}
+
+	/* Spunta disegnata col CSS; le voci con icona (orologio) usano la loro. */
+	.cb__chip:not(:has(svg))::before {
+		content: '';
+		flex: none;
+		width: 6px;
+		height: 12px;
+		margin: 0 6px 3px 4px;
+		border: solid var(--accent);
+		border-width: 0 3px 3px 0;
+		transform: rotate(45deg);
 	}
 
 	.cb__chip svg {
+		flex: none;
 		color: var(--accent);
 	}
 

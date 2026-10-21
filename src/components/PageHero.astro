@@ -5,6 +5,9 @@
  * Va usata con <Layout headerTone="overlay">: la foto passa sotto l'header (fisso,
  * chiaro e un po' trasparente). Alta come la hero della home. Nessun sottotitolo.
  *
+ * Se c'e' `video` (id di un video YouTube) parte in sottofondo, muto e senza controlli,
+ * sopra la foto: la foto resta finche' il video non e' pronto e per chi ha ridotto i movimenti.
+ *
  *   <PageHero image="/wp-content/uploads/…jpg" title="group" words={['cycling']}>
  *     <a class="btn btn--lg" href="/…">…</a>
  *   </PageHero>
@@ -18,13 +21,40 @@ interface Props {
 	words?: string[];
 	/** Descrizione della foto (vuota se e' solo decorativa). */
 	imageAlt?: string;
+	/** Video YouTube di sfondo: id, secondo di partenza e (facoltativo) di fine. */
+	video?: { id: string; inizio?: number; fine?: number };
 }
 
-const { image, title, words = [], imageAlt = '' } = Astro.props;
+const { image, title, words = [], imageAlt = '', video } = Astro.props;
+
+// Incorporamento in modalita' privacy (youtube-nocookie), muto, in loop, senza controlli.
+// Lo carica lo script dopo il caricamento della pagina: non rallenta la hero.
+const videoSrc = video
+	? `https://www.youtube-nocookie.com/embed/${video.id}?${new URLSearchParams({
+			autoplay: '1',
+			mute: '1',
+			controls: '0',
+			loop: '1',
+			playlist: video.id,
+			playsinline: '1',
+			rel: '0',
+			disablekb: '1',
+			iv_load_policy: '3',
+			...(video.inizio ? { start: String(video.inizio) } : {}),
+			...(video.fine ? { end: String(video.fine) } : {}),
+		})}`
+	: null;
 ---
 
 <section class="ph">
 	<Img src={image} alt={imageAlt} class="img-cover" sizes="100vw" priority />
+	{
+		videoSrc && (
+			<div class="ph__video" aria-hidden="true">
+				<iframe data-src={videoSrc} title="" tabindex="-1" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" />
+			</div>
+		)
+	}
 	<div class="ph__overlay"></div>
 	<div class="ph__content">
 		<h1 class="display-title ph__title" data-intro style="--intro-delay: 0.1s">
@@ -72,6 +102,30 @@ const { image, title, words = [], imageAlt = '' } = Astro.props;
 		color: var(--text-on-dark);
 	}
 
+	/* Il video riempie la hero come "cover": 16:9 centrato, piu' grande dell'area se serve. */
+	.ph__video {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	.ph__video iframe {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: max(100vw, 177.78svh);
+		height: max(56.25vw, 100svh);
+		border: 0;
+		transform: translate(-50%, -50%);
+		opacity: 0;
+		transition: opacity 0.8s ease;
+	}
+
+	.ph__video iframe.is-ready {
+		opacity: 1;
+	}
+
 	.ph__overlay {
 		position: absolute;
 		inset: 0;
@@ -89,27 +143,35 @@ const { image, title, words = [], imageAlt = '' } = Astro.props;
 		text-transform: uppercase;
 	}
 
-	/* Le parole che ruotano stanno tutte nella stessa cella: il titolo non cambia
-	   larghezza (e non scatta) quando una sostituisce l'altra. */
+	/* Solo la parola attiva occupa spazio nella riga: le altre sono assolute e
+	   invisibili, cosi' "titolo + parola" e' sempre centrato come testo normale
+	   (stessa tecnica della hero della home). */
 	.ph__rot {
-		display: inline-grid;
-		color: var(--accent-secondary);
+		position: relative;
+		display: inline-block;
+		color: var(--accent);
+		white-space: nowrap;
 	}
 
 	.ph__word {
-		grid-area: 1 / 1;
-		text-align: left;
-	}
-
-	.ph__rot[data-rot] .ph__word {
+		position: absolute;
+		top: 0;
+		left: 0;
 		opacity: 0;
 		transform: translateY(0.35em);
 		transition: opacity 0.5s ease, transform 0.6s var(--ease-out-crit);
 	}
 
-	.ph__rot[data-rot] .ph__word.is-on {
+	.ph__word.is-on {
+		position: static;
 		opacity: 1;
 		transform: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.ph__word {
+			transition: none;
+		}
 	}
 
 	.ph__actions {
@@ -136,6 +198,18 @@ const { image, title, words = [], imageAlt = '' } = Astro.props;
 </style>
 
 <script>
+	// Video di sfondo: si carica a pagina pronta e compare (con un attimo di attesa, per non
+	// mostrare l'interfaccia di YouTube) quando e' partito. Con "riduci movimento" resta la foto.
+	if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		const avvia = () =>
+			document.querySelectorAll<HTMLIFrameElement>('.ph__video iframe[data-src]').forEach((f) => {
+				f.addEventListener('load', () => setTimeout(() => f.classList.add('is-ready'), 1200), { once: true });
+				f.src = f.dataset.src!;
+			});
+		if (document.readyState === 'complete') avvia();
+		else addEventListener('load', avvia, { once: true });
+	}
+
 	// Fa ruotare le parole del titolo; con "riduci movimento" resta la prima.
 	if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
 		document.querySelectorAll<HTMLElement>('[data-rot]').forEach((rot) => {

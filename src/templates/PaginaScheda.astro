@@ -1,16 +1,19 @@
 ---
 /*
  * Template "scheda": hero con foto, uno o piu' blocchi media+testo alternati (titolo, foto o
- * video, durata, "cosa portare", intensita'), domande frequenti e, in fondo, le sedi in cui si
- * svolge l'attivita'. Serve le schede corso (tipo "corso") e le pagine servizio (tipo
- * "servizio": quelle con blocchi di solo testo, come il nuoto neonatale). I contenuti arrivano
- * dal JSON della pagina (src/data/pagine/<slug>.json), estratto dal sito WordPress originale.
+ * video, durata, "cosa portare", intensita') e le sedi in cui si svolge l'attivita'. Serve le
+ * schede corso (tipo "corso") e le pagine servizio (tipo "servizio": quelle con blocchi di solo
+ * testo, come il nuoto neonatale). I contenuti arrivano dal JSON della pagina
+ * (src/data/pagine/<slug>.json), estratto dal sito WordPress originale.
+ *
+ * Le sedi: di norma un unico box in fondo con quelle della pagina ("sedi"). Se i blocchi hanno
+ * ciascuno le proprie ("sedi" dentro il blocco, es. X-Room solo a Meda e X-Space solo a Camuzzago)
+ * il box sta sotto ogni blocco, con le sole sedi di quel blocco, e quello finale non c'e'.
  */
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import CourseBlock from '../components/CourseBlock.astro';
-import FaqAccordion from '../components/FaqAccordion.astro';
-import SectionTitle from '../components/SectionTitle.astro';
+import SediAttivita from '../components/SediAttivita.astro';
 import { sedi, formUrl } from '../data/site';
 
 interface Pulsante {
@@ -28,7 +31,6 @@ interface Props {
 		seo: { title: string; description: string };
 		hero: { titolo: string; parole?: string[]; immagine: string; pulsanti?: Pulsante[] };
 		blocchi: any[];
-		faq: { domanda: string; risposta: string | null }[];
 		/** Sedi in cui si svolge l'attivita' (slug): sezione finale con le card delle sedi. */
 		sedi?: ('meda' | 'camuzzago')[];
 	};
@@ -44,7 +46,11 @@ const pulsanti: Pulsante[] =
 		{ testo: 'Planning settimanale', href: '/orari' },
 	];
 
-const sediAttivita = sedi.filter((s) => pagina.sedi?.includes(s.slug));
+// Nell'ordine indicato nei dati (come sul sito originale), non in quello di site.ts.
+const sediDi = (slugs: string[] = []) => slugs.map((slug) => sedi.find((s) => s.slug === slug)).filter((s) => s !== undefined);
+const sediAttivita = sediDi(pagina.sedi);
+const sediPerBlocco = pagina.blocchi.some((b) => b.sedi);
+const soloUnBlocco = pagina.blocchi.length === 1;
 
 // Una scheda corso senza video usa la foto della pagina; le pagine "servizio" no.
 const sfondoSenzaMedia = pagina.tipo === 'corso' ? pagina.hero.immagine : undefined;
@@ -67,91 +73,37 @@ const sfondoSenzaMedia = pagina.tipo === 'corso' ? pagina.hero.immagine : undefi
 	</PageHero>
 
 	{
-		pagina.blocchi.map((blocco, i) => (
-			<CourseBlock blocco={blocco} fallbackImage={sfondoSenzaMedia} reverse={i % 2 === 1} tone={i % 2 === 1 ? 'soft' : 'dark'} />
-		))
+		pagina.blocchi.map((blocco, i) => {
+			// Sedi nel blocco: le sue (se le indica) o, con un solo blocco, quelle della pagina.
+			const sediBlocco = blocco.sedi ? sediDi(blocco.sedi) : soloUnBlocco ? sediAttivita : [];
+			return (
+				<CourseBlock blocco={blocco} fallbackImage={sfondoSenzaMedia} reverse={i % 2 === 1} tone={i % 2 === 1 ? 'soft' : 'dark'}>
+					<SediAttivita sedi={sediBlocco} />
+				</CourseBlock>
+			);
+		})
 	}
 
-	<FaqAccordion faq={pagina.faq} />
-
 	{
-		sediAttivita.length > 0 && (
-			<section class="sedi-attivita on-dark" aria-label="Sedi dell'attività">
-				<SectionTitle tone="dark-bg" gap={32}>
-					{sediAttivita.length > 1 ? 'Questa attività si tiene nelle sedi di' : 'Questa attività si tiene nella sede di'}
-				</SectionTitle>
-				<ul class="sedi-attivita__lista container-wide">
-					{sediAttivita.map((s, i) => (
-						<li data-anim="up" data-anim-delay={String(i * 120)}>
-							<a class="sede-card" href={`/${s.slug}`}>
-								<span class="sede-card__nome">{s.nome}</span>
-								<span class="sede-card__via">
-									{s.via}, {s.cap} {s.citta}
-								</span>
-								<span class="btn btn--sm sede-card__btn">Scopri la sede →</span>
-							</a>
-						</li>
-					))}
-				</ul>
+		!sediPerBlocco && !soloUnBlocco && sediAttivita.length > 0 && (
+			<section class="sedi-fascia on-dark" aria-label="Sedi dell'attività">
+				<div class="container-wide">
+					<SediAttivita sedi={sediAttivita} />
+				</div>
 			</section>
 		)
 	}
 </Layout>
 
 <style>
-	.sedi-attivita {
-		padding-block: clamp(40px, 5vw, 72px);
-		background: var(--bg-dark-soft);
-	}
-
-	.sedi-attivita__lista {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-		gap: 20px;
-		margin: 0;
-		padding-block: 0;
-		list-style: none;
-	}
-
-	.sede-card {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 8px;
-		height: 100%;
-		padding: 28px;
-		border: 1px solid var(--border-on-dark);
-		border-radius: var(--radius-lg);
+	/* Pagine con piu' attivita' nelle stesse sedi: una fascia in fondo, con la riga delle sedi. */
+	.sedi-fascia {
+		padding-block: 8px clamp(40px, 5vw, 64px);
 		background: var(--bg-dark);
 		color: var(--text-on-dark);
-		text-decoration: none;
-		transition: border-color 0.25s ease, transform 0.35s var(--ease-out-crit);
 	}
 
-	.sede-card:hover {
-		border-color: var(--accent);
-		transform: translateY(-4px);
-	}
-
-	.sede-card:hover .sede-card__btn {
-		color: var(--on-accent);
-	}
-
-	.sede-card:hover .sede-card__btn::before {
-		transform: scaleX(1);
-	}
-
-	.sede-card__nome {
-		font-family: var(--font-heading);
-		font-size: var(--text-lg);
-		font-weight: 800;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
-		color: var(--accent);
-	}
-
-	.sede-card__via {
-		margin-bottom: 10px;
-		color: var(--text-muted-on-dark);
+	.sedi-fascia :global(.dove) {
+		margin-top: 0;
 	}
 </style>

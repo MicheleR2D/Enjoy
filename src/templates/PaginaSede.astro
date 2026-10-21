@@ -18,7 +18,7 @@ interface Props {
 		slug: 'meda' | 'camuzzago';
 		nome: string;
 		seo: { title: string; description: string };
-		hero: { titolo: string; parole?: string[]; sottotitolo?: string; immagine: string };
+		hero: { titolo: string; parole?: string[]; sottotitolo?: string; immagine: string; video?: { id: string; inizio?: number; fine?: number } };
 		orari: { titolo: string | null; html: string | null };
 		struttura: { titolo: string; sottotitolo: string; testi: string[] };
 		ambienti: { titolo: string; immagini: string[]; html: string }[];
@@ -42,31 +42,57 @@ const blocchi = pagina.ambienti.map((a) => ({
 	intensita: [],
 }));
 
-// Introduzione: la frase di apertura (che parla della zona) e gli orari.
-const introHtml = [
-	pagina.hero.sottotitolo ? `<p><strong>${pagina.hero.sottotitolo}</strong></p>` : '',
-	pagina.orari.html ? `<p>${pagina.orari.html}</p>` : '',
-].join('');
+// Titolo su tre righe, con la parte centrale in giallo ("Scegli / ogni giorno / il tuo benessere").
+const titoloOrari = pagina.orari.titolo ?? 'Scegli ogni giorno il tuo benessere';
+const partiTitolo = titoloOrari.match(/^(\S+) (\S+ \S+) (.+)$/);
+const provincia = sede.citta.match(/\((\w+)\)/)?.[1];
 ---
 
 <Layout title={pagina.seo.title} description={pagina.seo.description} headerTone="overlay">
-	<PageHero image={pagina.hero.immagine} title={pagina.hero.titolo} words={pagina.hero.parole}>
+	<PageHero image={pagina.hero.immagine} title={pagina.hero.titolo} words={pagina.hero.parole} video={pagina.hero.video}>
 		<a class="btn btn--lg" href={formUrl('prova', `Sede-${pagina.slug}`)} target="_blank" rel="noopener">Prova ora</a>
 		<a class="btn btn--light btn--lg" href={formUrl('contatto', `Hero-${pagina.slug}`)} target="_blank" rel="noopener">
 			Richiedi informazioni
 		</a>
 	</PageHero>
 
-	<IntroTitolo titolo={pagina.orari.titolo ?? 'Scegli ogni giorno il tuo benessere'} html={introHtml}>
-		<p class="dove">
-			{indirizzoCompleto(sede)} ·
-			<a href={sede.telefonoHref}>{sede.telefono}</a>
-			·
-			<a href={mapsDirectionsUrl(sede)} target="_blank" rel="noopener">Indicazioni</a>
-		</p>
-	</IntroTitolo>
+	<section class="orari-sede on-dark">
+		<div class="orari-sede__grid container-wide">
+			<h2 class="orari-sede__title" data-anim="from-left">
+				{
+					partiTitolo ? (
+						<>
+							<span>{partiTitolo[1]}</span>
+							<span class="orari-sede__accento">{partiTitolo[2]}</span>
+							<span>{partiTitolo[3]}</span>
+						</>
+					) : (
+						titoloOrari
+					)
+				}
+			</h2>
+			<div class="orari-sede__col" data-anim="from-right" data-anim-delay="80">
+				<p class="orari-sede__orari" set:html={pagina.orari.html} />
+				<p class="orari-sede__dove">
+					<a href={mapsDirectionsUrl(sede)} target="_blank" rel="noopener">
+						<span>{sede.via}</span><span>{sede.nome}</span>{provincia && <span>{provincia}</span>}
+					</a>
+				</p>
+			</div>
+		</div>
+	</section>
 
-	<IntroTitolo titolo={pagina.struttura.titolo} html={`<p><strong>${pagina.struttura.sottotitolo}</strong></p>${pagina.struttura.testi.join('')}`} />
+	<section class="struttura-sede on-dark">
+		<div class="struttura-sede__inner container-wide">
+			<div class="struttura-sede__testata">
+				<h2 class="struttura-sede__title" data-anim="from-left">{pagina.struttura.titolo}</h2>
+				<p class="struttura-sede__sub" data-anim="from-right" data-anim-delay="80">{pagina.struttura.sottotitolo}</p>
+			</div>
+			<div class="struttura-sede__testi" data-anim="from-bottom">
+				{pagina.struttura.testi.map((t) => <div set:html={t.startsWith('<') ? t : `<p>${t}</p>`} />)}
+			</div>
+		</div>
+	</section>
 
 	{
 		blocchi.map((blocco, i) => (
@@ -87,18 +113,121 @@ const introHtml = [
 </Layout>
 
 <style>
-	.dove {
-		margin: 24px 0 0;
-		font-size: var(--text-sm);
-		color: var(--text-muted-on-dark);
-	}
-
-	.dove a {
+	.orari-sede {
+		padding-block: clamp(32px, 4.5vw, 56px) 0;
+		background: var(--bg-dark-deep);
 		color: var(--text-on-dark);
 	}
 
-	.dove a:hover {
+	.orari-sede__grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		column-gap: clamp(24px, 5vw, 72px);
+		align-items: start;
+	}
+
+	/* Linea gialla sotto il blocco, larga come il contenuto. */
+	.orari-sede__grid::after {
+		content: '';
+		grid-column: 1 / -1;
+		height: 4px;
+		margin-top: clamp(20px, 2.5vw, 32px);
+		background: var(--accent);
+	}
+
+	.orari-sede__title {
+		margin: 0;
+		font-size: clamp(2.2rem, 4vw, 3.5rem);
+		font-weight: 700;
+		line-height: 1.1;
+		letter-spacing: -0.01em;
+		text-transform: none;
+		color: var(--text-on-dark);
+	}
+
+	.orari-sede__title span {
+		display: block;
+	}
+
+	.orari-sede__accento {
 		color: var(--accent);
+	}
+
+	.orari-sede__orari {
+		margin: 0;
+		padding-left: 24px;
+		border-left: 4px solid var(--accent);
+		font-size: clamp(1.1rem, 1.7vw, 1.45rem);
+		font-weight: 300;
+		line-height: 1.35;
+		text-transform: uppercase;
+	}
+
+	.orari-sede__dove {
+		margin: clamp(24px, 3vw, 36px) 0 0;
+		font-size: clamp(1.1rem, 1.7vw, 1.45rem);
+		font-weight: 300;
+		text-transform: uppercase;
+	}
+
+	.orari-sede__dove a {
+		color: var(--accent);
+		text-decoration: none;
+	}
+
+	.orari-sede__dove a:hover {
+		text-decoration: underline;
+	}
+
+	.orari-sede__dove span + span::before {
+		content: '|';
+		margin-inline: 0.5em;
+	}
+
+	/* La Struttura: titolo giallo a sinistra e frase in corsivo leggero a
+	   destra, sotto il testo su due colonne. */
+	.struttura-sede {
+		padding-block: clamp(24px, 3vw, 40px) clamp(40px, 5vw, 64px);
+		background: var(--bg-dark-deep);
+		color: var(--text-on-dark);
+	}
+
+	.struttura-sede__testata,
+	.struttura-sede__testi {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		gap: clamp(24px, 5vw, 72px);
+	}
+
+	.struttura-sede__testata {
+		align-items: center;
+	}
+
+	.struttura-sede__title {
+		font-size: clamp(2.6rem, 5.5vw, 4.8rem);
+		font-weight: 800;
+		line-height: 1.05;
+		letter-spacing: -0.01em;
+		text-transform: none;
+		color: var(--accent);
+	}
+
+	.struttura-sede__sub {
+		margin: 0;
+		font-size: clamp(1.3rem, 2vw, 1.75rem);
+		font-style: italic;
+		font-weight: 300;
+		line-height: 1.3;
+	}
+
+	.struttura-sede__testi {
+		margin-top: clamp(20px, 3vw, 36px);
+		font-size: var(--text-md);
+		line-height: 1.7;
+	}
+
+	.struttura-sede__testi :global(p) {
+		margin: 0 0 1em;
 	}
 
 	.attivita-sede {
@@ -108,6 +237,12 @@ const introHtml = [
 	}
 
 	@media (max-width: 900px) {
+		.orari-sede__grid,
+		.struttura-sede__testata,
+		.struttura-sede__testi {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
 		.attivita-sede :global(.grid) {
 			grid-template-columns: repeat(2, 1fr);
 		}

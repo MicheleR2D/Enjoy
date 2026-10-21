@@ -1,0 +1,107 @@
+---
+/*
+ * Dove si tiene l'attivita': una riga sobria con il nome della sede (link alla sua pagina) e
+ * l'indirizzo, senza box. Sta dentro il blocco dell'attivita' (slot di CourseBlock) o, per le
+ * pagine con piu' attivita' nelle stesse sedi, in una fascia in fondo. Se l'attivita' si tiene in
+ * una sola sede ne mostra una sola, anche quando la pagina ne tratta altre (es. X-Room solo a
+ * Meda, X-Space solo a Camuzzago). Eredita il colore del testo: funziona su fondo nero e giallo.
+ */
+interface SedeCard {
+	slug: string;
+	nome: string;
+	via: string;
+	cap: string;
+	citta: string;
+}
+
+interface Props {
+	sedi: SedeCard[];
+}
+
+const { sedi } = Astro.props;
+---
+
+{
+	sedi.length > 0 && (
+		<div class="dove">
+			<p class="dove__label">{sedi.length > 1 ? 'Si tiene nelle sedi di' : 'Si tiene nella sede di'}</p>
+			<ul class="dove__lista">
+				{sedi.map((s) => (
+					<li>
+						<a class="dove__sede" href={`/${s.slug}`}>
+							<span class="dove__nome">{s.nome} →</span>
+							<span class="dove__via">
+								{s.via}, {s.cap} {s.citta}
+							</span>
+						</a>
+					</li>
+				))}
+			</ul>
+		</div>
+	)
+}
+
+<style>
+	.dove {
+		margin-top: 32px;
+	}
+
+	.dove__label {
+		margin: 0 0 12px;
+		font-size: var(--text-xs, 0.8rem);
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+
+	.dove__lista {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	/* Card gialla grande quanto il suo contenuto, testi neri. */
+	.dove__sede {
+		display: grid;
+		gap: 2px;
+		padding: 16px 22px;
+		border-radius: var(--radius);
+		background: var(--accent);
+		color: var(--bg-dark-deep);
+		text-decoration: none;
+		transition: transform 0.3s var(--ease-out-crit), background 0.2s ease;
+	}
+
+	.dove__sede:hover,
+	.dove__sede:focus-visible {
+		background: var(--accent-hover);
+		transform: translateY(-3px);
+	}
+
+	.dove__nome {
+		font-family: var(--font-heading);
+		font-size: var(--text-md);
+		font-weight: 800;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.dove__via {
+		font-size: var(--text-sm);
+		font-weight: 500;
+	}
+
+	/* Sul fondo giallo dei blocchi "accento" la card diventa nera, con testo bianco. */
+	:global(.cb--accento) .dove__sede {
+		background: var(--bg-dark-deep);
+		color: var(--text-on-dark);
+	}
+
+	:global(.cb--accento) .dove__sede:hover,
+	:global(.cb--accento) .dove__sede:focus-visible {
+		background: var(--bg-dark);
+	}
+</style>

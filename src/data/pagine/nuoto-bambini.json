@@ -21,6 +21,9 @@
 			"id": null,
 			"titolo": "Nuoto Pre-Baby",
 			"sottotitolo": null,
+			"sedi": [
+				"meda"
+			],
 			"descrizioneHtml": "<p><strong>Per bambini dai 2,5 ai 3 anni</strong> </p> Un percorso dedicato ai più piccoli per scoprire l’acqua nella vasca grande, guidati da un istruttore. In acqua alta i bambini imparano a fidarsi, muoversi con autonomia e vivere l’acqua come ambiente naturale. <p><strong>Benefici principali: </strong></p> <ul> <li>Maggiore confidenza e riduzione delle paure future</li> <li>Sviluppo di autonomia e sicurezza in acqua</li> <li>Miglioramento di equilibrio, forza e coordinazione</li> <li>Esperienza positiva, tra gioco e divertimento</li> <li>Vantaggio duraturo: nuotatori più sicuri e capaci fin da piccoli</li> </ul></p>",
 			"video": null,
 			"immagini": [
@@ -61,6 +64,10 @@
 			"id": null,
 			"titolo": "Nuoto Baby",
 			"sottotitolo": null,
+			"sedi": [
+				"meda",
+				"camuzzago"
+			],
 			"descrizioneHtml": "<p>Dai 3 ai 6 anni. Un percorso acquatico pensato per accompagnare i bambini alla scoperta dell’acqua in modo graduale e sicuro.</p> <p>Ambientamento in <strong>vasca piccola</strong>, confortevole e riscaldata a <strong>32°C</strong></p> <p><strong>Personale qualificato</strong> in <strong>Scienze Motorie</strong> e con abilitazione <strong>FIN-CONI</strong></p> <ul> <li>Possibilità di frequenza: <strong>Monosettimanale</strong> o<strong> </strong><strong>Bisettimanale</strong></li> </ul> <p><strong>Orari dei corsi:</strong></p> <ul> <li><strong>Lunedì – Venerdì</strong>: dalle <strong>16:30 alle 18:00</strong></li> <li><strong>Sabato</strong>: 10:30, 11:15, 12:00, 14:00, 14:45, 15:30</li> </ul> <p>Attività in <strong>vasca grande</strong>, con <strong>gruppi omogenei</strong> per favorire la crescita tecnica</p>",
 			"video": null,
 			"immagini": [
@@ -101,6 +108,10 @@
 			"id": null,
 			"titolo": "Nuoto Ragazzi",
 			"sottotitolo": null,
+			"sedi": [
+				"meda",
+				"camuzzago"
+			],
 			"descrizioneHtml": "<p><strong>Dai 6 ai 13 anni</strong></p> <p>Progressione didattica attraverso un percorso acquatico di ambientamento fino all’acquisizione dei <strong>4 stili</strong>.</p> <p>Possibilità di frequenza <strong>bisettimanale</strong> oppure <strong>monosettimanale.</strong></p> <p><strong>Orari:</strong> Da lunedì a venerdì alle 16:30 ,17:15 e 18:00.<br>Sabato 10:30 – 11:15 – 12:00 – 14:00 – 14:45 – 15:30</p> <p>Si svolgono in vasca grande e permettono una crescita tecnica in gruppi omogenei</p>",
 			"video": null,
 			"immagini": [
@@ -141,6 +152,10 @@
 			"id": null,
 			"titolo": "Nuoto Teenager",
 			"sottotitolo": null,
+			"sedi": [
+				"meda",
+				"camuzzago"
+			],
 			"descrizioneHtml": "<p><strong>Per ragazzi dai 13 ai 18 anni</strong>, un’attività pensata per:</p> <ul> <li>Allenarsi in gruppo divertendosi</li> <li>Mantenere la forma fisica</li> <li>Perfezionare gli stili di nuoto</li> </ul> <p>Possibilità di frequenza: <strong>Monosettimanale </strong>o<strong> Bisettimanale</strong></p> <strong>Orari delle lezioni:</strong> <ul> <li><strong>Martedì e Giovedì</strong> alle <strong>18:45</strong></li> <li><strong>Mercoledì</strong> alle <strong>15:45</strong></li> </ul> <p><strong>Le lezioni durano 45 minuti e si svolgono in vasca grande</strong></p>",
 			"video": null,
 			"immagini": [

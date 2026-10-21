@@ -19,6 +19,9 @@
 			"id": null,
 			"titolo": "X - Room",
 			"sottotitolo": null,
+			"sedi": [
+				"meda"
+			],
 			"descrizioneHtml": "<p>L’esperienza di allenamento più efficace e coinvolgente per migliorare le qualità atletiche, con programmi ad alta intensità sempre diversi che alternano esercizi cardio e di potenza.<br>Migliora tutte le qualità fisiche alla base della performance atletica in un allenamento dal profilo bilanciato e completo. Con attrezzature Technogym Skill Line.</p>",
 			"video": null,
 			"immagini": [
@@ -55,6 +58,9 @@
 			"id": null,
 			"titolo": "X - Space",
 			"sottotitolo": null,
+			"sedi": [
+				"camuzzago"
+			],
 			"descrizioneHtml": "<p>Uno spazio dedicato all'interno della Gym Floor di Camuzzago. L’esperienza di allenamento più efficace e coinvolgente per migliorare le qualità atletiche, con programmi ad alta intensità sempre diversi che alternano esercizi cardio e di potenza.<br>Migliora tutte le qualità fisiche alla base della performance atletica in un allenamento dal profilo bilanciato e completo. Con attrezzature Technogym Skill Line.</p>",
 			"video": null,
 			"immagini": [

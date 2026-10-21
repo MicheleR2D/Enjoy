@@ -16,8 +16,8 @@
 	"blocchi": [
 		{
 			"id": null,
-			"titolo": "Via del Borgo, 6",
-			"sottotitolo": "Camuzzago",
+			"titolo": "Camuzzago",
+			"sottotitolo": "Via del Borgo, 6",
 			"descrizioneHtml": "<p><strong>Enjoy Club</strong> ti aspetta a <strong>Meda</strong> e <strong>Camuzzago</strong> con sale attrezzi moderne, spaziose e attrezzate con le migliori tecnologie per l’allenamento.<br>Il nostro <strong>gym floor</strong> è pensato per ogni livello: che tu voglia tonificare, aumentare la massa muscolare o migliorare la resistenza, troverai un ambiente motivante, pulito e supportato da trainer sempre presenti.<br>Allenati al meglio, con programmi personalizzati e attrezzature all’avanguardia.</p><p>La palestra di Enjoy Club Camuzzago, luminosa e immersa nel verde dei campi da golf, è un punto di riferimento per chi vive nell’area di Vimercate. Dotata di attrezzature Technogym di ultima generazione e due ampie sale corsi, offre anche un’area benessere con sauna, bagno turco e zona relax.</p>",
 			"video": null,
 			"immagini": [
@@ -57,8 +57,8 @@
 		},
 		{
 			"id": null,
-			"titolo": "Via Trieste, s/n",
-			"sottotitolo": "Meda",
+			"titolo": "Meda",
+			"sottotitolo": "Via Trieste, s/n",
 			"descrizioneHtml": "<p>Il club si sviluppa su tre livelli, ognuno pensato per offrirti il massimo del comfort e dell'efficienza. Al piano terra, un ampio open space accoglie la reception, la sala pesi, l’area dedicata al corpo libero, una spaziosa sala corsi e gli spogliatoi fitness.</p>",
 			"video": null,
 			"immagini": [

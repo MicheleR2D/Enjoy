@@ -1,6 +1,10 @@
 ---
 import { megaMenu } from '../data/nav';
 import { formUrl } from '../data/site';
+import { imgSources } from '../lib/img';
+
+// Foto delle tendine (solo desktop): si caricano alla prima apertura, vedi lo script.
+const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null));
 ---
 
 <header class="hd">
@@ -22,13 +26,21 @@ import { formUrl } from '../data/site';
 									<path d="M1 5l4-4 4 4" stroke="currentColor" stroke-width="1.5" fill="none" />
 								</svg>
 							</button>
-							<ul id={`hd-sub-${i}`}>
-								{colonna.voci.map((voce) => (
-									<li>
-										<a href={voce.href}>{voce.label}</a>
-									</li>
-								))}
-							</ul>
+							<div class="hd__panel" id={`hd-sub-${i}`}>
+								<ul class="hd__list">
+									{colonna.voci.map((voce, j) => (
+										<li style={`--i:${j}`}>
+											<a href={voce.href}>{voce.label}</a>
+										</li>
+									))}
+								</ul>
+								{immagini[i] && (
+									<div class="hd__thumb" aria-hidden="true">
+										<img data-src={immagini[i]!.src} data-srcset={immagini[i]!.srcset} sizes="300px" alt="" width="300" height="300" decoding="async" />
+										<span class="hd__thumb-title">{colonna.titolo}</span>
+									</div>
+								)}
+							</div>
 						</li>
 					))
 				}
@@ -46,6 +58,7 @@ import { formUrl } from '../data/site';
 </header>
 
 <script>
+	// @ts-nocheck — script vanilla per il browser: gli elementi della pagina ci sono sempre, i tipi DOM generici qui danno solo falsi errori
 	const toggle = document.querySelector('[data-hd-toggle]');
 	const nav = document.querySelector('[data-hd-nav]');
 	const impostaMenu = (aperto) => {
@@ -94,6 +107,46 @@ import { formUrl } from '../data/site';
 	});
 	document.addEventListener('click', (e) => {
 		if (!e.target.closest('[data-hd-col]')) chiudiColonne();
+	});
+
+	// Tendine desktop. Si aprono tutte nello stesso punto, sotto il menu, e ne hanno la larghezza:
+	// qui si misura il menu (dal primo all'ultimo titolo) e si imposta --px (distanza dal bordo
+	// sinistro del titolo) e --pw (larghezza) di ogni pannello. Le foto (tre per pagina) si
+	// caricano quando il browser e' inattivo o, al piu' tardi, alla prima apertura.
+	const desktop = () => matchMedia('(min-width: 900.02px)').matches;
+	const mega = document.querySelector('.hd__mega');
+	const misuraPannelli = () => {
+		if (!mega || !desktop()) return;
+		const m = mega.getBoundingClientRect();
+		colonne.forEach((col) => {
+			const pannello = col.querySelector('.hd__panel');
+			if (!pannello) return;
+			pannello.style.setProperty('--px', m.left - col.getBoundingClientRect().left + 'px');
+			pannello.style.setProperty('--pw', m.width + 'px');
+		});
+	};
+	const caricaFoto = (col) => {
+		const img = col.querySelector('.hd__thumb img');
+		if (!img || img.getAttribute('src')) return;
+		if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+		img.src = img.dataset.src;
+	};
+	colonne.forEach((col) =>
+		['pointerenter', 'focusin'].forEach((ev) =>
+			col.addEventListener(ev, () => {
+				if (!desktop()) return;
+				misuraPannelli();
+				caricaFoto(col);
+			})
+		)
+	);
+	misuraPannelli();
+	window.addEventListener('resize', misuraPannelli);
+	document.fonts?.ready.then(misuraPannelli);
+	window.addEventListener('load', () => {
+		misuraPannelli();
+		if (!desktop()) return;
+		(window.requestIdleCallback || ((f) => setTimeout(f, 1500)))(() => colonne.forEach(caricaFoto));
 	});
 
 	// L'header cambia colore (sfondo a gradiente, voci col colore che
@@ -232,10 +285,8 @@ import { formUrl } from '../data/site';
 		border-radius: 4px;
 	}
 
-	.hd__col > ul {
-		list-style: none;
-		margin: 0;
-		padding: 12px;
+	/* Pannello del sottomenu: elenco + foto (la foto solo su desktop). Nascosto finche' non si apre. */
+	.hd__col > .hd__panel {
 		position: absolute;
 		top: 100%;
 		left: 0;
@@ -250,28 +301,33 @@ import { formUrl } from '../data/site';
 		transition: 0.15s ease;
 	}
 
-	.hd__col:hover > ul,
-	.hd__col:focus-within > ul,
-	.hd__col.is-open > ul {
+	.hd__col:hover > .hd__panel,
+	.hd__col.is-open > .hd__panel {
 		opacity: 1;
 		visibility: visible;
 		transform: translateY(0);
 	}
 
-	.hd__col > ul li a {
+	.hd__list {
+		list-style: none;
+		margin: 0;
+		padding: 12px;
+	}
+
+	.hd__list li a {
 		display: block;
-		padding: 6px 8px;
-		border-radius: 4px;
+		padding: 6px 4px;
 		color: var(--text);
 		text-decoration: none;
 		font-size: var(--text-sm);
 	}
 
-	/* Tendina chiara: il giallo come testo su bianco non si legge, quindi al
-	   passaggio la voce prende il fondo giallo con testo nero. */
-	.hd__col > ul li a:hover {
-		background: var(--accent);
-		color: var(--on-accent);
+	.hd__list li a:hover {
+		color: var(--accent);
+	}
+
+	.hd__thumb {
+		display: none;
 	}
 
 	.hd__cta {
@@ -284,6 +340,215 @@ import { formUrl } from '../data/site';
 	.hd__cta--contact {
 		--btn-border: var(--text-on-dark);
 		--btn-hover-text: var(--on-accent);
+	}
+
+	/* ---- Menu a tendina desktop ----
+	   Pannello a due parti, come sul vecchio sito: elenco a sinistra e foto con il titolo della
+	   categoria a destra. Stesso colore (e sfocatura) dell'header, attaccato al suo bordo
+	   inferiore, angoli bassi arrotondati. Le voci hanno lo stesso font dei titoli del menu.
+	   Solo desktop: il menu mobile ha le sue regole. */
+	@media (min-width: 900.02px) {
+		/* Titolo aperto: giallo e freccia verso il basso. */
+		.hd__col:hover > .hd__col-title,
+		.hd__col.is-open > .hd__col-title,
+		.hd__col:hover > .hd__col-title .hd__chevron,
+		.hd__col.is-open > .hd__col-title .hd__chevron {
+			color: var(--accent);
+		}
+
+		.hd__chevron {
+			transition: transform 0.3s var(--ease-out-crit);
+		}
+
+		.hd__col:hover .hd__chevron,
+		.hd__col.is-open .hd__chevron {
+			transform: rotate(180deg);
+		}
+
+		/* Ponte invisibile sui 24px tra titolo e pannello: il mouse puo' scendere senza chiuderlo. */
+		.hd__col::after {
+			content: '';
+			position: absolute;
+			left: -12px;
+			right: -12px;
+			top: 100%;
+			height: 24px;
+		}
+
+		/* Il titolo sta 24px sopra il bordo inferiore dell'header: il pannello parte da li'.
+		   Tutte le tendine si aprono nello stesso punto, sotto il menu, e ne hanno la larghezza
+		   (dal primo all'ultimo titolo): --px e --pw li imposta lo script a ogni misura. */
+		.hd__col > .hd__panel {
+			top: calc(100% + 24px);
+			left: var(--px, 0px);
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+			width: var(--pw, 600px);
+			min-width: 0;
+			min-height: 300px;
+			padding: 0;
+			overflow: hidden;
+			border: 0;
+			border-radius: 0 0 30px 30px;
+			background: rgba(13, 13, 13, 0.88);
+			-webkit-backdrop-filter: blur(10px);
+			backdrop-filter: blur(10px);
+			box-shadow: 0 22px 36px -14px rgba(0, 0, 0, 0.3);
+			transform: translateY(6px);
+			will-change: opacity, transform;
+			/* Chiusura veloce: cosi' passando da una tendina all'altra la vecchia non resta sotto la nuova. */
+			transition: opacity 0.1s linear, transform 0.1s linear, visibility 0s 0.1s;
+		}
+
+		.hd__col:hover > .hd__panel,
+		.hd__col.is-open > .hd__panel {
+			transform: none;
+			z-index: 1;
+			transition: opacity 0.18s ease-out, transform 0.28s var(--ease-out-crit), visibility 0s;
+		}
+
+		.hd__list {
+			align-self: center;
+			padding: 18px 12px 22px;
+		}
+
+		.hd__list li {
+			opacity: 0;
+			transform: translateY(8px);
+			transition: opacity 0.15s ease, transform 0.25s var(--ease-out-crit);
+		}
+
+		.hd__col:hover > .hd__panel li,
+		.hd__col.is-open > .hd__panel li {
+			opacity: 1;
+			transform: none;
+			transition-delay: calc(var(--i, 0) * 22ms + 30ms);
+		}
+
+		/* Stesso font dei titoli del menu (600, 16px), centrato; al passaggio fondo giallo e testo nero. */
+		.hd__list li a {
+			padding: 13px 16px;
+			border-radius: 12px;
+			color: var(--text-on-dark);
+			font-family: var(--font-heading);
+			font-size: 16px;
+			font-weight: 600;
+			text-align: center;
+			transition: background 0.2s ease, color 0.2s ease;
+		}
+
+		.hd__list li a:hover,
+		.hd__list li a:focus-visible {
+			color: var(--on-accent);
+			background: var(--accent);
+		}
+
+		.hd__list li a:focus-visible {
+			outline: 3px solid var(--accent);
+			outline-offset: -3px;
+		}
+
+		/* Foto con il nome della categoria sopra, come nel vecchio menu. */
+		.hd__thumb {
+			position: relative;
+			display: block;
+			overflow: hidden;
+			background: var(--bg-dark);
+		}
+
+		.hd__thumb img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		.hd__thumb::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: rgba(0, 0, 0, 0.3);
+		}
+
+		.hd__thumb-title {
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+			display: grid;
+			place-items: center;
+			padding: 0 14px;
+			text-align: center;
+			font-family: var(--font-heading);
+			font-size: clamp(1.5rem, 2.2vw, 2rem);
+			font-weight: 900;
+			line-height: 0.95;
+			text-transform: uppercase;
+			color: var(--accent);
+			text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+		}
+	}
+
+	@media (min-width: 900.02px) and (prefers-reduced-motion: reduce) {
+		.hd__col > .hd__panel,
+		.hd__list li,
+		.hd__chevron {
+			transition: none;
+		}
+
+		.hd__list li {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	/* (900.02px e non 901px: a larghezze frazionarie tra 900 e 901 nessuna delle due regole si applicherebbe.)
+	   Desktop stretto: con la voce Orari il menu non ci sta ai valori pieni. Spazi e corpo
+	   un po' piu' piccoli e i pulsanti restano su una riga, cosi' l'header non cresce. */
+	@media (min-width: 900.02px) and (max-width: 1100px) {
+		.hd__mega {
+			gap: 14px;
+		}
+
+		.hd__col + .hd__col::before {
+			left: -8px;
+		}
+
+		.hd__col-title {
+			font-size: 15px;
+			white-space: nowrap;
+		}
+
+		.hd__actions {
+			flex-wrap: nowrap;
+			gap: 8px;
+		}
+
+		.hd__cta {
+			white-space: nowrap;
+			font-size: 13px;
+			padding: 9px 12px;
+		}
+	}
+
+	/* Ancora piu' stretto, appena sopra la soglia dell'hamburger. */
+	@media (min-width: 900.02px) and (max-width: 960px) {
+		.hd__mega {
+			gap: 10px;
+		}
+
+		.hd__col + .hd__col::before {
+			left: -6px;
+		}
+
+		.hd__col-title {
+			font-size: 14px;
+		}
+
+		.hd__cta {
+			font-size: 12px;
+			padding: 8px 10px;
+		}
 	}
 
 	@media (max-width: 900px) {
@@ -320,8 +585,8 @@ import { formUrl } from '../data/site';
 			flex-direction: column;
 			align-items: stretch;
 			justify-content: space-between;
-			gap: 28px;
-			padding: 28px 24px max(24px, env(safe-area-inset-bottom));
+			gap: 20px;
+			padding: 20px 24px max(24px, env(safe-area-inset-bottom));
 			overflow-y: auto;
 			overscroll-behavior: contain;
 			color: var(--text-on-dark);
@@ -330,6 +595,8 @@ import { formUrl } from '../data/site';
 				var(--bg-dark);
 			opacity: 0;
 			visibility: hidden;
+			/* Da chiuso il pannello copre tutta la pagina: non deve intercettare i tocchi. */
+			pointer-events: none;
 			transform: translateY(-12px);
 			transition: opacity 0.3s ease, transform 0.45s var(--ease-out-crit), visibility 0s 0.45s;
 		}
@@ -337,6 +604,7 @@ import { formUrl } from '../data/site';
 		.hd__nav.hd__nav--aperto {
 			opacity: 1;
 			visibility: visible;
+			pointer-events: auto;
 			transform: none;
 			transition: opacity 0.3s ease, transform 0.45s var(--ease-out-crit), visibility 0s;
 		}
@@ -348,14 +616,14 @@ import { formUrl } from '../data/site';
 		.hd__mega {
 			flex-direction: column;
 			align-items: stretch;
-			gap: 26px;
+			gap: 18px;
 			margin: 0;
 			counter-reset: sezione;
 		}
 
 		.hd__col {
 			counter-increment: sezione;
-			padding-top: 18px;
+			padding-top: 14px;
 			border-top: 1px solid rgba(255, 255, 255, 0.14);
 		}
 
@@ -369,7 +637,7 @@ import { formUrl } from '../data/site';
 			text-align: left;
 			align-items: baseline;
 			gap: 12px;
-			margin-bottom: 12px;
+			margin-bottom: 8px;
 			color: var(--text-on-dark);
 			font-size: 1.35rem;
 			font-weight: 700;
@@ -388,11 +656,17 @@ import { formUrl } from '../data/site';
 			display: none;
 		}
 
-		/* Le voci in due colonne, cosi' entra tutto senza troppo scroll */
-		.hd__col > ul {
+		/* Le voci in due colonne, cosi' entra tutto senza troppo scroll.
+		   La visibilita' e' ereditata dal pannello: con "visible" esplicito (e con le regole
+		   hover/focus/is-open del desktop) i link restavano toccabili anche a menu chiuso,
+		   invisibili, sopra tutta la pagina. */
+		.hd__col > .hd__panel,
+		.hd__col:hover > .hd__panel,
+		.hd__col:focus-within > .hd__panel,
+		.hd__col.is-open > .hd__panel {
 			position: static;
 			opacity: 1;
-			visibility: visible;
+			visibility: inherit;
 			transform: none;
 			min-width: 0;
 			background: none;
@@ -400,21 +674,27 @@ import { formUrl } from '../data/site';
 			border: none;
 			border-radius: 0;
 			padding: 0;
+		}
+
+		.hd__list {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			gap: 2px 16px;
+			padding: 0;
 		}
 
-		.hd__col > ul li a {
-			padding: 9px 0;
+		/* Blocco e non "inline": il padding verticale di un link inline non occupa spazio ma si sovrappone
+		   ai link vicini (i tocchi finivano sulla voce sbagliata). */
+		.hd__list li a {
+			display: block;
+			padding: 7px 0;
 			color: rgba(255, 255, 255, 0.78);
 			font-size: 0.95rem;
 			font-weight: 500;
 		}
 
-		.hd__col > ul li a:hover,
-		.hd__col > ul li a:active {
-			background: none;
+		.hd__list li a:hover,
+		.hd__list li a:active {
 			color: var(--accent);
 		}
 
@@ -427,6 +707,11 @@ import { formUrl } from '../data/site';
 			width: 100%;
 			padding: 14px 16px;
 			font-size: 15px;
+		}
+
+		.hd__cta--contact {
+			--btn-border: var(--text-on-dark);
+			--btn-hover-text: var(--on-accent);
 		}
 
 		/* Ingresso a cascata dei contenuti */
@@ -446,7 +731,8 @@ import { formUrl } from '../data/site';
 		.hd__nav--aperto .hd__col:nth-child(1) { transition-delay: 0.08s; }
 		.hd__nav--aperto .hd__col:nth-child(2) { transition-delay: 0.16s; }
 		.hd__nav--aperto .hd__col:nth-child(3) { transition-delay: 0.24s; }
-		.hd__nav--aperto .hd__actions { transition-delay: 0.32s; }
+		.hd__nav--aperto .hd__col:nth-child(4) { transition-delay: 0.32s; }
+		.hd__nav--aperto .hd__actions { transition-delay: 0.4s; }
 	}
 
 	@media (max-width: 900px) and (prefers-reduced-motion: reduce) {

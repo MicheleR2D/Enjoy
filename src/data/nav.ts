@@ -9,12 +9,15 @@ export interface VoceMenu {
 
 export interface ColonnaMenu {
 	titolo: string;
+	/** Foto mostrata accanto all'elenco nella tendina del menu desktop. */
+	immagine?: string;
 	voci: VoceMenu[];
 }
 
 export const megaMenu: ColonnaMenu[] = [
 	{
 		titolo: 'Sedi',
+		immagine: '/wp-content/uploads/2025/06/Meda-2-scaled.jpg',
 		voci: [
 			{ label: 'Meda', href: '/meda' },
 			{ label: 'Camuzzago', href: '/camuzzago' },
@@ -22,6 +25,7 @@ export const megaMenu: ColonnaMenu[] = [
 	},
 	{
 		titolo: 'Attività Adulti',
+		immagine: '/wp-content/uploads/2026/06/IMG_7992-1-scaled.jpg',
 		voci: [
 			{ label: 'Gym Floor', href: '/gym-floor' },
 			{ label: 'Corsi Fitness', href: '/corsi-fitness' },
@@ -34,6 +38,7 @@ export const megaMenu: ColonnaMenu[] = [
 	},
 	{
 		titolo: 'Attività Junior',
+		immagine: '/wp-content/uploads/2025/05/IMG_6543-scaled-1.jpeg',
 		voci: [
 			{ label: 'Nuoto Neonatale', href: '/nuoto-neonatale' },
 			{ label: 'Nuoto Bambini', href: '/nuoto-bambini' },
@@ -44,6 +49,7 @@ export const megaMenu: ColonnaMenu[] = [
 	},
 	{
 		titolo: 'Health Fitness',
+		immagine: '/wp-content/uploads/2025/07/IMG_3843-2-scaled.jpg',
 		voci: [
 			{ label: 'Wellness Lab Meda', href: '/wellness-lab-meda' },
 			{ label: 'Health Fitness Camuzzago', href: '/health-fitness-camuzzago' },

@@ -14,6 +14,11 @@
 		],
 		"sottotitolo": "Palestra e piscina a Camuzzago di Bellusco, vicino a Vimercate",
 		"immagine": "/wp-content/uploads/2025/06/Piscina-Camuzzago-3-scaled.jpg",
+		"video": {
+			"id": "Sk09T8Uw2Z8",
+			"inizio": 20,
+			"fine": 120
+		},
 		"pulsanti": [
 			{
 				"testo": "Prova Ora",

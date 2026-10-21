@@ -8,7 +8,6 @@ import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import IntroTitolo from '../components/IntroTitolo.astro';
 import ActivityGrid from '../components/ActivityGrid.astro';
-import FaqAccordion from '../components/FaqAccordion.astro';
 import { formUrl } from '../data/site';
 
 interface Props {
@@ -19,7 +18,6 @@ interface Props {
 		hero: { titolo: string; parole?: string[]; immagine: string; badge?: string };
 		introHtml: string;
 		corsi: { titolo: string; href: string | null; immagine: string }[];
-		faq: { domanda: string; risposta: string | null }[];
 	};
 }
 
@@ -38,8 +36,6 @@ const card = pagina.corsi.filter((c) => c.href).map((c) => ({ href: c.href as st
 	<section class="elenco on-dark" aria-label="I nostri corsi">
 		<ActivityGrid items={card} columns={3} gapTop={0} />
 	</section>
-
-	<FaqAccordion faq={pagina.faq} />
 </Layout>
 
 <style>
