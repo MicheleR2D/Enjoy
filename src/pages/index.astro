@@ -41,6 +41,8 @@ const righe = (items: ReturnType<typeof toCard>[]) => {
 
 const gruppi = home.gruppi.map((g, i) => ({ ...g, ...dividiTitolo(g.titolo), righe: righe(g.card.map(toCard)), fondo: ['var(--bg-dark-deep)', 'var(--bg-dark)', 'var(--bg-dark-soft)'][i % 3] }));
 const introHero = home.hero.intro.replace(/<\/?p>/g, '');
+// La frase del metodo arriva spezzata in due paragrafi (e con un <br>): e' una frase sola.
+const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').replace(/<\/p>\s*<p>/g, ' ');
 ---
 
 <Layout headerTone="overlay" stack title={home.seo.title} description={home.seo.description}>
@@ -154,7 +156,7 @@ const introHero = home.hero.intro.replace(/<\/?p>/g, '');
 			<div class="metodo__intro" data-anim="from-left">
 				{home.metodo.immagine && <Img src={home.metodo.immagine} alt="" class="metodo__img" sizes="(max-width: 900px) 40vw, 18vw" />}
 				<h2 class="display-title metodo__titolo">Il nostro <span class="accent-text">Metodo</span></h2>
-				{home.metodo.intro.map((p) => <div class="metodo__frase" set:html={p} />)}
+				<div class="metodo__frase" set:html={introMetodo} />
 			</div>
 			<ol class="metodo__punti">
 				{
@@ -433,8 +435,9 @@ const introHero = home.hero.intro.replace(/<\/?p>/g, '');
 	}
 
 	/* --- Metodo: titolo e frase a sinistra, quattro punti numerati a destra --- */
+	/* Fondo come quello del fumetto (la sua foto e' sul #0d0d0d): su nero puro si vedeva un rettangolo. */
 	.metodo {
-		background: var(--bg-dark-deep);
+		background: var(--bg-dark);
 		color: var(--text-on-dark);
 		padding-top: 56px !important;
 	}
@@ -453,7 +456,9 @@ const introHero = home.hero.intro.replace(/<\/?p>/g, '');
 	}
 
 	.metodo__titolo {
-		margin-bottom: 20px;
+		margin-bottom: 16px;
+		font-size: clamp(2.2rem, 3.6vw, 3.25rem);
+		line-height: 1;
 		color: var(--text-on-dark);
 	}
 

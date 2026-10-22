@@ -1,0 +1,171 @@
+---
+/*
+ * Un percorso in piu' fasi (es. il nuoto neonatale: 3-12, 13-24, 25-36 mesi): titolo e introduzione
+ * in alto, poi le fasi affiancate. Niente card: ogni fase e' una colonna con un filo giallo in
+ * cima, l'eta' in grande e il testo sotto. Il titolo di ogni fase arriva dai dati come
+ * "PRIMA FASE dai 3 ai 12 mesi": qui lo si divide in nome della fase e fascia d'eta'.
+ */
+interface Props {
+	titolo: string;
+	/** Testo introduttivo (HTML gia' ripulito). */
+	introHtml?: string;
+	fasi: { titolo: string; html: string }[];
+}
+
+const { titolo, introHtml, fasi } = Astro.props;
+
+// Titolo con le ultime due parole in giallo ("Il percorso in" + "3 fasi").
+const parole = titolo.trim().split(/\s+/);
+const accento = parole.length > 2 ? parole.splice(-2).join(' ') : null;
+const inizio = parole.join(' ');
+
+const prepara = (t: string) => {
+	const pulito = t.replace(/[​ ]/g, ' ').trim();
+	const m = pulito.match(/^(\S+\s+fase)\s+(.*)$/i);
+	const nome = m ? m[1] : pulito;
+	const eta = m ? m[2] : '';
+	const intervallo = eta.match(/(\d+)\D+(\d+)\s*(mesi|anni)/i);
+	return {
+		nome: nome.charAt(0).toUpperCase() + nome.slice(1).toLowerCase(),
+		numeri: intervallo ? `${intervallo[1]}–${intervallo[2]}` : eta,
+		unita: intervallo ? intervallo[3].toLowerCase() : '',
+	};
+};
+---
+
+<section class="fasi on-dark">
+	<div class="fasi__inner container-wide">
+		<header class="fasi__testata">
+			<h2 class="fasi__titolo" data-anim="from-left">
+				{
+					accento ? (
+						<>
+							<span>{inizio}</span>{' '}
+							<span class="fasi__accento">{accento}</span>
+						</>
+					) : (
+						titolo
+					)
+				}
+			</h2>
+			{introHtml && <div class="fasi__intro" data-anim="from-right" data-anim-delay="80" set:html={introHtml} />}
+		</header>
+
+		<ol class="fasi__lista">
+			{
+				fasi.map((f, i) => {
+					const { nome, numeri, unita } = prepara(f.titolo);
+					return (
+						<li class="fase" data-anim="up" data-anim-delay={String(i * 120)}>
+							<p class="fase__nome">{nome}</p>
+							<p class="fase__eta">
+								<span class="fase__numeri">{numeri}</span>
+								{unita && <span class="fase__unita">{unita}</span>}
+							</p>
+							<div class="fase__testo" set:html={f.html} />
+						</li>
+					);
+				})
+			}
+		</ol>
+	</div>
+</section>
+
+<style>
+	.fasi {
+		padding-block: clamp(24px, 3vw, 40px) clamp(40px, 6vw, 80px);
+		background: var(--bg-dark);
+		color: var(--text-on-dark);
+	}
+
+	/* Titolo su una riga e paragrafo sotto, a tutta larghezza. */
+	.fasi__testata {
+		margin-bottom: clamp(28px, 3.5vw, 48px);
+	}
+
+	.fasi .fasi__titolo {
+		margin: 0 0 clamp(12px, 1.5vw, 20px);
+		color: var(--text-on-dark);
+		font-size: clamp(2.2rem, 4vw, 3.5rem);
+		font-weight: 700;
+		line-height: 1.1;
+		letter-spacing: -0.01em;
+		text-transform: none;
+	}
+
+	.fasi .fasi__accento {
+		color: var(--accent);
+	}
+
+	.fasi__intro {
+		max-width: 60rem;
+		font-size: var(--text-md);
+		line-height: 1.6;
+	}
+
+	.fasi__intro :global(p) {
+		margin: 0;
+	}
+
+	.fasi__lista {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: clamp(24px, 3vw, 48px);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.fase {
+		padding-top: 20px;
+		border-top: 4px solid var(--accent);
+	}
+
+	.fase__nome {
+		margin: 0 0 4px;
+		font-size: var(--text-sm);
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+
+	.fase__eta {
+		display: flex;
+		align-items: baseline;
+		gap: 10px;
+		margin: 0 0 18px;
+	}
+
+	.fase__numeri {
+		font-family: var(--font-heading);
+		font-size: clamp(2.6rem, 4.4vw, 4rem);
+		font-weight: 900;
+		line-height: 1;
+		letter-spacing: -0.02em;
+	}
+
+	.fase__unita {
+		font-size: var(--text-lg);
+		font-weight: 600;
+	}
+
+	.fase__testo {
+		font-size: var(--text-md);
+		line-height: 1.6;
+	}
+
+	.fase__testo :global(p) {
+		margin: 0 0 0.8em;
+	}
+
+	.fase__testo :global(p:last-child) {
+		margin-bottom: 0;
+	}
+
+	@media (max-width: 900px) {
+		.fasi__lista {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+</style>

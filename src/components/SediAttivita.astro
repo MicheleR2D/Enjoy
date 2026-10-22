@@ -16,14 +16,16 @@ interface SedeCard {
 
 interface Props {
 	sedi: SedeCard[];
+	/** Etichetta e card al centro (la fascia in fondo alla pagina); di default a sinistra, nel blocco. */
+	centrato?: boolean;
 }
 
-const { sedi } = Astro.props;
+const { sedi, centrato = false } = Astro.props;
 ---
 
 {
 	sedi.length > 0 && (
-		<div class="dove">
+		<div class:list={['dove', { 'dove--centrato': centrato }]}>
 			<p class="dove__label">{sedi.length > 1 ? 'Si tiene nelle sedi di' : 'Si tiene nella sede di'}</p>
 			<ul class="dove__lista">
 				{sedi.map((s) => (
@@ -46,6 +48,10 @@ const { sedi } = Astro.props;
 		margin-top: 32px;
 	}
 
+	.dove--centrato {
+		text-align: center;
+	}
+
 	.dove__label {
 		margin: 0 0 12px;
 		font-size: var(--text-xs, 0.8rem);
@@ -61,6 +67,10 @@ const { sedi } = Astro.props;
 		margin: 0;
 		padding: 0;
 		list-style: none;
+	}
+
+	.dove--centrato .dove__lista {
+		justify-content: center;
 	}
 
 	/* Card gialla grande quanto il suo contenuto, testi neri. */

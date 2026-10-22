@@ -14,6 +14,8 @@ import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import CourseBlock from '../components/CourseBlock.astro';
 import SediAttivita from '../components/SediAttivita.astro';
+import FasiPercorso from '../components/FasiPercorso.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
 import { sedi, formUrl } from '../data/site';
 
 interface Pulsante {
@@ -31,6 +33,7 @@ interface Props {
 		seo: { title: string; description: string };
 		hero: { titolo: string; parole?: string[]; immagine: string; pulsanti?: Pulsante[] };
 		blocchi: any[];
+		faq: { domanda: string; risposta: string | null }[];
 		/** Sedi in cui si svolge l'attivita' (slug): sezione finale con le card delle sedi. */
 		sedi?: ('meda' | 'camuzzago')[];
 	};
@@ -51,6 +54,16 @@ const sediDi = (slugs: string[] = []) => slugs.map((slug) => sedi.find((s) => s.
 const sediAttivita = sediDi(pagina.sedi);
 const sediPerBlocco = pagina.blocchi.some((b) => b.sedi);
 const soloUnBlocco = pagina.blocchi.length === 1;
+
+// Percorso in fasi (nuoto neonatale): i blocchi "PRIMA FASE ...", "SECONDA FASE ..." diventano un'unica
+// sezione a colonne. Se il blocco subito prima e' di solo testo ("Il Percorso in 3 fasi") ne e' l'intestazione.
+const eFase = (b: any) => /^(prima|seconda|terza|quarta|quinta)\s+fase\b/i.test((b?.titolo ?? '').trim());
+const indiciFasi = pagina.blocchi.flatMap((b, i) => (eFase(b) ? [i] : []));
+const haFasi = indiciFasi.length >= 2;
+const ultimaFase = haFasi ? indiciFasi[indiciFasi.length - 1] : -1;
+const bloccoPrima = haFasi ? pagina.blocchi[indiciFasi[0] - 1] : undefined;
+const introFasi = bloccoPrima && !bloccoPrima.immagini?.length && !bloccoPrima.video ? bloccoPrima : undefined;
+const inizioFasi = haFasi ? indiciFasi[0] - (introFasi ? 1 : 0) : -1;
 
 // Una scheda corso senza video usa la foto della pagina; le pagine "servizio" no.
 const sfondoSenzaMedia = pagina.tipo === 'corso' ? pagina.hero.immagine : undefined;
@@ -74,6 +87,15 @@ const sfondoSenzaMedia = pagina.tipo === 'corso' ? pagina.hero.immagine : undefi
 
 	{
 		pagina.blocchi.map((blocco, i) => {
+			if (haFasi && i >= inizioFasi && i <= ultimaFase) {
+				return i === inizioFasi ? (
+					<FasiPercorso
+						titolo={introFasi?.titolo || 'Il percorso in fasi'}
+						introHtml={introFasi?.descrizioneHtml}
+						fasi={indiciFasi.map((k) => ({ titolo: pagina.blocchi[k].titolo, html: pagina.blocchi[k].descrizioneHtml }))}
+					/>
+				) : null;
+			}
 			// Sedi nel blocco: le sue (se le indica) o, con un solo blocco, quelle della pagina.
 			const sediBlocco = blocco.sedi ? sediDi(blocco.sedi) : soloUnBlocco ? sediAttivita : [];
 			return (
@@ -84,11 +106,13 @@ const sfondoSenzaMedia = pagina.tipo === 'corso' ? pagina.hero.immagine : undefi
 		})
 	}
 
+	<FaqAccordion faq={pagina.faq} />
+
 	{
 		!sediPerBlocco && !soloUnBlocco && sediAttivita.length > 0 && (
 			<section class="sedi-fascia on-dark" aria-label="Sedi dell'attività">
 				<div class="container-wide">
-					<SediAttivita sedi={sediAttivita} />
+					<SediAttivita sedi={sediAttivita} centrato />
 				</div>
 			</section>
 		)
@@ -96,9 +120,9 @@ const sfondoSenzaMedia = pagina.tipo === 'corso' ? pagina.hero.immagine : undefi
 </Layout>
 
 <style>
-	/* Pagine con piu' attivita' nelle stesse sedi: una fascia in fondo, con la riga delle sedi. */
+	/* Pagine con piu' attivita' nelle stesse sedi: una fascia in fondo, centrata, con la riga delle sedi. */
 	.sedi-fascia {
-		padding-block: 8px clamp(40px, 5vw, 64px);
+		padding-block: clamp(32px, 4vw, 56px) clamp(40px, 5vw, 64px);
 		background: var(--bg-dark);
 		color: var(--text-on-dark);
 	}
