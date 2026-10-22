@@ -1,0 +1,624 @@
+---
+/*
+ * Planning settimanale delle due sedi. Struttura come la pagina orari di Body Energie: tab per
+ * scegliere la sede, tab dei giorni (si parte da oggi), frecce giorno precedente/successivo e
+ * filtro per tipo di lezione (acqua, sala, outdoor). I dati sono quelli dei PDF dei planning,
+ * in src/data/planning-sedi.json: giorno -> lezioni con orario, corso, istruttore e sala.
+ *
+ * Senza JavaScript le sedi e i giorni si leggono uno dopo l'altro; con JavaScript compaiono tab,
+ * frecce e filtro. Il nome del corso e' un link alla sua scheda quando la scheda esiste.
+ */
+import planning from '../data/planning-sedi.json';
+
+const GIORNI = [
+	{ id: 'LUN', nome: 'Lunedì' },
+	{ id: 'MAR', nome: 'Martedì' },
+	{ id: 'MER', nome: 'Mercoledì' },
+	{ id: 'GIO', nome: 'Giovedì' },
+	{ id: 'VEN', nome: 'Venerdì' },
+	{ id: 'SAB', nome: 'Sabato' },
+	{ id: 'DOM', nome: 'Domenica' },
+];
+
+const TIPI: Record<string, string> = { acqua: 'Acqua', sala: 'Sala', outdoor: 'Outdoor' };
+
+// Corso (come scritto nel planning) -> scheda. Se la scheda non esiste il corso resta senza link.
+const schede = import.meta.glob('../data/pagine/*.json', { eager: true, import: 'default' }) as Record<string, { slug: string }>;
+const esistenti = new Set(Object.values(schede).map((p) => p.slug));
+const REGOLE: [RegExp, string][] = [
+	[/^acqua (tone|circuit)|^brucia grassi$|^idro|^tabata idro|^aeroslim/i, 'acqua-gym'],
+	[/^ginn\. acq\./i, 'ginnastica-terapeutica-acquatica'],
+	[/^postural pil/i, 'postural-pil'],
+	[/^back school/i, 'back-school'],
+	[/^body balance/i, 'body-balance'],
+	[/^body pump/i, 'body-pump'],
+	[/^group cycling/i, 'groupcycling'],
+	[/^suspension/i, 'suspension'],
+	[/^tabata$/i, 'tabata'],
+	[/^total body/i, 'total-body'],
+	[/^yoga/i, 'yoga'],
+	[/^spartan/i, 'spartan-fit'],
+	[/^step tone/i, 'step-tone'],
+	[/^olistic/i, 'olistic-tone'],
+	[/^core training/i, 'core-training'],
+	[/^dancing fit/i, 'dancing-fit'],
+	[/^fit&box/i, 'fit-boxe'],
+	[/^g&g/i, 'gg'],
+	[/^antalgica/i, 'antalgica'],
+	[/^x space/i, 'x-class'],
+];
+const scheda = (nome: string) => {
+	const slug = REGOLE.find(([re]) => re.test(nome))?.[1];
+	return slug && esistenti.has(slug) ? `/${slug}` : undefined;
+};
+
+const sedi = planning.sedi;
+---
+
+<div class="pl" data-pl>
+	<div class="pl__barra">
+		<div class="pl__sedi" role="tablist" aria-label="Sede">
+			{
+				sedi.map((s, i) => (
+					<button type="button" role="tab" class:list={['pl__sede-tab', { 'is-active': i === 0 }]} id={`pl-sede-${s.slug}`} aria-controls={`pl-${s.slug}`} aria-selected={i === 0 ? 'true' : 'false'} data-sede={s.slug}>
+						{s.nome}
+					</button>
+				))
+			}
+		</div>
+
+		<div class="pl__filtro" role="group" aria-label="Filtra per tipo di lezione">
+			<button type="button" class="pl__tipo is-on" aria-pressed="true" data-tipo="all">Tutte</button>
+			{
+				Object.entries(TIPI).map(([id, nome]) => (
+					<button type="button" class="pl__tipo" aria-pressed="false" data-tipo={id}>
+						<span class={`pl__dot pl__dot--${id}`} aria-hidden="true" />
+						{nome}
+					</button>
+				))
+			}
+		</div>
+	</div>
+
+	{
+		sedi.map((s, si) => (
+			<section class:list={['pl__sede', { 'is-active': si === 0 }]} id={`pl-${s.slug}`} role="tabpanel" aria-labelledby={`pl-sede-${s.slug}`} data-sede-panel={s.slug}>
+				<p class="pl__meta">
+					<span>{s.validita}</span>
+					<a href={s.pdf} target="_blank" rel="noopener">
+						Scarica il PDF
+					</a>
+				</p>
+
+				<div class="pl__box" data-giorni>
+					<div class="pl__giorni" role="tablist" aria-label={`Giorno della settimana - ${s.nome}`}>
+						{GIORNI.map((g, i) => (
+							<button type="button" role="tab" class:list={['pl__giorno', { 'is-active': i === 0, 'is-vuoto': s.giorni[g.id].length === 0 }]} id={`pl-${s.slug}-tab-${g.id}`} aria-controls={`pl-${s.slug}-${g.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} data-giorno={g.id}>
+								<span aria-hidden="true">{g.id}</span>
+								<span class="sr-only">{g.nome}</span>
+							</button>
+						))}
+					</div>
+
+					<div class="pl__pannelli">
+						{GIORNI.map((g, i) => (
+							<section class:list={['pl__pannello', { 'is-active': i === 0 }]} id={`pl-${s.slug}-${g.id}`} role="tabpanel" aria-labelledby={`pl-${s.slug}-tab-${g.id}`} data-giorno={g.id}>
+								<h3 class="pl__titolo-giorno">{g.nome}</h3>
+								<ul class="pl__lista">
+									{s.giorni[g.id].map((l) => {
+										const href = scheda(l.nome);
+										return (
+											<li class="lez" data-tipo={l.tipo}>
+												<span class="lez__ora">
+													{l.ora}
+													<span class="lez__fine">{l.fine}</span>
+												</span>
+												<span class="lez__corpo">
+													{href ? (
+														<a class="lez__nome" href={href}>
+															{l.nome}
+														</a>
+													) : (
+														<span class="lez__nome">{l.nome}</span>
+													)}
+													<span class="lez__meta">
+														{[l.istruttore, l.sala, l.nota].filter(Boolean).join(' · ')}
+													</span>
+												</span>
+												<span class="lez__tipo">
+													<span class={`pl__dot pl__dot--${l.tipo}`} aria-hidden="true" />
+													{TIPI[l.tipo]}
+												</span>
+											</li>
+										);
+									})}
+								</ul>
+								<p class="pl__vuoto" role="status" hidden>
+									Nessuna lezione di questo tipo in questo giorno.
+								</p>
+							</section>
+						))}
+					</div>
+
+					<div class="pl__nav">
+						<button type="button" class="pl__freccia" data-prev aria-label="Giorno precedente">
+							<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+								<polyline points="15 18 9 12 15 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</button>
+						<span class="pl__etichetta" data-label aria-live="polite">{GIORNI[0].nome}</span>
+						<button type="button" class="pl__freccia" data-next aria-label="Giorno successivo">
+							<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+								<polyline points="9 18 15 12 9 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</button>
+					</div>
+				</div>
+			</section>
+		))
+	}
+</div>
+
+<script>
+	// @ts-nocheck - script vanilla: gli elementi ci sono sempre, i tipi DOM generici qui danno solo falsi errori
+	const GIORNI = ['LUN', 'MAR', 'MER', 'GIO', 'VEN', 'SAB', 'DOM'];
+	const NOMI = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
+	const oggi = GIORNI[(new Date().getDay() + 6) % 7];
+
+	document.querySelectorAll('[data-pl]').forEach((pl) => {
+		let tipo = 'all';
+		let giorno = oggi;
+
+		const sedeTabs = [...pl.querySelectorAll('.pl__sede-tab')];
+		const sedePanels = [...pl.querySelectorAll('.pl__sede')];
+		const tipoBtns = [...pl.querySelectorAll('.pl__tipo')];
+
+		const aggiornaGiorno = () => {
+			pl.querySelectorAll('[data-giorni]').forEach((box) => {
+				box.querySelectorAll('.pl__giorno').forEach((t) => {
+					const on = t.dataset.giorno === giorno;
+					t.classList.toggle('is-active', on);
+					t.setAttribute('aria-selected', String(on));
+					t.tabIndex = on ? 0 : -1;
+				});
+				box.querySelectorAll('.pl__pannello').forEach((p) => {
+					const on = p.dataset.giorno === giorno;
+					p.classList.toggle('is-active', on);
+					// filtro per tipo: nasconde le lezioni degli altri tipi
+					let visibili = 0;
+					p.querySelectorAll('.lez').forEach((l) => {
+						const mostra = tipo === 'all' || l.dataset.tipo === tipo;
+						l.hidden = !mostra;
+						if (mostra) visibili++;
+					});
+					p.querySelector('.pl__vuoto').hidden = visibili > 0;
+				});
+				box.querySelector('[data-label]').textContent = NOMI[GIORNI.indexOf(giorno)];
+			});
+		};
+
+		const scegliSede = (slug) => {
+			sedeTabs.forEach((t) => {
+				const on = t.dataset.sede === slug;
+				t.classList.toggle('is-active', on);
+				t.setAttribute('aria-selected', String(on));
+			});
+			sedePanels.forEach((p) => p.classList.toggle('is-active', p.dataset.sedePanel === slug));
+		};
+
+		sedeTabs.forEach((t) => t.addEventListener('click', () => scegliSede(t.dataset.sede)));
+
+		tipoBtns.forEach((b) =>
+			b.addEventListener('click', () => {
+				tipo = b.dataset.tipo;
+				tipoBtns.forEach((x) => {
+					const on = x === b;
+					x.classList.toggle('is-on', on);
+					x.setAttribute('aria-pressed', String(on));
+				});
+				aggiornaGiorno();
+			})
+		);
+
+		pl.querySelectorAll('.pl__giorno').forEach((t) => {
+			t.addEventListener('click', () => {
+				giorno = t.dataset.giorno;
+				aggiornaGiorno();
+			});
+			// frecce sinistra/destra sui tab
+			t.addEventListener('keydown', (e) => {
+				if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+				const d = e.key === 'ArrowRight' ? 1 : -1;
+				giorno = GIORNI[(GIORNI.indexOf(giorno) + d + 7) % 7];
+				aggiornaGiorno();
+				pl.querySelector(`.pl__sede.is-active .pl__giorno[data-giorno="${giorno}"]`)?.focus();
+			});
+		});
+
+		const sposta = (d) => {
+			giorno = GIORNI[(GIORNI.indexOf(giorno) + d + 7) % 7];
+			aggiornaGiorno();
+		};
+		pl.querySelectorAll('[data-prev]').forEach((b) => b.addEventListener('click', () => sposta(-1)));
+		pl.querySelectorAll('[data-next]').forEach((b) => b.addEventListener('click', () => sposta(1)));
+
+		aggiornaGiorno();
+	});
+</script>
+
+<style>
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+	}
+
+	/* ---- Barra: sede a sinistra, filtro a destra ---- */
+	.pl__barra {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px 24px;
+		margin-bottom: 20px;
+	}
+
+	.pl__sedi {
+		display: flex;
+		gap: 8px;
+	}
+
+	.pl__sede-tab {
+		min-height: 44px;
+		padding: 10px 22px;
+		border: 2px solid var(--accent);
+		border-radius: var(--radius-pill);
+		background: transparent;
+		color: var(--accent);
+		font: inherit;
+		font-size: var(--text-sm);
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition: background var(--dur-base), color var(--dur-base);
+	}
+
+	.pl__sede-tab:hover {
+		background: rgba(255, 230, 0, 0.14);
+	}
+
+	.pl__sede-tab.is-active {
+		background: var(--accent);
+		color: var(--bg-dark-deep);
+	}
+
+	.pl__sede-tab:focus-visible,
+	.pl__tipo:focus-visible {
+		outline: 3px solid var(--text-on-dark);
+		outline-offset: 2px;
+	}
+
+	.pl__filtro {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	.pl__tipo {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		min-height: 40px;
+		padding: 8px 16px;
+		border: 1px solid var(--border-on-dark);
+		border-radius: var(--radius-pill);
+		background: transparent;
+		color: var(--text-on-dark);
+		font: inherit;
+		font-size: var(--text-sm);
+		font-weight: 700;
+		cursor: pointer;
+		transition: background var(--dur-base), border-color var(--dur-base);
+	}
+
+	.pl__tipo:hover {
+		border-color: var(--text-on-dark);
+	}
+
+	.pl__tipo.is-on {
+		border-color: var(--text-on-dark);
+		background: rgba(255, 255, 255, 0.12);
+	}
+
+	.pl__dot {
+		flex: none;
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: var(--accent);
+	}
+
+	.pl__dot--acqua {
+		background: #4cc3ff;
+	}
+
+	.pl__dot--sala {
+		background: var(--accent);
+	}
+
+	.pl__dot--outdoor {
+		background: #7bdc6a;
+	}
+
+	/* ---- Pannello della sede: con JavaScript se ne vede una sola ---- */
+	:global(html.js) .pl__sede:not(.is-active) {
+		display: none;
+	}
+
+	.pl__sede + .pl__sede {
+		margin-top: 48px;
+	}
+
+	.pl__meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 6px 20px;
+		margin: 0 0 16px;
+		font-size: var(--text-sm);
+		color: var(--text-on-dark);
+	}
+
+	.pl__meta a {
+		font-weight: 700;
+		color: var(--text-on-dark);
+		text-decoration: underline;
+		text-underline-offset: 4px;
+		text-decoration-thickness: 1.5px;
+	}
+
+	.pl__meta a:hover,
+	.pl__meta a:focus-visible {
+		color: var(--accent);
+	}
+
+	/* ---- Riquadro con tab dei giorni, elenco e frecce ---- */
+	.pl__box {
+		border: 1px solid var(--border-on-dark);
+		border-bottom: 3px solid var(--accent);
+		border-radius: var(--radius);
+		overflow: clip;
+	}
+
+	:global(html:not(.js)) .pl__sedi,
+	:global(html:not(.js)) .pl__filtro,
+	:global(html:not(.js)) .pl__giorni,
+	:global(html:not(.js)) .pl__nav {
+		display: none;
+	}
+
+	.pl__giorni {
+		display: flex;
+		border-bottom: 2px solid var(--accent);
+		background: var(--bg-dark-soft);
+	}
+
+	.pl__giorno {
+		flex: 1;
+		min-width: 0;
+		min-height: 48px;
+		padding: 14px 4px;
+		border: 0;
+		border-right: 1px solid var(--border-on-dark);
+		background: var(--bg-dark-soft);
+		color: var(--text-on-dark);
+		font: inherit;
+		font-size: 13px;
+		font-weight: 800;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition: background var(--dur-base), color var(--dur-base);
+	}
+
+	.pl__giorno:last-child {
+		border-right: 0;
+	}
+
+	.pl__giorno:hover {
+		background: var(--bg-dark);
+	}
+
+	.pl__giorno.is-active {
+		background: var(--accent);
+		color: var(--bg-dark-deep);
+	}
+
+	.pl__giorno.is-vuoto:not(.is-active) {
+		opacity: 0.5;
+	}
+
+	.pl__giorno:focus-visible {
+		outline: 3px solid var(--text-on-dark);
+		outline-offset: -3px;
+	}
+
+	.pl__pannelli {
+		background: var(--bg-dark);
+	}
+
+	:global(html.js) .pl__pannello:not(.is-active) {
+		display: none;
+	}
+
+	.pl__titolo-giorno {
+		margin: 0;
+		padding: 18px 20px 6px;
+		font-size: var(--text-lg);
+		font-weight: 800;
+		color: var(--accent);
+	}
+
+	/* Con JavaScript il nome del giorno lo dice il tab: il titolo resta per gli screen reader. */
+	:global(html.js) .pl__titolo-giorno {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		overflow: hidden;
+		clip-path: inset(50%);
+	}
+
+	.pl__lista {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.pl__vuoto {
+		margin: 0;
+		padding: 32px 20px;
+		text-align: center;
+		font-size: var(--text-sm);
+		font-style: italic;
+	}
+
+	.pl__vuoto[hidden],
+	.lez[hidden] {
+		display: none;
+	}
+
+	/* ---- Una lezione: orario, corso con istruttore e sala, tipo ---- */
+	.lez {
+		display: grid;
+		grid-template-columns: 84px minmax(0, 1fr) auto;
+		gap: 16px;
+		align-items: center;
+		padding: 14px 20px;
+		border-bottom: 1px solid var(--border-on-dark);
+	}
+
+	.lez:nth-child(odd) {
+		background: var(--bg-dark-soft);
+	}
+
+	.lez:last-child {
+		border-bottom: 0;
+	}
+
+	.lez__ora {
+		display: grid;
+		font-size: var(--text-md);
+		font-weight: 900;
+		font-variant-numeric: tabular-nums;
+		line-height: 1.15;
+		color: var(--accent);
+	}
+
+	.lez__fine {
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--text-on-dark);
+	}
+
+	.lez__corpo {
+		display: grid;
+		gap: 2px;
+		min-width: 0;
+	}
+
+	.lez__nome {
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+		line-height: 1.2;
+		color: var(--text-on-dark);
+		text-decoration: none;
+	}
+
+	a.lez__nome {
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-underline-offset: 4px;
+		text-decoration-thickness: 2px;
+		transition: text-decoration-color var(--dur-base);
+	}
+
+	a.lez__nome:hover,
+	a.lez__nome:focus-visible {
+		text-decoration-color: var(--accent);
+	}
+
+	.lez__meta {
+		font-size: var(--text-sm);
+		color: var(--text-on-dark);
+	}
+
+	.lez__tipo {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-size: var(--text-xs);
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--text-on-dark);
+	}
+
+	/* ---- Frecce giorno precedente/successivo ---- */
+	.pl__nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 12px 16px;
+		border-top: 1px solid var(--border-on-dark);
+		background: var(--bg-dark-soft);
+	}
+
+	.pl__freccia {
+		display: grid;
+		place-items: center;
+		width: 44px;
+		height: 44px;
+		border: 1px solid var(--border-on-dark);
+		border-radius: 50%;
+		background: transparent;
+		color: var(--text-on-dark);
+		cursor: pointer;
+		transition: background var(--dur-base), color var(--dur-base), border-color var(--dur-base);
+	}
+
+	.pl__freccia:hover,
+	.pl__freccia:focus-visible {
+		border-color: var(--accent);
+		background: var(--accent);
+		color: var(--bg-dark-deep);
+	}
+
+	.pl__etichetta {
+		font-weight: 800;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	@media (max-width: 640px) {
+		.lez {
+			grid-template-columns: 70px minmax(0, 1fr);
+			gap: 4px 12px;
+			padding: 12px 16px;
+		}
+
+		.lez__tipo {
+			grid-column: 2;
+		}
+
+		.pl__giorno {
+			letter-spacing: 0;
+			font-size: 12px;
+		}
+	}
+</style>

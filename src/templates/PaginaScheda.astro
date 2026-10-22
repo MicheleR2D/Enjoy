@@ -34,6 +34,8 @@ interface Props {
 		hero: { titolo: string; parole?: string[]; immagine: string; pulsanti?: Pulsante[] };
 		blocchi: any[];
 		faq: { domanda: string; risposta: string | null }[];
+		/** Le FAQ ci sono nei dati ma sul sito originale sono nascoste: non si mostrano. */
+		faqNascoste?: boolean;
 		/** Sedi in cui si svolge l'attivita' (slug): sezione finale con le card delle sedi. */
 		sedi?: ('meda' | 'camuzzago')[];
 	};
@@ -110,7 +112,7 @@ const sfondoSenzaMedia = pagina.tipo === 'corso' ? pagina.hero.immagine : undefi
 		})
 	}
 
-	<FaqAccordion faq={pagina.faq} />
+	<FaqAccordion faq={pagina.faqNascoste ? [] : pagina.faq} />
 
 	{
 		!sediPerBlocco && !soloUnBlocco && sediAttivita.length > 0 && (

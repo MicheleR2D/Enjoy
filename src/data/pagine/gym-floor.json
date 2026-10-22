@@ -114,5 +114,6 @@
 			"domanda": "E' necessaria la prenotazione?",
 			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sulla Technogym App</p>"
 		}
-	]
+	],
+	"faqNascoste": true
 }

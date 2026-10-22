@@ -20,6 +20,8 @@ interface Props {
 		introHtml: string;
 		corsi: { titolo: string; href: string | null; immagine: string }[];
 		faq: { domanda: string; risposta: string | null }[];
+		/** Le FAQ ci sono nei dati ma sul sito originale sono nascoste: non si mostrano. */
+		faqNascoste?: boolean;
 	};
 }
 
@@ -39,7 +41,7 @@ const card = pagina.corsi.filter((c) => c.href).map((c) => ({ href: c.href as st
 		<ActivityGrid items={card} columns={3} gapTop={0} />
 	</section>
 
-	<FaqAccordion faq={pagina.faq} />
+	<FaqAccordion faq={pagina.faqNascoste ? [] : pagina.faq} />
 </Layout>
 
 <style>

@@ -1,0 +1,1651 @@
+{
+	"sedi": [
+		{
+			"slug": "meda",
+			"nome": "Meda",
+			"validita": "Valido dal 25 agosto 2025 al 31 luglio 2026",
+			"pdf": "/wp-content/uploads/2026/04/Planning-Meda-2025-2026-250226-1.pdf",
+			"giorni": {
+				"LUN": [
+					{
+						"ora": "8:30",
+						"fine": "9:15",
+						"nome": "Posturale",
+						"istruttore": "Adriana",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "9:30",
+						"fine": "10:15",
+						"nome": "Idrobike",
+						"istruttore": "Adriana",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "9:30",
+						"fine": "10:15",
+						"nome": "Posturale",
+						"istruttore": "Elisabetta",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Acqua Tone",
+						"istruttore": "Elisabetta",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Total Body",
+						"istruttore": "Adriana",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "12:30",
+						"fine": "13:00",
+						"nome": "Hiit Power",
+						"istruttore": "Michele",
+						"sala": "X-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Acqua Tone",
+						"istruttore": "Adriana",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "13:10",
+						"fine": "13:40",
+						"nome": "Suspension",
+						"istruttore": "Michele",
+						"sala": "Y-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:15",
+						"fine": "14:00",
+						"nome": "Postural Pil",
+						"istruttore": "Elisabetta",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:30",
+						"fine": "19:15",
+						"nome": "Total Body",
+						"istruttore": "Adriana",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:30",
+						"fine": "19:00",
+						"nome": "Hiit Outdoor",
+						"istruttore": "Salvatore",
+						"sala": "Area Esterna",
+						"tipo": "outdoor"
+					},
+					{
+						"ora": "18:45",
+						"fine": "19:30",
+						"nome": "Acqua Tone",
+						"istruttore": "Matteo",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "19:00",
+						"fine": "19:50",
+						"nome": "Group Cycling",
+						"istruttore": "Ina",
+						"sala": "Y-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:00",
+						"fine": "19:30",
+						"nome": "Hiit Power",
+						"istruttore": "Andrea",
+						"sala": "X-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:30",
+						"fine": "20:15",
+						"nome": "Body Balance",
+						"istruttore": "Adriana",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:45",
+						"fine": "20:15",
+						"nome": "Hiit Agility",
+						"istruttore": "Andrea",
+						"sala": "X-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:45",
+						"fine": "20:30",
+						"nome": "Idrobike",
+						"istruttore": "Matteo",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "20:00",
+						"fine": "20:50",
+						"nome": "Group Cycling",
+						"istruttore": "Ina",
+						"sala": "Y-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "20:30",
+						"fine": "21:30",
+						"nome": "Spartan Fit",
+						"istruttore": "Andrea",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					}
+				],
+				"MAR": [
+					{
+						"ora": "8:30",
+						"fine": "9:15",
+						"nome": "Back School",
+						"istruttore": "Alessandro",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "9:30",
+						"fine": "10:20",
+						"nome": "Group Cycling",
+						"istruttore": "Adriana",
+						"sala": "Y-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "9:30",
+						"fine": "10:15",
+						"nome": "G&G",
+						"istruttore": "Francesca",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Body Pump",
+						"istruttore": "Francesca",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Acqua Tone",
+						"istruttore": "Adriana",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "12:30",
+						"fine": "13:00",
+						"nome": "Hiit Outdoor",
+						"istruttore": "Matteo",
+						"sala": "Area Esterna",
+						"tipo": "outdoor"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Body Pump",
+						"istruttore": "Francesca",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Idro Tabata",
+						"istruttore": "Adriana",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "18:15",
+						"fine": "18:45",
+						"nome": "G&G",
+						"istruttore": "Arianna",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:45",
+						"fine": "19:15",
+						"nome": "Cardio Step",
+						"istruttore": "Arianna",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:45",
+						"fine": "19:30",
+						"nome": "Acqua Circuit",
+						"istruttore": "Elisabetta",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "18:45",
+						"fine": "19:15",
+						"nome": "Hiit Outdoor",
+						"istruttore": "Andrea",
+						"sala": "Area Esterna",
+						"tipo": "outdoor"
+					},
+					{
+						"ora": "19:00",
+						"fine": "19:45",
+						"nome": "Suspension",
+						"istruttore": "Michele",
+						"sala": "Y-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:30",
+						"fine": "20:15",
+						"nome": "Total Body",
+						"istruttore": "Arianna",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:30",
+						"fine": "20:00",
+						"nome": "Hiit Power",
+						"istruttore": "Andrea",
+						"sala": "X-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:45",
+						"fine": "20:30",
+						"nome": "Acqua Tone",
+						"istruttore": "Elisabetta",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "20:00",
+						"fine": "20:45",
+						"nome": "Back School",
+						"istruttore": "Alessandro",
+						"sala": "Y-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "20:30",
+						"fine": "21:15",
+						"nome": "Tabata",
+						"istruttore": "Andrea",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					}
+				],
+				"MER": [
+					{
+						"ora": "9:00",
+						"fine": "9:45",
+						"nome": "Acqua Tone",
+						"istruttore": "Elisabetta",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "9:00",
+						"fine": "9:45",
+						"nome": "Body Balance",
+						"istruttore": "Adriana",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "9:15",
+						"fine": "10:00",
+						"nome": "Hiit Training",
+						"istruttore": "Nicolas",
+						"sala": "X-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:00",
+						"fine": "10:30",
+						"nome": "Posturale",
+						"istruttore": "Alessandro",
+						"sala": "Y-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:00",
+						"fine": "10:45",
+						"nome": "Brucia Grassi",
+						"istruttore": "Adriana",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "10:15",
+						"fine": "11:00",
+						"nome": "G&G",
+						"istruttore": "Nicolas",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "12:15",
+						"fine": "13:00",
+						"nome": "Spartan",
+						"istruttore": "Michele",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Acqua Circuit",
+						"istruttore": "Elisabetta",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:50",
+						"nome": "Group Cycling",
+						"istruttore": "Ina",
+						"sala": "Y-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:15",
+						"fine": "14:00",
+						"nome": "Total Body",
+						"istruttore": "Nicolas",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:20",
+						"fine": "18:50",
+						"nome": "Hiit Power",
+						"istruttore": "Michele",
+						"sala": "X-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:30",
+						"fine": "19:15",
+						"nome": "Total Body",
+						"istruttore": "Elisabetta",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:45",
+						"fine": "19:30",
+						"nome": "Idrobike Tone",
+						"istruttore": "Francesca",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "19:00",
+						"fine": "19:30",
+						"nome": "Hiit Agility",
+						"istruttore": "Michele",
+						"sala": "X-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:00",
+						"fine": "19:50",
+						"nome": "Group Cycling",
+						"istruttore": "Adriana",
+						"sala": "Y-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:30",
+						"fine": "20:15",
+						"nome": "Postural Pil",
+						"istruttore": "Elisabetta",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:40",
+						"fine": "20:10",
+						"nome": "Hiit Power",
+						"istruttore": "Michele",
+						"sala": "X-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:45",
+						"fine": "20:30",
+						"nome": "Brucia Grassi",
+						"istruttore": "Francesca",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "20:00",
+						"fine": "20:50",
+						"nome": "Group Cycling",
+						"istruttore": "Adriana",
+						"sala": "Y-Room",
+						"tipo": "sala"
+					}
+				],
+				"GIO": [
+					{
+						"ora": "9:00",
+						"fine": "9:45",
+						"nome": "Postural Pil",
+						"istruttore": "Carola",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "9:00",
+						"fine": "9:50",
+						"nome": "Group Cycling",
+						"istruttore": "Adriana",
+						"sala": "Y-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:00",
+						"fine": "10:30",
+						"nome": "Tabata",
+						"istruttore": "Salvatore",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Idro Tabata",
+						"istruttore": "Adriana",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Body Balance",
+						"istruttore": "Adriana",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:00",
+						"fine": "18:30",
+						"nome": "Olistic Tone",
+						"istruttore": "Miriam",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:30",
+						"fine": "19:00",
+						"nome": "Hiit Outdoor",
+						"istruttore": "Salvatore",
+						"sala": "Area Esterna",
+						"tipo": "outdoor"
+					},
+					{
+						"ora": "18:30",
+						"fine": "19:15",
+						"nome": "Acqua Tone",
+						"istruttore": "Adriana",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "18:45",
+						"fine": "19:30",
+						"nome": "Body Balance",
+						"istruttore": "Miriam",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:00",
+						"fine": "19:45",
+						"nome": "Hiit Training",
+						"istruttore": "Michele",
+						"sala": "X-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:30",
+						"fine": "20:15",
+						"nome": "Idrobike",
+						"istruttore": "Adriana",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "19:45",
+						"fine": "20:30",
+						"nome": "Body Pump",
+						"istruttore": "Miriam",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "20:00",
+						"fine": "20:50",
+						"nome": "Group Cycling",
+						"istruttore": "Ina",
+						"sala": "Y-Room",
+						"tipo": "sala"
+					}
+				],
+				"VEN": [
+					{
+						"ora": "9:30",
+						"fine": "10:15",
+						"nome": "Acqua Tone",
+						"istruttore": "Elisabetta",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "9:30",
+						"fine": "10:15",
+						"nome": "Postural Pil",
+						"istruttore": "Adriana",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "9:45",
+						"fine": "10:15",
+						"nome": "Posturale",
+						"istruttore": "Nicolas",
+						"sala": "Y-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Total Body",
+						"istruttore": "Nicolas",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Idrobike",
+						"istruttore": "Adriana",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "12:30",
+						"fine": "13:30",
+						"nome": "Spartan",
+						"istruttore": "Michele",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Idrobike Tone",
+						"istruttore": "Adriana",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "18:00",
+						"fine": "18:45",
+						"nome": "Postural Pil",
+						"istruttore": "Francesca",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:30",
+						"fine": "19:00",
+						"nome": "Hiit Agility",
+						"istruttore": "Andrea",
+						"sala": "X-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:00",
+						"fine": "19:45",
+						"nome": "Body Pump",
+						"istruttore": "Francesca",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:10",
+						"fine": "19:40",
+						"nome": "Hiit Power",
+						"istruttore": "Michele",
+						"sala": "X-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:15",
+						"fine": "19:45",
+						"nome": "Suspension",
+						"istruttore": "Andrea",
+						"sala": "Y-Room",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:30",
+						"fine": "20:15",
+						"nome": "Idro Tabata",
+						"istruttore": "Adriana",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "20:00",
+						"fine": "20:45",
+						"nome": "Spartan Fit",
+						"istruttore": "Andrea",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					}
+				],
+				"SAB": [
+					{
+						"ora": "9:15",
+						"fine": "10:15",
+						"nome": "Yoga",
+						"istruttore": "Francesca",
+						"sala": "Y-Room",
+						"tipo": "sala",
+						"nota": "Alternato"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Sabato Surprise",
+						"istruttore": "A rotazione",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "11:30",
+						"fine": "12:15",
+						"nome": "Sabato Surprise",
+						"istruttore": "A rotazione",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "12:30",
+						"fine": "13:20",
+						"nome": "Group Cycling",
+						"istruttore": "A rotazione",
+						"sala": "Y-Room",
+						"tipo": "sala"
+					}
+				],
+				"DOM": [
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Domenica Surprise",
+						"istruttore": "A rotazione",
+						"sala": "Sala Energy",
+						"tipo": "sala"
+					},
+					{
+						"ora": "11:30",
+						"fine": "12:15",
+						"nome": "Domenica Surprise",
+						"istruttore": "A rotazione",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					}
+				]
+			}
+		},
+		{
+			"slug": "camuzzago",
+			"nome": "Camuzzago",
+			"validita": "Valido dal 24 agosto 2026 al 31 luglio 2027",
+			"pdf": "/wp-content/uploads/2026/09/Planning-Camuzzago-2627-verisione-20.pdf",
+			"giorni": {
+				"LUN": [
+					{
+						"ora": "8:30",
+						"fine": "9:15",
+						"nome": "Postural Pil",
+						"istruttore": "Claudia",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "9:30",
+						"fine": "10:15",
+						"nome": "Aeroslim",
+						"istruttore": "Michela",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "9:30",
+						"fine": "10:15",
+						"nome": "Brucia Grassi",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "10:00",
+						"fine": "11:00",
+						"nome": "Ginn. Acq. Terapeutica",
+						"istruttore": "Ema",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Ceremony LesMills",
+						"istruttore": "Claudia",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Acqua Circuit",
+						"istruttore": "Michela",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "11:00",
+						"fine": "12:00",
+						"nome": "Ginn. Acq. Terapeutica",
+						"istruttore": "Ema",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "12:00",
+						"fine": "13:00",
+						"nome": "Ginn. Acq. Terapeutica",
+						"istruttore": "Ema",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "13:00",
+						"fine": "14:00",
+						"nome": "Spartan",
+						"istruttore": "Leonardo",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Acqua Tone",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "13:50",
+						"fine": "14:35",
+						"nome": "Idrobike",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "18:00",
+						"fine": "18:45",
+						"nome": "Run Club",
+						"istruttore": "A rotazione",
+						"sala": "Parco",
+						"tipo": "outdoor"
+					},
+					{
+						"ora": "18:00",
+						"fine": "18:45",
+						"nome": "Suspension",
+						"istruttore": "Leonardo",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:20",
+						"fine": "19:05",
+						"nome": "Body Pump LesMills",
+						"istruttore": "Claudia",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:50",
+						"fine": "19:35",
+						"nome": "X Space - Class",
+						"istruttore": "Leo",
+						"sala": "X-Space",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:00",
+						"fine": "20:00",
+						"nome": "Group Cycling",
+						"istruttore": "Debora",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:10",
+						"fine": "19:55",
+						"nome": "Acqua Tone",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "19:15",
+						"fine": "20:00",
+						"nome": "Shapes LesMills",
+						"istruttore": "Miriam",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:15",
+						"fine": "20:15",
+						"nome": "Ginn. Acq. Terapeutica",
+						"istruttore": "Ema",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "20:10",
+						"fine": "21:10",
+						"nome": "Yoga",
+						"istruttore": "Almendra",
+						"sala": "Energy Studio",
+						"tipo": "sala",
+						"nota": "Alternato"
+					},
+					{
+						"ora": "20:15",
+						"fine": "21:00",
+						"nome": "Acqua Circuit",
+						"istruttore": "Miriam",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					}
+				],
+				"MAR": [
+					{
+						"ora": "8:30",
+						"fine": "9:30",
+						"nome": "Ginn. Acq. Terapeutica",
+						"istruttore": "Ema",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "9:30",
+						"fine": "10:30",
+						"nome": "Ginn. Acq. Terapeutica",
+						"istruttore": "Ema",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "9:30",
+						"fine": "10:15",
+						"nome": "Antalgica",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "9:30",
+						"fine": "10:15",
+						"nome": "Dancing Fit",
+						"istruttore": "Miriam",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Body Balance Les Mills",
+						"istruttore": "Miriam",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Tabata Idro",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "11:00",
+						"fine": "12:00",
+						"nome": "Ginn. Terapeutica",
+						"istruttore": "Federica",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "11:30",
+						"fine": "12:15",
+						"nome": "Olistic Tone",
+						"istruttore": "Miriam",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Tabata Idro",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Shapes LesMills",
+						"istruttore": "Miriam",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "X Space - Class",
+						"istruttore": "Leonardo",
+						"sala": "X-Space",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:50",
+						"fine": "14:35",
+						"nome": "Acqua Circuit",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "13:50",
+						"fine": "14:35",
+						"nome": "Body Balance Les Mills",
+						"istruttore": "Miriam",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "17:55",
+						"fine": "18:25",
+						"nome": "Tabata",
+						"istruttore": "Claudia",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:20",
+						"fine": "19:05",
+						"nome": "X Space - Class",
+						"istruttore": "Leo",
+						"sala": "X-Space",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:30",
+						"fine": "19:00",
+						"nome": "Step Coreo",
+						"istruttore": "Claudia",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:00",
+						"fine": "20:00",
+						"nome": "Group Cycling",
+						"istruttore": "Lucio",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:10",
+						"fine": "19:55",
+						"nome": "Ceremony LesMills",
+						"istruttore": "Samuele",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:15",
+						"fine": "20:00",
+						"nome": "Acqua Circuit",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "20:00",
+						"fine": "21:00",
+						"nome": "Group Cycling",
+						"istruttore": "Lucio",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					}
+				],
+				"MER": [
+					{
+						"ora": "8:30",
+						"fine": "9:15",
+						"nome": "Postural Pil",
+						"istruttore": "Claudia",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "9:00",
+						"fine": "10:00",
+						"nome": "Ginn. Terapeutica",
+						"istruttore": "Federica",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "9:30",
+						"fine": "10:15",
+						"nome": "Acqua Circuit",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "9:30",
+						"fine": "10:15",
+						"nome": "Shapes LesMills",
+						"istruttore": "Michela",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Idrobike",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Step Tone",
+						"istruttore": "Michela",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "11:00",
+						"fine": "12:00",
+						"nome": "Ginn. Acq. Terapeutica",
+						"istruttore": "Ema",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "11:30",
+						"fine": "12:15",
+						"nome": "Postural Pil",
+						"istruttore": "Miri",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "12:00",
+						"fine": "13:00",
+						"nome": "Ginn. Acq. Terapeutica",
+						"istruttore": "Ema",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Body Pump LesMills",
+						"istruttore": "Claudia",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:00",
+						"fine": "14:00",
+						"nome": "Group Cycling",
+						"istruttore": "Rox",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Idrobike",
+						"istruttore": "Michela",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Run Club",
+						"istruttore": "A rotazione",
+						"sala": "Parco",
+						"tipo": "outdoor"
+					},
+					{
+						"ora": "13:50",
+						"fine": "14:35",
+						"nome": "Brucia Grassi",
+						"istruttore": "Michela",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "18:20",
+						"fine": "19:05",
+						"nome": "Shapes LesMills",
+						"istruttore": "Michela",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:30",
+						"fine": "19:15",
+						"nome": "Suspension",
+						"istruttore": "Leonardo",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:10",
+						"fine": "19:50",
+						"nome": "Fit&Box",
+						"istruttore": "Claudia",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:10",
+						"fine": "19:55",
+						"nome": "Idrobike & Tone",
+						"istruttore": "Michela",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "19:15",
+						"fine": "20:15",
+						"nome": "Ginn. Acq. Terapeutica",
+						"istruttore": "Ema",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "19:30",
+						"fine": "20:15",
+						"nome": "Postural Pil",
+						"istruttore": "Miri",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "20:00",
+						"fine": "20:45",
+						"nome": "Spartan",
+						"istruttore": "Leonardo",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "20:05",
+						"fine": "20:50",
+						"nome": "Acqua Tone",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					}
+				],
+				"GIO": [
+					{
+						"ora": "8:30",
+						"fine": "9:30",
+						"nome": "Ginn. Acq. Terapeutica",
+						"istruttore": "Ema",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "9:15",
+						"fine": "10:00",
+						"nome": "Dancing Fit",
+						"istruttore": "Jessica",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "9:30",
+						"fine": "10:30",
+						"nome": "Ginn. Acq. Terapeutica",
+						"istruttore": "Ema",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "9:30",
+						"fine": "10:15",
+						"nome": "Tabata Idro",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "10:15",
+						"fine": "11:00",
+						"nome": "Brucia Grassi Terra",
+						"istruttore": "Jessica",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Acqua Tone",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "11:00",
+						"fine": "12:00",
+						"nome": "Ginn. Terapeutica",
+						"istruttore": "Federica",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "11:15",
+						"fine": "11:50",
+						"nome": "Core Training",
+						"istruttore": "Jessica",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Suspension",
+						"istruttore": "Leo",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Postural Pil",
+						"istruttore": "Francesco",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Idrobike & Tone",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "13:45",
+						"fine": "14:15",
+						"nome": "Back School",
+						"istruttore": "Francesco",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:50",
+						"fine": "14:35",
+						"nome": "Acqua Tone",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "18:00",
+						"fine": "18:45",
+						"nome": "X Space - Class",
+						"istruttore": "Leonardo",
+						"sala": "X-Space",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:20",
+						"fine": "19:05",
+						"nome": "Body Balance",
+						"istruttore": "Miriam",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:00",
+						"fine": "20:00",
+						"nome": "Group Cycling",
+						"istruttore": "Debora",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:10",
+						"fine": "19:55",
+						"nome": "Tabata Idro",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "19:10",
+						"fine": "19:55",
+						"nome": "Body Pump",
+						"istruttore": "Miriam",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "19:55",
+						"fine": "20:40",
+						"nome": "Idrobike",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "20:00",
+						"fine": "21:00",
+						"nome": "Group Cycling",
+						"istruttore": "Debora",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "20:05",
+						"fine": "20:50",
+						"nome": "Postural Pil",
+						"istruttore": "Francesco",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					}
+				],
+				"VEN": [
+					{
+						"ora": "8:00",
+						"fine": "9:00",
+						"nome": "Yoga",
+						"istruttore": "Almendra",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "9:00",
+						"fine": "10:00",
+						"nome": "Ginn. Terapeutica",
+						"istruttore": "Federica",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "9:15",
+						"fine": "10:00",
+						"nome": "Antalgica",
+						"istruttore": "Miriam",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "9:15",
+						"fine": "10:00",
+						"nome": "Aeroslim",
+						"istruttore": "Michela",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:00",
+						"fine": "11:00",
+						"nome": "Ginn. Acq. Terapeutica",
+						"istruttore": "Ema",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "10:15",
+						"fine": "11:00",
+						"nome": "Acqua Tone",
+						"istruttore": "Michela",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "10:15",
+						"fine": "11:00",
+						"nome": "Shapes LesMills",
+						"istruttore": "Miriam",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "11:00",
+						"fine": "12:00",
+						"nome": "Ginn. Acq. Terapeutica",
+						"istruttore": "Ema",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "11:10",
+						"fine": "11:55",
+						"nome": "Idrobike & Tone",
+						"istruttore": "Michela",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "12:00",
+						"fine": "13:00",
+						"nome": "Ginn. Acq. Terapeutica",
+						"istruttore": "Ema",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "13:00",
+						"fine": "14:00",
+						"nome": "Ceremony LesMills",
+						"istruttore": "Leonardo",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Tabata Idro",
+						"istruttore": "Miriam",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "13:00",
+						"fine": "13:45",
+						"nome": "Shapes LesMills",
+						"istruttore": "Michela",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "13:50",
+						"fine": "14:35",
+						"nome": "Idrobike & Tone",
+						"istruttore": "Miriam",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "18:30",
+						"fine": "19:15",
+						"nome": "Ceremony LesMills",
+						"istruttore": "Alberto",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:40",
+						"fine": "19:25",
+						"nome": "Aeroslim",
+						"istruttore": "Michela",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "18:50",
+						"fine": "19:35",
+						"nome": "Tabata Idro",
+						"istruttore": "Claudia",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "19:00",
+						"fine": "20:00",
+						"nome": "Ginn. Acq. Terapeutica",
+						"istruttore": "Ema",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					},
+					{
+						"ora": "19:30",
+						"fine": "20:15",
+						"nome": "Shapes LesMills",
+						"istruttore": "Michela",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					}
+				],
+				"SAB": [
+					{
+						"ora": "9:15",
+						"fine": "10:15",
+						"nome": "Yoga",
+						"istruttore": "Almendra",
+						"sala": "Energy Studio",
+						"tipo": "sala",
+						"nota": "Alternato"
+					},
+					{
+						"ora": "10:00",
+						"fine": "11:00",
+						"nome": "Run Club",
+						"istruttore": "A rotazione",
+						"sala": "Parco",
+						"tipo": "outdoor"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:30",
+						"nome": "Group Cycling",
+						"istruttore": "A rotazione",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:15",
+						"nome": "Surprise",
+						"istruttore": "A rotazione",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "11:30",
+						"fine": "12:15",
+						"nome": "Surprise",
+						"istruttore": "A rotazione",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "12:15",
+						"fine": "13:00",
+						"nome": "Acqua Surprise",
+						"istruttore": "A rotazione",
+						"sala": "Piscina",
+						"tipo": "acqua"
+					}
+				],
+				"DOM": [
+					{
+						"ora": "10:00",
+						"fine": "11:00",
+						"nome": "Group Cycling",
+						"istruttore": "A rotazione",
+						"sala": "Emotion Studio",
+						"tipo": "sala"
+					},
+					{
+						"ora": "10:30",
+						"fine": "11:30",
+						"nome": "Domenica Surprise",
+						"istruttore": "A rotazione",
+						"sala": "Energy Studio",
+						"tipo": "sala"
+					}
+				]
+			}
+		}
+	]
+}
