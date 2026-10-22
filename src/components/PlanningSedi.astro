@@ -164,8 +164,9 @@ const sedi = planning.sedi;
 													) : (
 														<span class="lez__nome">{l.nome}</span>
 													)}
-													<span class="lez__meta">
-														{[l.istruttore, l.sala, l.nota].filter(Boolean).join(' · ')}
+													<span class="lez__dett">
+														<span class="lez__istr">{l.istruttore}</span>
+														<span class="lez__sala">{[l.sala, l.nota].filter(Boolean).join(' · ')}</span>
 													</span>
 												</span>
 												<span class="lez__tipo">
@@ -631,9 +632,10 @@ const sedi = planning.sedi;
 	}
 
 	/* ---- Una lezione: orario, corso con istruttore e sala, tipo ---- */
+	/* Desktop: colonne fisse (orario, corso, istruttore, sala, tipo) cosi' la riga non ha buchi. */
 	.lez {
 		display: grid;
-		grid-template-columns: 84px minmax(0, 1fr) auto;
+		grid-template-columns: 84px minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr) 110px;
 		gap: 16px;
 		align-items: center;
 		padding: 14px 20px;
@@ -691,7 +693,13 @@ const sedi = planning.sedi;
 		text-decoration-color: var(--accent);
 	}
 
-	.lez__meta {
+	.lez__corpo,
+	.lez__dett {
+		display: contents;
+	}
+
+	.lez__istr,
+	.lez__sala {
 		font-size: var(--text-sm);
 		color: var(--text-on-dark);
 	}
@@ -853,11 +861,37 @@ const sedi = planning.sedi;
 		margin-top: 6px;
 	}
 
-	@media (max-width: 640px) {
+	/* Tablet e telefono: orario a sinistra, corso con istruttore e sala sotto, tipo in fondo. */
+	@media (max-width: 860px) {
 		.lez {
 			grid-template-columns: 70px minmax(0, 1fr);
 			gap: 4px 12px;
 			padding: 12px 16px;
+		}
+
+		.lez__ora {
+			grid-row: 1 / span 3;
+		}
+
+		.lez__corpo {
+			display: grid;
+			grid-column: 2;
+			gap: 2px;
+		}
+
+		.lez__dett {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0 6px;
+		}
+
+		.lez__sala:not(:empty)::before {
+			content: '·';
+			margin-right: 6px;
+		}
+
+		.lez__istr:empty + .lez__sala::before {
+			content: none;
 		}
 
 		.lez__tipo {
