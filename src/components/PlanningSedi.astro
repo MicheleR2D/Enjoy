@@ -152,27 +152,14 @@ const sedi = planning.sedi;
 										const info = scheda(l.nome);
 										return (
 											<li class="lez" data-tipo={l.tipo}>
-												<span class="lez__ora">
-													{l.ora}
-													<span class="lez__fine">{l.fine}</span>
-												</span>
-												<span class="lez__corpo">
-													{info ? (
-														<a class="lez__nome" href={info.href} data-corso={info.chiave} aria-haspopup="dialog">
-															{l.nome}
-														</a>
-													) : (
-														<span class="lez__nome">{l.nome}</span>
-													)}
-													<span class="lez__dett">
-														<span class="lez__istr">{l.istruttore}</span>
-														<span class="lez__sala">{[l.sala, l.nota].filter(Boolean).join(' · ')}</span>
-													</span>
-												</span>
-												<span class="lez__tipo">
-													<span class={`pl__dot pl__dot--${l.tipo}`} aria-hidden="true" />
-													{TIPI[l.tipo]}
-												</span>
+												<span class="lez__ora">{l.ora}</span>
+												{info ? (
+													<a class="lez__nome" href={info.href} data-corso={info.chiave} aria-haspopup="dialog">
+														{l.nome}
+													</a>
+												) : (
+													<span class="lez__nome">{l.nome}</span>
+												)}
 											</li>
 										);
 									})}
@@ -229,6 +216,7 @@ const sedi = planning.sedi;
 
 <script>
 	// @ts-nocheck - script vanilla: gli elementi ci sono sempre, i tipi DOM generici qui danno solo falsi errori
+	const TIPI = { acqua: 'Acqua', sala: 'Sala', outdoor: 'Outdoor' };
 	const GIORNI = ['LUN', 'MAR', 'MER', 'GIO', 'VEN', 'SAB', 'DOM'];
 	const NOMI = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
 	const oggi = GIORNI[(new Date().getDay() + 6) % 7];
@@ -343,7 +331,7 @@ const sedi = planning.sedi;
 			}
 			nome.textContent = c.titolo;
 			sintesi.textContent = c.sintesi;
-			cat.textContent = a.closest('.lez')?.querySelector('.lez__tipo')?.textContent.trim() ?? '';
+			cat.textContent = TIPI[a.closest('.lez')?.dataset.tipo] ?? '';
 			dur.textContent = c.durata;
 			link.href = c.href;
 			img.src = c.img.src;
@@ -612,9 +600,12 @@ const sedi = planning.sedi;
 		clip-path: inset(50%);
 	}
 
+	/* Elenco a colonne: solo orario e corso, in ordine di orario scendendo da una colonna alla successiva. */
 	.pl__lista {
+		columns: 3 300px;
+		column-gap: 0;
 		margin: 0;
-		padding: 0;
+		padding: 0 12px;
 		list-style: none;
 	}
 
@@ -631,44 +622,23 @@ const sedi = planning.sedi;
 		display: none;
 	}
 
-	/* ---- Una lezione: orario, corso con istruttore e sala, tipo ---- */
-	/* Desktop: colonne fisse (orario, corso, istruttore, sala, tipo) cosi' la riga non ha buchi. */
+	/* ---- Una lezione: orario in giallo e nome del corso ---- */
 	.lez {
-		display: grid;
-		grid-template-columns: 84px minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr) 110px;
-		gap: 16px;
-		align-items: center;
-		padding: 14px 20px;
+		display: flex;
+		align-items: baseline;
+		gap: 14px;
+		padding: 14px 12px;
 		border-bottom: 1px solid var(--border-on-dark);
-	}
-
-	.lez:nth-child(odd) {
-		background: var(--bg-dark-soft);
-	}
-
-	.lez:last-child {
-		border-bottom: 0;
+		break-inside: avoid;
 	}
 
 	.lez__ora {
-		display: grid;
+		flex: none;
+		min-width: 3.2em;
 		font-size: var(--text-md);
 		font-weight: 900;
 		font-variant-numeric: tabular-nums;
-		line-height: 1.15;
 		color: var(--accent);
-	}
-
-	.lez__fine {
-		font-size: var(--text-sm);
-		font-weight: 600;
-		color: var(--text-on-dark);
-	}
-
-	.lez__corpo {
-		display: grid;
-		gap: 2px;
-		min-width: 0;
 	}
 
 	.lez__nome {
@@ -691,28 +661,6 @@ const sedi = planning.sedi;
 	a.lez__nome:hover,
 	a.lez__nome:focus-visible {
 		text-decoration-color: var(--accent);
-	}
-
-	.lez__corpo,
-	.lez__dett {
-		display: contents;
-	}
-
-	.lez__istr,
-	.lez__sala {
-		font-size: var(--text-sm);
-		color: var(--text-on-dark);
-	}
-
-	.lez__tipo {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		font-size: var(--text-xs);
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--text-on-dark);
 	}
 
 	/* ---- Frecce giorno precedente/successivo ---- */
@@ -861,43 +809,7 @@ const sedi = planning.sedi;
 		margin-top: 6px;
 	}
 
-	/* Tablet e telefono: orario a sinistra, corso con istruttore e sala sotto, tipo in fondo. */
 	@media (max-width: 860px) {
-		.lez {
-			grid-template-columns: 70px minmax(0, 1fr);
-			gap: 4px 12px;
-			padding: 12px 16px;
-		}
-
-		.lez__ora {
-			grid-row: 1 / span 3;
-		}
-
-		.lez__corpo {
-			display: grid;
-			grid-column: 2;
-			gap: 2px;
-		}
-
-		.lez__dett {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0 6px;
-		}
-
-		.lez__sala:not(:empty)::before {
-			content: '·';
-			margin-right: 6px;
-		}
-
-		.lez__istr:empty + .lez__sala::before {
-			content: none;
-		}
-
-		.lez__tipo {
-			grid-column: 2;
-		}
-
 		.pl__giorno {
 			letter-spacing: 0;
 			font-size: 12px;
