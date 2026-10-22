@@ -53,7 +53,6 @@ const pulsanti: Pulsante[] =
 const sediDi = (slugs: string[] = []) => slugs.map((slug) => sedi.find((s) => s.slug === slug)).filter((s) => s !== undefined);
 const sediAttivita = sediDi(pagina.sedi);
 const sediPerBlocco = pagina.blocchi.some((b) => b.sedi);
-const soloUnBlocco = pagina.blocchi.length === 1;
 
 // Percorso in fasi (nuoto neonatale): i blocchi "PRIMA FASE ...", "SECONDA FASE ..." diventano un'unica
 // sezione a colonne. Se il blocco subito prima e' di solo testo ("Il Percorso in 3 fasi") ne e' l'intestazione.
@@ -64,6 +63,11 @@ const ultimaFase = haFasi ? indiciFasi[indiciFasi.length - 1] : -1;
 const bloccoPrima = haFasi ? pagina.blocchi[indiciFasi[0] - 1] : undefined;
 const introFasi = bloccoPrima && !bloccoPrima.immagini?.length && !bloccoPrima.video ? bloccoPrima : undefined;
 const inizioFasi = haFasi ? indiciFasi[0] - (introFasi ? 1 : 0) : -1;
+
+// Un solo blocco "vero" (le fasi non contano): le sedi della pagina stanno li', a sinistra, come nelle schede
+// con un blocco solo; con piu' blocchi stanno in una fascia centrata in fondo.
+const bloccoVero = (i: number) => !(haFasi && i >= inizioFasi && i <= ultimaFase);
+const soloUnBlocco = pagina.blocchi.filter((_, i) => bloccoVero(i)).length === 1;
 
 // Una scheda corso senza video usa la foto della pagina; le pagine "servizio" no.
 const sfondoSenzaMedia = pagina.tipo === 'corso' ? pagina.hero.immagine : undefined;
