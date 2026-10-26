@@ -31,7 +31,7 @@ interface Props {
 		slug: string;
 		nome: string;
 		seo: { title: string; description: string };
-		hero: { titolo: string; parole?: string[]; immagine: string; pulsanti?: Pulsante[] };
+		hero: { titolo: string; parole?: string[]; immagine: string; pulsanti?: Pulsante[]; badge?: string };
 		blocchi: any[];
 		faq: { domanda: string; risposta: string | null }[];
 		/** Le FAQ ci sono nei dati ma sul sito originale sono nascoste: non si mostrano. */
@@ -78,7 +78,7 @@ const sfondoSenzaMedia = pagina.tipo === 'corso' ? pagina.hero.immagine : undefi
 ---
 
 <Layout title={pagina.seo.title} description={pagina.seo.description} headerTone="overlay">
-	<PageHero image={pagina.hero.immagine} title={pagina.hero.titolo} words={pagina.hero.parole}>
+	<PageHero image={pagina.hero.immagine} title={pagina.hero.titolo} words={pagina.hero.parole} eyebrow={pagina.hero.badge}>
 		{
 			pulsanti.map((p, i) => (
 				<a
