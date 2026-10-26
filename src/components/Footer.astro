@@ -973,4 +973,31 @@ const colonneFoto = [
 			min-height: 200px;
 		}
 	}
+
+	/* Touch: i link del footer erano alti 17px. Qui salgono ad almeno 36px; lo spazio tra le voci
+	   lo da' l'altezza del link, quindi si toglie il gap. */
+	@media (pointer: coarse), (max-width: 900px) {
+		.ft-links {
+			gap: 0;
+		}
+
+		.ft-links a,
+		.ft-links button,
+		.ft-legal a,
+		.sede__info a {
+			display: inline-flex;
+			align-items: center;
+			min-height: 36px;
+		}
+
+		.ft-legal {
+			gap: 0 20px;
+		}
+
+		.ft-firma a {
+			display: inline-flex;
+			align-items: center;
+			min-height: 36px;
+		}
+	}
 </style>

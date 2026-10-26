@@ -95,7 +95,8 @@ const scheda = (nome: string): { href: string; chiave: string } | undefined => {
 	return { href: `/${slug}`, chiave };
 };
 
-const sedi = planning.sedi;
+type Lezione = { ora: string; fine: string; nome: string; istruttore: string; sala: string; tipo: string; nota?: string };
+const sedi = planning.sedi as { slug: string; nome: string; validita: string; pdf: string; giorni: Record<string, Lezione[]> }[];
 ---
 
 <div class="pl" data-pl>
@@ -127,7 +128,7 @@ const sedi = planning.sedi;
 		sedi.map((s, si) => (
 			<section class:list={['pl__sede', { 'is-active': si === 0 }]} id={`pl-${s.slug}`} role="tabpanel" aria-labelledby={`pl-sede-${s.slug}`} data-sede-panel={s.slug}>
 				<p class="pl__meta">
-					<span>{s.validita}</span>
+					{s.validita && <span>{s.validita}</span>}
 					<a href={s.pdf} target="_blank" rel="noopener">
 						Scarica il PDF
 					</a>
@@ -501,6 +502,9 @@ const sedi = planning.sedi;
 	}
 
 	.pl__meta a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 36px;
 		font-weight: 700;
 		color: var(--text-on-dark);
 		text-decoration: underline;
@@ -624,6 +628,7 @@ const sedi = planning.sedi;
 
 	/* ---- Una lezione: orario in giallo e nome del corso ---- */
 	.lez {
+		position: relative;
 		display: flex;
 		align-items: baseline;
 		gap: 14px;
@@ -656,6 +661,13 @@ const sedi = planning.sedi;
 		text-underline-offset: 4px;
 		text-decoration-thickness: 2px;
 		transition: text-decoration-color var(--dur-base);
+	}
+
+	/* Il link si estende a tutta la riga: area di tocco larga come la riga (circa 50px di altezza). */
+	a.lez__nome::after {
+		content: '';
+		position: absolute;
+		inset: 0;
 	}
 
 	a.lez__nome:hover,

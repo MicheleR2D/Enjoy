@@ -365,3 +365,11 @@ body.lf-locked {
     transition: none !important;
   }
 }
+
+/* Niente alone blu/grigio che il browser mobile disegna al tocco di link e pulsanti. */
+a,
+button,
+summary,
+[role='tab'] {
+  -webkit-tap-highlight-color: transparent;
+}
