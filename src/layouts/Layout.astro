@@ -1,4 +1,6 @@
 ---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import '../styles/tokens.css';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
@@ -14,9 +16,13 @@ interface Props {
 	stack?: boolean;
 	/** Pagina da non far indicizzare ai motori di ricerca. */
 	noindex?: boolean;
+	/** Dati strutturati schema.org della pagina (vedi src/lib/jsonld.ts). */
+	jsonLd?: Record<string, unknown>;
+	/** Nome della foto di anteprima social (public/_og/<nome>.jpg, vedi scripts/crea-og.mjs). Di default quella della home. */
+	ogSlug?: string;
 }
 
-const { title, description, headerTone = 'solid', stack = false, noindex = false } = Astro.props;
+const { title, description, headerTone = 'solid', stack = false, noindex = false, jsonLd, ogSlug } = Astro.props;
 const overlay = headerTone === 'overlay';
 
 const metaDescription =
@@ -25,7 +31,11 @@ const metaDescription =
 const gtmId = import.meta.env.PUBLIC_GTM_ID;
 const cookieyesId = import.meta.env.PUBLIC_COOKIEYES_ID;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL('/wp-content/uploads/2025/06/Piscina-Meda-2-scaled.jpg', Astro.site).href;
+// Anteprima social: la foto della hero della pagina (1200x630); se manca, quella della home; se non
+// sono state generate (sharp non disponibile) la vecchia foto del sito.
+const esisteOg = (nome: string) => existsSync(join(process.cwd(), 'public', '_og', `${nome}.jpg`));
+const ogNome = ogSlug && esisteOg(ogSlug) ? ogSlug : esisteOg('home') ? 'home' : null;
+const ogImage = new URL(ogNome ? `/_og/${ogNome}.jpg` : '/wp-content/uploads/2025/06/Piscina-Meda-2-scaled.jpg', Astro.site).href;
 ---
 
 <!doctype html>
@@ -105,7 +115,12 @@ const ogImage = new URL('/wp-content/uploads/2025/06/Piscina-Meda-2-scaled.jpg',
 		<meta property="og:description" content={metaDescription} />
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:image" content={ogImage} />
+		{ogNome && <meta property="og:image:width" content="1200" />}
+		{ogNome && <meta property="og:image:height" content="630" />}
+		{ogNome && <meta property="og:image:type" content="image/jpeg" />}
 		<meta name="twitter:card" content="summary_large_image" />
+
+		{jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />}
 	</head>
 	<body>
 		{

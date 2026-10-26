@@ -16,6 +16,7 @@ import CourseBlock from '../components/CourseBlock.astro';
 import SediAttivita from '../components/SediAttivita.astro';
 import FasiPercorso from '../components/FasiPercorso.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
+import { domandeFrequenti, grafo } from '../lib/jsonld';
 import { sedi, formUrl } from '../data/site';
 
 interface Pulsante {
@@ -75,9 +76,13 @@ const soloUnBlocco = pagina.blocchi.filter((_, i) => bloccoVero(i)).length === 1
 
 // Una scheda corso senza video usa la foto della pagina; le pagine "servizio" no.
 const sfondoSenzaMedia = pagina.tipo === 'corso' ? pagina.hero.immagine : undefined;
+
+// Le FAQ si mostrano (e si dichiarano a Google) solo dove sono visibili anche sul sito originale.
+const faqVisibili = pagina.faqNascoste ? [] : pagina.faq;
+const faqJsonLd = domandeFrequenti(faqVisibili);
 ---
 
-<Layout title={pagina.seo.title} description={pagina.seo.description} headerTone="overlay">
+<Layout title={pagina.seo.title} description={pagina.seo.description} headerTone="overlay" ogSlug={pagina.slug} jsonLd={faqJsonLd ? grafo(faqJsonLd) : undefined}>
 	<PageHero image={pagina.hero.immagine} title={pagina.hero.titolo} words={pagina.hero.parole} eyebrow={pagina.hero.badge}>
 		{
 			pulsanti.map((p, i) => (
@@ -114,7 +119,7 @@ const sfondoSenzaMedia = pagina.tipo === 'corso' ? pagina.hero.immagine : undefi
 		})
 	}
 
-	<FaqAccordion faq={pagina.faqNascoste ? [] : pagina.faq} />
+	<FaqAccordion faq={faqVisibili} />
 
 	{
 		!sediPerBlocco && !soloUnBlocco && sediAttivita.length > 0 && (

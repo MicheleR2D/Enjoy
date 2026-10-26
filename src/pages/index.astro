@@ -11,7 +11,8 @@ import SectionTitle from '../components/SectionTitle.astro';
 import Img from '../components/Img.astro';
 import home from '../data/home.json';
 import { formattaNumero } from '../data/stats';
-import { formUrl } from '../data/site';
+import { formUrl, sedi } from '../data/site';
+import { organizzazione, luogo, grafo } from '../lib/jsonld';
 
 const heroImages = home.hero.immagini;
 const fotoCarosello = home.marquee.map((src) => ({ src }));
@@ -45,7 +46,7 @@ const introHero = home.hero.intro.replace(/<\/?p>/g, '');
 const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').replace(/<\/p>\s*<p>/g, ' ');
 ---
 
-<Layout headerTone="overlay" stack title={home.seo.title} description={home.seo.description}>
+<Layout headerTone="overlay" stack title={home.seo.title} description={home.seo.description} jsonLd={grafo(organizzazione(), ...sedi.map((s) => luogo(s)))}>
 	<HeroCarousel images={heroImages} video={{ id: 'HCXI_Uh0JJw', inizio: 4 }}>
 		<h1 class="hero__title" data-intro aria-label="Enjoy Club">
 			<span aria-hidden="true">

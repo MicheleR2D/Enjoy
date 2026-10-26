@@ -13,11 +13,10 @@ import orari from '../data/orari-pagina.json';
 import { formUrl } from '../data/site';
 
 const testo = orari.intro.join('');
-const fotoHero = orari.hero.immagine ?? '/wp-content/uploads/2025/06/Gym-Floor-Camuzzago-3-scaled.jpg';
 ---
 
-<Layout title={orari.seo.title} description={orari.seo.description} headerTone="overlay">
-	<PageHero image={fotoHero} title={orari.hero.titolo} words={orari.hero.parole}>
+<Layout title={orari.seo.title} description={orari.seo.description} headerTone="overlay" ogSlug="orari">
+	<PageHero image={orari.hero.immagine} title={orari.hero.titolo} words={orari.hero.parole}>
 		<a class="btn btn--lg" href={formUrl('prova', 'Orari')} target="_blank" rel="noopener">Prova ora</a>
 	</PageHero>
 
