@@ -34,6 +34,8 @@
 
   /* Tipografia: Inter ovunque (titoli e testo), come nel kit di Elementor */
   --font-heading: "Inter", "Helvetica Neue", Arial, sans-serif;
+  /* Voci delle tendine del menu (Montserrat 800 maiuscolo, come sul sito originale) */
+  --font-menu: "Montserrat", "Helvetica Neue", Arial, sans-serif;
   --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
 
   /* Scala dimensioni testo (h1/h2 seguono Heading XL 60px e Heading L 48px del kit, ridotti) */

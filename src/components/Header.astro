@@ -319,6 +319,7 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 		padding: 6px 4px;
 		color: var(--text);
 		text-decoration: none;
+		text-transform: uppercase;
 		font-size: var(--text-sm);
 	}
 
@@ -333,6 +334,7 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 	.hd__cta {
 		white-space: normal;
 		font-size: 14px;
+		font-weight: 900;
 		padding: 10px 16px;
 		text-align: center;
 	}
@@ -348,6 +350,13 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 	   inferiore, angoli bassi arrotondati. Le voci hanno lo stesso font dei titoli del menu.
 	   Solo desktop: il menu mobile ha le sue regole. */
 	@media (min-width: 900.02px) {
+		/* Titoli della barra come sul sito originale: Inter 900, 15px, maiuscolo. */
+		.hd__col-title {
+			font-size: 15px;
+			font-weight: 900;
+			text-transform: uppercase;
+		}
+
 		/* Titolo aperto: giallo e freccia verso il basso. */
 		.hd__col:hover > .hd__col-title,
 		.hd__col.is-open > .hd__col-title,
@@ -425,14 +434,14 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 			transition-delay: calc(var(--i, 0) * 22ms + 30ms);
 		}
 
-		/* Stesso font dei titoli del menu (600, 16px), centrato; al passaggio fondo giallo e testo nero. */
+		/* Voci della tendina: Montserrat 800 maiuscolo (come sul sito originale), centrate; al passaggio fondo giallo e testo nero. */
 		.hd__list li a {
 			padding: 13px 16px;
 			border-radius: 12px;
 			color: var(--text-on-dark);
-			font-family: var(--font-heading);
+			font-family: var(--font-menu);
 			font-size: 16px;
-			font-weight: 600;
+			font-weight: 800;
 			text-align: center;
 			transition: background 0.2s ease, color 0.2s ease;
 		}
