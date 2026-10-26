@@ -36,6 +36,8 @@ interface Props {
 		faq: { domanda: string; risposta: string | null }[];
 		/** Le FAQ ci sono nei dati ma sul sito originale sono nascoste: non si mostrano. */
 		faqNascoste?: boolean;
+		/** Etichetta delle sedi se diversa da quella di default (es. Personal Training, Medical Center). */
+		sediEtichetta?: string;
 		/** Sedi in cui si svolge l'attivita' (slug): sezione finale con le card delle sedi. */
 		sedi?: ('meda' | 'camuzzago')[];
 	};
@@ -106,7 +108,7 @@ const sfondoSenzaMedia = pagina.tipo === 'corso' ? pagina.hero.immagine : undefi
 			const sediBlocco = blocco.sedi ? sediDi(blocco.sedi) : soloUnBlocco ? sediAttivita : [];
 			return (
 				<CourseBlock blocco={blocco} fallbackImage={sfondoSenzaMedia} reverse={i % 2 === 1} tone={i % 2 === 1 ? 'soft' : 'dark'}>
-					<SediAttivita sedi={sediBlocco} />
+					<SediAttivita sedi={sediBlocco} etichetta={pagina.sediEtichetta} />
 				</CourseBlock>
 			);
 		})
@@ -118,7 +120,7 @@ const sfondoSenzaMedia = pagina.tipo === 'corso' ? pagina.hero.immagine : undefi
 		!sediPerBlocco && !soloUnBlocco && sediAttivita.length > 0 && (
 			<section class="sedi-fascia on-dark" aria-label="Sedi dell'attività">
 				<div class="container-wide">
-					<SediAttivita sedi={sediAttivita} centrato />
+					<SediAttivita sedi={sediAttivita} centrato etichetta={pagina.sediEtichetta} />
 				</div>
 			</section>
 		)

@@ -1,0 +1,74 @@
+---
+/*
+ * Video YouTube di sfondo di una hero: muto, in loop, senza controlli, in modalita' privacy
+ * (youtube-nocookie). Va messo dentro la hero (position: relative), sopra le foto e sotto il velo
+ * scuro. Lo carica lo script a pagina pronta, cosi' non rallenta la hero; compare quando e' partito.
+ * Finche' non e' pronto, e con "riduci movimento", si vede solo la foto.
+ */
+interface Props {
+	/** Id del video su YouTube. */
+	id: string;
+	/** Secondo da cui parte. */
+	inizio?: number;
+	/** Secondo a cui finisce (poi riparte). */
+	fine?: number;
+}
+
+const { id, inizio, fine } = Astro.props;
+
+const src = `https://www.youtube-nocookie.com/embed/${id}?${new URLSearchParams({
+	autoplay: '1',
+	mute: '1',
+	controls: '0',
+	loop: '1',
+	playlist: id,
+	playsinline: '1',
+	rel: '0',
+	disablekb: '1',
+	iv_load_policy: '3',
+	...(inizio ? { start: String(inizio) } : {}),
+	...(fine ? { end: String(fine) } : {}),
+})}`;
+---
+
+<div class="vs" aria-hidden="true">
+	<iframe data-src={src} title="" tabindex="-1" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</div>
+
+<style>
+	/* Il video riempie la hero come "cover": 16:9 centrato, piu' grande dell'area se serve. */
+	.vs {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	.vs iframe {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: max(100vw, 177.78svh);
+		height: max(56.25vw, 100svh);
+		border: 0;
+		transform: translate(-50%, -50%);
+		opacity: 0;
+		transition: opacity 0.8s ease;
+	}
+
+	.vs iframe.is-ready {
+		opacity: 1;
+	}
+</style>
+
+<script>
+	if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		const avvia = () =>
+			document.querySelectorAll<HTMLIFrameElement>('.vs iframe[data-src]').forEach((f) => {
+				f.addEventListener('load', () => setTimeout(() => f.classList.add('is-ready'), 1200), { once: true });
+				f.src = f.dataset.src!;
+			});
+		if (document.readyState === 'complete') avvia();
+		else addEventListener('load', avvia, { once: true });
+	}
+</script>

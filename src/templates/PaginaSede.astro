@@ -58,19 +58,22 @@ const provincia = sede.citta.match(/\((\w+)\)/)?.[1];
 
 	<section class="orari-sede on-dark">
 		<div class="orari-sede__grid container-wide">
-			<h2 class="orari-sede__title" data-anim="from-left">
-				{
-					partiTitolo ? (
-						<>
-							<span>{partiTitolo[1]}</span>
-							<span class="orari-sede__accento">{partiTitolo[2]}</span>
-							<span>{partiTitolo[3]}</span>
-						</>
-					) : (
-						titoloOrari
-					)
-				}
-			</h2>
+			<div class="orari-sede__intro">
+				<h2 class="orari-sede__title" data-anim="from-left">
+					{
+						partiTitolo ? (
+							<>
+								<span>{partiTitolo[1]}</span>
+								<span class="orari-sede__accento">{partiTitolo[2]}</span>
+								<span>{partiTitolo[3]}</span>
+							</>
+						) : (
+							titoloOrari
+						)
+					}
+				</h2>
+				{pagina.hero.sottotitolo && <p class="orari-sede__sub" data-anim="from-left" data-anim-delay="60">{pagina.hero.sottotitolo}</p>}
+			</div>
 			<div class="orari-sede__col" data-anim="from-right" data-anim-delay="80">
 				<p class="orari-sede__orari" set:html={pagina.orari.html} />
 				<p class="orari-sede__dove">
@@ -133,6 +136,13 @@ const provincia = sede.citta.match(/\((\w+)\)/)?.[1];
 		height: 4px;
 		margin-top: clamp(20px, 2.5vw, 32px);
 		background: var(--accent);
+	}
+
+	.orari-sede__sub {
+		margin: 16px 0 0;
+		font-size: var(--text-md);
+		font-weight: 700;
+		color: var(--accent);
 	}
 
 	.orari-sede__title {

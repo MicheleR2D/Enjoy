@@ -1,10 +1,13 @@
 ---
 import Img from './Img.astro';
+import VideoSfondo from './VideoSfondo.astro';
 
 interface Props {
 	images: string[];
+	/** Video YouTube di sfondo (id e secondo di partenza): sopra le foto, che restano finche' non e' pronto. */
+	video?: { id: string; inizio?: number; fine?: number };
 }
-const { images } = Astro.props;
+const { images, video } = Astro.props;
 
 // Dissolvenza incrociata vera: la foto successiva inizia a comparire
 // mentre quella attuale sta ancora sparendo, cosi' non si vede mai
@@ -41,6 +44,7 @@ const keyframesCss = `
 			))
 		}
 	</div>
+	{video && <VideoSfondo id={video.id} inizio={video.inizio} fine={video.fine} />}
 	<div class="hc__overlay"></div>
 	<div class="hc__content">
 		<slot />

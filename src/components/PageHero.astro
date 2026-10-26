@@ -13,6 +13,7 @@
  *   </PageHero>
  */
 import Img from './Img.astro';
+import VideoSfondo from './VideoSfondo.astro';
 
 interface Props {
 	image: string;
@@ -26,35 +27,11 @@ interface Props {
 }
 
 const { image, title, words = [], imageAlt = '', video } = Astro.props;
-
-// Incorporamento in modalita' privacy (youtube-nocookie), muto, in loop, senza controlli.
-// Lo carica lo script dopo il caricamento della pagina: non rallenta la hero.
-const videoSrc = video
-	? `https://www.youtube-nocookie.com/embed/${video.id}?${new URLSearchParams({
-			autoplay: '1',
-			mute: '1',
-			controls: '0',
-			loop: '1',
-			playlist: video.id,
-			playsinline: '1',
-			rel: '0',
-			disablekb: '1',
-			iv_load_policy: '3',
-			...(video.inizio ? { start: String(video.inizio) } : {}),
-			...(video.fine ? { end: String(video.fine) } : {}),
-		})}`
-	: null;
 ---
 
 <section class="ph">
 	<Img src={image} alt={imageAlt} class="img-cover" sizes="100vw" priority />
-	{
-		videoSrc && (
-			<div class="ph__video" aria-hidden="true">
-				<iframe data-src={videoSrc} title="" tabindex="-1" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" />
-			</div>
-		)
-	}
+	{video && <VideoSfondo id={video.id} inizio={video.inizio} fine={video.fine} />}
 	<div class="ph__overlay"></div>
 	<div class="ph__content">
 		<h1 class="display-title ph__title" data-intro style="--intro-delay: 0.1s">
@@ -100,30 +77,6 @@ const videoSrc = video
 		overflow: hidden;
 		background: var(--bg-dark);
 		color: var(--text-on-dark);
-	}
-
-	/* Il video riempie la hero come "cover": 16:9 centrato, piu' grande dell'area se serve. */
-	.ph__video {
-		position: absolute;
-		inset: 0;
-		overflow: hidden;
-		pointer-events: none;
-	}
-
-	.ph__video iframe {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: max(100vw, 177.78svh);
-		height: max(56.25vw, 100svh);
-		border: 0;
-		transform: translate(-50%, -50%);
-		opacity: 0;
-		transition: opacity 0.8s ease;
-	}
-
-	.ph__video iframe.is-ready {
-		opacity: 1;
 	}
 
 	.ph__overlay {
@@ -198,18 +151,6 @@ const videoSrc = video
 </style>
 
 <script>
-	// Video di sfondo: si carica a pagina pronta e compare (con un attimo di attesa, per non
-	// mostrare l'interfaccia di YouTube) quando e' partito. Con "riduci movimento" resta la foto.
-	if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-		const avvia = () =>
-			document.querySelectorAll<HTMLIFrameElement>('.ph__video iframe[data-src]').forEach((f) => {
-				f.addEventListener('load', () => setTimeout(() => f.classList.add('is-ready'), 1200), { once: true });
-				f.src = f.dataset.src!;
-			});
-		if (document.readyState === 'complete') avvia();
-		else addEventListener('load', avvia, { once: true });
-	}
-
 	// Fa ruotare le parole del titolo; con "riduci movimento" resta la prima.
 	if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
 		document.querySelectorAll<HTMLElement>('[data-rot]').forEach((rot) => {

@@ -18,15 +18,17 @@ interface Props {
 	sedi: SedeCard[];
 	/** Etichetta e card al centro (la fascia in fondo alla pagina); di default a sinistra, nel blocco. */
 	centrato?: boolean;
+	/** Testo dell'etichetta, se la pagina ne ha uno suo (di default "Si tiene nella sede di"). */
+	etichetta?: string;
 }
 
-const { sedi, centrato = false } = Astro.props;
+const { sedi, centrato = false, etichetta } = Astro.props;
 ---
 
 {
 	sedi.length > 0 && (
 		<div class:list={['dove', { 'dove--centrato': centrato }]}>
-			<p class="dove__label">{sedi.length > 1 ? 'Si tiene nelle sedi di' : 'Si tiene nella sede di'}</p>
+			<p class="dove__label">{etichetta ?? (sedi.length > 1 ? 'Si tiene nelle sedi di' : 'Si tiene nella sede di')}</p>
 			<ul class="dove__lista">
 				{sedi.map((s) => (
 					<li>
