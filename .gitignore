@@ -24,6 +24,9 @@ node_modules/
 # foto ottimizzate (generate da scripts/optimize-images.mjs)
 public/_img/
 
+# foto di anteprima social (generate da scripts/crea-og.mjs)
+public/_og/
+
 # backup originale WordPress/Elementor e dump (non vanno nel repo)
 Backup Elementor/
 *.sql

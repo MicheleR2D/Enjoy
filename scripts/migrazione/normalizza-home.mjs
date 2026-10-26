@@ -106,7 +106,7 @@ const h2 = (w) => w.widgetType === 'heading' && (w.settings.header_size || 'h2')
 		metodo,
 		gruppi,
 		testimonianze,
-		orari: { testo: testi(tutti.filter((w, i) => i > tutti.findIndex((x) => h2(x) && /migliori/i.test(strip(x.settings.title)))))[0] },
+		orari: { testo: testi(tutti.filter((_w, i) => i > tutti.findIndex((x) => h2(x) && /migliori/i.test(strip(x.settings.title)))))[0] },
 	});
 	console.log('home:', { slide: slide(caroselli[0]).length, marquee: slide(caroselli[1]).length, gruppi: gruppi.map((g) => `${g.titolo} (${g.card.length})`), metodo: metodo.punti.length, testimonianze: testimonianze.length });
 }
