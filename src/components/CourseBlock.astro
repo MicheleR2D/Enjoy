@@ -23,6 +23,8 @@ interface Blocco {
 	video?: string | null;
 	/** Una foto, o piu' foto in carosello. */
 	immagini?: string[];
+	/** Testo alternativo delle foto (descrive l'ambiente, es. "Piscine di Enjoy Club Camuzzago"). Assente = foto decorative. */
+	alt?: string;
 	/** "contain" per i loghi: mostrati interi su fondo bianco invece di essere ritagliati. */
 	adattamento?: 'cover' | 'contain';
 	dettagli: { testo: string; icona: string | null }[];
@@ -55,6 +57,8 @@ const textAnim = reverse ? 'from-left' : 'from-right';
 const immagini = blocco.immagini?.length ? blocco.immagini : !blocco.video && fallbackImage ? [fallbackImage] : [];
 const haMedia = !!blocco.video || immagini.length > 0;
 const nomeMedia = blocco.titolo ?? 'della pagina';
+// Testo alternativo delle foto: lo indica il blocco (es. le sedi); altrimenti foto decorativa.
+const altMedia: string = blocco.alt ?? '';
 const accento = tone === 'accento';
 ---
 
@@ -76,9 +80,9 @@ const accento = tone === 'accento';
 							</button>
 						</>
 					) : immagini.length > 1 ? (
-						<ImageSlider images={immagini} label={`Foto: ${nomeMedia}`} />
+						<ImageSlider images={immagini} label={`Foto: ${nomeMedia}`} alt={altMedia} />
 					) : (
-						<Img src={immagini[0]} alt="" class="img-cover" sizes="(max-width: 900px) 90vw, 46vw" />
+						<Img src={immagini[0]} alt={altMedia} class="img-cover" sizes="(max-width: 900px) 90vw, 46vw" />
 					)}
 				</div>
 			)

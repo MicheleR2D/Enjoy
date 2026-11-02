@@ -12,10 +12,12 @@ interface Props {
 	images: string[];
 	/** Nome del carosello, letto dagli screen reader. */
 	label: string;
+	/** Descrizione delle foto (le stesse per tutto il carosello: si aggiunge il numero). Vuota = decorative. */
+	alt?: string;
 	sizes?: string;
 }
 
-const { images, label, sizes = '(max-width: 900px) 90vw, 46vw' } = Astro.props;
+const { images, label, alt = '', sizes = '(max-width: 900px) 90vw, 46vw' } = Astro.props;
 ---
 
 <div class="sl" role="group" aria-roledescription="carosello" aria-label={label}>
@@ -23,7 +25,7 @@ const { images, label, sizes = '(max-width: 900px) 90vw, 46vw' } = Astro.props;
 		{
 			images.map((src, i) => (
 				<li class="sl__slide" aria-label={`Foto ${i + 1} di ${images.length}`}>
-					<Img src={src} alt="" sizes={sizes} />
+					<Img src={src} alt={alt ? `${alt}, foto ${i + 1}` : ''} sizes={sizes} />
 				</li>
 			))
 		}

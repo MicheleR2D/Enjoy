@@ -3,8 +3,8 @@
 	"slug": "camuzzago",
 	"nome": "Camuzzago",
 	"seo": {
-		"title": "Enjoy Club Camuzzago | Palestra e Piscina vicino Vimercate",
-		"description": "Palestra, piscine, Thermarium e corsi fitness nel verde di Camuzzago di Bellusco, vicino a Vimercate. Richiedi informazioni o prova ora!"
+		"title": "Palestra e Piscina vicino a Vimercate | Enjoy Club Camuzzago",
+		"description": "Palestra con piscina coperta da 25 metri, Thermarium e oltre 90 corsi a settimana a Camuzzago di Bellusco, a pochi minuti da Vimercate. Prova ora!"
 	},
 	"hero": {
 		"titolo": "enjoy",
@@ -14,6 +14,7 @@
 		],
 		"sottotitolo": "Palestra e piscina a Camuzzago di Bellusco, vicino a Vimercate",
 		"immagine": "/wp-content/uploads/2025/06/Piscina-Camuzzago-3-scaled.jpg",
+		"alt": "Piscina di Enjoy Club a Camuzzago di Bellusco, vicino a Vimercate",
 		"video": {
 			"id": "Sk09T8Uw2Z8",
 			"inizio": 20,

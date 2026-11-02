@@ -21,6 +21,26 @@ const ORARI: Record<Sede['slug'], { giorni: Giorno[]; apre: string; chiude: stri
 	],
 };
 
+// Descrizione, zona servita e servizi di una sede, ricavati dai testi della sua pagina (non inventati).
+const EXTRA: Partial<Record<Sede['slug'], { descrizione: string; zona: string[]; servizi: string[] }>> = {
+	camuzzago: {
+		descrizione:
+			'Palestra e piscina a Camuzzago di Bellusco, a pochi minuti da Vimercate: oltre 500 m² di fitness con attrezzi Technogym, piscina coperta da 25 metri, area benessere e oltre 90 corsi a settimana.',
+		zona: ['Vimercate', 'Bellusco'],
+		servizi: [
+			'Piscina coperta da 25 metri con 6 corsie',
+			'Piscina piccola riscaldata a 32 gradi',
+			'Piscina esterna da giugno a settembre',
+			'Attrezzi Technogym',
+			'Sale corsi e Group Cycling',
+			'Sauna',
+			'Bagno turco',
+			'Stanza del sale',
+			'Consulting Medical Center',
+		],
+	},
+};
+
 const assoluto = (percorso: string) => (percorso.startsWith('http') ? percorso : site.url + percorso);
 
 /** Telefono nel formato internazionale: "0362 827427" -> "+39 0362 827427". */
@@ -46,7 +66,7 @@ export const organizzazione = (): Json => ({
 export const luogo = (s: Sede, immagine?: string): Json => {
 	const { localita, provincia } = dividiCitta(s.citta);
 	return {
-		'@type': 'SportsActivityLocation',
+		'@type': ['SportsActivityLocation', 'HealthClub'],
 		'@id': `${site.url}/${s.slug}#sede`,
 		name: `${site.name} ${s.nome}`,
 		legalName: s.ragioneSociale,
@@ -55,6 +75,14 @@ export const luogo = (s: Sede, immagine?: string): Json => {
 		...(s.email ? { email: s.email } : {}),
 		vatID: 'IT' + s.piva,
 		...(immagine ? { image: assoluto(immagine) } : {}),
+		...(EXTRA[s.slug]
+			? {
+					description: EXTRA[s.slug]!.descrizione,
+					areaServed: EXTRA[s.slug]!.zona.map((nome) => ({ '@type': 'City', name: nome })),
+					amenityFeature: EXTRA[s.slug]!.servizi.map((nome) => ({ '@type': 'LocationFeatureSpecification', name: nome, value: true })),
+				}
+			: {}),
+		hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${s.via}, ${s.cap} ${s.citta}`)}`,
 		address: {
 			'@type': 'PostalAddress',
 			streetAddress: s.via,
