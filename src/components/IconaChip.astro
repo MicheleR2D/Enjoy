@@ -1,0 +1,198 @@
+---
+/*
+ * Icone dei punti elenco delle pagine (gym floor): disegno a linea che prende il colore del testo, con un
+ * piccolo movimento continuo diverso per ognuna. Con "riduci movimento" stanno ferme.
+ */
+interface Props {
+	nome: 'manubrio' | 'sole' | 'goccia' | 'lista' | 'livelli' | 'griglia';
+}
+const { nome } = Astro.props;
+---
+
+<svg class={`ic ic--${nome}`} viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+	{
+		nome === 'manubrio' && (
+			<g class="ic__su">
+				<path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11" />
+			</g>
+		)
+	}
+	{
+		nome === 'sole' && (
+			<>
+				<circle cx="12" cy="12" r="3.8" />
+				<g class="ic__raggi">
+					<path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3 7 7M17 17l1.7 1.7M5.3 18.7 7 17M17 7l1.7-1.7" />
+				</g>
+			</>
+		)
+	}
+	{
+		nome === 'goccia' && (
+			<g class="ic__goccia">
+				<path d="M12 3s6 6.2 6 10.5a6 6 0 0 1-12 0C6 9.2 12 3 12 3z" />
+				<path d="M9.5 14.2a2.7 2.7 0 0 0 2 2.2" />
+			</g>
+		)
+	}
+	{
+		nome === 'lista' && (
+			<>
+				<path d="M10 6h10M10 12h10M10 18h10" />
+				<path class="ic__spunta ic__spunta--1" d="m3.5 6 1.5 1.5L7.5 4.5" />
+				<path class="ic__spunta ic__spunta--2" d="m3.5 12 1.5 1.5 2.5-3" />
+				<path class="ic__spunta ic__spunta--3" d="m3.5 18 1.5 1.5 2.5-3" />
+			</>
+		)
+	}
+	{
+		nome === 'livelli' && (
+			<>
+				<path d="m3 17 9 5 9-5" />
+				<path d="m3 12.5 9 5 9-5" />
+				<path class="ic__piano" d="m12 2 9 5-9 5-9-5 9-5z" />
+			</>
+		)
+	}
+	{
+		nome === 'griglia' && (
+			<>
+				<rect class="ic__q ic__q--1" x="3" y="3" width="7.5" height="7.5" rx="1.8" />
+				<rect class="ic__q ic__q--2" x="13.5" y="3" width="7.5" height="7.5" rx="1.8" />
+				<rect class="ic__q ic__q--3" x="3" y="13.5" width="7.5" height="7.5" rx="1.8" />
+				<rect class="ic__q ic__q--4" x="13.5" y="13.5" width="7.5" height="7.5" rx="1.8" />
+			</>
+		)
+	}
+</svg>
+
+<style>
+	svg {
+		overflow: visible;
+	}
+
+	/* il manubrio si alza e si abbassa */
+	.ic__su {
+		animation: ic-su 2s ease-in-out infinite;
+	}
+
+	/* i raggi del sole girano piano */
+	.ic__raggi {
+		transform-origin: 12px 12px;
+		animation: ic-gira 14s linear infinite;
+	}
+
+	/* la goccia respira */
+	.ic__goccia {
+		transform-origin: 12px 14px;
+		animation: ic-goccia 2.6s ease-in-out infinite;
+	}
+
+	/* le spunte si accendono una dopo l'altra */
+	.ic__spunta {
+		transform-box: fill-box;
+		transform-origin: center;
+		animation: ic-spunta 2.4s ease-in-out infinite;
+	}
+
+	.ic__spunta--2 {
+		animation-delay: 0.3s;
+	}
+
+	.ic__spunta--3 {
+		animation-delay: 0.6s;
+	}
+
+	/* il piano in alto si solleva */
+	.ic__piano {
+		animation: ic-piano 2.4s ease-in-out infinite;
+	}
+
+	/* i quadrati pulsano a rotazione */
+	.ic__q {
+		transform-box: fill-box;
+		transform-origin: center;
+		animation: ic-q 2.4s ease-in-out infinite;
+	}
+
+	.ic__q--2 {
+		animation-delay: 0.3s;
+	}
+
+	.ic__q--4 {
+		animation-delay: 0.6s;
+	}
+
+	.ic__q--3 {
+		animation-delay: 0.9s;
+	}
+
+	@keyframes ic-su {
+		0%,
+		100% {
+			transform: translateY(1px);
+		}
+		50% {
+			transform: translateY(-2px);
+		}
+	}
+
+	@keyframes ic-gira {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes ic-goccia {
+		0%,
+		100% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(1.12);
+		}
+	}
+
+	@keyframes ic-spunta {
+		0%,
+		60%,
+		100% {
+			transform: scale(1);
+		}
+		30% {
+			transform: scale(1.35);
+		}
+	}
+
+	@keyframes ic-piano {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-2.5px);
+		}
+	}
+
+	@keyframes ic-q {
+		0%,
+		60%,
+		100% {
+			transform: scale(1);
+		}
+		30% {
+			transform: scale(0.82);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.ic__su,
+		.ic__raggi,
+		.ic__goccia,
+		.ic__spunta,
+		.ic__piano,
+		.ic__q {
+			animation: none;
+		}
+	}
+</style>

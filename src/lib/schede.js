@@ -25,7 +25,8 @@ function conTitolo(pezzo) {
 	// E' un titolo solo se dopo c'e' un "a capo" o i due punti (dentro o fuori dal grassetto):
 	// "<strong>Allenati in una stazione...</strong> dotata di..." e' l'inizio di una frase, non un titolo.
 	const eTitolo = !!aCapo || !!duePunti || /:\s*$/.test(testoPiano(grassetto));
-	if (!eTitolo || !titolo || !testoPiano(resto)) return null;
+	// Un grassetto lungo come una frase (oltre 70 caratteri) non e' un titolo: e' la prima frase del testo in evidenza.
+	if (!eTitolo || !titolo || titolo.length > 70 || !testoPiano(resto)) return null;
 	return { titolo, html: resto.trim().replace(/^(<br\s*\/?>\s*)+/, '') };
 }
 
@@ -46,28 +47,76 @@ function perFrasi(h, max = 260) {
 	return gruppi;
 }
 
-export function inSchede(html) {
+// Un paragrafo fatto solo di un grassetto breve ("<p><strong>Benefici principali:</strong></p>") e' il titolo di
+// quello che segue (testo sciolto, liste, paragrafi) fino al titolo successivo.
+const RE_SOLO_TITOLO = /^\s*(?:<em>\s*)?<strong>([\s\S]*?)<\/strong>(?:\s*<\/em>)?\s*(?:&nbsp;|\u00a0)?\s*$/;
+
+// Pezzi di primo livello: <p>, <ul>/<ol> e il testo sciolto tra l'uno e l'altro (che prima andava perso).
+function pezziPrimoLivello(h) {
+	const pezzi = [];
+	let ultimo = 0;
+	for (const m of h.matchAll(/<p[^>]*>([\s\S]*?)<\/p>|<(ul|ol)[^>]*>[\s\S]*?<\/\2>/g)) {
+		const prima = h.slice(ultimo, m.index);
+		if (testoPiano(prima)) pezzi.push({ tipo: 'sciolto', html: prima.trim() });
+		if (m[2]) pezzi.push({ tipo: 'lista', html: m[0] });
+		else if (testoPiano(m[1])) pezzi.push({ tipo: 'p', html: m[1].trim() });
+		ultimo = m.index + m[0].length;
+	}
+	const resto = h.slice(ultimo).replace(/<\/p>\s*$/i, '');
+	if (testoPiano(resto)) pezzi.push({ tipo: 'sciolto', html: resto.trim() });
+	return pezzi;
+}
+
+export function inSchede(html, { max = 260 } = {}) {
 	const h = (html ?? '').trim();
 	if (!h) return [];
 
-	// 1) paragrafi
-	let pezzi = [...h.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/g)].map((m) => m[1].trim()).filter((p) => testoPiano(p));
-	if (!pezzi.length) pezzi = [h];
-
-	// 2) dentro un pezzo, sotto-aree in fila senza paragrafi ("<em><strong>Sala Energy: </strong></em>...<em><strong>X Space: </strong></em>...")
-	pezzi = pezzi.flatMap((p) => (/^(?:<em>\s*)?<strong>/.test(p) ? p.split(/(?=<em>\s*<strong>[^<]*:\s*<\/strong>)/).map((x) => x.trim()).filter(Boolean) : [p]));
-
+	const pezzi = pezziPrimoLivello(h);
 	const schede = [];
-	for (const p of pezzi) {
-		const t = conTitolo(p);
-		if (t) {
-			schede.push(t);
+	let titoloAperto = null; // titolo in attesa del suo contenuto
+	let corpo = [];
+
+	const chiudi = () => {
+		if (titoloAperto !== null || corpo.length) {
+			schede.push(titoloAperto !== null ? { titolo: titoloAperto, html: corpo.join('') } : { html: corpo.join('') });
+		}
+		titoloAperto = null;
+		corpo = [];
+	};
+	const comeParagrafo = (p) => (/^\s*<(p|ul|ol)\b/i.test(p) ? p : `<p>${p}</p>`);
+
+	for (const pezzo of pezzi) {
+		const t = pezzo.tipo === 'p' ? pezzo.html.match(RE_SOLO_TITOLO) : null;
+		if (t && testoPiano(t[1]).length <= 70) {
+			chiudi();
+			titoloAperto = testoPiano(t[1]).replace(/\s*:\s*$/, '');
 			continue;
 		}
-		// 3) senza titolo: righe ("<br>"), poi frasi se resta un unico blocco lungo
-		const righe = p.split(/<br\s*\/?>/).map((x) => x.trim()).filter((x) => testoPiano(x));
-		const blocchi = righe.length > 1 ? righe : perFrasi(p);
-		for (const b of blocchi) schede.push({ html: b });
+		if (titoloAperto !== null) {
+			// il contenuto di un titolo: testo, lista o paragrafo
+			corpo.push(pezzo.tipo === 'lista' ? pezzo.html : comeParagrafo(pezzo.html));
+			continue;
+		}
+		if (pezzo.tipo === 'lista') {
+			schede.push({ html: pezzo.html });
+			continue;
+		}
+
+		// paragrafo (o testo sciolto) senza titolo davanti: sotto-aree in fila, titolo + testo, righe o frasi
+		const sottoAree = /^(?:<em>\s*)?<strong>/.test(pezzo.html)
+			? pezzo.html.split(/(?=<em>\s*<strong>[^<]*:\s*<\/strong>)/).map((x) => x.trim()).filter(Boolean)
+			: [pezzo.html];
+		for (const p of sottoAree) {
+			const ct = conTitolo(p);
+			if (ct) {
+				schede.push(ct);
+				continue;
+			}
+			const righe = p.split(/<br\s*\/?>/).map((x) => x.trim()).filter((x) => testoPiano(x));
+			const blocchi = righe.length > 1 ? righe : perFrasi(p, max);
+			for (const b of blocchi) schede.push({ html: b });
+		}
 	}
+	chiudi();
 	return schede;
 }

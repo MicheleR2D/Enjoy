@@ -17,6 +17,7 @@ import SediAttivita from '../components/SediAttivita.astro';
 import FasiPercorso from '../components/FasiPercorso.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import { domandeFrequenti, grafo } from '../lib/jsonld';
+import { inSchede } from '../lib/schede.js';
 import { sedi, formUrl } from '../data/site';
 
 interface Pulsante {
@@ -74,6 +75,26 @@ const inizioFasi = haFasi ? indiciFasi[0] - (introFasi ? 1 : 0) : -1;
 // con un blocco solo; con piu' blocchi stanno in una fascia centrata in fondo.
 const bloccoVero = (i: number) => !(haFasi && i >= inizioFasi && i <= ultimaFase);
 const soloUnBlocco = pagina.blocchi.filter((_, i) => bloccoVero(i)).length === 1;
+
+// Pagine con il testo diviso in card a scorrimento e i punti elenco con icone animate (src/lib/schede.js).
+const conCard = pagina.slug === 'gym-floor';
+const iconaPunto = (testo: string): string | null =>
+	/attrezzature|sale corsi/i.test(testo) ? 'manubrio'
+	: /luminos|vista|verde/i.test(testo) ? 'sole'
+	: /benessere/i.test(testo) ? 'goccia'
+	: /programma/i.test(testo) ? 'lista'
+	: /livelli/i.test(testo) ? 'livelli'
+	: /panoramic|multifunzional/i.test(testo) ? 'griglia'
+	: null;
+// Testi lunghi (da 240 caratteri): su telefono diventano card a scorrimento; su desktop restano il paragrafo.
+const lunghezzaTesto = (h: string) => h.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().length;
+const schedeTelefono = (b: any) => {
+	if (conCard || lunghezzaTesto(b.descrizioneHtml ?? '') < 240) return [];
+	// Sulle schede (testi brevi) ogni frase o quasi e' una card: raggruppo fino a 200 caratteri.
+	const s = inSchede(b.descrizioneHtml, { max: 200 });
+	return s.length > 1 ? s : [];
+};
+const perCard = (b: any) => (conCard ? { ...b, dettagli: b.dettagli.map((d: any) => ({ ...d, icona: iconaPunto(d.testo) ?? d.icona })) } : b);
 
 // Una scheda corso senza video usa la foto della pagina; le pagine "servizio" no.
 const sfondoSenzaMedia = pagina.tipo === 'corso' ? pagina.hero.immagine : undefined;
@@ -137,7 +158,17 @@ const nFascia = voci.length + (faqPresenti ? 1 : 0);
 			// Sedi nel blocco: le sue (se le indica) o, con un solo blocco, quelle della pagina.
 			const sediBlocco = blocco.sedi ? sediDi(blocco.sedi) : soloUnBlocco ? sediAttivita : [];
 			return (
-				<CourseBlock blocco={blocco} fallbackImage={sfondoSenzaMedia} reverse={n % 2 === 1} tone={eAccento(n) ? 'accento' : 'dark'} sfumoA={dopo(n)} dopoSfumo={dopoSfumo(n)}>
+				<CourseBlock
+					blocco={perCard(blocco)}
+					fallbackImage={sfondoSenzaMedia}
+					reverse={n % 2 === 1}
+					tone={eAccento(n) ? 'accento' : 'dark'}
+					sfumoA={dopo(n)}
+					dopoSfumo={dopoSfumo(n)}
+					fotoCentro={conCard}
+					schede={conCard ? inSchede(blocco.descrizioneHtml) : []}
+					schedeMobile={schedeTelefono(blocco)}
+				>
 					<SediAttivita sedi={sediBlocco} etichetta={pagina.sediEtichetta} />
 				</CourseBlock>
 			);

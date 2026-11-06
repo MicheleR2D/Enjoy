@@ -64,7 +64,7 @@ const prepara = (t: string) => {
 			{introHtml && <div class="fasi__intro" data-anim="from-right" data-anim-delay="80" set:html={introHtml} />}
 		</header>
 
-		<ol class="fasi__lista">
+		<ol class="fasi__lista" data-fasi>
 			{
 				fasi.map((f, i) => {
 					const { nome, numeri, unita } = prepara(f.titolo);
@@ -81,8 +81,22 @@ const prepara = (t: string) => {
 				})
 			}
 		</ol>
+		<div class="fasi__punti" aria-hidden="true">
+			{fasi.map((_, i) => (
+				<span class:list={['cb__punto', { 'is-on': i === 0 }]} />
+			))}
+			<svg class="cb__scorri" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M4 12h15" />
+				<path d="m13 6 6 6-6 6" />
+			</svg>
+		</div>
 	</div>
 </section>
+
+<script>
+	import { iniziaCarosello } from '../lib/carosello.client';
+	document.querySelectorAll<HTMLElement>('.fasi__lista').forEach(iniziaCarosello);
+</script>
 
 <style>
 	.fasi {
@@ -201,9 +215,103 @@ const prepara = (t: string) => {
 		margin-bottom: 0;
 	}
 
+	.fasi__punti {
+		display: none;
+	}
+
+	/* Telefono: le fasi sono card da scorrere di lato (gialle sul nero, nere sul giallo), con pallini e freccia. */
 	@media (max-width: 900px) {
 		.fasi__lista {
-			grid-template-columns: minmax(0, 1fr);
+			display: flex;
+			gap: 12px;
+			margin-inline: calc(-1 * var(--gutter));
+			padding: 4px var(--gutter) 12px;
+			overflow-x: auto;
+			overflow-y: hidden;
+			overscroll-behavior-x: contain;
+			touch-action: pan-x pan-y;
+			scroll-snap-type: x mandatory;
+			scroll-padding-inline: var(--gutter);
+			scrollbar-width: none;
+		}
+
+		.fasi__lista::-webkit-scrollbar {
+			display: none;
+		}
+
+		.fasi .fase {
+			flex: 0 0 80%;
+			scroll-snap-align: start;
+			padding: 20px 18px 22px;
+			border: 0;
+			border-radius: 16px;
+			background: var(--accent);
+			color: var(--on-accent);
+			box-shadow: 0 14px 28px -16px rgba(0, 0, 0, 0.55);
+			scale: 0.94;
+			transform-origin: left center;
+			transition: scale 0.45s var(--ease-out-crit);
+		}
+
+		.fasi .fase.is-attiva,
+		.fasi .fase:first-child:not(.is-attiva) {
+			scale: 1;
+		}
+
+		.fasi .fase__nome {
+			color: var(--on-accent);
+		}
+
+		.fasi--accento .fase {
+			background: var(--bg-dark-deep);
+			color: var(--text-on-dark);
+		}
+
+		.fasi--accento .fase__nome {
+			color: var(--accent);
+		}
+
+		.fasi__punti {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 8px;
+			margin-top: 6px;
+		}
+
+		.fasi__punti .cb__punto {
+			width: 8px;
+			height: 8px;
+			border-radius: 4px;
+			background: currentColor;
+			opacity: 0.3;
+			transition: width 0.3s ease, opacity 0.3s ease;
+		}
+
+		.fasi__punti .cb__punto.is-on {
+			width: 22px;
+			opacity: 1;
+		}
+
+		.fasi__punti .cb__scorri {
+			margin-left: 6px;
+			animation: fasi-scorri 1.4s ease-in-out infinite;
+			transition: opacity 0.3s ease;
+		}
+
+		.fasi__punti.is-fine .cb__scorri {
+			opacity: 0;
+			animation: none;
+		}
+
+		@keyframes fasi-scorri {
+			0%,
+			100% {
+				transform: translateX(-2px);
+			}
+			50% {
+				transform: translateX(5px);
+			}
 		}
 	}
 </style>
