@@ -305,6 +305,15 @@ body.lf-locked {
   transform: translateX(48px);
 }
 
+/* Su telefono un elemento traslato oltre il bordo allarga la pagina (scorre a destra):
+   l'entrata laterale diventa un'entrata dal basso. */
+@media (max-width: 900px) {
+  :where(.js) [data-anim="from-left"],
+  :where(.js) [data-anim="from-right"] {
+    transform: translateY(32px);
+  }
+}
+
 :where(.js) [data-anim="fade"] {
   transform: none;
 }

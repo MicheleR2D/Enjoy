@@ -40,14 +40,14 @@ const righe = (items: ReturnType<typeof toCard>[]) => {
 	return [items.slice(0, prima), items.slice(prima)];
 };
 
-const gruppi = home.gruppi.map((g, i) => ({ ...g, ...dividiTitolo(g.titolo), righe: righe(g.card.map(toCard)), fondo: ['var(--bg-dark-deep)', 'var(--bg-dark)', 'var(--bg-dark-soft)'][i % 3] }));
+const gruppi = home.gruppi.map((g, i) => ({ ...g, ...dividiTitolo(g.titolo), righe: righe(g.card.map(toCard)), fondo: ['var(--bg-dark-deep)', 'var(--bg-dark)', 'var(--bg-dark-soft)'][i % 3], seguente: ['var(--bg-dark)', 'var(--bg-dark-soft)', 'var(--bg-dark)'][i % 3] }));
 const introHero = home.hero.intro.replace(/<\/?p>/g, '');
 // La frase del metodo arriva spezzata in due paragrafi (e con un <br>): e' una frase sola.
 const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').replace(/<\/p>\s*<p>/g, ' ');
 ---
 
 <Layout headerTone="overlay" stack title={home.seo.title} description={home.seo.description} jsonLd={grafo(organizzazione(), ...sedi.map((s) => luogo(s)))}>
-	<HeroCarousel images={heroImages} video={{ id: 'HCXI_Uh0JJw', inizio: 4 }}>
+	<HeroCarousel images={heroImages} video={{ id: 'HCXI_Uh0JJw', inizio: 4, fine: 84 }}>
 		<h1 class="hero__title" data-intro aria-label="Enjoy Club">
 			<span aria-hidden="true">
 				enjoy
@@ -62,13 +62,13 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		</div>
 	</HeroCarousel>
 
-	<section class="block--black">
+	<section class="block--black marquee">
 		<div data-anim="fade">
 			<PhotoMarquee images={fotoCarosello} />
 		</div>
 	</section>
 
-	<section class="block--accent">
+	<section class="block--accent sfuma" style="--da: var(--accent); --a: var(--bg-dark)">
 		<div class="storia__inner">
 			{
 				home.storia.immagine && (
@@ -78,7 +78,7 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 				)
 			}
 			<div class="storia__testo-col">
-				<blockquote class="storia__quote" data-anim="from-right">{home.storia.titolo}</blockquote>
+				<blockquote class="storia__quote" data-anim="from-right" set:html={home.storia.titolo.replace(/,\s*/, ',<br>')} />
 				<div class="storia__testo" data-anim="fade" set:html={home.storia.html} />
 				<div class="storia__cta" data-anim="fade">
 					<a class="btn btn--outline" href="#sedi">Scopri le nostre sedi</a>
@@ -152,11 +152,30 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		}
 	</script>
 
-	<section class="metodo section on-dark">
+	<section class="metodo section on-dark sfuma" style="--da: var(--bg-dark); --a: var(--bg-dark-deep)">
 		<div class="metodo__inner container-wide">
 			<div class="metodo__intro" data-anim="from-left">
-				{home.metodo.immagine && <Img src={home.metodo.immagine} alt="" class="metodo__img" sizes="(max-width: 900px) 40vw, 18vw" />}
-				<h2 class="display-title metodo__titolo">Il nostro <span class="accent-text">Metodo</span></h2>
+				<svg class="metodo__filtro" width="0" height="0" aria-hidden="true" focusable="false">
+					<filter id="contorno-fumetto" x="-5%" y="-5%" width="110%" height="110%">
+						<feMorphology in="SourceAlpha" operator="dilate" radius="1.5" result="ingrandita" />
+						<feFlood style="flood-color: var(--accent)" result="giallo" />
+						<feComposite in="giallo" in2="ingrandita" operator="in" result="contorno" />
+						<feMerge>
+							<feMergeNode in="contorno" />
+							<feMergeNode in="SourceGraphic" />
+						</feMerge>
+					</filter>
+				</svg>
+				<div class="metodo__testa">
+					<h2 class="display-title metodo__titolo">Il nostro <span class="accent-text">Metodo</span></h2>
+					{
+						home.metodo.immagine && (
+							<span class="metodo__fumetto">
+								<Img src={home.metodo.immagine} alt="" class="metodo__img" sizes="(max-width: 900px) 40vw, 18vw" />
+							</span>
+						)
+					}
+				</div>
 				<div class="metodo__frase" set:html={introMetodo} />
 			</div>
 			<ol class="metodo__punti">
@@ -175,8 +194,8 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 
 	<section class="attivita">
 		{
-			gruppi.map((g) => (
-				<div class="attivita__block" style={`--block-bg:${g.fondo}`}>
+			gruppi.map((g, i) => (
+				<div class="attivita__block sfuma" style={`--block-bg:${g.fondo}; --da:${g.fondo}; --a:${g.seguente}`}>
 					<SectionTitle accent={g.accento} gap={0}>
 						{g.titolo}
 					</SectionTitle>
@@ -224,7 +243,7 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		</div>
 	</section>
 
-	<section class="block--black section testimonianze">
+	<section class="block--black section testimonianze sfuma" style="--da: var(--bg-dark); --a: var(--accent)">
 		<SectionTitle align="right" line="text" gap={40}>Non fidarti solo di quello che diciamo noi</SectionTitle>
 		<div class="container-wide">
 			<div class="testimonianze__grid">
@@ -318,6 +337,45 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		}
 	}
 
+	/* In fondo alla hero la foto sfuma nel nero della striscia di foto che segue. Sta sotto il
+	   testo della hero (che ha z-index 1). */
+	:global(.hc)::after {
+		content: '';
+		position: absolute;
+		inset: auto 0 0 0;
+		height: 72px;
+		background: linear-gradient(to bottom, transparent, var(--bg-dark));
+		pointer-events: none;
+	}
+
+	/* Sotto la striscia di foto il nero sfuma nel giallo della sezione che segue: 40px di sfumo
+	   + 16px di giallo = la solita fascia di 56px tra sezioni. */
+	section.marquee::after {
+		content: '';
+		display: block;
+		height: 40px;
+		background: linear-gradient(to bottom, var(--bg-dark), var(--accent));
+	}
+
+	.marquee + section {
+		border-top-width: 16px;
+	}
+
+	/* Sfumo tra una sezione e la successiva: occupa gli ultimi 40px del padding in fondo alla sezione
+	   (--da = suo colore, --a = colore della successiva). Dove il colore non cambia non serve. */
+	.sfuma {
+		position: relative;
+	}
+
+	.sfuma::after {
+		content: '';
+		position: absolute;
+		inset: auto 0 0 0;
+		height: 40px;
+		pointer-events: none;
+		background: linear-gradient(to bottom, var(--da), var(--a));
+	}
+
 	.section {
 		padding-block: 56px;
 	}
@@ -398,7 +456,7 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 0;
-		padding: 24px var(--gutter) 12px;
+		padding: 24px var(--gutter) 56px;
 	}
 
 	.contatore {
@@ -450,14 +508,53 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		align-items: start;
 	}
 
-	.metodo__img {
-		width: 140px;
-		height: auto;
+	/* Titolo e fumetto sulla stessa riga: titolo a sinistra, fumetto a destra. */
+	.metodo__filtro {
+		position: absolute;
+	}
+
+	.metodo__testa {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
 		margin-bottom: 20px;
 	}
 
+	/* Il bordo giallo "respira": un leggero alone giallo che pulsa e segue la sagoma (coda compresa). */
+	.metodo__fumetto {
+		flex-shrink: 0;
+		line-height: 0;
+		animation: metodo-bagliore 3.2s ease-in-out infinite;
+	}
+
+	@keyframes metodo-bagliore {
+		0%,
+		100% {
+			filter: drop-shadow(0 0 0 rgba(255, 230, 0, 0));
+		}
+		50% {
+			filter: drop-shadow(0 0 7px rgba(255, 230, 0, 0.6));
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.metodo__fumetto {
+			animation: none;
+		}
+	}
+
+	.metodo__testa :global(.metodo__img) {
+		flex-shrink: 0;
+		width: clamp(110px, 36vw, 170px);
+		height: auto;
+		/* Il fumetto e' nero come lo sfondo: contorno giallo che segue la sagoma dell'immagine
+		   (fumetto e coda). Il filtro e' definito nell'SVG qui sopra nella pagina. */
+		filter: url(#contorno-fumetto);
+	}
+
 	.metodo__titolo {
-		margin-bottom: 16px;
+		margin-bottom: 0;
 		font-size: clamp(2.2rem, 3.6vw, 3.25rem);
 		line-height: 1;
 		color: var(--text-on-dark);
@@ -629,28 +726,77 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 	}
 
 	@media (max-width: 900px) {
+		/* Marquee: tra hero e foto lo stesso spazio che c'e' sotto (solo il padding della striscia). */
+		section.marquee {
+			border-top-width: 0;
+		}
+
+		/* Storia in colonna: titolo, foto, testo, bottone. La colonna del testo si "scioglie"
+		   (display: contents) cosi' la foto puo' stare tra titolo e testo. */
 		.storia__inner {
-			grid-template-columns: 1fr;
+			display: flex;
+			flex-direction: column;
 			min-height: 0;
+		}
+
+		.storia__testo-col {
+			display: contents;
+		}
+
+		.storia__quote {
+			order: 1;
+			margin: 0 var(--gutter) 24px;
+			font-size: clamp(1.6rem, 7.4vw, 2.25rem);
 		}
 
 		.storia__foto {
-			height: 260px;
+			order: 2;
 			min-height: 0;
-			border-radius: 0 0 20px 20px;
+			height: auto;
+			aspect-ratio: 16 / 10;
+			margin: 0 var(--gutter) 28px;
+			border-radius: 20px;
+		}
+
+		/* La foto ha margini neri sopra e sotto, e sotto i busti un bordo netto: il ritaglio
+		   parte poco sopra le teste e finisce prima di quel bordo. */
+		.storia__foto :global(img) {
+			object-position: 50% 30%;
 		}
 
 		.storia__testo {
+			order: 3;
 			column-count: 1;
+			padding-inline: var(--gutter);
 		}
 
+		.storia__cta {
+			order: 4;
+			padding-inline: var(--gutter);
+		}
+
+		/* Numeri: tre colonne uguali, cifre che stanno nella colonna, stesso spazio sotto e sopra. */
 		.contatori {
-			grid-template-columns: repeat(3, 1fr);
-			padding-inline: 12px;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			padding: 32px var(--gutter) 56px;
 		}
 
 		.contatore {
-			padding: 0 8px;
+			padding: 0 4px;
+		}
+
+		.contatore__numero {
+			font-size: clamp(1.5rem, 7.4vw, 2.75rem);
+			margin-bottom: 10px;
+		}
+
+		/* La fascia tra sezioni (56px) fa gia' da spazio in alto: niente secondo padding. */
+		.metodo {
+			padding-top: 0 !important;
+		}
+
+		.metodo__titolo {
+			font-size: clamp(1.9rem, 8vw, 3rem);
 		}
 
 		.metodo__inner {

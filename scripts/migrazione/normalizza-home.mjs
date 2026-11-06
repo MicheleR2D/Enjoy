@@ -96,7 +96,8 @@ const h2 = (w) => w.widgetType === 'heading' && (w.settings.header_size || 'h2')
 		hero: { intro, immagini: slide(caroselli.find((w) => w.widgetType === 'media-carousel')) },
 		marquee: slide(caroselli.find((w) => w.widgetType === 'image-carousel')),
 		storia: {
-			titolo: strip(storiaWs.find((w) => w.widgetType === 'blockquote').settings.blockquote_content),
+			// nel sito originale manca la virgola dopo "Storia"
+			titolo: strip(storiaWs.find((w) => w.widgetType === 'blockquote').settings.blockquote_content).replace(/Storia\s+il\b/i, 'Storia, il'),
 			html: pulisci(testi(storiaWs)[0]),
 			immagine: storiaFoto,
 		},
