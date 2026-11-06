@@ -42,17 +42,6 @@
 			"intensita": []
 		}
 	],
-	"faq": [
-		{
-			"domanda": "Ho bisogno del Certificato Medico?",
-			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
-		},
-		{
-			"domanda": "La lezione è adatta a tutti?",
-			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
-		}
-	],
-	"faqNascoste": true,
 	"sedi": [
 		"camuzzago"
 	]

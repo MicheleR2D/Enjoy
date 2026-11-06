@@ -17,8 +17,18 @@ export function decodifica(s, { tutte = false } = {}) {
 		.replace(/&([a-z]+);/gi, (m, nome) => ENTITA[nome] ?? (tutte && nome === 'amp' ? '&' : tutte && nome === 'lt' ? '<' : tutte && nome === 'gt' ? '>' : m));
 }
 
+// Correzioni ai testi del vecchio sito, applicate a ogni testo estratto (strip e pulisci):
+// - "Body Studio" e' un'altra palestra (l'app di Enjoy e' Technogym): si toglie la frase
+//   "Prenota la tua Lezione sull'App di Body Studio!" e, in generale, ogni frase che la cita;
+// - refuso "Un nostro operatore di fornira'..." -> "Un nostro operatore ti fornira'...".
+export function correggiContenuto(t) {
+	return String(t ?? '')
+		.replace(/\s*[^.!?<>]*body\s?studio[^.!?<>]*[.!?]/gi, '')
+		.replace(/\boperatore di fornirà/g, 'operatore ti fornirà');
+}
+
 export const strip = (h) =>
-	decodifica(
+	correggiContenuto(decodifica(
 		(h || '')
 			.replace(/<[^>]+>/g, ' ')
 			.replace(/&nbsp;/g, ' '),
@@ -78,7 +88,7 @@ export function collegamento(s, campo = 'link') {
 // niente stili, classi o span di Elementor.
 // Con { abbassaTitoli: true } gli h1 diventano h2 (la pagina ha gia' il suo h1).
 export function pulisci(html, { abbassaTitoli = false } = {}) {
-	const testo = decodifica(html || '')
+	const testo = correggiContenuto(decodifica(html || ''))
 		.replace(/<!--[\s\S]*?-->/g, '')
 		.replace(/&nbsp;/g, ' ')
 		.replace(/<\/?(span|div|font|u|article|section)\b[^>]*>/gi, '')

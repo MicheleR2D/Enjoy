@@ -1,0 +1,167 @@
+---
+/*
+ * Numeri grandi sul giallo (come i contatori della home): cifra nera pesante con barra nera sotto
+ * che si disegna all'entrata, linee sottili di separazione, etichetta maiuscola. La cifra sale da 0 al
+ * valore quando entra in vista (solo senza "riduci movimento"); l'HTML contiene gia' il valore finale.
+ * Il suffisso puo' essere "+" (grande, come "160+"), un'unita' ("m²", "m") o entrambi ("+ m²"):
+ * l'unita' si scrive piu' piccola accanto alla cifra.
+ */
+import { formattaNumero } from '../data/stats';
+
+interface Props {
+	numeri: { valore: number; suffisso: string; etichetta: string }[];
+}
+
+const { numeri } = Astro.props;
+const voci = numeri.map((n) => {
+	const m = n.suffisso.match(/^(\+?)\s*(.*)$/);
+	return { ...n, piu: m?.[1] ?? '', unita: m?.[2] ?? '' };
+});
+---
+
+<div class="numeri">
+	{
+		voci.map((n, i) => (
+			<div class="numero" data-anim="up" data-anim-delay={String(i * 120)}>
+				<span class="numero__valore">
+					<span class="numero__cifra" data-conta data-valore={n.valore}>
+						{formattaNumero(n.valore)}
+					</span>
+					{n.piu}
+					{n.unita && <span class="numero__unita">{n.unita}</span>}
+				</span>
+				<span class="numero__etichetta">{n.etichetta}</span>
+			</div>
+		))
+	}
+</div>
+
+<script>
+	import { formattaNumero } from '../data/stats';
+
+	// Parte da 0 solo come effetto: senza JS o con "riduci movimento" resta il valore finale.
+	const cifre = document.querySelectorAll<HTMLElement>('[data-conta]');
+	if (cifre.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		const anima = (el: HTMLElement) => {
+			const target = Number(el.dataset.valore);
+			const inizio = performance.now();
+			const tick = (ora: number) => {
+				const p = Math.min(1, (ora - inizio) / 1500);
+				el.textContent = formattaNumero(p < 1 ? Math.floor(p * target) : target);
+				if (p < 1) requestAnimationFrame(tick);
+			};
+			requestAnimationFrame(tick);
+		};
+		const osservatore = new IntersectionObserver(
+			(voci) => {
+				voci.forEach((v) => {
+					if (v.isIntersecting) {
+						anima(v.target as HTMLElement);
+						osservatore.unobserve(v.target);
+					}
+				});
+			},
+			{ threshold: 0.4 }
+		);
+		cifre.forEach((c) => {
+			c.textContent = '0';
+			osservatore.observe(c);
+		});
+	}
+</script>
+
+<style>
+	.numeri {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		color: var(--on-accent);
+	}
+
+	.numero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		min-width: 0;
+		padding: 8px 32px;
+		text-align: center;
+		border-left: 1px solid var(--on-accent);
+	}
+
+	.numero:first-child {
+		border-left: none;
+		padding-left: 0;
+	}
+
+	.numero:last-child {
+		padding-right: 0;
+	}
+
+	.numero__valore {
+		display: block;
+		font-family: var(--font-heading);
+		font-weight: 900;
+		font-size: clamp(3.25rem, 6.6vw, 6rem);
+		line-height: 1;
+		letter-spacing: -0.03em;
+		font-variant-numeric: tabular-nums;
+		color: var(--on-accent);
+	}
+
+	.numero__unita {
+		margin-left: 0.12em;
+		font-size: 0.42em;
+		letter-spacing: 0;
+	}
+
+	/* Barra nera sotto la cifra, che si disegna all'entrata. */
+	.numero__valore::after {
+		content: '';
+		display: block;
+		width: 56px;
+		height: 5px;
+		margin: 14px auto 16px;
+		border-radius: 3px;
+		background: var(--on-accent);
+		transform-origin: center;
+	}
+
+	:global(.js) .numero__valore::after {
+		transform: scaleX(0);
+		transition: transform 0.7s var(--ease-out-crit) 0.5s;
+	}
+
+	:global(.js) .numero:global(.is-visible) .numero__valore::after {
+		transform: scaleX(1);
+	}
+
+	.numero__etichetta {
+		font-family: var(--font-heading);
+		font-size: var(--text-lg);
+		font-weight: 800;
+		line-height: 1.15;
+		text-transform: uppercase;
+		color: var(--on-accent);
+	}
+
+	@media (max-width: 900px) {
+		.numero {
+			padding: 0 3px;
+		}
+
+		.numero__valore {
+			font-size: clamp(1.5rem, 7.4vw, 3rem);
+		}
+
+		.numero__valore::after {
+			width: 32px;
+			height: 4px;
+			margin: 10px auto 12px;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.numero__etichetta {
+			font-size: var(--text-sm);
+		}
+	}
+</style>

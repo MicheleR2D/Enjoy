@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Pagina non trovata - Enjoy Club" description="La pagina che cerchi non esiste più o è stata spostata." noindex>
-	<section class="nf on-dark">
+	<section class="nf on-dark sfuma" style="--da:var(--bg-dark);--a:var(--accent)">
 		<p class="pill">Errore 404</p>
 		<h1 class="display-title nf__titolo">Questa pagina <span class="nf__accento">non c'è</span></h1>
 		<p class="nf__testo">Il link potrebbe essere vecchio o digitato male. Da qui puoi tornare in palestra.</p>
@@ -41,7 +41,7 @@ import Layout from '../layouts/Layout.astro';
 		max-width: 32rem;
 		margin: 0;
 		font-size: var(--text-md);
-		color: var(--text-muted-on-dark);
+		color: var(--text-on-dark);
 	}
 
 	.nf__azioni {

@@ -95,7 +95,7 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 						storiaSezioni.map((s, i) => (
 							<section class="storia__blocco" data-anim="fade" data-lato={i % 2 === 0 ? 'destra' : 'sinistra'}>
 								<div class="storia__cartello">
-									<h3 class="storia__titolo">{s.titolo}</h3>
+									<h2 class="storia__titolo">{s.titolo}</h2>
 									<p set:html={s.html} />
 								</div>
 							</section>
@@ -471,22 +471,9 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		border-top-width: 16px;
 	}
 
-	/* Sfumo tra una sezione e la successiva: occupa gli ultimi 40px del padding in fondo alla sezione
-	   (--da = suo colore, --a = colore della successiva). Dove il colore non cambia non serve. */
-	.sfuma {
-		position: relative;
-	}
+	/* Lo sfumo tra una sezione e la successiva (.sfuma, --da e --a) e' in global.css: lo usano anche le pagine interne.
 
-	.sfuma::after {
-		content: '';
-		position: absolute;
-		inset: auto 0 0 0;
-		height: 40px;
-		pointer-events: none;
-		background: linear-gradient(to bottom, var(--da), var(--a));
-	}
-
-	/* Spazi tra sezioni: tra i contenuti di due sezioni consecutive ci sono 112px. Dove il colore cambia
+	   Spazi tra sezioni: tra i contenuti di due sezioni consecutive ci sono 112px. Dove il colore cambia
 	   (sezioni con sfumo) sono ripartiti in modo simmetrico: 36px pieni + 40px di sfumo in fondo alla
 	   sezione che finisce (padding-bottom 76px) e 36px pieni di fascia in cima alla successiva. */
 	.attivita ~ .planning {

@@ -34,7 +34,8 @@ interface Props {
 		seo: { title: string; description: string };
 		hero: { titolo: string; parole?: string[]; immagine: string; pulsanti?: Pulsante[]; badge?: string };
 		blocchi: any[];
-		faq: { domanda: string; risposta: string | null }[];
+		/** Assente nelle pagine che sul sito originale non mostrano le FAQ (eliminate). */
+		faq?: { domanda: string; risposta: string | null }[];
 		/** Le FAQ ci sono nei dati ma sul sito originale sono nascoste: non si mostrano. */
 		faqNascoste?: boolean;
 		/** Etichetta delle sedi se diversa da quella di default (es. Personal Training, Medical Center). */
@@ -78,8 +79,28 @@ const soloUnBlocco = pagina.blocchi.filter((_, i) => bloccoVero(i)).length === 1
 const sfondoSenzaMedia = pagina.tipo === 'corso' ? pagina.hero.immagine : undefined;
 
 // Le FAQ si mostrano (e si dichiarano a Google) solo dove sono visibili anche sul sito originale.
-const faqVisibili = pagina.faqNascoste ? [] : pagina.faq;
+const faqVisibili = pagina.faqNascoste ? [] : (pagina.faq ?? []);
 const faqJsonLd = domandeFrequenti(faqVisibili);
+
+// Colori delle sezioni, dall'alto in basso: nero e giallo alternati (come le pagine sede), sempre a partire
+// dal nero perche' la hero sfuma nel nero. Le FAQ e la fascia delle sedi stanno sul nero. Dopo l'ultima
+// sezione c'e' la CTA gialla del footer: se l'ultima e' nera, in fondo c'e' lo sfumo verso il giallo.
+const voci: ({ k: 'blocco'; i: number } | { k: 'fasi' })[] = [];
+pagina.blocchi.forEach((_, i) => {
+	if (haFasi && i >= inizioFasi && i <= ultimaFase) {
+		if (i === inizioFasi) voci.push({ k: 'fasi' });
+		return;
+	}
+	voci.push({ k: 'blocco', i });
+});
+const eAccento = (n: number) => n % 2 === 1;
+const faqPresenti = faqVisibili.some((f) => f.risposta);
+const fasciaSedi = !sediPerBlocco && !soloUnBlocco && sediAttivita.length > 0;
+const toni: ('nero' | 'accento')[] = [...voci.map((_, n) => (eAccento(n) ? 'accento' : 'nero') as 'nero' | 'accento'), ...(faqPresenti ? ['nero' as const] : []), ...(fasciaSedi ? ['nero' as const] : [])];
+const dopo = (n: number): 'nero' | 'accento' => toni[n + 1] ?? 'accento';
+const dopoSfumo = (n: number) => n > 0 && toni[n - 1] !== toni[n];
+const nFaq = voci.length;
+const nFascia = voci.length + (faqPresenti ? 1 : 0);
 ---
 
 <Layout title={pagina.seo.title} description={pagina.seo.description} headerTone="overlay" ogSlug={pagina.slug} jsonLd={faqJsonLd ? grafo(faqJsonLd) : undefined}>
@@ -87,7 +108,7 @@ const faqJsonLd = domandeFrequenti(faqVisibili);
 		{
 			pulsanti.map((p, i) => (
 				<a
-					class:list={['btn', 'btn--lg', { 'btn--light': i > 0 }]}
+					class:list={['btn', 'btn--lg', i === 0 ? 'btn--pillola' : 'btn--light']}
 					href={p.href}
 					target={p.esterno ? '_blank' : undefined}
 					rel={p.esterno ? 'noopener' : undefined}
@@ -99,31 +120,39 @@ const faqJsonLd = domandeFrequenti(faqVisibili);
 	</PageHero>
 
 	{
-		pagina.blocchi.map((blocco, i) => {
-			if (haFasi && i >= inizioFasi && i <= ultimaFase) {
-				return i === inizioFasi ? (
+		voci.map((voce, n) => {
+			if (voce.k === 'fasi') {
+				return (
 					<FasiPercorso
 						titolo={introFasi?.titolo || 'Il percorso in fasi'}
 						introHtml={introFasi?.descrizioneHtml}
 						fasi={indiciFasi.map((k) => ({ titolo: pagina.blocchi[k].titolo, html: pagina.blocchi[k].descrizioneHtml }))}
+						tone={eAccento(n) ? 'accento' : 'dark'}
+						sfumoA={dopo(n)}
+						dopoSfumo={dopoSfumo(n)}
 					/>
-				) : null;
+				);
 			}
+			const blocco = pagina.blocchi[voce.i];
 			// Sedi nel blocco: le sue (se le indica) o, con un solo blocco, quelle della pagina.
 			const sediBlocco = blocco.sedi ? sediDi(blocco.sedi) : soloUnBlocco ? sediAttivita : [];
 			return (
-				<CourseBlock blocco={blocco} fallbackImage={sfondoSenzaMedia} reverse={i % 2 === 1} tone={i % 2 === 1 ? 'soft' : 'dark'}>
+				<CourseBlock blocco={blocco} fallbackImage={sfondoSenzaMedia} reverse={n % 2 === 1} tone={eAccento(n) ? 'accento' : 'dark'} sfumoA={dopo(n)} dopoSfumo={dopoSfumo(n)}>
 					<SediAttivita sedi={sediBlocco} etichetta={pagina.sediEtichetta} />
 				</CourseBlock>
 			);
 		})
 	}
 
-	<FaqAccordion faq={faqVisibili} />
+	<FaqAccordion faq={faqVisibili} sfumoA={faqPresenti && dopo(nFaq) === 'accento' ? 'accento' : undefined} dopoSfumo={faqPresenti && dopoSfumo(nFaq)} />
 
 	{
-		!sediPerBlocco && !soloUnBlocco && sediAttivita.length > 0 && (
-			<section class="sedi-fascia on-dark" aria-label="Sedi dell'attività">
+		fasciaSedi && (
+			<section
+				class:list={['sedi-fascia', 'sez', 'on-dark', 'sfuma', { 'dopo-sfumo': dopoSfumo(nFascia) }]}
+				style="--da:var(--bg-dark);--a:var(--accent)"
+				aria-label="Sedi dell'attività"
+			>
 				<div class="container-wide">
 					<SediAttivita sedi={sediAttivita} centrato etichetta={pagina.sediEtichetta} />
 				</div>
@@ -135,7 +164,7 @@ const faqJsonLd = domandeFrequenti(faqVisibili);
 <style>
 	/* Pagine con piu' attivita' nelle stesse sedi: una fascia in fondo, centrata, con la riga delle sedi. */
 	.sedi-fascia {
-		padding-block: clamp(32px, 4vw, 56px) clamp(40px, 5vw, 64px);
+		padding-block: var(--sez-pt, clamp(32px, 4vw, 56px)) var(--sez-pb, clamp(40px, 5vw, 64px));
 		background: var(--bg-dark);
 		color: var(--text-on-dark);
 	}

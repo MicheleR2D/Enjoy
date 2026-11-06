@@ -48,9 +48,13 @@ interface Props {
 	/** Sfondo: "dark" nero, "soft" grigio scuro, "accento" giallo con testo nero
 	 *  (per alternare i blocchi). */
 	tone?: 'dark' | 'soft' | 'accento';
+	/** Colore della sezione che segue, se diverso dal proprio: in fondo al blocco c'e' lo sfumo. */
+	sfumoA?: 'nero' | 'accento';
+	/** La sezione che precede finisce con uno sfumo: meno spazio in cima (36px pieni). */
+	dopoSfumo?: boolean;
 }
 
-const { blocco, fallbackImage, reverse = false, tone = 'dark', compatto = false } = Astro.props;
+const { blocco, fallbackImage, reverse = false, tone = 'dark', compatto = false, sfumoA, dopoSfumo = false } = Astro.props;
 const mediaAnim = reverse ? 'from-right' : 'from-left';
 const textAnim = reverse ? 'from-left' : 'from-right';
 
@@ -60,9 +64,17 @@ const nomeMedia = blocco.titolo ?? 'della pagina';
 // Testo alternativo delle foto: lo indica il blocco (es. le sedi); altrimenti foto decorativa.
 const altMedia: string = blocco.alt ?? '';
 const accento = tone === 'accento';
+// Sfumo in fondo: dal colore del blocco a quello del successivo.
+const coloreBlocco = accento ? 'var(--accent)' : tone === 'soft' ? 'var(--bg-dark-soft)' : 'var(--bg-dark)';
+const coloreSuccessivo = sfumoA === 'accento' ? 'var(--accent)' : 'var(--bg-dark)';
+const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 ---
 
-<section id={blocco.id ?? undefined} class:list={['cb', { 'on-dark': !accento }, `cb--${tone}`, { 'cb--reverse': reverse, 'cb--solo': !haMedia, 'cb--compatto': compatto }]}>
+<section
+	id={blocco.id ?? undefined}
+	class:list={['cb', 'sez', { 'on-dark': !accento }, `cb--${tone}`, { 'cb--reverse': reverse, 'cb--solo': !haMedia, 'cb--compatto': compatto, sfuma: sfumo, 'dopo-sfumo': dopoSfumo }]}
+	style={sfumo ? `--da:${coloreBlocco};--a:${coloreSuccessivo}` : undefined}
+>
 	<div class="cb__grid container-wide">
 		{
 			haMedia && (
@@ -122,7 +134,7 @@ const accento = tone === 'accento';
 					<div class="cb__actions">
 						{blocco.pulsanti.map((p) => (
 							<a
-								class:list={['btn', { 'btn--outline': accento }]}
+								class:list={['btn', { 'btn--pillola': accento }]}
 								href={p.href}
 								target={p.esterno ? '_blank' : undefined}
 								rel={p.esterno ? 'noopener' : undefined}
@@ -192,7 +204,7 @@ const accento = tone === 'accento';
 
 <style>
 	.cb {
-		padding-block: clamp(48px, 7vw, 96px);
+		padding-block: var(--sez-pt, clamp(48px, 7vw, 96px)) var(--sez-pb, clamp(48px, 7vw, 96px));
 		background: var(--bg-dark);
 		color: var(--text-on-dark);
 	}
@@ -264,7 +276,7 @@ const accento = tone === 'accento';
 	/* Senza media: una sola colonna di testo a misura di lettura, allineata a sinistra
 	   come il resto della pagina (stesso margine dei titoli e dei blocchi con foto). */
 	.cb--solo {
-		padding-block: clamp(32px, 4vw, 56px);
+		padding-block: var(--sez-pt, clamp(32px, 4vw, 56px)) var(--sez-pb, clamp(32px, 4vw, 56px));
 	}
 
 	.cb--solo .cb__grid {
@@ -501,7 +513,7 @@ const accento = tone === 'accento';
 
 	.cb__bar-val {
 		text-align: right;
-		color: var(--text-muted-on-dark);
+		color: var(--text-on-dark);
 	}
 
 	.cb__track {

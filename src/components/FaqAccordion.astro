@@ -8,14 +8,22 @@
 
 interface Props {
 	faq: { domanda: string; risposta: string | null }[];
+	/** In fondo c'e' lo sfumo verso il giallo della CTA finale (o di un'altra sezione gialla). */
+	sfumoA?: 'accento';
+	/** La sezione che precede finisce con uno sfumo: meno spazio in cima, niente filo. */
+	dopoSfumo?: boolean;
 }
 
+const { sfumoA, dopoSfumo = false } = Astro.props;
 const voci = Astro.props.faq.filter((f) => f.risposta);
 ---
 
 {
 	voci.length > 0 && (
-		<section class="faq on-dark">
+		<section
+			class:list={['faq', 'sez', 'on-dark', { sfuma: !!sfumoA, 'dopo-sfumo': dopoSfumo }]}
+			style={sfumoA ? '--da:var(--bg-dark);--a:var(--accent)' : undefined}
+		>
 			<h2 class="faq__titolo" data-anim="up">
 				Domande <span class="faq__accento">frequenti</span>
 			</h2>
@@ -33,10 +41,15 @@ const voci = Astro.props.faq.filter((f) => f.risposta);
 
 <style>
 	.faq {
-		padding-block: clamp(48px, 7vw, 96px);
+		padding-block: var(--sez-pt, clamp(48px, 7vw, 96px)) var(--sez-pb, clamp(48px, 7vw, 96px));
 		background: var(--bg-dark);
 		border-top: 1px solid var(--border-on-dark);
 		color: var(--text-on-dark);
+	}
+
+	/* Dopo uno sfumo il filo non serve: il passaggio di colore e' gia' morbido. */
+	.faq.dopo-sfumo {
+		border-top: 0;
 	}
 
 	/* Titolo e domande centrati nella pagina. */

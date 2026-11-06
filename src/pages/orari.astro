@@ -17,12 +17,12 @@ const testo = orari.intro.join('');
 
 <Layout title={orari.seo.title} description={orari.seo.description} headerTone="overlay" ogSlug="orari">
 	<PageHero image={orari.hero.immagine} title={orari.hero.titolo} words={orari.hero.parole}>
-		<a class="btn btn--lg" href={formUrl('prova', 'Orari')} target="_blank" rel="noopener">Prova ora</a>
+		<a class="btn btn--pillola btn--lg" href={formUrl('prova', 'Orari')} target="_blank" rel="noopener">Prova ora</a>
 	</PageHero>
 
 	<IntroTitolo titolo="Pianifica la tua routine" html={testo} />
 
-	<section class="orari on-dark" aria-label="Planning dei corsi">
+	<section class="orari sez sfuma on-dark" style="--da:var(--bg-dark);--a:var(--accent)" aria-label="Planning dei corsi">
 		<div class="container-wide">
 			<PlanningSedi />
 
@@ -39,7 +39,7 @@ const testo = orari.intro.join('');
 
 <style>
 	.orari {
-		padding-block: clamp(32px, 4.5vw, 56px) clamp(48px, 6vw, 80px);
+		padding-block: var(--sez-pt, clamp(32px, 4.5vw, 56px)) var(--sez-pb, clamp(48px, 6vw, 80px));
 		background: var(--bg-dark);
 		color: var(--text-on-dark);
 	}

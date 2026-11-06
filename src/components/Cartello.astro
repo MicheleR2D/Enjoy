@@ -1,0 +1,185 @@
+---
+/*
+ * "Cartello": riquadro nero con titolo giallo maiuscolo (e sottolineatura che si disegna), testo bianco
+ * e due "viti" gialle negli angoli. Entra di lato: `lato="destra"` arriva da destra, `"sinistra"` da
+ * sinistra. Il contenitore resta fermo (e' lui che l'osservatore dello scroll vede) e scivola solo il
+ * cartello interno: la sezione che lo contiene deve avere `overflow-x: clip`, altrimenti il cartello,
+ * fuori schermo, allarga la pagina. Stesso aspetto dei cartelli della storia e della card "I nostri
+ * orari" della home. Con lo slot "icona" il titolo ha accanto il box giallo con l'icona.
+ *
+ *   <Cartello titolo="Il vero gioiello" lato="sinistra"><p>…</p></Cartello>
+ */
+interface Props {
+	titolo: string;
+	lato?: 'destra' | 'sinistra';
+	/** Livello del titolo (h3 di default). */
+	as?: 'h2' | 'h3';
+}
+
+const { titolo, lato = 'destra', as: Tag = 'h3' } = Astro.props;
+const conIcona = Astro.slots.has('icona');
+---
+
+<div class="cartello-wrap" data-anim="fade" data-lato={lato}>
+	<div class="cartello">
+		<div class:list={['cartello__testa', { 'cartello__testa--icona': conIcona }]}>
+			{conIcona && <slot name="icona" />}
+			<Tag class="cartello__titolo">{titolo}</Tag>
+		</div>
+		<div class="cartello__corpo">
+			<slot />
+		</div>
+	</div>
+</div>
+
+<style>
+	.cartello {
+		position: relative;
+		padding: 26px 22px 28px;
+		border-radius: 18px;
+		background: var(--bg-dark-deep);
+		color: var(--text-on-dark);
+		box-shadow: 0 14px 28px -14px rgba(0, 0, 0, 0.55);
+	}
+
+	/* Due "viti" gialle negli angoli. */
+	.cartello::before,
+	.cartello::after {
+		content: '';
+		position: absolute;
+		top: 10px;
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--accent);
+	}
+
+	.cartello::before {
+		left: 10px;
+	}
+
+	.cartello::after {
+		right: 10px;
+	}
+
+	.cartello__testa {
+		margin-bottom: 14px;
+	}
+
+	.cartello__testa--icona {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+	}
+
+	.cartello__testa--icona :global(.ico) {
+		display: grid;
+		place-items: center;
+		flex-shrink: 0;
+		width: 48px;
+		height: 48px;
+		border-radius: 12px;
+		background: var(--accent);
+		color: var(--bg-dark-deep);
+	}
+
+	.cartello__testa--icona :global(.ico svg) {
+		width: 28px;
+		height: 28px;
+	}
+
+	.cartello__titolo {
+		margin: 0;
+		font-family: var(--font-heading);
+		font-size: var(--text-lg);
+		font-weight: 800;
+		line-height: 1.15;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+
+	.cartello__testa--icona .cartello__titolo {
+		font-size: clamp(1.3rem, 5.2vw, 1.9rem);
+	}
+
+	/* Sottolineatura gialla che si disegna dopo l'arrivo del cartello. */
+	.cartello__titolo::after {
+		content: '';
+		display: block;
+		width: 44px;
+		height: 3px;
+		margin-top: 8px;
+		background: var(--accent);
+		transform-origin: left;
+	}
+
+	.cartello__corpo :global(p) {
+		margin: 0 0 0.8em;
+		color: var(--text-on-dark);
+		line-height: 1.6;
+	}
+
+	.cartello__corpo :global(p:last-child) {
+		margin-bottom: 0;
+	}
+
+	.cartello__corpo :global(a) {
+		color: var(--accent);
+	}
+
+	/* Icona del calendario: la spunta batte piano. */
+	.cartello__testa :global(.ico__spunta) {
+		stroke-dasharray: 1;
+		stroke-dashoffset: 0;
+		transform-box: fill-box;
+		transform-origin: center;
+		animation: cartello-spunta 3s ease-in-out 1.2s infinite;
+	}
+
+	@keyframes cartello-spunta {
+		0%,
+		70%,
+		100% {
+			transform: scale(1);
+		}
+		82% {
+			transform: scale(1.35);
+		}
+	}
+
+	:global(.js) .cartello {
+		transition: transform 1.1s var(--ease-out-crit);
+	}
+
+	:global(.js) .cartello-wrap[data-lato='destra'] .cartello {
+		transform: translateX(120%) rotate(5deg);
+	}
+
+	:global(.js) .cartello-wrap[data-lato='sinistra'] .cartello {
+		transform: translateX(-120%) rotate(-5deg);
+	}
+
+	:global(.js) .cartello-wrap:global(.is-visible) .cartello {
+		transform: none;
+	}
+
+	:global(.js) .cartello__titolo::after {
+		transform: scaleX(0);
+		transition: transform 0.6s ease 0.7s;
+	}
+
+	:global(.js) .cartello-wrap:global(.is-visible) .cartello__titolo::after {
+		transform: scaleX(1);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:global(.js) .cartello,
+		:global(.js) .cartello__titolo::after {
+			transform: none !important;
+		}
+
+		.cartello__testa :global(.ico__spunta) {
+			animation: none;
+		}
+	}
+</style>

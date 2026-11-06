@@ -41,6 +41,11 @@
 			"Il vero gioiello del centro è la piscina panoramica da 25 metri con 4 corsie, un ambiente spettacolare dove l’acqua cristallina riflette la luce naturale, regalando la sensazione di “nuotare vicino al cielo”. La temperatura dell’acqua è mantenuta costante a 29 gradi, per un comfort ideale in ogni stagione. Al piano piscina si trova il Thermarium, uno spazio dedicato al relax e al recupero, con sauna, bagno turco, vasca di ghiaccio e idromassaggio. Completa l’offerta il Risto Bar panoramico, perfetto per una pausa pranzo salutare o un momento di relax dopo l’allenamento, con un servizio veloce e attento al benessere"
 		]
 	},
+	"numeri": [
+		{ "valore": 2800, "suffisso": "m²", "etichetta": "di spazi moderni" },
+		{ "valore": 100, "suffisso": "+", "etichetta": "attività settimanali" },
+		{ "valore": 25, "suffisso": "m", "etichetta": "piscina panoramica" }
+	],
 	"ambienti": [
 		{
 			"titolo": "Gym Floor",

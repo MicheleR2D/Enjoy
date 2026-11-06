@@ -23,7 +23,7 @@ const inizio = parole.join(' ');
 const conExtra = Astro.slots.has('default');
 ---
 
-<section class:list={['intro', 'on-dark', { 'intro--extra': conExtra }]}>
+<section class:list={['intro', 'sez', 'on-dark', { 'intro--extra': conExtra }]}>
 	<div class="intro__grid container-wide">
 		<h2 class="intro__title" data-anim="from-left">
 			{
@@ -52,7 +52,7 @@ const conExtra = Astro.slots.has('default');
 
 <style>
 	.intro {
-		padding-block: clamp(32px, 4.5vw, 56px);
+		padding-block: var(--sez-pt, clamp(32px, 4.5vw, 56px)) var(--sez-pb, clamp(32px, 4.5vw, 56px));
 		background: var(--bg-dark-deep);
 		color: var(--text-on-dark);
 	}
@@ -60,7 +60,7 @@ const conExtra = Astro.slots.has('default');
 	/* I link dell'indice sono alti 44px con il testo al centro: si toglie quello spazio
 	   interno cosi' sotto l'indice resta lo stesso vuoto che c'e' sopra il titolo. */
 	.intro--extra {
-		padding-bottom: calc(clamp(32px, 4.5vw, 56px) - 10px);
+		padding-bottom: calc(var(--sez-pb, clamp(32px, 4.5vw, 56px)) - 10px);
 	}
 
 	.intro__grid {

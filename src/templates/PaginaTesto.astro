@@ -22,7 +22,7 @@ const { pagina } = Astro.props;
 ---
 
 <Layout title={pagina.seo.title} description={pagina.seo.description}>
-	<article class="testo on-dark">
+	<article class="testo on-dark sfuma" style="--da:var(--bg-dark);--a:var(--accent)">
 		<SectionTitle as="h1" tone="dark-bg" gap={40}>{pagina.titolo}</SectionTitle>
 		<div class="testo__corpo container-wide">
 			<div class="testo__prosa" set:html={pagina.html} />
@@ -39,7 +39,7 @@ const { pagina } = Astro.props;
 
 <style>
 	.testo {
-		padding-block: clamp(40px, 6vw, 80px);
+		padding-block: clamp(40px, 6vw, 80px) var(--sez-pb, clamp(40px, 6vw, 80px));
 		background: var(--bg-dark);
 		color: var(--text-on-dark);
 	}
@@ -96,7 +96,7 @@ const { pagina } = Astro.props;
 		margin: 1.4em 0;
 		padding: 0.2em 0 0.2em 1.2em;
 		border-left: 4px solid var(--accent);
-		color: var(--text-muted-on-dark);
+		color: var(--text-on-dark);
 	}
 
 	.testo__prosa :global(a) {

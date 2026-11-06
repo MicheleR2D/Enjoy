@@ -186,6 +186,15 @@ for (const f of file) {
 	const testoPiano = strip(blocchi[0]?.descrizioneHtml || '');
 	const descrizioneSeo = testoPiano.length > 155 ? testoPiano.slice(0, 155).replace(/\s+\S*$/, '') + '…' : testoPiano;
 
+	// Sul sito originale queste pagine hanno le FAQ nascoste (info non corrette): sono state
+	// eliminate dal nuovo sito (6/11/2026). Una rigenerazione non deve riportarle indietro.
+	const FAQ_ELIMINATE = new Set([
+		'antalgica', 'back-school', 'body-balance', 'body-pump', 'core-training', 'corsi-fitness', 'dancing-fit', 'fit-boxe', 'gg',
+		'ginnastica-aerobica', 'ginnastica-terapeutica-acquatica', 'groupcycling', 'gym-floor', 'health-fitness-camuzzago',
+		'interval-training', 'nuoto-adulti', 'nuoto-libero', 'nuoto-preagonistico', 'nuoto-sincronizzato', 'olistic-tone',
+		'personal-training', 'postural-pil', 'wellness-lab-meda',
+	]);
+
 	const pagina = {
 		tipo: tuttiConMedia ? 'corso' : 'servizio',
 		slug: d.slug,
@@ -196,7 +205,7 @@ for (const f of file) {
 		},
 		hero: heroDati,
 		blocchi,
-		faq,
+		faq: FAQ_ELIMINATE.has(d.slug) ? undefined : faq,
 		sedi: sediTutti.length ? sediTutti : undefined,
 	};
 	fs.writeFileSync(path.join(OUT, d.slug + '.json'), JSON.stringify(pagina, null, '\t') + '\n');

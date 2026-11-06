@@ -13,7 +13,8 @@
   --text: #212121;
   --text-on-dark: #ffffff;
   --text-muted: #4a4a4a;
-  --text-muted-on-dark: rgba(255, 255, 255, 0.72);
+  /* Niente grigi sul nero: il "muted" e' bianco pieno (nome tenuto perche' lo usano piu' file). */
+  --text-muted-on-dark: #ffffff;
 
   /* Sfondo nero delle sezioni/blocchi scuri e dell'header */
   --bg-dark: #0d0d0d;
@@ -69,6 +70,15 @@
      anchor, menu mobile) la legge da qui. */
   --header-h: 61px;
   --screen-h: calc(100vh - var(--header-h));
+
+  /* Spazi tra le sezioni (su telefono; sul desktop ogni sezione ha i suoi): 112px tra i contenuti di
+     due sezioni consecutive = 56 di padding in fondo + 56 in cima. Dove il colore cambia c'e' lo
+     sfumo (.sfuma in global.css): 36 pieni + 40 di sfumo in fondo (76) e 36 pieni in cima alla
+     successiva. Le sezioni leggono --sez-pt / --sez-pb (vedi ".sez" in global.css). */
+  --sez-pad: 56px;
+  --sez-sfumo: 40px;
+  --sez-sopra-sfumo: 36px;
+  --sez-sotto-sfumo: 76px;
 }
 
 /* Su telefono la barra e' piu' alta (logo piu' grande, come sul sito originale). */

@@ -440,7 +440,7 @@ const sedi = planning.sedi as { slug: string; nome: string; validita: string; pd
 		display: inline-flex;
 		align-items: center;
 		gap: 8px;
-		min-height: 40px;
+		min-height: 44px;
 		padding: 8px 16px;
 		border: 1px solid var(--border-on-dark);
 		border-radius: var(--radius-pill);
@@ -504,7 +504,7 @@ const sedi = planning.sedi as { slug: string; nome: string; validita: string; pd
 	.pl__meta a {
 		display: inline-flex;
 		align-items: center;
-		min-height: 36px;
+		min-height: 44px;
 		font-weight: 700;
 		color: var(--text-on-dark);
 		text-decoration: underline;
@@ -655,7 +655,11 @@ const sedi = planning.sedi as { slug: string; nome: string; validita: string; pd
 		text-decoration: none;
 	}
 
+	/* Il link e' basso come il testo ma la sua area di tocco e' alta come la riga (vedi ::after): il padding
+	   con margine negativo la rende alta almeno 44px anche per chi misura l'elemento, senza spostare nulla. */
 	a.lez__nome {
+		padding-block: 13px;
+		margin-block: -13px;
 		text-decoration: underline;
 		text-decoration-color: transparent;
 		text-underline-offset: 4px;

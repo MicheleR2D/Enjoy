@@ -43,6 +43,11 @@
 			"A rendere unica l’esperienza ci pensano le due aree fitness: una interna con vista panoramica e una esterna per allenarsi all’aria aperta nei mesi più miti. Il vero fiore all’occhiello del centro è la splendida piscina coperta da 25 metri con 6 corsie, affacciata sul verde circostante: nuotare qui regala un senso di libertà e connessione con la natura difficile da descrivere. A completare l’offerta: area benessere con saune, bagno turco, stanza del sale e zona relax, oltre a percorsi personalizzati 1to1 e 1to2 per un'attenzione sartoriale ai tuoi obiettivi."
 		]
 	},
+	"numeri": [
+		{ "valore": 500, "suffisso": "+ m²", "etichetta": "dedicati al fitness" },
+		{ "valore": 90, "suffisso": "+", "etichetta": "corsi settimanali" },
+		{ "valore": 25, "suffisso": "m", "etichetta": "piscina coperta" }
+	],
 	"ambienti": [
 		{
 			"titolo": "Gym Floor",

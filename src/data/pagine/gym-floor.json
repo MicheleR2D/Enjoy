@@ -97,24 +97,5 @@
 				}
 			]
 		}
-	],
-	"faq": [
-		{
-			"domanda": "Ho bisogno del Certificato Medico?",
-			"risposta": "<p>Sì, nel caso ti iscrivessi con abbonamento occorre il certificato di idoneità alla pratica sportiva non agonistica.</p>"
-		},
-		{
-			"domanda": "La lezione è adatta a tutti?",
-			"risposta": "<p>Certamente, è adatta per ogni livello ed età. </p>"
-		},
-		{
-			"domanda": "Di cosa ho bisogno per partecipare alle lezioni?",
-			"risposta": "<p>Ricorda di indossare un abbigliamento sportivo e scarpe adeguate, porta con te un asciugamano personale e acqua.</p>"
-		},
-		{
-			"domanda": "E' necessaria la prenotazione?",
-			"risposta": "<p>Sì, al fine di garantire sempre il posto a tutti i nostri utenti, le attività sono a prenotazione. Prenota la tua Lezione sulla Technogym App</p>"
-		}
-	],
-	"faqNascoste": true
+	]
 }

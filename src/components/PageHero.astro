@@ -9,7 +9,7 @@
  * sopra la foto: la foto resta finche' il video non e' pronto e per chi ha ridotto i movimenti.
  *
  *   <PageHero image="/wp-content/uploads/…jpg" title="group" words={['cycling']}>
- *     <a class="btn btn--lg" href="/…">…</a>
+ *     <a class="btn btn--pillola btn--lg" href="/…">…</a>
  *   </PageHero>
  */
 import Img from './Img.astro';
@@ -91,6 +91,31 @@ const { image, title, words = [], imageAlt = '', video, eyebrow, sottotitolo } =
 		background: rgba(0, 0, 0, 0.61);
 	}
 
+	/* In fondo la foto sfuma nel nero della sezione che segue (come la hero della home). Sta sotto il
+	   testo (.ph__content ha z-index 1). */
+	.ph::after {
+		content: '';
+		position: absolute;
+		inset: auto 0 0 0;
+		height: 72px;
+		background: linear-gradient(to bottom, transparent, var(--bg-dark));
+		pointer-events: none;
+	}
+
+	/* Il bottone principale nella hero e' la pillola GIALLA con testo nero (su foto scura la nera si perdeva):
+	   onda gialla e lampo chiaro. Nei blocchi gialli delle pagine la pillola resta nera. */
+	.ph__actions :global(.btn--pillola) {
+		--btn-border: var(--accent);
+		--btn-hover-text: var(--on-accent);
+		--onda: rgba(255, 230, 0, 0.4);
+		background: var(--accent);
+		color: var(--on-accent);
+	}
+
+	.ph__actions :global(.btn--pillola)::after {
+		background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+	}
+
 	.ph__content {
 		position: relative;
 		z-index: 1;
@@ -119,7 +144,7 @@ const { image, title, words = [], imageAlt = '', video, eyebrow, sottotitolo } =
 	}
 
 	.ph__title {
-		color: var(--bg-alt);
+		color: var(--text-on-dark);
 		text-transform: uppercase;
 	}
 

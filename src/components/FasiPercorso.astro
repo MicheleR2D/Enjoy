@@ -10,9 +10,19 @@ interface Props {
 	/** Testo introduttivo (HTML gia' ripulito). */
 	introHtml?: string;
 	fasi: { titolo: string; html: string }[];
+	/** "accento": fondo giallo con testo nero (per alternare le sezioni). */
+	tone?: 'dark' | 'accento';
+	/** Colore della sezione che segue, se diverso dal proprio: in fondo c'e' lo sfumo. */
+	sfumoA?: 'nero' | 'accento';
+	/** La sezione che precede finisce con uno sfumo: meno spazio in cima. */
+	dopoSfumo?: boolean;
 }
 
-const { titolo, introHtml, fasi } = Astro.props;
+const { titolo, introHtml, fasi, tone = 'dark', sfumoA, dopoSfumo = false } = Astro.props;
+const accentoTone = tone === 'accento';
+const coloreSezione = accentoTone ? 'var(--accent)' : 'var(--bg-dark)';
+const coloreSuccessivo = sfumoA === 'accento' ? 'var(--accent)' : 'var(--bg-dark)';
+const sfumo = !!sfumoA && coloreSezione !== coloreSuccessivo;
 
 // Titolo con le ultime due parole in giallo ("Il percorso in" + "3 fasi").
 const parole = titolo.trim().split(/\s+/);
@@ -33,7 +43,10 @@ const prepara = (t: string) => {
 };
 ---
 
-<section class="fasi on-dark">
+<section
+	class:list={['fasi', 'sez', { 'on-dark': !accentoTone, 'fasi--accento': accentoTone, sfuma: sfumo, 'dopo-sfumo': dopoSfumo }]}
+	style={sfumo ? `--da:${coloreSezione};--a:${coloreSuccessivo}` : undefined}
+>
 	<div class="fasi__inner container-wide">
 		<header class="fasi__testata">
 			<h2 class="fasi__titolo" data-anim="from-left">
@@ -73,9 +86,34 @@ const prepara = (t: string) => {
 
 <style>
 	.fasi {
-		padding-block: clamp(24px, 3vw, 40px) clamp(40px, 6vw, 80px);
+		padding-block: var(--sez-pt, clamp(24px, 3vw, 40px)) var(--sez-pb, clamp(40px, 6vw, 80px));
 		background: var(--bg-dark);
 		color: var(--text-on-dark);
+	}
+
+	/* Variante gialla: testo nero; la parola in evidenza e' gialla su riquadro nero (come nella CTA finale). */
+	.fasi--accento {
+		background: var(--accent);
+		color: var(--bg-dark-deep);
+	}
+
+	.fasi.fasi--accento .fasi__titolo {
+		color: var(--bg-dark-deep);
+	}
+
+	.fasi.fasi--accento .fasi__accento {
+		display: inline-block;
+		padding: 0 0.18em;
+		background: var(--bg-dark-deep);
+		color: var(--accent);
+	}
+
+	.fasi--accento .fase {
+		border-top-color: var(--bg-dark-deep);
+	}
+
+	.fasi--accento .fase__nome {
+		color: var(--bg-dark-deep);
 	}
 
 	/* Titolo su una riga e paragrafo sotto, a tutta larghezza. */

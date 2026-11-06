@@ -1029,7 +1029,7 @@ const colonneFoto = [
 		}
 	}
 
-	/* Touch: i link del footer erano alti 17px. Qui salgono ad almeno 36px; lo spazio tra le voci
+	/* Touch: i link del footer erano alti 17px. Qui salgono ad almeno 44px; lo spazio tra le voci
 	   lo da' l'altezza del link, quindi si toglie il gap. */
 	@media (pointer: coarse), (max-width: 900px) {
 		.ft-links {
@@ -1042,7 +1042,20 @@ const colonneFoto = [
 		.sede__info a {
 			display: inline-flex;
 			align-items: center;
-			min-height: 36px;
+			min-height: 44px;
+			min-width: 44px;
+		}
+
+		.ft-social__btn {
+			width: 44px;
+			height: 44px;
+		}
+
+		.ft-app__stores .btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 44px;
 		}
 
 		.ft-legal {
@@ -1052,7 +1065,8 @@ const colonneFoto = [
 		.ft-firma a {
 			display: inline-flex;
 			align-items: center;
-			min-height: 36px;
+			min-height: 44px;
+			min-width: 44px;
 		}
 	}
 </style>
