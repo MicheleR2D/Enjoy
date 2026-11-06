@@ -3,7 +3,7 @@
  * Hero di una pagina interna: foto a tutta larghezza con velo scuro, titolo grande
  * (con parole che ruotano, se sono piu' d'una) e i pulsanti passati come slot.
  * Va usata con <Layout headerTone="overlay">: la foto passa sotto l'header (fisso,
- * chiaro e un po' trasparente). Alta come la hero della home. Nessun sottotitolo.
+ * chiaro e un po' trasparente). Alta come la hero della home. Il sottotitolo (un H2 sotto il titolo) c'è solo se lo si passa.
  *
  * Se c'e' `video` (id di un video YouTube) parte in sottofondo, muto e senza controlli,
  * sopra la foto: la foto resta finche' il video non e' pronto e per chi ha ridotto i movimenti.
@@ -20,6 +20,8 @@ interface Props {
 	title: string;
 	/** Parola/e che chiudono il titolo. Se sono piu' di una ruotano (la prima si vede subito). */
 	words?: string[];
+	/** Frase sotto il titolo (es. "Palestra e piscina a Camuzzago di Bellusco, vicino a Vimercate"): e' un H2. */
+	sottotitolo?: string;
 	/** Scritta piccola sopra il titolo (es. "2 sale pesi diverse"). */
 	eyebrow?: string;
 	/** Descrizione della foto (vuota se e' solo decorativa). */
@@ -28,7 +30,7 @@ interface Props {
 	video?: { id: string; inizio?: number; fine?: number };
 }
 
-const { image, title, words = [], imageAlt = '', video, eyebrow } = Astro.props;
+const { image, title, words = [], imageAlt = '', video, eyebrow, sottotitolo } = Astro.props;
 ---
 
 <section class="ph">
@@ -57,6 +59,7 @@ const { image, title, words = [], imageAlt = '', video, eyebrow } = Astro.props;
 				)
 			}
 		</h1>
+		{sottotitolo && <h2 class="ph__sub" data-intro style="--intro-delay: 0.18s">{sottotitolo}</h2>}
 		{
 			Astro.slots.has('default') && (
 				<div class="ph__actions" data-intro style="--intro-delay: 0.25s">
@@ -100,6 +103,18 @@ const { image, title, words = [], imageAlt = '', video, eyebrow } = Astro.props;
 		font-weight: 500;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
+		color: var(--text-on-dark);
+	}
+
+	/* Come il testo sotto il titolo della hero della home: stessa misura e colore. */
+	.ph__sub {
+		max-width: 680px;
+		margin: 20px auto 0;
+		font-size: var(--text-md);
+		font-weight: 600;
+		line-height: 1.4;
+		letter-spacing: normal;
+		text-transform: none;
 		color: var(--text-on-dark);
 	}
 
