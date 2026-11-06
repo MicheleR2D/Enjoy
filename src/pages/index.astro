@@ -79,7 +79,7 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		</div>
 	</section>
 
-	<section class="block--accent sfuma" style="--da: var(--accent); --a: var(--bg-dark)">
+	<section class="block--accent sfuma storia" style="--da: var(--accent); --a: var(--bg-dark)">
 		<div class="storia__inner">
 			{
 				home.storia.immagine && (
@@ -655,6 +655,8 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		}
 	}
 
+	/* Numeri sul giallo: cifre grandi e pesanti in nero, separate da linee sottili; sotto ogni cifra
+	   una barra nera che si disegna all'entrata. */
 	.contatori {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
@@ -680,17 +682,37 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		display: block;
 		font-family: var(--font-heading);
 		font-weight: 900;
-		font-size: clamp(2.75rem, 5vw, 4.5rem);
-		letter-spacing: -0.02em;
+		font-size: clamp(3.25rem, 6.6vw, 6rem);
+		line-height: 1;
+		letter-spacing: -0.03em;
 		font-variant-numeric: tabular-nums;
 		color: var(--on-accent);
-		margin-bottom: 14px;
+	}
+
+	.contatore__numero::after {
+		content: '';
+		display: block;
+		width: 56px;
+		height: 5px;
+		margin: 14px auto 16px;
+		border-radius: 3px;
+		background: var(--on-accent);
+		transform-origin: center;
+	}
+
+	:global(.js) .contatore__numero::after {
+		transform: scaleX(0);
+		transition: transform 0.7s var(--ease-out-crit) 0.5s;
+	}
+
+	:global(.js) .contatore:global(.is-visible) .contatore__numero::after {
+		transform: scaleX(1);
 	}
 
 	.contatore__titolo {
 		font-family: var(--font-heading);
 		font-size: var(--text-lg);
-		font-weight: 600;
+		font-weight: 800;
 		line-height: 1.15;
 		text-transform: uppercase;
 		color: var(--on-accent);
@@ -1063,12 +1085,18 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 			border-top-width: 0;
 		}
 
-		/* Storia in colonna: titolo, foto, testo, bottone. La colonna del testo si "scioglie"
-		   (display: contents) cosi' la foto puo' stare tra titolo e testo. */
-		.storia__inner {
+		/* Storia in colonna: titolo, foto, testo, numeri, bottone. Sia il contenitore sia la colonna del
+		   testo si "sciolgono" (display: contents): cosi' tutti i pezzi sono figli della sezione e si
+		   possono mettere nell'ordine voluto (il bottone sotto i numeri). Il ritaglio orizzontale passa
+		   dal contenitore alla sezione. */
+		.storia {
 			display: flex;
 			flex-direction: column;
-			min-height: 0;
+			overflow-x: clip;
+		}
+
+		.storia__inner {
+			display: contents;
 		}
 
 		.storia__testo-col {
@@ -1103,23 +1131,29 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		}
 
 		.storia__cta {
-			order: 4;
-			padding-inline: var(--gutter);
+			order: 5;
+			padding: 0 var(--gutter) 56px;
 		}
 
 		/* Numeri: tre colonne uguali, cifre che stanno nella colonna, stesso spazio sotto e sopra. */
 		.contatori {
+			order: 4;
 			grid-template-columns: repeat(3, minmax(0, 1fr));
-			padding: 32px var(--gutter) 56px;
+			padding: 32px var(--gutter);
 		}
 
 		.contatore {
-			padding: 0 4px;
+			padding: 0 3px;
 		}
 
 		.contatore__numero {
-			font-size: clamp(1.5rem, 7.4vw, 2.75rem);
-			margin-bottom: 10px;
+			font-size: clamp(1.6rem, 8vw, 3rem);
+		}
+
+		.contatore__numero::after {
+			width: 32px;
+			height: 4px;
+			margin: 10px auto 12px;
 		}
 
 		/* La fascia tra sezioni (56px) fa gia' da spazio in alto: niente secondo padding. */
