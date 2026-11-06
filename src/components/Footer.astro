@@ -104,11 +104,7 @@ const colonneFoto = [
 		<div class="ft-app__veil"></div>
 		<div class="ft-app__content" data-anim="up">
 			<h2 class="ft-app__title" id="ft-app-title">{app.titolo}</h2>
-			<p>
-				Prenota comodamente dall'ufficio o da casa tua i tuoi corsi e monitora le tue attività. I tuoi progressi sempre
-				consultabili grazie alla App Technogym, uno strumento di allenamento potentissimo per avere sempre a disposizione i
-				tuoi esercizi e i tuoi risultati, sia quando sei in palestra, sia quando sei altrove.
-			</p>
+			<p>Prenota i tuoi corsi e monitora i progressi con la App Technogym, in palestra e ovunque tu sia.</p>
 			<div class="ft-app__stores">
 				<a class="btn btn--light" href={app.appStore} target="_blank" rel="noopener">App Store</a>
 				<a class="btn btn--light" href={app.googlePlay} target="_blank" rel="noopener">Google Play</a>
@@ -495,42 +491,79 @@ const colonneFoto = [
 		}
 	}
 
-	/* In colonna: testo sopra, le foto riempiono lo spazio rimasto fino a
-	   fine schermata. */
+	/* Mobile: eyebrow, titolo, testo e numeri, poi le foto (due colonne, piu' grandi) e il
+	   pulsante SOTTO le foto. Il contenitore del testo e' "display: contents" cosi' gli elementi
+	   si possono riordinare insieme al muro di foto. La sezione cresce con il contenuto (prima era
+	   alta una schermata fissa e le foto restavano schiacciate in una striscia di 200px). */
 	@media (max-width: 900px) {
 		.cta-final {
 			display: flex;
 			flex-direction: column;
+			height: auto;
 			min-height: 0;
+			padding: 36px var(--gutter) 32px;
 		}
 
 		.cta-final__content {
-			padding: 36px var(--gutter) 24px;
+			display: contents;
+		}
+
+		/* L'etichetta "Inizia oggi!" su mobile non c'e': si parte direttamente dal titolo. */
+		.cta-final__eyebrow {
+			display: none;
+		}
+
+		.ft .cta-final__title {
+			order: 2;
 		}
 
 		.cta-final__lead {
+			order: 3;
 			margin-top: 16px;
 		}
 
+		/* I tre numeri su una riga sola, tre colonne uguali. */
 		.cta-final__proof {
-			grid-template-columns: repeat(2, auto);
-			row-gap: 16px;
+			order: 4;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			justify-content: stretch;
 			margin-top: 20px;
 		}
 
-		.cta-final__proof li:nth-child(3) {
-			padding-left: 0;
-			border-left: none;
+		.cta-final__proof li {
+			padding: 0 10px;
 		}
 
+		.cta-final__proof li:first-child {
+			padding-left: 0;
+		}
+
+		.cta-final__proof strong {
+			font-size: 1.5rem;
+		}
+
+		.cta-final__proof span {
+			font-size: 11px;
+			letter-spacing: 0.03em;
+			line-height: 1.25;
+		}
+
+		/* Il bottone sta sopra alle foto. */
 		.cta-final__actions {
+			order: 5;
 			margin-top: 24px;
 		}
 
 		.cta-final__wall {
-			flex: 1;
-			min-height: 140px;
-			padding-inline: var(--gutter);
+			order: 6;
+			grid-template-columns: repeat(2, 1fr);
+			height: clamp(300px, 52svh, 420px);
+			margin-top: 24px;
+			padding-right: 0;
+		}
+
+		.cta-final__col:nth-child(3) {
+			display: none;
 		}
 	}
 
@@ -775,7 +808,7 @@ const colonneFoto = [
 		grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
 		align-items: center;
 		gap: 32px;
-		padding: 72px var(--gutter);
+		padding: 44px var(--gutter);
 		overflow: hidden;
 		background: var(--bg-dark-deep);
 	}
@@ -814,7 +847,7 @@ const colonneFoto = [
 	.ft-app__img {
 		justify-self: center;
 		width: 100%;
-		max-width: 460px;
+		max-width: 300px;
 		height: auto;
 	}
 
@@ -950,13 +983,35 @@ const colonneFoto = [
 	}
 
 	@media (max-width: 900px) {
+		/* Compatta: testo e bottoni a sinistra, schermata dell'app piccola a destra. */
 		.ft-app {
-			grid-template-columns: minmax(0, 1fr);
-			padding-block: 48px;
+			grid-template-columns: minmax(0, 1fr) 104px;
+			gap: 16px;
+			padding-block: 28px;
+		}
+
+		.ft-app__title {
+			margin-bottom: 8px;
+			font-size: 1.4rem;
+		}
+
+		.ft-app__content p {
+			font-size: var(--text-base);
+			line-height: 1.45;
+		}
+
+		.ft-app__stores {
+			gap: 8px;
+			margin-top: 16px;
+		}
+
+		.ft-app__stores .btn {
+			padding: 8px 10px;
+			font-size: 12px;
 		}
 
 		.ft-app__img {
-			max-width: 320px;
+			max-width: 104px;
 		}
 
 		.sedi {

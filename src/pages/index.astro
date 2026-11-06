@@ -328,11 +328,26 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 						data-anim-delay="150"
 					/>
 				</div>
-				<div class="planning__text" data-anim="from-right" data-anim-delay="250">
-					<h2>I nostri orari</h2>
-					<p><strong>Allenati con i migliori!</strong></p>
-					<div set:html={home.orari.testo} />
-					<a class="btn" href="/orari">Planning settimanale</a>
+				<div class="planning__text">
+					<div class="planning__blocco" data-anim="fade" data-anim-delay="200">
+						<div class="planning__cartello">
+							<div class="planning__testa">
+								<IconaMetodo nome="calendario" />
+								<h2>I nostri orari</h2>
+							</div>
+							<p class="planning__sotto"><strong>Allenati con i migliori!</strong></p>
+							<div class="planning__corpo" set:html={home.orari.testo} />
+						</div>
+					</div>
+					<div class="planning__cta" data-anim="up" data-anim-delay="500">
+						<a class="btn storia__btn" href="/orari">
+							<span>Planning settimanale</span>
+							<svg class="planning__freccia" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M4 12h15" />
+								<path d="m13 6 6 6-6 6" />
+							</svg>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -471,6 +486,19 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		background: linear-gradient(to bottom, var(--da), var(--a));
 	}
 
+	/* Spazi tra sezioni: tra i contenuti di due sezioni consecutive ci sono 112px. Dove il colore cambia
+	   (sezioni con sfumo) sono ripartiti in modo simmetrico: 36px pieni + 40px di sfumo in fondo alla
+	   sezione che finisce (padding-bottom 76px) e 36px pieni di fascia in cima alla successiva. */
+	.attivita ~ .planning {
+		border-top-width: 36px;
+	}
+
+	/* Numeri e Metodo hanno piu' aria sopra e sotto: 56px pieni + 40px di sfumo + 56px pieni (152px tra i contenuti). */
+	.storia ~ .metodo,
+	.metodo ~ .attivita {
+		border-top-width: 56px;
+	}
+
 	.section {
 		padding-block: 56px;
 	}
@@ -483,7 +511,11 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 
 	.attivita__block {
 		background: var(--block-bg);
-		padding-block: 56px;
+		padding-block: 56px 76px;
+	}
+
+	.attivita__block + .attivita__block {
+		padding-top: 36px;
 	}
 
 	/* Stesso discorso: il primo blocco della sezione "attivita" e' gia'
@@ -764,7 +796,7 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 0;
-		padding: 24px var(--gutter) 56px;
+		padding: 64px var(--gutter) 96px;
 	}
 
 	.contatore {
@@ -826,7 +858,8 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 	.metodo {
 		background: var(--bg-dark);
 		color: var(--text-on-dark);
-		padding-top: 56px !important;
+		padding-top: 0 !important;
+		padding-bottom: 96px;
 	}
 
 	.metodo__inner {
@@ -1106,18 +1139,202 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.35);
 	}
 
+	/* Testo come i "cartelli" della storia: riquadro nero con titolo giallo e testo bianco che entra
+	   da destra; sotto, il bottone a pillola. */
+	.planning__inner {
+		overflow-x: clip;
+	}
+
+	.planning__text {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 24px;
+		min-width: 0;
+	}
+
+	/* Il bottone (stile della storia) deve stare nella colonna: niente a capo, ma padding e corpo piu' piccoli. */
+	.planning__cta {
+		max-width: 100%;
+	}
+
+	.planning__cta :global(.storia__btn) {
+		max-width: 100%;
+		padding: 16px 24px;
+		font-size: 15px;
+	}
+
+	.planning__blocco {
+		width: 100%;
+	}
+
+	.planning__cartello {
+		position: relative;
+		padding: 28px 24px 28px;
+		border-radius: 18px;
+		background: var(--bg-dark-deep);
+		box-shadow: 0 14px 28px -14px rgba(0, 0, 0, 0.55);
+	}
+
+	.planning__cartello::before,
+	.planning__cartello::after {
+		content: '';
+		position: absolute;
+		top: 10px;
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--accent);
+	}
+
+	.planning__cartello::before {
+		left: 10px;
+	}
+
+	.planning__cartello::after {
+		right: 10px;
+	}
+
+	.planning__testa {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		margin-bottom: 16px;
+	}
+
+	.planning__testa :global(.ico) {
+		display: grid;
+		place-items: center;
+		flex-shrink: 0;
+		width: 48px;
+		height: 48px;
+		border-radius: 12px;
+		background: var(--accent);
+		color: var(--bg-dark-deep);
+	}
+
+	.planning__testa :global(.ico svg) {
+		width: 28px;
+		height: 28px;
+	}
+
 	.planning__text h2 {
-		color: var(--text);
+		margin: 0;
+		color: var(--accent);
+		font-size: clamp(1.5rem, 5.6vw, 2.1rem);
+		line-height: 1.1;
+		text-transform: uppercase;
 	}
 
-	.planning__text p {
-		color: var(--text);
+	/* Sottolineatura gialla sotto al titolo, che si disegna dopo l'arrivo del cartello. */
+	.planning__text h2::after {
+		content: '';
+		display: block;
+		width: 40px;
+		height: 3px;
+		margin-top: 8px;
+		background: var(--accent);
+		transform-origin: left;
 	}
 
-	.planning__text .btn {
-		margin-top: 12px;
-		--btn-border: var(--text);
-		--btn-hover-text: var(--accent);
+	.planning__sotto {
+		margin: 0 0 8px;
+		color: var(--text-on-dark);
+		font-size: var(--text-md);
+	}
+
+	.planning__corpo :global(p) {
+		margin: 0;
+		color: var(--text-on-dark);
+	}
+
+	:global(.js) .planning__cartello {
+		transform: translateX(120%) rotate(5deg);
+		transition: transform 1.1s var(--ease-out-crit) 0.1s;
+	}
+
+	:global(.js) .planning__blocco:global(.is-visible) .planning__cartello {
+		transform: none;
+	}
+
+	:global(.js) .planning__text h2::after {
+		transform: scaleX(0);
+		transition: transform 0.6s ease 0.9s;
+	}
+
+	:global(.js) .planning__blocco:global(.is-visible) h2::after {
+		transform: scaleX(1);
+	}
+
+	/* Il bottone e' lo stesso della storia (.storia__btn); qui la freccia punta a destra. */
+	.planning__freccia {
+		flex-shrink: 0;
+		animation: planning-freccia 1.6s ease-in-out infinite;
+	}
+
+	@keyframes planning-freccia {
+		0%,
+		100% {
+			transform: translateX(-2px);
+		}
+		50% {
+			transform: translateX(5px);
+		}
+	}
+
+	/* Icona del calendario: la spunta batte piano. */
+	.planning__testa :global(.ico__spunta) {
+		stroke-dasharray: 1;
+		stroke-dashoffset: 0;
+		transform-box: fill-box;
+		transform-origin: center;
+		animation: planning-spunta 3s ease-in-out 1.2s infinite;
+	}
+
+	@keyframes planning-spunta {
+		0%,
+		70%,
+		100% {
+			transform: scale(1);
+		}
+		82% {
+			transform: scale(1.35);
+		}
+	}
+
+	/* La seconda foto ha la cornice nera, e' leggermente inclinata e "galleggia". */
+	.planning__media :global(.planning__img--accent) {
+		border-color: var(--bg-dark-deep);
+		rotate: 2.5deg;
+		animation: planning-fluttua 5s ease-in-out infinite;
+	}
+
+	@keyframes planning-fluttua {
+		0%,
+		100% {
+			translate: 0 0;
+		}
+		50% {
+			translate: 0 -7px;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:global(.js) .planning__cartello,
+		:global(.js) .planning__text h2::after {
+			transform: none !important;
+			transition: none;
+		}
+
+		.planning__freccia,
+		.planning__testa :global(.ico__spunta),
+		.planning__media :global(.planning__img--accent) {
+			animation: none;
+		}
+	}
+
+	.testimonianze {
+		padding-bottom: 76px;
 	}
 
 	.testimonianze__grid {
@@ -1235,14 +1452,14 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 
 		.storia__cta {
 			order: 5;
-			padding: 0 var(--gutter) 56px;
+			padding: 0 var(--gutter) 96px;
 		}
 
 		/* Numeri: tre colonne uguali, cifre che stanno nella colonna, stesso spazio sotto e sopra. */
 		.contatori {
 			order: 4;
 			grid-template-columns: repeat(3, minmax(0, 1fr));
-			padding: 32px var(--gutter);
+			padding: 64px var(--gutter) 32px;
 		}
 
 		.contatore {

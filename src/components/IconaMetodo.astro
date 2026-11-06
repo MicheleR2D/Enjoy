@@ -5,7 +5,7 @@
  * stroke-dashoffset; ogni icona ha poi un piccolo movimento continuo suo (vedi gli stili in index.astro).
  */
 interface Props {
-	nome: 'bersaglio' | 'monitoraggio' | 'benessere' | 'community';
+	nome: 'bersaglio' | 'monitoraggio' | 'benessere' | 'community' | 'calendario';
 }
 const { nome } = Astro.props;
 ---
@@ -30,6 +30,17 @@ const { nome } = Astro.props;
 						<polyline points="20.5 3.5 20.5 7.5 16.5 7.5" pathLength="1" />
 					</g>
 					<path d="M12 15.6s-3.1-1.9-3.1-4.1a1.7 1.7 0 0 1 3.1-.9 1.7 1.7 0 0 1 3.1.9c0 2.2-3.1 4.1-3.1 4.1z" fill="currentColor" stroke="none" />
+				</>
+			)
+		}
+		{
+			nome === 'calendario' && (
+				<>
+					<rect class="ico__cal" x="3" y="4.5" width="18" height="16" rx="3" />
+					<line x1="3" y1="10" x2="21" y2="10" />
+					<line x1="8" y1="2.5" x2="8" y2="6.5" />
+					<line x1="16" y1="2.5" x2="16" y2="6.5" />
+					<path class="ico__spunta" d="m8.5 15 2.3 2.3 4.7-4.8" />
 				</>
 			)
 		}
