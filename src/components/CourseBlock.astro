@@ -52,9 +52,13 @@ interface Props {
 	sfumoA?: 'nero' | 'accento';
 	/** La sezione che precede finisce con uno sfumo: meno spazio in cima (36px pieni). */
 	dopoSfumo?: boolean;
+	/** Testo diviso in schede (src/lib/schede.js): card a scorrimento su telefono, griglia su desktop. Pagine sede. */
+	schede?: { titolo?: string; html: string }[];
+	/** Pagine sede: su telefono la foto sta tra il titolo e il paragrafo, piu' grande; paragrafo a 16px. */
+	fotoCentro?: boolean;
 }
 
-const { blocco, fallbackImage, reverse = false, tone = 'dark', compatto = false, sfumoA, dopoSfumo = false } = Astro.props;
+const { blocco, fallbackImage, reverse = false, tone = 'dark', compatto = false, sfumoA, dopoSfumo = false, schede = [], fotoCentro = false } = Astro.props;
 const mediaAnim = reverse ? 'from-right' : 'from-left';
 const textAnim = reverse ? 'from-left' : 'from-right';
 
@@ -72,7 +76,7 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 
 <section
 	id={blocco.id ?? undefined}
-	class:list={['cb', 'sez', { 'on-dark': !accento }, `cb--${tone}`, { 'cb--reverse': reverse, 'cb--solo': !haMedia, 'cb--compatto': compatto, sfuma: sfumo, 'dopo-sfumo': dopoSfumo }]}
+	class:list={['cb', 'sez', { 'on-dark': !accento }, `cb--${tone}`, { 'cb--reverse': reverse, 'cb--solo': !haMedia, 'cb--compatto': compatto, 'cb--foto-centro': fotoCentro, sfuma: sfumo, 'dopo-sfumo': dopoSfumo }]}
 	style={sfumo ? `--da:${coloreBlocco};--a:${coloreSuccessivo}` : undefined}
 >
 	<div class="cb__grid container-wide">
@@ -109,7 +113,35 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 
 			{blocco.sottotitolo && <p class:list={['pill', { 'pill--dark': accento }, 'cb__sub']}>{blocco.sottotitolo}</p>}
 
-			<div class="cb__desc" set:html={blocco.descrizioneHtml} />
+			{
+				schede.length > 1 ? (
+					<>
+						<ul class="cb__schede" data-schede>
+							{schede.map((s, i) => (
+								<li class:list={['cb__scheda', { 'is-attiva': i === 0 }]} data-anim="up" data-anim-delay={String(Math.min(i, 2) * 110)}>
+									<span class="cb__scheda-n" aria-hidden="true">
+										{String(i + 1).padStart(2, '0')}
+										<span class="cb__scheda-tot">/{String(schede.length).padStart(2, '0')}</span>
+									</span>
+									{s.titolo && <h3 class="cb__scheda-titolo">{s.titolo}</h3>}
+									<div class="cb__scheda-testo" set:html={s.html} />
+								</li>
+							))}
+						</ul>
+						<div class="cb__punti" aria-hidden="true">
+							{schede.map((_, i) => (
+								<span class:list={['cb__punto', { 'is-on': i === 0 }]} />
+							))}
+							<svg class="cb__scorri" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M4 12h15" />
+								<path d="m13 6 6 6-6 6" />
+							</svg>
+						</div>
+					</>
+				) : (
+					<div class="cb__desc" set:html={blocco.descrizioneHtml} />
+				)
+			}
 
 			{
 				blocco.dettagli.length > 0 && (
@@ -562,6 +594,239 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 		}
 	}
 
+	/* ---- Pagine sede (ambienti): foto tra titolo e paragrafo, piu' evidente; paragrafo meno grande ---- */
+	.cb--foto-centro .cb__media {
+		aspect-ratio: 4 / 3;
+	}
+
+	.cb--foto-centro .cb__desc {
+		font-size: var(--text-base);
+		line-height: 1.6;
+	}
+
+	/* Schede: card gialle con testo nero sui blocchi neri, card nere con titolo giallo e testo bianco sui
+	   blocchi gialli. Desktop: griglia a due colonne; telefono: card affiancate da scorrere (vedi sotto). */
+	.cb__schede {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 14px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.cb__scheda {
+		position: relative;
+		padding: 18px 18px 22px;
+		border-radius: 16px;
+		background: var(--accent);
+		color: var(--on-accent);
+		box-shadow: 0 14px 28px -16px rgba(0, 0, 0, 0.55);
+		transition:
+			scale 0.45s var(--ease-out-crit),
+			translate 0.35s var(--ease-out-crit),
+			box-shadow 0.35s ease;
+	}
+
+	/* Numero della card ("01/06") in una pillola: nera sulle card gialle, gialla su quelle nere. */
+	.cb__scheda-n {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 1px;
+		margin-bottom: 12px;
+		padding: 4px 10px;
+		border-radius: var(--radius-pill);
+		background: var(--bg-dark-deep);
+		color: var(--accent);
+		font-family: var(--font-heading);
+		font-size: 0.8rem;
+		font-weight: 900;
+		letter-spacing: 0.06em;
+		line-height: 1.2;
+	}
+
+	.cb__scheda-tot {
+		font-size: 0.68rem;
+		font-weight: 700;
+	}
+
+	.cb--accento .cb__scheda-n {
+		background: var(--accent);
+		color: var(--bg-dark-deep);
+	}
+
+	@media (hover: hover) and (min-width: 901px) {
+		.cb__scheda:hover {
+			translate: 0 -4px;
+			box-shadow: 0 22px 34px -16px rgba(0, 0, 0, 0.6);
+		}
+	}
+
+	.cb--accento .cb__scheda {
+		background: var(--bg-dark-deep);
+		color: var(--text-on-dark);
+	}
+
+	.cb__scheda-titolo {
+		margin: 0 0 8px;
+		font-family: var(--font-heading);
+		font-size: 1rem;
+		font-weight: 900;
+		line-height: 1.2;
+		text-transform: uppercase;
+		color: inherit;
+	}
+
+	.cb--accento .cb__scheda-titolo {
+		color: var(--accent);
+	}
+
+	/* Sottolineatura sotto il titolo (nera sulle card gialle, gialla su quelle nere) che si disegna quando la
+	   card compare. */
+	.cb__scheda-titolo::after {
+		content: '';
+		display: block;
+		width: 32px;
+		height: 3px;
+		margin-top: 8px;
+		background: currentColor;
+		transform-origin: left;
+	}
+
+	:global(.js) .cb__scheda-titolo::after {
+		transform: scaleX(0);
+		transition: transform 0.6s var(--ease-out-crit) 0.35s;
+	}
+
+	:global(.js) .cb__scheda:global(.is-visible) .cb__scheda-titolo::after {
+		transform: scaleX(1);
+	}
+
+	.cb__scheda-testo {
+		font-size: 0.95rem;
+		line-height: 1.5;
+	}
+
+	.cb__scheda-testo :global(p) {
+		margin: 0 0 0.6em;
+	}
+
+	.cb__scheda-testo :global(p:last-child) {
+		margin-bottom: 0;
+	}
+
+	/* Il grassetto su fondo scuro e' giallo (.on-dark strong): dentro la card gialla resterebbe invisibile. */
+	.cb__scheda :global(strong) {
+		color: inherit;
+	}
+
+	.cb__punti {
+		display: none;
+	}
+
+	@media (max-width: 900px) {
+		/* Il contenitore del testo si "scioglie" cosi' la foto puo' stare tra titolo e paragrafo: titolo (0), foto (1),
+		   tutto il resto (2). Le voci hanno 24px di distanza dalla foto, non il gap della griglia. */
+		.cb--foto-centro .cb__grid {
+			gap: 0;
+		}
+
+		.cb--foto-centro .cb__text {
+			display: contents;
+		}
+
+		.cb--foto-centro .cb__text > :global(*) {
+			order: 2;
+		}
+
+		.cb--foto-centro .cb__text > :global(.st),
+		.cb--foto-centro .cb__text > .cb__sub {
+			order: 0;
+		}
+
+		/* Card affiancate che si scorrono col dito: se ne vede una e un pezzo della successiva. La fila arriva ai
+		   bordi dello schermo (margini negativi pari al margine laterale) senza allargare la pagina. */
+		.cb__schede {
+			display: flex;
+			gap: 12px;
+			margin-inline: calc(-1 * var(--gutter));
+			padding: 4px var(--gutter) 12px;
+			overflow-x: auto;
+			scroll-snap-type: x mandatory;
+			scroll-padding-inline: var(--gutter);
+			scrollbar-width: none;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		.cb__schede::-webkit-scrollbar {
+			display: none;
+		}
+
+		/* La card in vista e' a grandezza piena, le altre un po' piu' piccole (si sente lo scorrimento).
+		   "scale" e non "transform", che serve all'animazione di entrata. */
+		.cb__scheda {
+			flex: 0 0 78%;
+			scroll-snap-align: start;
+			scale: 0.93;
+			transform-origin: left center;
+		}
+
+		.cb__scheda.is-attiva {
+			scale: 1;
+		}
+
+		.cb__punti {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 8px;
+			margin-top: 6px;
+		}
+
+		/* Freccia che invita a scorrere: oscilla verso destra e sparisce all'ultima card. */
+		.cb__scorri {
+			margin-left: 6px;
+			animation: cb-scorri 1.4s ease-in-out infinite;
+			transition: opacity 0.3s ease;
+		}
+
+		.cb__punti.is-fine .cb__scorri {
+			opacity: 0;
+			animation: none;
+		}
+
+		@keyframes cb-scorri {
+			0%,
+			100% {
+				transform: translateX(-2px);
+			}
+			50% {
+				transform: translateX(5px);
+			}
+		}
+
+		.cb__punto {
+			width: 8px;
+			height: 8px;
+			border-radius: 4px;
+			background: currentColor;
+			opacity: 0.3;
+			transition: width 0.3s ease, opacity 0.3s ease;
+		}
+
+		.cb__punto.is-on {
+			width: 22px;
+			opacity: 1;
+		}
+
+		.cb--foto-centro .cb__media,
+		.cb--foto-centro.cb--reverse .cb__media {
+			order: 1;
+			margin: 4px 0 24px;
+			box-shadow: 0 18px 36px -18px rgba(0, 0, 0, 0.55);
+		}
+	}
+
 	@media (max-width: 560px) {
 		.cb__bar {
 			grid-template-columns: 6rem 1fr 2.6rem;
@@ -571,6 +836,34 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 </style>
 
 <script>
+	// Schede a scorrimento (pagine sede): il pallino attivo segue la card visibile.
+	document.querySelectorAll<HTMLElement>('[data-schede]').forEach((lista) => {
+		const punti = [...(lista.nextElementSibling?.querySelectorAll<HTMLElement>('.cb__punto') ?? [])];
+		if (!punti.length) return;
+		let attesa = false;
+		const aggiorna = () => {
+			attesa = false;
+			const prima = lista.children[0] as HTMLElement | undefined;
+			if (!prima) return;
+			const passo = prima.getBoundingClientRect().width + (parseFloat(getComputedStyle(lista).columnGap) || 0);
+			const fine = lista.scrollLeft >= lista.scrollWidth - lista.clientWidth - 2;
+			const i = fine ? punti.length - 1 : Math.min(punti.length - 1, Math.round(lista.scrollLeft / passo));
+			punti.forEach((p, k) => p.classList.toggle('is-on', k === i));
+			[...lista.children].forEach((c, k) => c.classList.toggle('is-attiva', k === i));
+			lista.nextElementSibling?.classList.toggle('is-fine', fine);
+		};
+		lista.addEventListener(
+			'scroll',
+			() => {
+				if (!attesa) {
+					attesa = true;
+					requestAnimationFrame(aggiorna);
+				}
+			},
+			{ passive: true }
+		);
+	});
+
 	// Il video parte (muto, in loop) solo quando e' in vista e si ferma quando
 	// esce: ne servono diversi per pagina e pesano parecchio. Chi chiede meno
 	// movimento non lo vede partire da solo e ha i comandi nativi. Il bottone

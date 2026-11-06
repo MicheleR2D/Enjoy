@@ -15,6 +15,7 @@ import NumeriGrandi from '../components/NumeriGrandi.astro';
 import IconaMetodo from '../components/IconaMetodo.astro';
 import { sedi, mapsDirectionsUrl, formUrl } from '../data/site';
 import { luogo, grafo } from '../lib/jsonld';
+import { inSchede } from '../lib/schede.js';
 
 interface Props {
 	pagina: {
@@ -49,6 +50,9 @@ const blocchi = pagina.ambienti.map((a) => ({
 	intensita: [],
 }));
 
+// Testo di ogni ambiente diviso in schede (card a scorrimento): sotto-aree con titolo o paragrafi brevi, stesse parole.
+const schedeAmbienti = pagina.ambienti.map((a) => inSchede(a.html));
+
 // Titolo su tre righe, con la parte centrale in giallo ("Scegli / ogni giorno / il tuo benessere").
 const titoloOrari = pagina.orari.titolo ?? 'Scegli ogni giorno il tuo benessere';
 const partiTitolo = titoloOrari.match(/^(\S+) (\S+ \S+) (.+)$/);
@@ -59,6 +63,13 @@ const titoliCartelli: Record<string, string[]> = {
 	meda: ['Design, benessere e funzionalità', 'Il vero gioiello del centro'],
 	camuzzago: ['Un’oasi di benessere', 'Il fiore all’occhiello'],
 };
+
+// Dati chiave dei paragrafi della Struttura: frasi gia' presenti nel testo (si evidenziano, le parole restano le stesse).
+const datiChiave: Record<string, string[]> = {
+	meda: ['2800 m²', 'oltre 100 attività settimanali', 'piscina panoramica da 25 metri con 4 corsie', '29 gradi'],
+	camuzzago: ['oltre 500 m²', 'supera i 90 corsi settimanali', 'piscina coperta da 25 metri con 6 corsie'],
+};
+const evidenzia = (html: string, frasi: string[] = []) => frasi.reduce((h, f) => h.replace(f, `<strong>${f}</strong>`), html);
 
 // Colori delle sezioni dopo la zona gialla: ambienti alternati (nero, giallo...), poi "le attivita'" sul nero.
 // Tra una e l'altra c'e' sempre lo sfumo; dopo l'ultima sezione c'e' la CTA gialla del footer.
@@ -118,7 +129,7 @@ const provincia = sede.citta.match(/\((\w+)\)/)?.[1];
 				{
 					pagina.struttura.testi.map((t, i) => (
 						<Cartello titolo={titoliCartelli[pagina.slug]?.[i] ?? pagina.struttura.titolo} lato={i % 2 === 0 ? 'sinistra' : 'destra'}>
-							<div set:html={t.startsWith('<') ? t : `<p>${t}</p>`} />
+							<div set:html={evidenzia(t.startsWith('<') ? t : `<p>${t}</p>`, datiChiave[pagina.slug])} />
 						</Cartello>
 					))
 				}
@@ -130,7 +141,7 @@ const provincia = sede.citta.match(/\((\w+)\)/)?.[1];
 
 	{
 		blocchi.map((blocco, i) => (
-			<CourseBlock blocco={blocco} reverse={i % 2 === 1} tone={eAccento(i) ? 'accento' : 'dark'} sfumoA={dopoBlocco(i)} dopoSfumo />
+			<CourseBlock blocco={blocco} reverse={i % 2 === 1} tone={eAccento(i) ? 'accento' : 'dark'} sfumoA={dopoBlocco(i)} dopoSfumo fotoCentro schede={schedeAmbienti[i]} />
 		))
 	}
 
@@ -265,6 +276,11 @@ const provincia = sede.citta.match(/\((\w+)\)/)?.[1];
 		font-weight: 500;
 		line-height: 1.4;
 		color: var(--on-accent);
+	}
+
+	/* Dati chiave nei paragrafi della struttura: in giallo nel cartello nero (senza animazione). */
+	.sede-gialla__cartelli :global(strong) {
+		color: var(--accent);
 	}
 
 	.sede-gialla__cartelli {

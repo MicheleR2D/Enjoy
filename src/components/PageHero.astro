@@ -116,9 +116,12 @@ const { image, title, words = [], imageAlt = '', video, eyebrow, sottotitolo } =
 		background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.6), transparent);
 	}
 
+	/* Larghezza fissa (tutta quella disponibile): senza, il contenitore prende la larghezza del titolo e cambia
+	   a ogni parola che ruota, e i bottoni (a tutta larghezza su telefono) si allargano e restringono con lui. */
 	.ph__content {
 		position: relative;
 		z-index: 1;
+		width: 100%;
 		text-align: center;
 	}
 
@@ -185,13 +188,6 @@ const { image, title, words = [], imageAlt = '', video, eyebrow, sottotitolo } =
 		justify-content: center;
 		gap: 16px;
 		margin-top: 36px;
-	}
-
-	@media (max-width: 900px) {
-		.ph {
-			min-height: 74vh;
-			min-height: 74svh;
-		}
 	}
 
 	@media (max-width: 560px) {
