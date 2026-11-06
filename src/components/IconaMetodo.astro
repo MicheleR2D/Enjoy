@@ -1,0 +1,47 @@
+---
+/*
+ * Icona di uno dei punti del Metodo: disegno a linea nera dentro un box quadrato colorato (il colore
+ * lo passa --c dal genitore). Le forme hanno pathLength="1" cosi' l'entrata puo' "disegnarle" con
+ * stroke-dashoffset; ogni icona ha poi un piccolo movimento continuo suo (vedi gli stili in index.astro).
+ */
+interface Props {
+	nome: 'bersaglio' | 'monitoraggio' | 'benessere' | 'community';
+}
+const { nome } = Astro.props;
+---
+
+<span class={`ico ico--${nome}`} aria-hidden="true">
+	<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+		{
+			nome === 'bersaglio' && (
+				<>
+					<circle cx="12" cy="12" r="9.5" pathLength="1" />
+					<circle cx="12" cy="12" r="5.5" pathLength="1" />
+					<circle class="ico__punto" cx="12" cy="12" r="1.6" fill="currentColor" stroke="none" />
+				</>
+			)
+		}
+		{nome === 'monitoraggio' && <polyline class="ico__linea" points="2 12.5 6.5 12.5 9.5 4.5 14.5 19.5 17.5 12.5 22 12.5" pathLength="1" />}
+		{
+			nome === 'benessere' && (
+				<>
+					<g class="ico__giro">
+						<path d="M20.5 12a8.5 8.5 0 1 1-2.6-6.1" pathLength="1" />
+						<polyline points="20.5 3.5 20.5 7.5 16.5 7.5" pathLength="1" />
+					</g>
+					<path d="M12 15.6s-3.1-1.9-3.1-4.1a1.7 1.7 0 0 1 3.1-.9 1.7 1.7 0 0 1 3.1.9c0 2.2-3.1 4.1-3.1 4.1z" fill="currentColor" stroke="none" />
+				</>
+			)
+		}
+		{
+			nome === 'community' && (
+				<>
+					<circle class="ico__testa ico__testa--a" cx="9" cy="8" r="3.2" pathLength="1" />
+					<path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" pathLength="1" />
+					<circle class="ico__testa ico__testa--b" cx="17.2" cy="9" r="2.5" pathLength="1" />
+					<path d="M16.6 14.2c2.9.3 4.9 2.6 4.9 5.3" pathLength="1" />
+				</>
+			)
+		}
+	</svg>
+</span>
