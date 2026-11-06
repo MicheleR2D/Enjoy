@@ -180,6 +180,71 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		}
 	</script>
 
+	<script>
+		// Testo che "si accende" mentre si scorre: le parole di [data-rivela] passano da spente ad accese
+		// seguendo lo scroll (anche all'indietro); le parole chiave (<strong>) si colorano con un
+		// evidenziatore giallo. Senza JS o con "riduci movimento" il testo resta com'e', tutto acceso.
+		const blocchi = document.querySelectorAll<HTMLElement>('[data-rivela]');
+		if (blocchi.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			blocchi.forEach((blocco) => {
+				const parole: HTMLElement[] = [];
+				const chiavi: { el: HTMLElement; prima: number }[] = [];
+
+				// ogni parola dentro un <span>; spazi e <br> restano dove sono
+				const dividi = (nodo: Node) => {
+					[...nodo.childNodes].forEach((figlio) => {
+						if (figlio.nodeType === Node.TEXT_NODE) {
+							const pezzi = (figlio.textContent ?? '').split(/(\s+)/);
+							const frammento = document.createDocumentFragment();
+							pezzi.forEach((pezzo) => {
+								if (!pezzo) return;
+								if (/^\s+$/.test(pezzo)) {
+									frammento.append(pezzo);
+									return;
+								}
+								const span = document.createElement('span');
+								span.className = 'rv__w';
+								span.textContent = pezzo;
+								parole.push(span);
+								frammento.append(span);
+							});
+							figlio.replaceWith(frammento);
+						} else if (figlio.nodeType === Node.ELEMENT_NODE && (figlio as HTMLElement).tagName !== 'BR') {
+							const el = figlio as HTMLElement;
+							const prima = parole.length;
+							dividi(el);
+							if (el.tagName === 'STRONG') chiavi.push({ el, prima });
+						}
+					});
+				};
+				dividi(blocco);
+				blocco.classList.add('rv--on');
+
+				let attesa = false;
+				const aggiorna = () => {
+					attesa = false;
+					const r = blocco.getBoundingClientRect();
+					const vh = window.innerHeight;
+					const inizio = vh * 0.9; // la prima parola si accende quando il blocco entra
+					const fine = vh * 0.5; // tutte accese quando il fondo del blocco arriva a meta' schermo
+					const p = Math.min(1, Math.max(0, (inizio - r.top) / (r.height + inizio - fine)));
+					const accese = Math.round(p * parole.length);
+					parole.forEach((w, i) => w.classList.toggle('is-lit', i < accese));
+					chiavi.forEach(({ el, prima }) => el.classList.toggle('is-lit', prima < accese));
+				};
+				const richiedi = () => {
+					if (!attesa) {
+						attesa = true;
+						requestAnimationFrame(aggiorna);
+					}
+				};
+				addEventListener('scroll', richiedi, { passive: true });
+				addEventListener('resize', richiedi);
+				aggiorna();
+			});
+		}
+	</script>
+
 	<section class="metodo section on-dark sfuma" style="--da: var(--bg-dark); --a: var(--bg-dark-deep)">
 		<div class="metodo__inner container-wide">
 			<div class="metodo__intro" data-anim="from-left">
@@ -229,7 +294,7 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 					<SectionTitle accent={g.accento} gap={0}>
 						{g.titolo}
 					</SectionTitle>
-					<div class="attivita__desc container-wide on-dark" data-anim="fade" set:html={g.html} />
+					<div class="attivita__desc container-wide on-dark" data-anim="fade" data-rivela set:html={g.html} />
 					{(() => {
 						let n = 0;
 						return g.righe.map((riga) => {
@@ -437,6 +502,44 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 
 	.attivita__desc :global(p) {
 		margin: 0;
+	}
+
+	/* Primo blocco: testo piu' grande che si accende allo scroll (vedi lo script sopra). */
+	.attivita__desc[data-rivela] {
+		max-width: calc(70rem + 2 * var(--gutter));
+		font-size: clamp(1.2rem, 4.8vw, 1.65rem);
+		font-weight: 500;
+		line-height: 1.45;
+	}
+
+	.attivita__desc[data-rivela] :global(.rv__w) {
+		transition: opacity 0.35s ease;
+	}
+
+	.attivita__desc[data-rivela].rv--on :global(.rv__w) {
+		opacity: 0.25;
+	}
+
+	.attivita__desc[data-rivela].rv--on :global(.rv__w.is-lit) {
+		opacity: 1;
+	}
+
+	/* Parole chiave: evidenziatore giallo che si disegna da sinistra; il testo passa al nero. */
+	.attivita__desc[data-rivela].rv--on :global(strong) {
+		padding: 0.02em 0.22em;
+		margin: 0 -0.1em;
+		border-radius: 0.2em;
+		background: linear-gradient(var(--accent), var(--accent)) no-repeat left center / 0% 100%;
+		-webkit-box-decoration-break: clone;
+		box-decoration-break: clone;
+		transition:
+			background-size 0.6s var(--ease-out-crit),
+			color 0.3s ease 0.15s;
+	}
+
+	.attivita__desc[data-rivela].rv--on :global(strong.is-lit) {
+		background-size: 100% 100%;
+		color: var(--bg-dark-deep);
 	}
 
 	/* --- Storia: foto a sinistra, testo a destra, numeri sotto (su fondo giallo) --- */
