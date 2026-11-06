@@ -118,7 +118,7 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 					<>
 						<ul class="cb__schede" data-schede>
 							{schede.map((s, i) => (
-								<li class:list={['cb__scheda', { 'is-attiva': i === 0 }]} data-anim="up" data-anim-delay={String(Math.min(i, 2) * 110)}>
+								<li class:list={['cb__scheda', { 'is-attiva': i === 0 }]} data-anim="fade" data-anim-delay={String(Math.min(i, 2) * 110)}>
 									<span class="cb__scheda-n" aria-hidden="true">
 										{String(i + 1).padStart(2, '0')}
 										<span class="cb__scheda-tot">/{String(schede.length).padStart(2, '0')}</span>
@@ -751,11 +751,16 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 			gap: 12px;
 			margin-inline: calc(-1 * var(--gutter));
 			padding: 4px var(--gutter) 12px;
+			/* Solo orizzontale: con overflow-x:auto il browser rende scorrevole anche la verticale e la fila
+			   "catturava" il dito che voleva scorrere la pagina. pan-y lascia lo scorrimento verticale alla pagina,
+			   overscroll-behavior evita che lo scorrimento laterale passi alla pagina (o al "torna indietro"). */
 			overflow-x: auto;
+			overflow-y: hidden;
+			overscroll-behavior-x: contain;
+			touch-action: pan-x pan-y;
 			scroll-snap-type: x mandatory;
 			scroll-padding-inline: var(--gutter);
 			scrollbar-width: none;
-			-webkit-overflow-scrolling: touch;
 		}
 
 		.cb__schede::-webkit-scrollbar {

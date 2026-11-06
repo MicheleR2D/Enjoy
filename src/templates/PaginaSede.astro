@@ -56,6 +56,16 @@ const schedeAmbienti = pagina.ambienti.map((a) => inSchede(a.html));
 // Titolo su tre righe, con la parte centrale in giallo ("Scegli / ogni giorno / il tuo benessere").
 const titoloOrari = pagina.orari.titolo ?? 'Scegli ogni giorno il tuo benessere';
 const partiTitolo = titoloOrari.match(/^(\S+) (\S+ \S+) (.+)$/);
+// Orari: una riga per fascia ("Lunedi' - ... - Venerdi' dalle 7.00 alle 22.30"): giorni sopra, ore sotto. Si taglia dove
+// iniziano le ore ("dalle 7.00" oppure "7.00"); se non si riconosce il taglio la riga resta intera.
+const righeOrari = (pagina.orari.html ?? '')
+	.split(/<br\s*\/?>/i)
+	.map((r) => r.replace(/<[^>]*>/g, '').trim())
+	.filter(Boolean)
+	.map((r) => {
+		const m = r.match(/^(.*?)\s+((?:dalle\s+)?\d.*)$/i);
+		return m ? { giorni: m[1], ore: m[2] } : { giorni: r, ore: '' };
+	});
 
 // Titoli dei due cartelli della struttura: frasi gia' presenti nei paragrafi (nei testi non ci sono grassetti
 // da cui ricavarli). DA APPROVARE.
@@ -105,7 +115,16 @@ const provincia = sede.citta.match(/\((\w+)\)/)?.[1];
 				</h2>
 			</div>
 			<div class="orari-sede__col" data-anim="from-right" data-anim-delay="80">
-				<p class="orari-sede__orari" set:html={pagina.orari.html} />
+				<div class="orari-sede__orari">
+					{
+						righeOrari.map((r) => (
+							<p class="orari-sede__riga">
+								<span class="orari-sede__giorni">{r.giorni}</span>{' '}
+								{r.ore && <span class="orari-sede__ore">{r.ore}</span>}
+							</p>
+						))
+					}
+				</div>
 				<p class="orari-sede__dove">
 					<a href={mapsDirectionsUrl(sede)} target="_blank" rel="noopener">
 						<span>{sede.via}</span><span>{sede.nome}</span>{provincia && <span>{provincia}</span>}
@@ -175,8 +194,8 @@ const provincia = sede.citta.match(/\((\w+)\)/)?.[1];
 		gap: 48px;
 	}
 
-	/* Orari: sezione nera come prima (titolo bianco su tre righe con la parte centrale gialla, orari a destra con
-	   filo giallo, riga gialla sotto). Sfondo come la fine della hero (--bg-dark); in fondo 36px pieni prima dello
+	/* Orari: sezione nera come prima (titolo bianco su tre righe con la parte centrale gialla, orari a destra in righe:
+	   giorni e ore; niente linee gialle). Sfondo come la fine della hero (--bg-dark); in fondo 36px pieni prima dello
 	   sfumo verso la zona gialla. */
 	.orari-sede {
 		padding-block: clamp(32px, 4.5vw, 56px) 36px;
@@ -189,15 +208,6 @@ const provincia = sede.citta.match(/\((\w+)\)/)?.[1];
 		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 		column-gap: clamp(24px, 5vw, 72px);
 		align-items: start;
-	}
-
-	/* Linea gialla sotto il blocco, larga come il contenuto. */
-	.orari-sede__grid::after {
-		content: '';
-		grid-column: 1 / -1;
-		height: 4px;
-		margin-top: clamp(20px, 2.5vw, 32px);
-		background: var(--accent);
 	}
 
 	.orari-sede__title {
@@ -218,14 +228,32 @@ const provincia = sede.citta.match(/\((\w+)\)/)?.[1];
 		color: var(--accent);
 	}
 
+	/* Una riga per fascia: giorni (bianco, leggero) e sotto le ore (giallo, piu' marcato). */
 	.orari-sede__orari {
+		display: grid;
+		gap: clamp(14px, 2vw, 22px);
+	}
+
+	.orari-sede__riga {
 		margin: 0;
-		padding-left: 24px;
-		border-left: 4px solid var(--accent);
-		font-size: clamp(1.1rem, 1.7vw, 1.45rem);
-		font-weight: 300;
-		line-height: 1.35;
 		text-transform: uppercase;
+	}
+
+	.orari-sede__giorni {
+		display: block;
+		font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+		font-weight: 400;
+		letter-spacing: 0.04em;
+		line-height: 1.35;
+	}
+
+	.orari-sede__ore {
+		display: block;
+		margin-top: 2px;
+		font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+		font-weight: 800;
+		line-height: 1.2;
+		color: var(--accent);
 	}
 
 	.orari-sede__dove {
@@ -298,6 +326,7 @@ const provincia = sede.citta.match(/\((\w+)\)/)?.[1];
 	@media (max-width: 900px) {
 		.orari-sede__grid {
 			grid-template-columns: minmax(0, 1fr);
+			row-gap: 24px;
 		}
 
 		.sede-gialla__cartelli {
