@@ -1,0 +1,47 @@
+# Anteprima del sito su GitHub Pages (https://micheler2d.github.io/Enjoy/).
+# Il sito vero va su Vercel; questa e' solo una copia da condividere, esclusa dai motori di ricerca.
+name: Anteprima su GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Compila il sito
+        run: npm run build
+        env:
+          SITE_URL: https://micheler2d.github.io
+      - name: Adatta gli indirizzi alla sottocartella /Enjoy
+        run: node scripts/pages-anteprima.mjs Enjoy
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .vercel/output/static
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
