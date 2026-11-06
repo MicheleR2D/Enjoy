@@ -4,6 +4,16 @@
  * (youtube-nocookie). Va messo dentro la hero (position: relative), sopra le foto e sotto il velo
  * scuro. Lo carica lo script a pagina pronta, cosi' non rallenta la hero; compare quando e' partito.
  * Finche' non e' pronto, e con "riduci movimento", si vede solo la foto.
+ *
+ * Si usa l'API ufficiale del player e non i parametri loop/playlist: con una playlist YouTube
+ * disegna sopra il video i tasti avanti, pausa e indietro. Il loop lo fa lo script: poco prima
+ * della fine (o del secondo "fine") il video torna all'inizio, senza mai arrivare allo stato
+ * "terminato" (che mostrerebbe il tasto di replay e i video suggeriti).
+ *
+ * YouTube disegna al centro del video i suoi segni (tasto play in pausa, anello di caricamento,
+ * icona di pausa/play al cambio di stato) e dal codice non si possono togliere: per questo il video
+ * si vede solo mentre sta girando da piu' di un attimo; in pausa, durante il caricamento (anche al
+ * ritorno all'inizio) e a fine corsa si vede la foto della hero.
  */
 interface Props {
 	/** Id del video su YouTube. */
@@ -14,29 +24,17 @@ interface Props {
 	fine?: number;
 }
 
-const { id, inizio, fine } = Astro.props;
-
-const src = `https://www.youtube-nocookie.com/embed/${id}?${new URLSearchParams({
-	autoplay: '1',
-	mute: '1',
-	controls: '0',
-	loop: '1',
-	playlist: id,
-	playsinline: '1',
-	rel: '0',
-	disablekb: '1',
-	iv_load_policy: '3',
-	...(inizio ? { start: String(inizio) } : {}),
-	...(fine ? { end: String(fine) } : {}),
-})}`;
+const { id, inizio = 0, fine } = Astro.props;
 ---
 
-<div class="vs" aria-hidden="true">
-	<iframe data-src={src} title="" tabindex="-1" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+<div class="vs" aria-hidden="true" data-video={id} data-inizio={inizio} data-fine={fine}>
+	<div class="vs__mount"></div>
 </div>
 
 <style>
-	/* Il video riempie la hero come "cover": 16:9 centrato, piu' grande dell'area se serve. */
+	/* Il video riempie la hero come "cover": 16:9 centrato, piu' grande dell'area se serve. Il
+	   player e' ingrandito del 12% (e ritagliato dalla hero) cosi' restano fuori campo la barra
+	   del titolo in alto e la striscia dei comandi in basso. */
 	.vs {
 		position: absolute;
 		inset: 0;
@@ -44,30 +42,111 @@ const src = `https://www.youtube-nocookie.com/embed/${id}?${new URLSearchParams(
 		pointer-events: none;
 	}
 
-	.vs iframe {
+	/* L'iframe lo crea lo script: non porta l'attributo degli stili locali, quindi :global. */
+	.vs :global(iframe) {
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		width: max(100vw, 177.78svh);
 		height: max(56.25vw, 100svh);
 		border: 0;
-		transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%) scale(1.12);
 		opacity: 0;
-		transition: opacity 0.8s ease;
+		transition: opacity 0.2s ease;
 	}
 
-	.vs iframe.is-ready {
+	.vs.is-ready :global(iframe) {
 		opacity: 1;
+		transition: opacity 0.8s ease;
 	}
 </style>
 
 <script>
+	// @ts-nocheck - l'API di YouTube e' caricata a runtime (window.YT), non ha tipi nel progetto
 	if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-		const avvia = () =>
-			document.querySelectorAll<HTMLIFrameElement>('.vs iframe[data-src]').forEach((f) => {
-				f.addEventListener('load', () => setTimeout(() => f.classList.add('is-ready'), 1200), { once: true });
-				f.src = f.dataset.src!;
+		const caricaApi = () =>
+			new Promise((resolve) => {
+				if (window.YT?.Player) return resolve(window.YT);
+				const precedente = window.onYouTubeIframeAPIReady;
+				window.onYouTubeIframeAPIReady = () => {
+					precedente?.();
+					resolve(window.YT);
+				};
+				const s = document.createElement('script');
+				s.src = 'https://www.youtube.com/iframe_api';
+				s.async = true;
+				document.head.appendChild(s);
 			});
+
+		const avvia = async () => {
+			const box = [...document.querySelectorAll('.vs[data-video]')];
+			if (!box.length) return;
+			const YT = await caricaApi();
+			box.forEach((el) => {
+				const inizio = Number(el.dataset.inizio) || 0;
+				const fine = Number(el.dataset.fine) || 0;
+				let controllo = 0; // controllo periodico della fine del video
+				let mostra = 0; // attesa prima di far comparire il video
+				const nascondi = () => {
+					clearTimeout(mostra);
+					el.classList.remove('is-ready');
+				};
+				const riparti = (p) => {
+					nascondi();
+					p.seekTo(inizio, true);
+				};
+				new YT.Player(el.querySelector('.vs__mount'), {
+					host: 'https://www.youtube-nocookie.com',
+					videoId: el.dataset.video,
+					playerVars: {
+						autoplay: 1,
+						mute: 1,
+						controls: 0,
+						disablekb: 1,
+						fs: 0,
+						iv_load_policy: 3,
+						modestbranding: 1,
+						playsinline: 1,
+						rel: 0,
+						start: inizio,
+						origin: location.origin,
+					},
+					events: {
+						onReady: (e) => {
+							e.target.mute();
+							// l'avvio e' automatico (autoplay): solo se il browser non l'ha fatto partire si riprova una volta
+							setTimeout(() => {
+								const stato = e.target.getPlayerState();
+								if (stato !== YT.PlayerState.PLAYING && stato !== YT.PlayerState.BUFFERING) e.target.playVideo();
+							}, 1500);
+						},
+						onStateChange: (e) => {
+							const S = YT.PlayerState;
+							if (e.data === S.PLAYING) {
+								// il video compare dopo un attimo che gira, cosi' i segni di YouTube all'avvio non si vedono
+								clearTimeout(mostra);
+								mostra = setTimeout(() => el.classList.add('is-ready'), 1200);
+								clearInterval(controllo);
+								controllo = setInterval(() => {
+									const durata = e.target.getDuration();
+									const limite = fine && fine < durata ? fine : durata;
+									if (limite && e.target.getCurrentTime() >= limite - 0.4) riparti(e.target);
+								}, 200);
+							} else if (e.data === S.BUFFERING) {
+								nascondi(); // anello di caricamento
+							} else if (e.data === S.PAUSED) {
+								nascondi(); // tasto play al centro: il video non deve mai restare fermo
+								e.target.playVideo();
+							} else if (e.data === S.ENDED) {
+								riparti(e.target);
+								e.target.playVideo();
+							}
+						},
+					},
+				});
+			});
+		};
+
 		if (document.readyState === 'complete') avvia();
 		else addEventListener('load', avvia, { once: true });
 	}
