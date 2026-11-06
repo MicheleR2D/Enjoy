@@ -47,11 +47,20 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 			</ul>
 			<div class="hd__actions">
 				<a class="btn btn--outline hd__cta hd__cta--contact" href={formUrl('contatto', 'Header')} target="_blank" rel="noopener">
+					<svg class="hd__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.4-.7L3 21l1.8-5.2A8.4 8.4 0 1 1 21 11.5z" />
+					</svg>
 					Contattaci
 				</a>
-				<a class="btn hd__cta hd__cta--primary" href={formUrl('prova', 'Header')} target="_blank" rel="noopener">
-					Prova ora
-				</a>
+				<div class="hd__prova">
+					<a class="btn hd__cta hd__cta--primary" href={formUrl('prova', 'Header')} target="_blank" rel="noopener">
+						<svg class="hd__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<rect x="3" y="3" width="18" height="18" rx="3" />
+							<path d="m8 12 3 3 5-6" />
+						</svg>
+						Prova ora
+					</a>
+				</div>
 			</div>
 		</nav>
 	</div>
@@ -66,6 +75,7 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 		toggle?.setAttribute('aria-expanded', aperto ? 'true' : 'false');
 		toggle?.setAttribute('aria-label', aperto ? 'Chiudi il menu' : 'Apri il menu');
 		document.documentElement.classList.toggle('hd-lock', aperto);
+		if (!aperto) chiudiColonne();
 	};
 	toggle?.addEventListener('click', () => impostaMenu(!nav?.classList.contains('hd__nav--aperto')));
 	// Si chiude con un tap su un link o sul bottone contatti, con Esc o
@@ -89,7 +99,7 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 	colonne.forEach((col) => {
 		col.querySelector('.hd__col-title')?.addEventListener('click', (e) => {
 			// Un clic di mouse arriva con il menu gia' aperto dal passaggio.
-			if (e.pointerType === 'mouse') return;
+			if (e.pointerType === 'mouse' && desktop()) return;
 			const aperta = !col.classList.contains('is-open');
 			chiudiColonne(col);
 			impostaColonna(col, aperta);
@@ -201,6 +211,15 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 		display: flex;
 		gap: 12px;
 		flex-wrap: wrap;
+	}
+
+	/* Il contenitore del bottone "Prova ora" e le icone dei bottoni servono solo nel menu mobile. */
+	.hd__prova {
+		display: contents;
+	}
+
+	.hd__ico {
+		display: none;
 	}
 
 	.hd__bar {
@@ -561,6 +580,22 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 	}
 
 	@media (max-width: 900px) {
+		/* Barra nera piena con un filo giallo sotto, logo piu' grande. */
+		.hd {
+			border-bottom-color: var(--accent);
+		}
+
+		.hd::before {
+			background: var(--bg-dark-deep);
+			-webkit-backdrop-filter: none;
+			backdrop-filter: none;
+		}
+
+		.hd__logo {
+			width: 122px;
+			height: 56px;
+		}
+
 		.hd__toggle {
 			display: flex;
 			position: relative;
@@ -576,11 +611,13 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 		/* Le tre linee diventano una X */
 		.hd__toggle span {
 			position: absolute;
-			width: 24px;
+			width: 28px;
+			height: 3px;
+			background: var(--accent);
 			transition: transform 0.35s var(--ease-out-crit), opacity 0.2s ease;
 		}
-		.hd__toggle span:nth-child(1) { transform: translateY(-7px); }
-		.hd__toggle span:nth-child(3) { transform: translateY(7px); }
+		.hd__toggle span:nth-child(1) { transform: translateY(-9px); }
+		.hd__toggle span:nth-child(3) { transform: translateY(9px); }
 		.hd__toggle[aria-expanded='true'] span:nth-child(1) { transform: rotate(45deg); }
 		.hd__toggle[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
 		.hd__toggle[aria-expanded='true'] span:nth-child(3) { transform: rotate(-45deg); }
@@ -593,15 +630,13 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 			flex: none;
 			flex-direction: column;
 			align-items: stretch;
-			justify-content: space-between;
-			gap: 20px;
-			padding: 20px 24px max(24px, env(safe-area-inset-bottom));
+			justify-content: flex-start;
+			gap: 0;
+			padding: 12px 24px 0;
 			overflow-y: auto;
 			overscroll-behavior: contain;
 			color: var(--text-on-dark);
-			background:
-				radial-gradient(120% 60% at 100% 0%, rgba(255, 230, 0, 0.14), transparent 60%),
-				var(--bg-dark);
+			background: var(--bg-dark-deep);
 			opacity: 0;
 			visibility: hidden;
 			/* Da chiuso il pannello copre tutta la pagina: non deve intercettare i tocchi. */
@@ -625,57 +660,65 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 		.hd__mega {
 			flex-direction: column;
 			align-items: stretch;
-			gap: 18px;
+			gap: 0;
 			margin: 0;
-			counter-reset: sezione;
 		}
 
 		.hd__col {
-			counter-increment: sezione;
-			padding-top: 14px;
-			border-top: 1px solid rgba(255, 255, 255, 0.14);
+			padding: 0;
 		}
 
 		.hd__col + .hd__col::before {
 			display: none;
 		}
 
+		/* Voci a fisarmonica: titolo in maiuscolo con un "+" giallo che diventa "-" quando e' aperta. */
 		.hd__col-title {
 			display: flex;
-			width: 100%;
-			text-align: left;
-			align-items: baseline;
+			align-items: center;
 			gap: 12px;
-			margin-bottom: 8px;
+			width: 100%;
+			padding: 14px 0;
+			text-align: left;
 			color: var(--text-on-dark);
-			font-size: 1.35rem;
-			font-weight: 700;
-			letter-spacing: -0.01em;
+			font-size: 1.3rem;
+			font-weight: 900;
+			text-transform: uppercase;
+			letter-spacing: 0;
+			cursor: pointer;
+			-webkit-tap-highlight-color: transparent;
+			transition: color 0.25s ease;
 		}
 
-		.hd__col-title::before {
-			content: counter(sezione, decimal-leading-zero);
+		.hd__col-title::after {
+			content: '+';
 			color: var(--accent);
-			font-size: 0.75rem;
-			font-weight: 600;
-			letter-spacing: 0.08em;
+			font-size: 1.9rem;
+			font-weight: 700;
+			line-height: 1;
+		}
+
+		.hd__col.is-open > .hd__col-title {
+			color: var(--accent);
+		}
+
+		.hd__col.is-open > .hd__col-title::after {
+			content: '\2212';
 		}
 
 		.hd__chevron {
 			display: none;
 		}
 
-		/* Le voci in due colonne, cosi' entra tutto senza troppo scroll.
-		   La visibilita' e' ereditata dal pannello: con "visible" esplicito (e con le regole
-		   hover/focus/is-open del desktop) i link restavano toccabili anche a menu chiuso,
-		   invisibili, sopra tutta la pagina. */
-		.hd__col > .hd__panel,
-		.hd__col:hover > .hd__panel,
-		.hd__col:focus-within > .hd__panel,
-		.hd__col.is-open > .hd__panel {
+		/* Il sottomenu e' chiuso finche' la voce non e' aperta (solo col tocco, niente hover: sul telefono
+		   resterebbe "attaccato"). Chiuso e' nascosto anche alla tastiera; aperto eredita la visibilita'
+		   del menu (con "visible" esplicito i link restavano toccabili a menu chiuso). */
+		.hd__col > .hd__panel {
 			position: static;
+			display: grid;
+			grid-template-rows: 0fr;
 			opacity: 1;
-			visibility: inherit;
+			visibility: hidden;
 			transform: none;
 			min-width: 0;
 			background: none;
@@ -683,23 +726,50 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 			border: none;
 			border-radius: 0;
 			padding: 0;
+			transition: grid-template-rows 0.35s var(--ease-out-crit), visibility 0s 0.35s;
 		}
 
+		.hd__col.is-open > .hd__panel {
+			grid-template-rows: 1fr;
+			visibility: inherit;
+			transition: grid-template-rows 0.35s var(--ease-out-crit), visibility 0s;
+		}
+
+		/* Le voci una accanto all'altra, separate da una barretta gialla. */
 		.hd__list {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 2px 16px;
-			padding: 0;
+			display: flex;
+			flex-wrap: wrap;
+			overflow: hidden;
+			min-height: 0;
+			padding: 0 0 8px;
+		}
+
+		.hd__list li {
+			display: flex;
+		}
+
+		.hd__list li {
+			margin-right: 14px;
+		}
+
+		.hd__list li::before {
+			content: '';
+			align-self: center;
+			width: 2px;
+			height: 16px;
+			margin-right: 8px;
+			background: var(--accent);
 		}
 
 		/* Blocco e non "inline": il padding verticale di un link inline non occupa spazio ma si sovrappone
 		   ai link vicini (i tocchi finivano sulla voce sbagliata). */
 		.hd__list li a {
 			display: block;
-			padding: 7px 0;
-			color: rgba(255, 255, 255, 0.78);
-			font-size: 0.95rem;
+			padding: 10px 0;
+			color: var(--text-on-dark);
+			font-size: 1rem;
 			font-weight: 500;
+			text-transform: none;
 		}
 
 		.hd__list li a:hover,
@@ -707,32 +777,62 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 			color: var(--accent);
 		}
 
+		/* I due bottoni sono figli diretti del menu: "Contattaci" giallo sotto le voci, "Prova ora" in
+		   una barra gialla che resta in fondo allo schermo. */
 		.hd__actions {
-			flex-direction: column;
-			gap: 10px;
+			display: contents;
+		}
+
+		.hd__ico {
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			margin-right: 8px;
+			vertical-align: -4px;
 		}
 
 		.hd__cta {
-			width: 100%;
-			padding: 14px 16px;
-			font-size: 15px;
+			width: auto;
+			padding: 14px 18px;
+			font-size: 1.1rem;
+			text-transform: uppercase;
 		}
 
 		.hd__cta--contact {
-			--btn-border: var(--text-on-dark);
+			align-self: flex-start;
+			margin: 28px 0 32px;
+			--btn-border: var(--accent);
 			--btn-hover-text: var(--on-accent);
+			background: var(--accent);
+			color: var(--on-accent);
+		}
+
+		.hd__prova {
+			display: block;
+			position: sticky;
+			bottom: 0;
+			margin: auto -24px 0;
+			padding: 20px 24px max(20px, env(safe-area-inset-bottom));
+			background: var(--accent);
+		}
+
+		.hd__cta--primary {
+			--btn-border: var(--bg-dark-deep);
+			--btn-hover-text: var(--accent);
+			background: var(--bg-dark-deep);
+			color: var(--accent);
 		}
 
 		/* Ingresso a cascata dei contenuti */
 		.hd__col,
-		.hd__actions {
+		.hd__cta--contact {
 			opacity: 0;
 			transform: translateY(14px);
 			transition: opacity 0.4s ease, transform 0.5s var(--ease-out-crit);
 		}
 
 		.hd__nav--aperto .hd__col,
-		.hd__nav--aperto .hd__actions {
+		.hd__nav--aperto .hd__cta--contact {
 			opacity: 1;
 			transform: none;
 		}
@@ -741,13 +841,14 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 		.hd__nav--aperto .hd__col:nth-child(2) { transition-delay: 0.16s; }
 		.hd__nav--aperto .hd__col:nth-child(3) { transition-delay: 0.24s; }
 		.hd__nav--aperto .hd__col:nth-child(4) { transition-delay: 0.32s; }
-		.hd__nav--aperto .hd__actions { transition-delay: 0.4s; }
+		.hd__nav--aperto .hd__cta--contact { transition-delay: 0.4s; }
 	}
 
 	@media (max-width: 900px) and (prefers-reduced-motion: reduce) {
 		.hd__nav,
 		.hd__col,
-		.hd__actions {
+		.hd__cta--contact,
+		.hd__panel {
 			transition: none !important;
 		}
 	}
