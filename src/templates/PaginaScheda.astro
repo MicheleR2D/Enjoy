@@ -91,7 +91,9 @@ const lunghezzaTesto = (h: string) => h.replace(/<[^>]+>/g, '').replace(/\s+/g, 
 const schedeTelefono = (b: any) => {
 	if (conCard || lunghezzaTesto(b.descrizioneHtml ?? '') < 240) return [];
 	// Sulle schede (testi brevi) ogni frase o quasi e' una card: raggruppo fino a 200 caratteri.
-	const s = inSchede(b.descrizioneHtml, { max: 200 });
+	// Nuoto sincronizzato: il paragrafo di apertura (due frasi) resta in una sola card.
+	// Wellness lab e health fitness: poche schede equilibrate; lista dei corsi in schede da 2 voci e frase "…come:" attaccata alla sua lista.
+	const s = inSchede(b.descrizioneHtml, { max: pagina.slug === 'nuoto-sincronizzato' ? 460 : 200, rifinito: ['wellness-lab-meda', 'health-fitness-camuzzago'].includes(pagina.slug) ? 480 : false });
 	return s.length > 1 ? s : [];
 };
 const perCard = (b: any) => (conCard ? { ...b, dettagli: b.dettagli.map((d: any) => ({ ...d, icona: iconaPunto(d.testo) ?? d.icona })) } : b);

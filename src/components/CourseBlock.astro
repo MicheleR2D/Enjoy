@@ -424,6 +424,17 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 		margin: 0 0 1em;
 	}
 
+	/* Anche sotto un elenco puntato lo stesso spazio del paragrafo (prima il testo dopo la lista restava attaccato). */
+	.cb__desc :global(ul),
+	.cb__desc :global(ol) {
+		margin: 0 0 1em;
+	}
+
+	.cb__desc :global(ul:last-child),
+	.cb__desc :global(ol:last-child) {
+		margin-bottom: 0;
+	}
+
 	.cb__desc :global(a) {
 		color: var(--accent);
 	}
@@ -756,8 +767,13 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 	/* Elenchi puntati dentro una card (es. "Benefici principali"). */
 	.cb__scheda-testo :global(ul),
 	.cb__scheda-testo :global(ol) {
-		margin: 0;
+		margin: 0 0 0.9em;
 		padding-left: 1.2em;
+	}
+
+	.cb__scheda-testo :global(ul:last-child),
+	.cb__scheda-testo :global(ol:last-child) {
+		margin-bottom: 0;
 	}
 
 	.cb__scheda-testo :global(li) {

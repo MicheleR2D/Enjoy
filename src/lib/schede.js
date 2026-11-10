@@ -67,7 +67,79 @@ function pezziPrimoLivello(h) {
 	return pezzi;
 }
 
-export function inSchede(html, { max = 260 } = {}) {
+// Rifiniture sulle schede gia' divise (le parole non cambiano, solo come sono raggruppate):
+// - una lista lunga senza titolo (oltre ~300 caratteri) si divide in schede da 2-3 voci;
+// - una frase breve che finisce con ":" ("In piu', puoi scegliere corsi specifici come:") resta attaccata alla
+//   scheda che la segue, invece di restare sola in una scheda quasi vuota.
+const RE_LISTA = /^\s*<(ul|ol)\b/i;
+const comeParagrafoHtml = (p) => (/^\s*<(p|ul|ol)\b/i.test(p) ? p : `<p>${p}</p>`);
+
+function rifinisci(schede, maxLista = 300, maxScheda = 0) {
+	// - una scheda con il solo titolo (grassetto in fondo al testo, es. la frase finale in evidenza) torna testo normale;
+	// - una scheda con titolo e un testo troppo lungo si divide alle andate a capo: il titolo resta sulla prima parte.
+	const base = [];
+	for (const sc of schede) {
+		if (sc.titolo && !testoPiano(sc.html)) {
+			base.push({ html: `<p><strong>${sc.titolo}</strong></p>` });
+			continue;
+		}
+		if (sc.titolo && maxScheda && testoPiano(sc.html).length > maxScheda * 0.8 && /<br\s*\/?>/i.test(sc.html)) {
+			const parti = sc.html.replace(/^\s*<p>|<\/p>\s*$/gi, '').split(/<br\s*\/?>/i).map((x) => x.trim()).filter((x) => testoPiano(x));
+			if (parti.length > 1) {
+				base.push({ titolo: sc.titolo, html: `<p>${parti[0]}</p>` });
+				for (const p of parti.slice(1)) base.push({ html: `<p>${p}</p>` });
+				continue;
+			}
+		}
+		base.push(sc);
+	}
+	const out = [];
+	for (const sc of base) {
+		if (!sc.titolo && RE_LISTA.test(sc.html) && testoPiano(sc.html).length > maxLista) {
+			const voci = sc.html.match(/<li\b[\s\S]*?<\/li>/g) ?? [];
+			if (voci.length >= 3) {
+				let gruppo = [];
+				for (const v of voci) {
+					if (gruppo.length && testoPiano(gruppo.join('') + v).length > maxLista) {
+						out.push({ html: '<ul>' + gruppo.join('') + '</ul>' });
+						gruppo = [];
+					}
+					gruppo.push(v);
+				}
+				if (gruppo.length) out.push({ html: '<ul>' + gruppo.join('') + '</ul>' });
+				continue;
+			}
+		}
+		out.push(sc);
+	}
+	// frase introduttiva ("...come:") + scheda successiva senza titolo
+	const unite = [];
+	for (let i = 0; i < out.length; i++) {
+		const sc = out[i];
+		const prossima = out[i + 1];
+		const testo = testoPiano(sc.html);
+		if (!sc.titolo && prossima && !prossima.titolo && testo.length < 80 && /:$/.test(testo) && !RE_LISTA.test(sc.html)) {
+			unite.push({ html: comeParagrafoHtml(sc.html) + prossima.html });
+			i++;
+		} else {
+			unite.push(sc);
+		}
+	}
+	// Poche schede: si uniscono le vicine senza titolo finche' la scheda non supera `maxScheda` caratteri.
+	if (!maxScheda) return unite;
+	const poche = [];
+	for (const sc of unite) {
+		const ultima = poche[poche.length - 1];
+		if (ultima && !ultima.titolo && !sc.titolo && testoPiano(ultima.html + ' ' + sc.html).length <= maxScheda) {
+			ultima.html = comeParagrafoHtml(ultima.html) + comeParagrafoHtml(sc.html);
+		} else {
+			poche.push({ ...sc });
+		}
+	}
+	return poche;
+}
+
+export function inSchede(html, { max = 260, rifinito = false } = {}) {
 	const h = (html ?? '').trim();
 	if (!h) return [];
 
@@ -118,5 +190,5 @@ export function inSchede(html, { max = 260 } = {}) {
 		}
 	}
 	chiudi();
-	return schede;
+	return rifinito ? rifinisci(schede, 300, typeof rifinito === "number" ? rifinito : 0) : schede;
 }
