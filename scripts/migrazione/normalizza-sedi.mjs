@@ -67,12 +67,21 @@ for (const sede of SEDI) {
 	};
 
 	const accordion = tutti.find((w) => w.widgetType === 'nested-accordion');
+	// Ambienti che sul sito originale non hanno foto: ogni sezione ne mostra almeno una, quindi si usa una foto
+	// segnaposto della sede (da sostituire quando il cliente manda quelle vere di spogliatoi e ambulatori).
+	const FOTO_SEGNAPOSTO = {
+		'Spogliatoi': '/wp-content/uploads/2025/06/Varie-Camuzzago-5-scaled.jpg',
+		'Consulting Medical Center': '/wp-content/uploads/2025/06/Varie-Camuzzago-1-scaled.jpg',
+	};
 	const ambienti = (accordion?.settings.items || []).map((it, i) => {
 		const contenuto = widgets(accordion.elements?.[i] || { elements: [] });
 		const slides = contenuto.find((w) => w.widgetType === 'slides');
+		const titolo = strip(it.item_title);
+		const immagini = (slides?.settings.slides || []).map((s) => percorso(s.background_image?.url)).filter(Boolean);
+		if (!immagini.length && FOTO_SEGNAPOSTO[titolo] && sede.slug === 'camuzzago') immagini.push(FOTO_SEGNAPOSTO[titolo]);
 		return {
-			titolo: strip(it.item_title),
-			immagini: (slides?.settings.slides || []).map((s) => percorso(s.background_image?.url)).filter(Boolean),
+			titolo,
+			immagini,
 			html: contenuto.filter((w) => w.widgetType === 'text-editor').map((w) => pulisci(w.settings.editor)).join(''),
 		};
 	});
@@ -97,6 +106,22 @@ for (const sede of SEDI) {
 		'nuoto neonatale': '/nuoto-neonatale', 'nuoto bambini': '/nuoto-bambini', 'health fitness': '/health-fitness-camuzzago',
 	};
 	for (const a of attivita) a.href ??= LINK[a.titolo.toLowerCase()] ?? null;
+	// Meda: il sito originale mostrava solo 3 card, ma nella sede si fanno anche queste attivita' (aggiunte il 10/11/2026, con
+	// le foto di Meda dove ci sono). Si aggiungono solo se mancano.
+	const IN_PIU = {
+		meda: [
+			{ titolo: 'X-class', href: '/x-class', immagine: '/wp-content/uploads/2025/06/X-CLASS-enjoy.png' },
+			{ titolo: 'Nuoto Libero', href: '/nuoto-libero', immagine: '/wp-content/uploads/2025/06/Piscina-Meda-1-scaled.jpg' },
+			{ titolo: 'Nuoto Adulti', href: '/nuoto-adulti', immagine: '/wp-content/uploads/2025/06/Piscina-Meda-11-scaled.jpg' },
+			{ titolo: 'Wellness Lab Meda', href: '/wellness-lab-meda', immagine: '/wp-content/uploads/2025/07/IMG_3843-2-scaled.jpg' },
+			{ titolo: 'Personal Training', href: '/personal-training', immagine: '/wp-content/uploads/2025/05/personal-trainer-with-a-woman-in-a-gym.jpg' },
+			{ titolo: 'Nuoto Bambini', href: '/nuoto-bambini', immagine: '/wp-content/uploads/2025/06/nuoto-ragazzi-f01d8c42-enjoy.webp' },
+		],
+	};
+	for (const extra of IN_PIU[sede.slug] ?? []) if (!attivita.some((a) => a.href === extra.href)) attivita.push({ ...extra });
+	// La card di una pagina che ha una hero con foto usa quella stessa foto (richiesta del 10/11/2026: Health Fitness).
+	const FOTO_HERO = { '/health-fitness-camuzzago': '/wp-content/uploads/2025/07/dji_fly_20250614_112102_437_1749893087543_photo_optimized-scaled.jpg' };
+	for (const a of attivita) if (FOTO_HERO[a.href]) a.immagine = FOTO_HERO[a.href];
 	const titoloAttivita =strip(tutti.find((w) => h(w, 'h2') && /attivit/i.test(strip(w.settings.title)))?.settings.title) || `Le attività nella sede di ${sede.nome}`;
 
 	const pagina = {

@@ -36,8 +36,26 @@ const { pagina } = Astro.props;
 const sede = sedi.find((s) => s.slug === pagina.slug)!;
 const card = pagina.attivita.card.filter((c) => c.href).map((c) => ({ href: c.href as string, image: c.immagine, title: c.titolo }));
 
+// Pagine di riferimento degli ambienti (il sito originale non aveva link): un bottone verso la pagina dell'attivita'
+// o dell'area che si svolge li'. Gli ambienti senza una pagina propria (outdoor, thermarium, ristobar, spogliatoi) restano senza.
+const PAGINE_AMBIENTE: Record<string, { testo: string; href: string }[]> = {
+	'gym floor': [{ testo: 'Scopri la Gym Floor', href: '/gym-floor' }],
+	'sale fitness': [{ testo: 'Scopri i Corsi Fitness', href: '/corsi-fitness' }],
+	'wellness lab': [{ testo: 'Scopri il Wellness Lab', href: '/wellness-lab-meda' }],
+	piscina: [
+		{ testo: 'Nuoto Libero', href: '/nuoto-libero' },
+		{ testo: 'Nuoto Adulti', href: '/nuoto-adulti' },
+	],
+	piscine: [
+		{ testo: 'Nuoto Libero', href: '/nuoto-libero' },
+		{ testo: 'Nuoto Adulti', href: '/nuoto-adulti' },
+	],
+	'consulting medical center': [{ testo: 'Scopri Health Fitness', href: '/health-fitness-camuzzago' }],
+};
+
 // Il blocco "ambiente" e' quello delle schede: titolo, foto (carosello se piu' d'una) e testo.
 const blocchi = pagina.ambienti.map((a) => ({
+	pulsanti: PAGINE_AMBIENTE[a.titolo.toLowerCase()],
 	titolo: a.titolo,
 	sottotitolo: null,
 	// Testo alternativo delle foto dell'ambiente (es. "Piscine di Enjoy Club Camuzzago")
@@ -241,7 +259,7 @@ const provincia = sede.citta.match(/\((\w+)\)/)?.[1];
 
 	.orari-sede__giorni {
 		display: block;
-		font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+		font-size: clamp(1rem, 1.4vw, 1.2rem);
 		font-weight: 400;
 		letter-spacing: 0.04em;
 		line-height: 1.35;

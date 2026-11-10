@@ -87,12 +87,16 @@
 		},
 		{
 			"titolo": "Spogliatoi",
-			"immagini": [],
+			"immagini": [
+				"/wp-content/uploads/2025/06/Varie-Camuzzago-5-scaled.jpg"
+			],
 			"html": "<p>Dopo l’allenamento o un momento di relax, entra in uno spazio pensato per farti sentire a tuo agio, rigenerato e curato. Il nostro spogliatoio è ampio, pulito e progettato per oﬀrire funzionalità e benessere.</p><p>Docce spaziose, Armadietti personali, Zona beauty dedicata.</p><p>Spogliatoi fitness (uomo) (donna) + Thermarium</p><p>Spogliatoi piscina (uomo) (donna)</p>"
 		},
 		{
 			"titolo": "Consulting Medical Center",
-			"immagini": [],
+			"immagini": [
+				"/wp-content/uploads/2025/06/Varie-Camuzzago-1-scaled.jpg"
+			],
 			"html": "<p>Centro di alta specializzazione di riabilitazione.</p><p>Il Consulting Medical Center è un Poliambulatorio dove medici e professionisti operano in modo individuale o in sinergia per oﬀrire benessere a 360° al paziente.</p><p>La nostra missione è il benessere della persona; scegliere il percorso giusto, trovare la soluzione alle varie esigenze: <strong>EMS, Pilates Reformer, Crioterapia, Ginnastica Terapeutica in Acqua, Nutrizionista, Osteopatia </strong>e<strong> Fisioterapia</strong></p>"
 		}
 	],
@@ -132,7 +136,7 @@
 			{
 				"titolo": "Health Fitness",
 				"href": "/health-fitness-camuzzago",
-				"immagine": "/wp-content/uploads/2025/06/Varie-Camuzzago-3-1-scaled.jpg"
+				"immagine": "/wp-content/uploads/2025/07/dji_fly_20250614_112102_437_1749893087543_photo_optimized-scaled.jpg"
 			},
 			{
 				"titolo": "Personal Training",

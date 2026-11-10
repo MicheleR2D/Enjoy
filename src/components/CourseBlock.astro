@@ -179,7 +179,7 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 					<div class="cb__actions">
 						{blocco.pulsanti.map((p) => (
 							<a
-								class:list={['btn', { 'btn--pillola': accento }]}
+								class="btn"
 								href={p.href}
 								target={p.esterno ? '_blank' : undefined}
 								rel={p.esterno ? 'noopener' : undefined}
@@ -428,6 +428,12 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 		color: var(--accent);
 	}
 
+	/* Bottoni di collegamento: tutti trasparenti con bordo; giallo sui blocchi scuri, nero su quelli gialli. */
+	.cb--accento .cb__actions :global(.btn) {
+		--btn-border: var(--on-accent);
+		--btn-hover-text: var(--accent);
+	}
+
 	.cb__actions {
 		display: flex;
 		flex-wrap: wrap;
@@ -532,7 +538,7 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 
 	.cb__h3 {
 		margin: 0 0 14px;
-		font-size: var(--text-sm);
+		font-size: var(--text-base);
 		font-weight: 800;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
@@ -598,7 +604,7 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 		grid-template-columns: 7.5rem 1fr 3rem;
 		align-items: center;
 		gap: 14px;
-		font-size: var(--text-sm);
+		font-size: var(--text-base);
 		font-weight: 700;
 	}
 
@@ -735,7 +741,7 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 	}
 
 	.cb__scheda-testo {
-		font-size: 0.95rem;
+		font-size: var(--text-base);
 		line-height: 1.5;
 	}
 

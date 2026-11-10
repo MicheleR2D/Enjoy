@@ -126,6 +126,36 @@
 				"titolo": "Acqua Gym",
 				"href": "/acqua-gym",
 				"immagine": "/wp-content/uploads/2025/06/Piscina-Meda-8-scaled.jpg"
+			},
+			{
+				"titolo": "X-class",
+				"href": "/x-class",
+				"immagine": "/wp-content/uploads/2025/06/X-CLASS-enjoy.png"
+			},
+			{
+				"titolo": "Nuoto Libero",
+				"href": "/nuoto-libero",
+				"immagine": "/wp-content/uploads/2025/06/Piscina-Meda-1-scaled.jpg"
+			},
+			{
+				"titolo": "Nuoto Adulti",
+				"href": "/nuoto-adulti",
+				"immagine": "/wp-content/uploads/2025/06/Piscina-Meda-11-scaled.jpg"
+			},
+			{
+				"titolo": "Wellness Lab Meda",
+				"href": "/wellness-lab-meda",
+				"immagine": "/wp-content/uploads/2025/07/IMG_3843-2-scaled.jpg"
+			},
+			{
+				"titolo": "Personal Training",
+				"href": "/personal-training",
+				"immagine": "/wp-content/uploads/2025/05/personal-trainer-with-a-woman-in-a-gym.jpg"
+			},
+			{
+				"titolo": "Nuoto Bambini",
+				"href": "/nuoto-bambini",
+				"immagine": "/wp-content/uploads/2025/06/nuoto-ragazzi-f01d8c42-enjoy.webp"
 			}
 		]
 	}
