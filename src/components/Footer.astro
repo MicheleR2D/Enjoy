@@ -402,8 +402,12 @@ const colonneFoto = [
 		margin-top: 32px;
 	}
 
-	/* Colore e taglia: .btn--light .btn--lg (globali). Qui solo freccia e anello pulsante. */
+	/* Sul fondo giallo il bottone e' nero con testo giallo. Taglia: .btn--lg (globale); qui anche freccia e anello pulsante. */
 	.cta-final__btn {
+		--btn-border: var(--bg-dark-deep);
+		--btn-hover-text: var(--accent);
+		background: var(--bg-dark-deep);
+		color: var(--accent);
 		display: inline-flex;
 		align-items: center;
 		gap: 14px;
@@ -1016,6 +1020,20 @@ const colonneFoto = [
 
 		.sedi {
 			padding-block: 48px;
+		}
+
+		/* Zona con i collegamenti a Google Maps: tutto centrato (etichetta, titolo, sede, indirizzo, bottoni). */
+		.sedi__head,
+		.sede__body {
+			text-align: center;
+		}
+
+		.sede__cta {
+			justify-content: center;
+		}
+
+		.sede__info a {
+			justify-content: center;
 		}
 	}
 

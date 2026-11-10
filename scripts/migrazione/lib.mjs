@@ -20,11 +20,13 @@ export function decodifica(s, { tutte = false } = {}) {
 // Correzioni ai testi del vecchio sito, applicate a ogni testo estratto (strip e pulisci):
 // - "Body Studio" e' un'altra palestra (l'app di Enjoy e' Technogym): si toglie la frase
 //   "Prenota la tua Lezione sull'App di Body Studio!" e, in generale, ogni frase che la cita;
-// - refuso "Un nostro operatore di fornira'..." -> "Un nostro operatore ti fornira'...".
+// - refuso "Un nostro operatore di fornira'..." -> "Un nostro operatore ti fornira'...";
+// - orari di Meda: "Lunedi' - Martedi' - Mercoledi' - Giovedi' - Venerdi'" -> "Dal lunedi' al venerdi'".
 export function correggiContenuto(t) {
 	return String(t ?? '')
 		.replace(/\s*[^.!?<>]*body\s?studio[^.!?<>]*[.!?]/gi, '')
-		.replace(/\boperatore di fornirà/g, 'operatore ti fornirà');
+		.replace(/\boperatore di fornirà/g, 'operatore ti fornirà')
+		.replace(/Lunedì - Martedì - Mercoledì - Giovedì - Venerdì/g, 'Dal lunedì al venerdì');
 }
 
 export const strip = (h) =>

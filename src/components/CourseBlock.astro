@@ -127,10 +127,6 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 						<ul class:list={['cb__schede', { 'cb__schede--mobile': soloMobile }]} data-schede>
 							{elencoSchede.map((s, i) => (
 								<li class:list={['cb__scheda', { 'is-attiva': i === 0 }]} data-anim="fade" data-anim-delay={String(Math.min(i, 2) * 110)}>
-									<span class="cb__scheda-n" aria-hidden="true">
-										{String(i + 1).padStart(2, '0')}
-										<span class="cb__scheda-tot">/{String(elencoSchede.length).padStart(2, '0')}</span>
-									</span>
 									{s.titolo && <h3 class="cb__scheda-titolo">{s.titolo}</h3>}
 									<div class="cb__scheda-testo" set:html={s.html} />
 								</li>
@@ -689,33 +685,6 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 			scale 0.45s var(--ease-out-crit),
 			translate 0.35s var(--ease-out-crit),
 			box-shadow 0.35s ease;
-	}
-
-	/* Numero della card ("01/06") in una pillola: nera sulle card gialle, gialla su quelle nere. */
-	.cb__scheda-n {
-		display: inline-flex;
-		align-items: baseline;
-		gap: 1px;
-		margin-bottom: 12px;
-		padding: 4px 10px;
-		border-radius: var(--radius-pill);
-		background: var(--bg-dark-deep);
-		color: var(--accent);
-		font-family: var(--font-heading);
-		font-size: 0.8rem;
-		font-weight: 900;
-		letter-spacing: 0.06em;
-		line-height: 1.2;
-	}
-
-	.cb__scheda-tot {
-		font-size: 0.68rem;
-		font-weight: 700;
-	}
-
-	.cb--accento .cb__scheda-n {
-		background: var(--accent);
-		color: var(--bg-dark-deep);
 	}
 
 	@media (hover: hover) and (min-width: 901px) {

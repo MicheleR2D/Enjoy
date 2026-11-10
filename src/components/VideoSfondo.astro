@@ -91,6 +91,15 @@ const { id, inizio = 0, fine } = Astro.props;
 					clearTimeout(mostra);
 					el.classList.remove('is-ready');
 				};
+				// Sottotitoli mai: alcuni video hanno quelli generati da YouTube, che compaiono se chi guarda li ha attivi
+				// nel proprio profilo (il parametro cc_load_policy=0 non basta in quel caso). Si scarica il modulo dei
+				// sottotitoli dal player appena e' pronto e a ogni avvio (si ricarica quando il video parte).
+				const senzaSottotitoli = (p) => {
+					try {
+						p.unloadModule('captions');
+						p.unloadModule('cc');
+					} catch (_) {}
+				};
 				const riparti = (p) => {
 					nascondi();
 					p.seekTo(inizio, true);
@@ -105,6 +114,7 @@ const { id, inizio = 0, fine } = Astro.props;
 						disablekb: 1,
 						fs: 0,
 						iv_load_policy: 3,
+						cc_load_policy: 0,
 						modestbranding: 1,
 						playsinline: 1,
 						rel: 0,
@@ -114,6 +124,7 @@ const { id, inizio = 0, fine } = Astro.props;
 					events: {
 						onReady: (e) => {
 							e.target.mute();
+							senzaSottotitoli(e.target);
 							// l'avvio e' automatico (autoplay): solo se il browser non l'ha fatto partire si riprova una volta
 							setTimeout(() => {
 								const stato = e.target.getPlayerState();
@@ -122,6 +133,7 @@ const { id, inizio = 0, fine } = Astro.props;
 						},
 						onStateChange: (e) => {
 							const S = YT.PlayerState;
+							if (e.data === S.PLAYING || e.data === S.BUFFERING) senzaSottotitoli(e.target);
 							if (e.data === S.PLAYING) {
 								// il video compare dopo un attimo che gira, cosi' i segni di YouTube all'avvio non si vedono
 								clearTimeout(mostra);

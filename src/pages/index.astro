@@ -69,7 +69,7 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		</h1>
 		<p class="hero__lead" data-intro style="--intro-delay: 0.2s" set:html={introHero} />
 		<div data-intro style="--intro-delay: 0.4s">
-			<a class="btn hero__btn" href={formUrl('prova', 'Home')} target="_blank" rel="noopener">Prova ora</a>
+			<a class="btn btn--pillola btn--lg hero__btn" href={formUrl('prova', 'Home')} target="_blank" rel="noopener">Prova ora</a>
 		</div>
 	</HeroCarousel>
 
@@ -129,6 +129,10 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 
 	<script>
 		import { formattaNumero } from '../data/stats';
+		import { fissaAltezzaTitolo } from '../lib/fissaTitolo.client';
+
+		// Il titolo riserva l'altezza della parola piu' alta (puo' andare a capo): testo e bottone restano fermi.
+		fissaAltezzaTitolo(document.querySelector<HTMLElement>('.hero__title'), '.hero__rot > span');
 
 		// Parole del titolo: ogni 2,5s passa la classe is-on alla successiva
 		// (senza JS o con movimento ridotto resta la prima).
@@ -431,19 +435,9 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		color: var(--accent);
 	}
 
-	.hero__btn {
-		padding: 20px 55px;
-		font-size: 20px;
-	}
-
 	@media (max-width: 560px) {
 		.hero__lead {
 			font-size: var(--text-base);
-		}
-
-		.hero__btn {
-			padding: 16px 40px;
-			font-size: 17px;
 		}
 	}
 

@@ -190,15 +190,27 @@ const { image, title, words = [], imageAlt = '', video, eyebrow, sottotitolo } =
 		margin-top: 36px;
 	}
 
+	/* Su telefono i bottoni stanno uno sotto l'altro, centrati e larghi quanto serve (non a tutta larghezza), con meno
+	   padding laterale. */
 	@media (max-width: 560px) {
 		.ph__actions {
 			flex-direction: column;
-			align-items: stretch;
+			align-items: center;
+			gap: 12px;
+		}
+
+		.ph__actions :global(.btn) {
+			padding-inline: 22px;
 		}
 	}
 </style>
 
 <script>
+	import { fissaAltezzaTitolo } from '../lib/fissaTitolo.client';
+
+	// Il titolo riserva l'altezza della parola piu' alta (puo' andare a capo): il bottone sotto resta fermo.
+	document.querySelectorAll<HTMLElement>('[data-rot]').forEach((rot) => fissaAltezzaTitolo(rot.closest('.ph__title'), '.ph__word'));
+
 	// Fa ruotare le parole del titolo; con "riduci movimento" resta la prima.
 	if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
 		document.querySelectorAll<HTMLElement>('[data-rot]').forEach((rot) => {
