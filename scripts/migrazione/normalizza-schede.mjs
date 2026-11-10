@@ -195,6 +195,9 @@ for (const f of file) {
 		'personal-training', 'postural-pil', 'wellness-lab-meda',
 	]);
 
+	// Gym floor: le vie sotto ai titoli delle due sedi sono state tolte (10/11/2026).
+	if (d.slug === 'gym-floor') for (const b of blocchi) b.sottotitolo = null;
+
 	const pagina = {
 		tipo: tuttiConMedia ? 'corso' : 'servizio',
 		slug: d.slug,

@@ -240,9 +240,9 @@ const prepara = (t: string) => {
 		}
 
 		.fasi .fase {
-			flex: 0 0 80%;
+			flex: 0 0 90%;
 			scroll-snap-align: start;
-			padding: 20px 18px 22px;
+			padding: 16px 16px 18px;
 			border: 0;
 			border-radius: 16px;
 			background: var(--accent);
@@ -260,6 +260,44 @@ const prepara = (t: string) => {
 
 		.fasi .fase__nome {
 			color: var(--on-accent);
+		}
+
+		/* Testo a 16px e spazi stretti: la fase piu' lunga deve stare in una schermata. */
+		.fasi .fase__testo {
+			font-size: var(--text-base);
+			line-height: 1.5;
+		}
+
+		/* Nome della fase e eta' sulla stessa riga (risparmia altezza), poi il testo a tutta larghezza. */
+		.fasi .fase {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: baseline;
+			column-gap: 6px;
+			align-content: flex-start;
+		}
+
+		.fasi .fase__nome {
+			margin: 0;
+			letter-spacing: 0.03em;
+		}
+
+		.fasi .fase__eta {
+			margin: 0;
+			gap: 6px;
+		}
+
+		.fasi .fase__numeri {
+			font-size: 1.65rem;
+		}
+
+		.fasi .fase__unita {
+			font-size: var(--text-base);
+		}
+
+		.fasi .fase__testo {
+			flex: 0 0 100%;
+			margin-top: 10px;
 		}
 
 		.fasi--accento .fase {
