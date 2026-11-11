@@ -57,7 +57,7 @@ export default defineConfig({
 		...redirectAggiuntivi,
 	},
 	// Le pagine "info" erano noindex nel sito originale: restano fuori anche dalla sitemap.
-	integrations: [sitemap({ filter: (page) => !/\/info-scuola-nuoto-/.test(page) && !/\/404\/?$/.test(page) })],
+	integrations: [sitemap({ filter: (page) => !/\/info-scuola-nuoto-/.test(page) && !/\/404\/?$/.test(page) && !/\/(prova|contattaci)\/?$/.test(page) })],
 	adapter: vercel(),
 	devToolbar: { enabled: false },
 	server: { port: Number(process.env.PORT) || 4321 },

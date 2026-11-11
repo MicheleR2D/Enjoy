@@ -77,17 +77,12 @@ export const mapsEmbedSrc = (s: Sede) => `https://www.google.com/maps?q=${encode
 export const mapsDirectionsUrl = (s: Sede) =>
 	`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(indirizzoCompleto(s))}`;
 
-// Form di contatto e di "prova ora": sono moduli n8n esterni (gli stessi del sito
-// originale), quindi i pulsanti sono normali collegamenti. Il parametro "medium"
-// dice a n8n da quale punto del sito arriva la richiesta.
-const N8N = 'https://automazione.n8ndevelop.it/form';
-const FORM = {
-	contatto: '8422e735-00f7-4ddd-b27b-f03dbef75dc8',
-	prova: '783c176d-d972-4eec-8b2c-8cf8db507c55',
-} as const;
+// Form di contatto e di "prova ora": moduli nativi del sito (/contattaci e /prova) che inviano
+// a una funzione Vercel (src/pages/api/modulo.ts) e da li' ai flussi n8n. Il parametro "medium"
+// dice ai flussi da quale punto del sito arriva la richiesta.
+const PAGINA = { contatto: '/contattaci', prova: '/prova' } as const;
 
-export const formUrl = (tipo: keyof typeof FORM, medium: string) =>
-	`${N8N}/${FORM[tipo]}?source=SitoWeb&medium=${encodeURIComponent(medium)}`;
+export const formUrl = (tipo: keyof typeof PAGINA, medium: string) => `${PAGINA[tipo]}?medium=${encodeURIComponent(medium)}`;
 
 // Icone SVG inline (viewBox 24x24): niente librerie esterne per tre simboli.
 export const iconeSocial: Record<string, string> = {

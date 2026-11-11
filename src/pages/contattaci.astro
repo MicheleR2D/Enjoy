@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ModuloRichiesta from '../components/ModuloRichiesta.astro';
+---
+
+<Layout title="Contattaci - Enjoy Club" description="Scrivici per ricevere informazioni sui corsi e sulle attività di Enjoy Club a Camuzzago e Meda." noindex>
+	<section class="pagina-modulo on-dark">
+		<p class="pill">Richiesta informazioni</p>
+		<h1 class="display-title pagina-modulo__titolo">Contattaci</h1>
+		<p class="pagina-modulo__testo">Lasciaci i tuoi dati e la tua richiesta: ti ricontatteremo al più presto.</p>
+		<ModuloRichiesta tipo="contatto" />
+	</section>
+</Layout>
+
+<style>
+	.pagina-modulo {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 20px;
+		min-height: calc(100svh - var(--header-h));
+		padding: clamp(40px, 6vw, 80px) var(--gutter);
+		background: var(--bg-dark);
+		color: var(--text-on-dark);
+	}
+
+	.pagina-modulo__titolo {
+		margin: 0;
+		color: var(--text-on-dark);
+	}
+
+	.pagina-modulo__testo {
+		margin: 0;
+		max-width: 38rem;
+		line-height: 1.6;
+	}
+</style>
