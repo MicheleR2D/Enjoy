@@ -1,0 +1,387 @@
+---
+/*
+ * Modulo nativo "Prova ora" / "Contattaci". Stessi campi e stesse domande dei moduli n8n che
+ * sostituisce. Invia a /api/modulo (funzione Vercel), che lo gira ai flussi n8n.
+ * Dopo l'invio, come nei flussi originali: chiede se si vuole un appuntamento telefonico
+ * (Calendly della sede) oppure, per le attivita' dei bambini e agonistiche, porta alla pagina
+ * informativa della scuola nuoto.
+ */
+interface Props {
+	tipo: 'prova' | 'contatto';
+}
+const { tipo } = Astro.props;
+
+const sedi = ['CAMUZZAGO (Bellusco)', 'MEDA (Montecarlo)'];
+const attivita = [
+	'Gym Floor (Sala Pesi)',
+	'Corsi Fitness',
+	'Acqua Fitness',
+	'Scuola Nuoto Adulti',
+	'Personal Training',
+	'Health Fitness',
+	'Nuoto Bambini',
+	'Nuoto Neonatale',
+	'Nuoto Agonistico',
+	'Nuoto Sincronizzato',
+	'Ginnastica Aerobice',
+];
+---
+
+<div class="modulo" data-tipo={tipo}>
+	<form class="modulo__form" novalidate>
+		<div class="campo">
+			<label for="m-sede">La sede di tuo interesse</label>
+			<select id="m-sede" name="sede" required>
+				<option value="">Seleziona…</option>
+				{sedi.map((s) => <option value={s}>{s}</option>)}
+			</select>
+			<p class="campo__errore" data-errore="sede" role="alert"></p>
+		</div>
+
+		{
+			tipo === 'contatto' && (
+				<div class="campo">
+					<label for="m-attivita">Qual è la tua principale attività di interesse?</label>
+					<select id="m-attivita" name="attivita" required>
+						<option value="">Seleziona…</option>
+						{attivita.map((a) => (
+							<option value={a}>{a}</option>
+						))}
+					</select>
+					<p class="campo__errore" data-errore="attivita" role="alert" />
+				</div>
+			)
+		}
+
+		<div class="riga">
+			<div class="campo">
+				<label for="m-nome">{tipo === 'prova' ? 'Il tuo nome' : 'Nome'}</label>
+				<input id="m-nome" name="nome" type="text" autocomplete="given-name" required />
+				<p class="campo__errore" data-errore="nome" role="alert"></p>
+			</div>
+			<div class="campo">
+				<label for="m-cognome">{tipo === 'prova' ? 'Il tuo cognome' : 'Cognome'}</label>
+				<input id="m-cognome" name="cognome" type="text" autocomplete="family-name" required />
+				<p class="campo__errore" data-errore="cognome" role="alert"></p>
+			</div>
+		</div>
+
+		<div class="riga">
+			<div class="campo">
+				<label for="m-email">{tipo === 'prova' ? 'La tua email' : 'Indirizzo email'}</label>
+				<input id="m-email" name="email" type="email" autocomplete="email" required />
+				<p class="campo__errore" data-errore="email" role="alert"></p>
+			</div>
+			<div class="campo">
+				<label for="m-cellulare">{tipo === 'prova' ? 'Il numero di cellulare' : 'Numero di cellulare'}</label>
+				<input id="m-cellulare" name="cellulare" type="tel" inputmode="tel" autocomplete="tel" required />
+				<p class="campo__errore" data-errore="cellulare" role="alert"></p>
+			</div>
+		</div>
+
+		{
+			tipo === 'contatto' && (
+				<div class="campo">
+					<label for="m-richiesta">La tua richiesta</label>
+					<textarea id="m-richiesta" name="richiesta" rows="5" required />
+					<p class="campo__errore" data-errore="richiesta" role="alert" />
+				</div>
+			)
+		}
+
+		<!-- Campo trappola per i bot: nascosto alle persone. -->
+		<div class="modulo__trappola" aria-hidden="true">
+			<label>Sito web <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+		</div>
+
+		<div class="campo campo--privacy">
+			<label class="privacy">
+				<input type="checkbox" name="privacy" required />
+				<span>
+					Inviando questo modulo acconsento al trattamento dei miei dati personali per le finalità indicate nell'<a href="/privacy" target="_blank" rel="noopener">informativa privacy</a>.
+				</span>
+			</label>
+			<p class="campo__errore" data-errore="privacy" role="alert"></p>
+		</div>
+
+		<p class="modulo__errore" data-errore-generale role="alert"></p>
+
+		<button class="btn btn--lg modulo__invia" type="submit">{tipo === 'prova' ? 'Richiedi la prova' : 'Invia'}</button>
+	</form>
+
+	<div class="modulo__fine" hidden tabindex="-1">
+		<div class="fine fine--appuntamento" hidden>
+			<h2 class="modulo__titolo">Richiesta inviata</h2>
+			<p>Grazie <strong data-nome></strong>, verrai ricontattato da un nostro Consulente che ti fornirà tutte le informazioni richieste.</p>
+			<p class="fine__domanda">Vuoi fissare un appuntamento telefonico?</p>
+			<div class="fine__azioni">
+				<a class="btn btn--lg" data-calendly href="#" target="_blank" rel="noopener">Sì, scelgo l'orario</a>
+				<a class="btn btn--light btn--lg" href="/">No, grazie</a>
+			</div>
+		</div>
+		<div class="fine fine--info" hidden>
+			<h2 class="modulo__titolo">Richiesta inviata</h2>
+			<p>Grazie <strong data-nome></strong>, ti abbiamo scritto una email con le informazioni. Intanto scopri la Scuola Nuoto.</p>
+			<div class="fine__azioni">
+				<a class="btn btn--lg" data-info href="#">Scopri la Scuola Nuoto</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	const CALENDLY: Record<string, string> = {
+		'CAMUZZAGO (Bellusco)': 'https://calendly.com/front-desk-camuzzagofitnessclub/10',
+		'MEDA (Montecarlo)': 'https://calendly.com/front-desk-montecarlofitnessclub/10min',
+	};
+	const INFO: Record<string, string> = {
+		'CAMUZZAGO (Bellusco)': '/info-scuola-nuoto-camuzzago',
+		'MEDA (Montecarlo)': '/info-scuola-nuoto-meda',
+	};
+	// Attivita' per cui il flusso n8n manda una email informativa e porta alla pagina della scuola nuoto.
+	const SOLO_INFO = ['Nuoto Neonatale', 'Nuoto Bambini', 'Nuoto Agonistico', 'Nuoto Sincronizzato'];
+
+	const modulo = document.querySelector<HTMLElement>('.modulo');
+	const form = modulo?.querySelector<HTMLFormElement>('.modulo__form');
+	if (modulo && form) {
+		const tipo = modulo.dataset.tipo;
+		const medium = new URLSearchParams(location.search).get('medium') ?? '';
+		const bottone = form.querySelector<HTMLButtonElement>('.modulo__invia')!;
+		const erroreGenerale = form.querySelector<HTMLElement>('[data-errore-generale]')!;
+
+		const mostraErrori = (errori: Record<string, string>) => {
+			form.querySelectorAll<HTMLElement>('[data-errore]').forEach((el) => {
+				el.textContent = errori[el.dataset.errore!] ?? '';
+			});
+			const primo = form.querySelector<HTMLElement>('[aria-invalid="true"]');
+			primo?.focus();
+		};
+
+		const valida = (d: Record<string, any>) => {
+			const e: Record<string, string> = {};
+			if (!d.sede) e.sede = 'Scegli la sede.';
+			if (tipo === 'contatto' && !d.attivita) e.attivita = "Scegli l'attività di interesse.";
+			if (!d.nome) e.nome = 'Inserisci il tuo nome.';
+			if (!d.cognome) e.cognome = 'Inserisci il tuo cognome.';
+			if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)) e.email = 'Inserisci un indirizzo email valido.';
+			if (!/^(\+|00)?\d{6,15}$/.test(d.cellulare.replace(/[\s.-]/g, ''))) e.cellulare = 'Inserisci un numero di cellulare valido.';
+			if (tipo === 'contatto' && !d.richiesta) e.richiesta = 'Scrivi la tua richiesta.';
+			if (!d.privacy) e.privacy = "Per inviare serve il consenso all'informativa privacy.";
+			return e;
+		};
+
+		form.addEventListener('submit', async (ev) => {
+			ev.preventDefault();
+			erroreGenerale.textContent = '';
+			const f = new FormData(form);
+			const dati: Record<string, any> = {
+				tipo,
+				medium,
+				sede: String(f.get('sede') ?? ''),
+				attivita: String(f.get('attivita') ?? ''),
+				nome: String(f.get('nome') ?? '').trim(),
+				cognome: String(f.get('cognome') ?? '').trim(),
+				email: String(f.get('email') ?? '').trim(),
+				cellulare: String(f.get('cellulare') ?? '').trim(),
+				richiesta: String(f.get('richiesta') ?? '').trim(),
+				website: String(f.get('website') ?? ''),
+				privacy: f.get('privacy') === 'on',
+			};
+			const errori = valida(dati);
+			form.querySelectorAll('[aria-invalid]').forEach((el) => el.removeAttribute('aria-invalid'));
+			Object.keys(errori).forEach((k) => form.querySelector(`[name="${k}"]`)?.setAttribute('aria-invalid', 'true'));
+			mostraErrori(errori);
+			if (Object.keys(errori).length) return;
+
+			bottone.disabled = true;
+			const testo = bottone.textContent;
+			bottone.textContent = 'Invio in corso…';
+			try {
+				const r = await fetch('/api/modulo', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(dati),
+				});
+				const j = await r.json().catch(() => ({}));
+				if (r.status === 422 && j.errori) {
+					Object.keys(j.errori).forEach((k) => form.querySelector(`[name="${k}"]`)?.setAttribute('aria-invalid', 'true'));
+					mostraErrori(j.errori);
+				} else if (!r.ok || !j.ok) {
+					erroreGenerale.textContent = j.errore ?? 'Non siamo riusciti a inviare la richiesta. Riprova tra poco.';
+				} else {
+					(window as any).dataLayer?.push({ event: tipo === 'prova' ? 'richiesta_prova' : 'richiesta_contatto', medium });
+					const soloInfo = tipo === 'contatto' && SOLO_INFO.includes(dati.attivita);
+					const fine = modulo.querySelector<HTMLElement>('.modulo__fine')!;
+					fine.querySelectorAll('[data-nome]').forEach((el) => (el.textContent = dati.nome));
+					fine.querySelector<HTMLAnchorElement>('[data-calendly]')!.href = CALENDLY[dati.sede];
+					fine.querySelector<HTMLAnchorElement>('[data-info]')!.href = INFO[dati.sede];
+					fine.querySelector<HTMLElement>('.fine--info')!.hidden = !soloInfo;
+					fine.querySelector<HTMLElement>('.fine--appuntamento')!.hidden = soloInfo;
+					form.hidden = true;
+					fine.hidden = false;
+					fine.focus();
+					return;
+				}
+			} catch {
+				erroreGenerale.textContent = 'Connessione assente. Riprova tra poco.';
+			}
+			bottone.disabled = false;
+			bottone.textContent = testo;
+		});
+	}
+</script>
+
+<style>
+	.modulo {
+		width: 100%;
+		max-width: 38rem;
+	}
+
+	.modulo__form {
+		display: grid;
+		gap: 20px;
+		padding: clamp(20px, 4vw, 32px);
+		border: 1px solid var(--border-on-dark);
+		border-radius: var(--radius-lg);
+		background: var(--bg-dark-soft);
+	}
+
+	.riga {
+		display: grid;
+		gap: 20px;
+	}
+
+	@media (min-width: 600px) {
+		.riga {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.campo {
+		display: grid;
+		gap: 8px;
+	}
+
+	.campo label {
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--text-on-dark);
+	}
+
+	.campo input[type='text'],
+	.campo input[type='email'],
+	.campo input[type='tel'],
+	.campo select,
+	.campo textarea {
+		width: 100%;
+		padding: 14px;
+		border: 1px solid var(--border-on-dark);
+		border-radius: 8px;
+		background: #fff;
+		color: #000;
+		font: inherit;
+		font-size: 16px;
+	}
+
+	.campo textarea {
+		resize: vertical;
+		min-height: 8rem;
+	}
+
+	.campo input:focus,
+	.campo select:focus,
+	.campo textarea:focus {
+		outline: none;
+		border-color: var(--accent);
+		box-shadow: 0 0 0 2px var(--accent);
+	}
+
+	.campo [aria-invalid='true'] {
+		border-color: #ff4c4c;
+	}
+
+	.campo__errore,
+	.modulo__errore {
+		margin: 0;
+		font-size: var(--text-xs);
+		color: #ff7a7a;
+	}
+
+	.campo__errore:empty,
+	.modulo__errore:empty {
+		display: none;
+	}
+
+	.privacy {
+		display: flex;
+		gap: 12px;
+		align-items: flex-start;
+		font-size: var(--text-xs);
+		font-weight: 400;
+		line-height: 1.5;
+		color: var(--text-on-dark);
+		opacity: 0.8;
+	}
+
+	.privacy input {
+		flex: none;
+		width: 20px;
+		height: 20px;
+		margin-top: 1px;
+		accent-color: var(--accent);
+	}
+
+	.privacy a {
+		color: var(--accent);
+		text-decoration: underline;
+	}
+
+	.modulo__trappola {
+		position: absolute;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
+
+	.modulo__invia {
+		justify-self: start;
+	}
+
+	.modulo__invia[disabled] {
+		opacity: 0.6;
+		cursor: wait;
+	}
+
+	.modulo__fine {
+		padding: clamp(20px, 4vw, 32px);
+		border: 1px solid var(--border-on-dark);
+		border-radius: var(--radius-lg);
+		background: var(--bg-dark-soft);
+		color: var(--text-on-dark);
+		outline: none;
+	}
+
+	.modulo__titolo {
+		margin: 0 0 12px;
+		font-size: var(--text-xl);
+		color: var(--accent);
+	}
+
+	.fine p {
+		margin: 0 0 12px;
+		line-height: 1.6;
+	}
+
+	.fine__domanda {
+		margin-top: 20px;
+		font-weight: 600;
+	}
+
+	.fine__azioni {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-top: 8px;
+	}
+</style>

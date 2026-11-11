@@ -53,7 +53,7 @@ const { pagina } = Astro.props;
 const pulsanti: Pulsante[] =
 	pagina.hero.pulsanti ??
 	[
-		{ testo: 'Prova ora', href: formUrl('prova', pagina.slug), esterno: true },
+		{ testo: 'Prova ora', href: formUrl('prova', pagina.slug) },
 		{ testo: 'Planning settimanale', href: '/orari' },
 	];
 
