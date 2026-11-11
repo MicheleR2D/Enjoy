@@ -566,8 +566,16 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 	.storia__foto {
 		position: relative;
 		overflow: hidden;
-		min-height: 360px;
+		min-height: 0;
+		align-self: center;
+		/* Proporzioni della foto (940x788, leggermente piu' bassa per tagliare il bordo nero sotto i busti):
+		   il riquadro non si allunga con il testo, quindi la foto non viene ingrandita e tagliata. */
+		aspect-ratio: 940 / 710;
 		border-radius: 0 20px 20px 0;
+	}
+
+	.storia__foto :global(img) {
+		object-position: 50% 15%;
 	}
 
 	.storia__testo-col {
