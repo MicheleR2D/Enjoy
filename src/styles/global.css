@@ -48,6 +48,10 @@ body {
   font-family: var(--font-sans);
   font-size: var(--text-base);
   line-height: 1.6;
+  /* Niente scorrimento orizzontale della pagina (anche dove html non basta, es. iOS). */
+  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 h1,
@@ -153,6 +157,12 @@ a {
 
 .btn:hover::before {
   transform: scaleX(1);
+}
+
+/* Effetto di pressione: al tocco o al clic il bottone si abbassa un po'. */
+.btn:active {
+  transform: scale(0.96);
+  transition-duration: 0.1s;
 }
 
 /* Varianti di colore (solo le due variabili) */
@@ -530,7 +540,10 @@ body.lf-locked {
   }
 }
 
-/* Niente alone blu/grigio che il browser mobile disegna al tocco di link e pulsanti. */
+/* Niente alone blu/grigio che il browser mobile disegna al tocco: su tutta la pagina. */
+html,
+body,
+*,
 a,
 button,
 summary,
