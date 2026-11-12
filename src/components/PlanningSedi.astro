@@ -153,14 +153,20 @@ const sedi = planning.sedi as { slug: string; nome: string; validita: string; pd
 										const info = scheda(l.nome);
 										return (
 											<li class="lez" data-tipo={l.tipo}>
-												<span class="lez__ora">{l.ora}</span>
-												{info ? (
-													<a class="lez__nome" href={info.href} data-corso={info.chiave} aria-haspopup="dialog">
-														{l.nome}
-													</a>
-												) : (
-													<span class="lez__nome">{l.nome}</span>
-												)}
+												<span class="lez__ora">
+													{l.ora}
+													{l.fine && <span class="lez__fine">–{l.fine}</span>}
+												</span>
+												<span class="lez__corpo">
+													{info ? (
+														<a class="lez__nome" href={info.href} data-corso={info.chiave} aria-haspopup="dialog">
+															{l.nome}
+														</a>
+													) : (
+														<span class="lez__nome">{l.nome}</span>
+													)}
+													{l.sala && <span class="lez__sala">{l.sala}</span>}
+												</span>
 											</li>
 										);
 									})}
@@ -604,12 +610,13 @@ const sedi = planning.sedi as { slug: string; nome: string; validita: string; pd
 		clip-path: inset(50%);
 	}
 
-	/* Elenco a colonne: solo orario e corso, in ordine di orario scendendo da una colonna alla successiva. */
+	/* Calendario: ogni lezione e' una casella (orario in giallo, corso, sala), in colonne su schermo largo. */
 	.pl__lista {
-		columns: 3 300px;
-		column-gap: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+		gap: 8px;
 		margin: 0;
-		padding: 0 12px;
+		padding: 12px;
 		list-style: none;
 	}
 
@@ -630,20 +637,39 @@ const sedi = planning.sedi as { slug: string; nome: string; validita: string; pd
 	.lez {
 		position: relative;
 		display: flex;
-		align-items: baseline;
+		align-items: center;
 		gap: 14px;
-		padding: 14px 12px;
-		border-bottom: 1px solid var(--border-on-dark);
-		break-inside: avoid;
+		padding: 12px 14px;
+		border: 1px solid var(--border-on-dark);
+		border-radius: 12px;
+		background: var(--bg-dark-soft);
 	}
 
 	.lez__ora {
 		flex: none;
-		min-width: 3.2em;
+		min-width: 7.6rem; /* i nomi dei corsi partono tutti dallo stesso punto */
 		font-size: var(--text-md);
 		font-weight: 900;
 		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
 		color: var(--accent);
+	}
+
+	.lez__fine {
+		font-size: 0.85em;
+		font-weight: 600;
+		color: var(--text-on-dark);
+	}
+
+	.lez__corpo {
+		display: grid;
+		gap: 2px;
+		min-width: 0;
+	}
+
+	.lez__sala {
+		font-size: 0.9rem;
+		font-weight: 600;
 	}
 
 	.lez__nome {
