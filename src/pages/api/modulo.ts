@@ -23,7 +23,9 @@ const ATTIVITA = [
 	'Nuoto Neonatale',
 	'Nuoto Agonistico',
 	'Nuoto Sincronizzato',
-	'Ginnastica Aerobice',
+	// "Aerobica" (il modulo n8n diceva "Aerobice"): e' il valore che il flusso n8n riconosce
+	// per mandare l'email a Davide e che esiste tra le opzioni di Airtable.
+	'Ginnastica Aerobica',
 ];
 const PERCORSI = { prova: 'enjoy-richiesta-prova', contatto: 'enjoy-contattaci' } as const;
 
