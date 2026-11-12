@@ -245,6 +245,14 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 			<slot />
 		</div>
 	</div>
+
+	{
+		Astro.slots.has('orari') && (
+			<div class="cb__orari container-wide">
+				<slot name="orari" />
+			</div>
+		)
+	}
 </section>
 
 <style>

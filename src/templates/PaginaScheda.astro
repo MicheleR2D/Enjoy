@@ -14,6 +14,7 @@ import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import CourseBlock from '../components/CourseBlock.astro';
 import SediAttivita from '../components/SediAttivita.astro';
+import OrariCorso from '../components/OrariCorso.astro';
 import FasiPercorso from '../components/FasiPercorso.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import { domandeFrequenti, grafo } from '../lib/jsonld';
@@ -172,6 +173,7 @@ const nFascia = voci.length + (faqPresenti ? 1 : 0);
 					schedeMobile={schedeTelefono(blocco)}
 				>
 					<SediAttivita sedi={sediBlocco} etichetta={pagina.sediEtichetta} />
+					<OrariCorso slot="orari" slug={pagina.slug} blocco={voce.i} titolo={blocco.titolo || pagina.nome} tone={eAccento(n) ? 'accento' : 'dark'} />
 				</CourseBlock>
 			);
 		})

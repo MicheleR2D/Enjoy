@@ -44,6 +44,9 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 						</li>
 					))
 				}
+				<li class="hd__col hd__col--link">
+					<a class="hd__col-title hd__col-title--link" href="/orari">Orari</a>
+				</li>
 			</ul>
 			<div class="hd__actions">
 				<a class="btn btn--outline hd__cta hd__cta--contact" href={formUrl('contatto', 'Header')} target="_blank" rel="noopener">
@@ -296,6 +299,19 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 		font-weight: 600;
 		font-size: 16px;
 		cursor: default;
+	}
+
+	/* Voce senza tendina (Orari): un link con lo stesso aspetto dei titoli. */
+	.hd__col-title--link {
+		display: inline-block;
+		color: var(--text-on-dark);
+		line-height: normal;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+	.hd__col-title--link:hover {
+		color: var(--accent);
 	}
 
 	.hd__col-title:focus-visible {
@@ -696,6 +712,11 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 			font-size: 1.9rem;
 			font-weight: 700;
 			line-height: 1;
+		}
+
+		/* Orari e' un link diretto, senza sottomenu: niente "+". */
+		.hd__col-title--link::after {
+			content: none;
 		}
 
 		.hd__col.is-open > .hd__col-title {

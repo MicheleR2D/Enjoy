@@ -1,0 +1,414 @@
+---
+/*
+ * Orari di un corso (o di un blocco di una scheda), a scomparsa: sotto il testo c'e' una barra
+ * "Orari <corso> · N lezioni a settimana" che si apre al tocco e mostra, sede per sede e giorno per
+ * giorno, a che ora e in quale sala si fa. Chiusa occupa una riga. L'orario completo, con tab e
+ * filtri, e' su /orari.
+ *
+ * Non ha dati suoi: quale lezione del planning appartiene a quale scheda (e a quale blocco) sta in
+ * src/data/orari-schede.json, gli orari in src/data/planning-sedi.json (lo stesso file della pagina
+ * /orari): quando il planning cambia, cambiano anche le schede. Se la sezione non ha lezioni nel
+ * planning (servizi, nuoto) non mostra nulla. E' un <details>: funziona anche da tastiera e senza JS.
+ */
+import schede from '../data/orari-schede.json';
+import planning from '../data/planning-sedi.json';
+
+interface Props {
+	/** Indirizzo della scheda (es. "acqua-gym"). */
+	slug: string;
+	/** Posizione del blocco nella scheda (0 = primo). */
+	blocco: number;
+	/** Nome per il titolo (titolo del blocco o nome della pagina). */
+	titolo: string;
+	tone?: 'dark' | 'accento';
+}
+
+const { slug, blocco, titolo, tone = 'dark' } = Astro.props;
+
+const GIORNI = [
+	{ id: 'LUN', nome: 'Lunedì' },
+	{ id: 'MAR', nome: 'Martedì' },
+	{ id: 'MER', nome: 'Mercoledì' },
+	{ id: 'GIO', nome: 'Giovedì' },
+	{ id: 'VEN', nome: 'Venerdì' },
+	{ id: 'SAB', nome: 'Sabato' },
+	{ id: 'DOM', nome: 'Domenica' },
+] as const;
+
+const lezioni = Object.entries(schede as Record<string, { slug: string; blocco?: number }>)
+	.filter(([, v]) => v.slug === slug && (v.blocco ?? 0) === blocco)
+	.map(([nome]) => nome);
+
+const minuti = (ora: string) => {
+	const [h, m] = ora.split(':').map(Number);
+	return h * 60 + m;
+};
+
+type Voce = { ora: string; fine?: string; nome: string; sala?: string };
+const sedi = planning.sedi
+	.map((s) => {
+		const tutte = (s.giorni as Record<string, Voce[]>) ?? {};
+		const giorni = GIORNI.map((g) => ({
+			...g,
+			voci: (tutte[g.id] ?? []).filter((v) => lezioni.includes(v.nome)).sort((a, b) => minuti(a.ora) - minuti(b.ora)),
+		})).filter((g) => g.voci.length > 0);
+		const nomi = new Set(giorni.flatMap((g) => g.voci.map((v) => v.nome)));
+		// Varianti dello stesso corso ("Body Balance" / "Body Balance Les Mills") non hanno bisogno dell'etichetta:
+		// serve solo con lezioni diverse nella stessa sezione (Hiit Power, Hiit Agility...).
+		const corto = [...nomi].sort((a, b) => a.length - b.length)[0] ?? '';
+		const conEtichetta = [...nomi].some((n) => !n.startsWith(corto));
+		// La sala si indica solo se dice qualcosa: in piscina e' sempre "Piscina".
+		const mostraSala = giorni.some((g) => g.voci.some((v) => v.sala && v.sala !== 'Piscina'));
+		return { slug: s.slug, nome: s.nome, giorni, mostraSala, conEtichetta, totale: giorni.reduce((n, g) => n + g.voci.length, 0) };
+	})
+	.filter((s) => s.totale > 0);
+
+const totale = sedi.reduce((n, s) => n + s.totale, 0);
+---
+
+{
+	totale > 0 && (
+		<div class:list={['orc', `orc--${tone}`]} role="group" aria-label={`Orari ${titolo}`}>
+			<details class="orc__acc">
+				<summary class="orc__sum">
+					<span class="orc__sum-testo">
+						<span class="orc__sub">
+							Orari · {totale} {totale === 1 ? 'lezione' : 'lezioni'} a settimana
+						</span>
+						<span class="orc__tit">{titolo}</span>
+					</span>
+					<span class="orc__chev" aria-hidden="true">
+						<svg viewBox="0 0 24 24" width="22" height="22">
+							<path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</span>
+				</summary>
+
+				<div class="orc__corpo">
+					<div class="orc__sedi">
+					{sedi.map((s) => (
+						<section class="orc__sede" aria-label={`Orari a ${s.nome}`}>
+							{sedi.length > 1 && <h3 class="orc__sede-nome">{s.nome}</h3>}
+							<ul class="orc__giorni">
+								{s.giorni.map((g) => (
+									<li class="orc__giorno" data-giorno={g.id}>
+										<span class="orc__nome">
+											<span aria-hidden="true">{g.id}</span>
+											<span class="sr-only">{g.nome}</span>
+										</span>
+										<ul class="orc__ore">
+											{g.voci.map((v) => (
+												<li class="orc__ora">
+													<span class="orc__time">
+														{v.ora}
+														{v.fine && <span class="orc__fine">–{v.fine}</span>}
+													</span>
+													{(s.conEtichetta || (s.mostraSala && v.sala)) && (
+														<span class="orc__lez">{[s.conEtichetta ? v.nome : '', s.mostraSala ? v.sala : ''].filter(Boolean).join(' · ')}</span>
+													)}
+												</li>
+											))}
+										</ul>
+									</li>
+								))}
+							</ul>
+						</section>
+					))}
+					</div>
+
+					<div class="orc__piede">
+						<a class="btn btn--sm orc__link" href="/orari">
+							Vedi planning completo
+						</a>
+					</div>
+				</div>
+			</details>
+		</div>
+	)
+}
+
+<style>
+	.orc {
+		--orc-testo: var(--text-on-dark);
+		--orc-bordo: var(--border-on-dark);
+		--orc-evid: var(--accent);
+		--orc-velo: rgba(255, 255, 255, 0.08);
+		--orc-fondo: var(--bg-dark-soft);
+		color: var(--orc-testo);
+		/* Sotto le due colonne del blocco (CourseBlock, slot "orari"), a tutta larghezza. */
+		margin-top: 32px;
+	}
+
+	/* Sul giallo: la barra e' un riquadro nero, come i cartelli (testo bianco, evidenze gialle). */
+	.orc--accento {
+		--orc-fondo: #000;
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+	}
+
+	.orc__acc {
+		border: 1px solid var(--orc-bordo);
+		border-radius: var(--radius);
+		background: var(--orc-fondo);
+		transition: border-color var(--dur-base);
+	}
+
+	.orc__acc[open] {
+		border-color: var(--orc-evid);
+	}
+
+	.orc__sum {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		min-height: 60px;
+		padding: 12px 20px;
+		list-style: none;
+		cursor: pointer;
+	}
+
+	.orc__sum::-webkit-details-marker {
+		display: none;
+	}
+
+	.orc__sum:focus-visible {
+		outline: 3px solid var(--orc-evid);
+		outline-offset: 3px;
+		border-radius: var(--radius);
+	}
+
+	.orc__sum-testo {
+		display: grid;
+		gap: 4px;
+		min-width: 0;
+	}
+
+	.orc__tit {
+		font-family: var(--font-heading);
+		font-size: clamp(1.2rem, 4.6vw, 1.6rem);
+		line-height: 1.15;
+		font-weight: 900;
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+	}
+
+	/* Sopra il titolo: etichetta piccola in giallo. */
+	.orc__sub {
+		font-size: var(--text-sm);
+		font-weight: 800;
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+		color: var(--orc-evid);
+	}
+
+	.orc__chev {
+		display: grid;
+		place-items: center;
+		flex: none;
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		background: var(--orc-velo);
+		color: var(--orc-evid);
+		transition: transform 0.3s var(--ease-out-crit);
+	}
+
+	.orc__acc[open] .orc__chev {
+		transform: rotate(180deg);
+	}
+
+	.orc__corpo {
+		padding: 4px 20px 20px;
+		border-top: 1px solid var(--orc-bordo);
+	}
+
+	/* Aperto: le sedi una accanto all'altra (Meda | Camuzzago), un giorno per riga in ciascuna. */
+	.orc__sedi {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+		column-gap: 48px;
+	}
+
+	/* Ogni sede e' una fascia gialla piena: si vede subito dove finisce una e inizia l'altra. */
+	.orc__sede-nome {
+		margin: 0 0 12px;
+		padding: 9px 14px;
+		border-radius: 8px;
+		background: var(--orc-evid);
+		font-family: var(--font-heading);
+		font-size: var(--text-base);
+		font-weight: 900;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--on-accent);
+	}
+
+	.orc__sede {
+		padding-top: 20px;
+	}
+
+	.orc__sede + .orc__sede {
+		margin-top: 12px;
+		padding-top: 28px;
+		border-top: 2px solid var(--orc-evid);
+	}
+
+	@media (min-width: 901px) {
+		.orc__sede + .orc__sede {
+			margin-top: 0;
+			padding-top: 20px;
+			border-top: 0;
+		}
+	}
+
+	/* Calendario: una riga per giorno (sigla a sinistra), le lezioni come "caselle" con l'orario. I giorni
+	   senza lezioni restano, attenuati, cosi' la settimana si legge per intero. */
+	.orc__giorni {
+		display: grid;
+		gap: 8px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.orc__giorno {
+		display: grid;
+		grid-template-columns: 3.4rem minmax(0, 1fr);
+		align-items: stretch;
+		gap: 10px;
+		padding: 6px;
+		border: 1px solid var(--orc-bordo);
+		border-radius: 12px;
+	}
+
+	.orc__nome {
+		display: grid;
+		place-items: center;
+		border-radius: 8px;
+		background: var(--orc-velo);
+		font-family: var(--font-heading);
+		font-size: var(--text-sm);
+		font-weight: 900;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+
+	.orc__giorno.is-oggi {
+		border-color: var(--orc-evid);
+	}
+
+	.orc__giorno.is-oggi .orc__nome {
+		background: var(--orc-evid);
+		color: var(--on-accent);
+	}
+
+	.orc__ore {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.orc__ora {
+		flex: 1 1 9rem;
+		display: grid;
+		gap: 1px;
+		padding: 6px 10px;
+		border-radius: 8px;
+		background: var(--orc-velo);
+	}
+
+	.orc__time {
+		font-family: var(--font-heading);
+		font-size: var(--text-md);
+		font-weight: 800;
+		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
+		color: var(--orc-evid);
+	}
+
+	.orc__fine {
+		margin-left: 1px;
+		font-size: 0.85em;
+		font-weight: 600;
+		color: var(--orc-testo);
+	}
+
+	.orc__lez {
+		font-size: 0.9rem;
+		font-weight: 600;
+		line-height: 1.25;
+	}
+
+	.orc__piede {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		margin-top: 20px;
+	}
+
+	.orc--accento .orc__link {
+		--btn-border: var(--on-accent);
+		--btn-hover-text: var(--accent);
+	}
+
+	@supports (interpolate-size: allow-keywords) {
+		.orc__acc {
+			interpolate-size: allow-keywords;
+		}
+
+		.orc__acc::details-content {
+			block-size: 0;
+			overflow: clip;
+			transition: block-size 0.35s var(--ease-out-crit), content-visibility 0.35s allow-discrete;
+		}
+
+		.orc__acc[open]::details-content {
+			block-size: auto;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.orc__chev,
+		.orc__acc::details-content {
+			transition: none;
+		}
+	}
+
+	@media (max-width: 900px) {
+		.orc__sum {
+			min-height: 56px;
+			padding: 10px 16px;
+		}
+
+		.orc__corpo {
+			padding: 2px 16px 16px;
+		}
+
+		.orc__giorno {
+			grid-template-columns: 3rem minmax(0, 1fr);
+			gap: 8px;
+		}
+
+	}
+</style>
+
+<script>
+	// Evidenzia il giorno di oggi (getDay: 0 = domenica).
+	const sigle = ['DOM', 'LUN', 'MAR', 'MER', 'GIO', 'VEN', 'SAB'];
+	const oggi = sigle[new Date().getDay()];
+	document.querySelectorAll<HTMLElement>('.orc__giorno').forEach((g) => {
+		if (g.dataset.giorno === oggi) g.classList.add('is-oggi');
+	});
+</script>

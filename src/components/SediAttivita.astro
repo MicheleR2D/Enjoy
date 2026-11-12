@@ -1,7 +1,7 @@
 ---
 /*
- * Dove si tiene l'attivita': una riga sobria con il nome della sede (link alla sua pagina) e
- * l'indirizzo, senza box. Sta dentro il blocco dell'attivita' (slot di CourseBlock) o, per le
+ * Dove si tiene l'attivita': una riga sobria con il nome della sede (link alla sua pagina), senza
+ * indirizzo e senza box. Sta dentro il blocco dell'attivita' (slot di CourseBlock) o, per le
  * pagine con piu' attivita' nelle stesse sedi, in una fascia in fondo. Se l'attivita' si tiene in
  * una sola sede ne mostra una sola, anche quando la pagina ne tratta altre (es. X-Room solo a
  * Meda, X-Space solo a Camuzzago). Eredita il colore del testo: funziona su fondo nero e giallo.
@@ -34,9 +34,6 @@ const { sedi, centrato = false, etichetta } = Astro.props;
 					<li>
 						<a class="dove__sede" href={`/${s.slug}`}>
 							<span class="dove__nome">{s.nome} →</span>
-							<span class="dove__via">
-								{s.via}, {s.cap} {s.citta}
-							</span>
 						</a>
 					</li>
 				))}
@@ -47,18 +44,19 @@ const { sedi, centrato = false, etichetta } = Astro.props;
 
 <style>
 	.dove {
-		margin-top: 32px;
+		margin-top: 32px; /* come gli altri pezzi del blocco */
 	}
 
 	.dove--centrato {
 		text-align: center;
 	}
 
+	/* Stesso stile degli altri titoli del blocco (Intensita', Cosa portare). */
 	.dove__label {
-		margin: 0 0 12px;
-		font-size: var(--text-xs, 0.8rem);
-		font-weight: 700;
-		letter-spacing: 0.1em;
+		margin: 0 0 14px;
+		font-size: var(--text-base);
+		font-weight: 800;
+		letter-spacing: 0.14em;
 		text-transform: uppercase;
 	}
 
@@ -71,6 +69,30 @@ const { sedi, centrato = false, etichetta } = Astro.props;
 		list-style: none;
 	}
 
+	/* Nel blocco: le sedi sono bottoni della stessa misura, in colonne uguali. */
+	.dove:not(.dove--centrato) .dove__lista {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 224px));
+	}
+
+	.dove:not(.dove--centrato) .dove__sede {
+		height: 100%;
+		text-align: center;
+	}
+
+	/* Telefono: due bottoni affiancati, il nome con la freccia resta su una riga. */
+	@media (max-width: 480px) {
+		.dove:not(.dove--centrato) .dove__sede {
+			padding-inline: 8px;
+		}
+
+		.dove__nome {
+			white-space: nowrap;
+			font-size: 1rem;
+			letter-spacing: 0.02em;
+		}
+	}
+
 	.dove--centrato .dove__lista {
 		justify-content: center;
 	}
@@ -79,7 +101,7 @@ const { sedi, centrato = false, etichetta } = Astro.props;
 	.dove__sede {
 		display: grid;
 		gap: 2px;
-		padding: 16px 22px;
+		padding: 14px 22px;
 		border-radius: var(--radius);
 		background: var(--accent);
 		color: var(--bg-dark-deep);
@@ -99,11 +121,6 @@ const { sedi, centrato = false, etichetta } = Astro.props;
 		font-weight: 800;
 		letter-spacing: 0.04em;
 		text-transform: uppercase;
-	}
-
-	.dove__via {
-		font-size: var(--text-base);
-		font-weight: 500;
 	}
 
 	/* Sul fondo giallo dei blocchi "accento" la card diventa nera, con testo bianco. */
