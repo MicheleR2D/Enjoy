@@ -1,0 +1,231 @@
+---
+/*
+ * Finestra (modal) con i moduli "Prova ora" e "Contattaci". Ogni collegamento a /prova o
+ * /contattaci (pulsanti dell'header, delle pagine, del footer) la apre sopra la pagina in cui
+ * si e' invece di portare via il visitatore. Le pagine /prova e /contattaci restano per chi
+ * arriva da un indirizzo diretto o senza JavaScript.
+ */
+import ModuloRichiesta from './ModuloRichiesta.astro';
+import ElencoProva from './ElencoProva.astro';
+---
+
+<dialog id="modulo-modal" class="mm on-dark" aria-labelledby="mm-titolo">
+	<div class="mm__panel">
+		<button class="mm__chiudi" type="button" aria-label="Chiudi" data-mm-chiudi>&times;</button>
+
+		<div class="mm__corpo" data-mm="prova" hidden>
+			<h2 class="mm__titolo" data-mm-titolo>Richiedi la prova</h2>
+			<ElencoProva />
+			<ModuloRichiesta tipo="prova" idp="mp" />
+		</div>
+
+		<div class="mm__corpo" data-mm="contatto" hidden>
+			<p class="pill">Richiesta informazioni</p>
+			<h2 class="mm__titolo" data-mm-titolo>Contattaci</h2>
+			<p class="mm__testo">Lasciaci i tuoi dati e la tua richiesta: ti ricontatteremo al più presto.</p>
+			<ModuloRichiesta tipo="contatto" idp="mc" />
+		</div>
+	</div>
+</dialog>
+
+<script>
+	const modal = document.getElementById('modulo-modal') as HTMLDialogElement | null;
+
+	if (modal) {
+		const corpi = modal.querySelectorAll<HTMLElement>('[data-mm]');
+
+		// Alla chiusura la pagina torna a scorrere e il modulo riparte vuoto. Gira sia dai pulsanti sia
+		// dall'evento "close" (tasto Esc), quindi puo' girare due volte: e' innocuo.
+		const pulisci = () => {
+			document.body.classList.remove('mm-aperto');
+			modal.querySelectorAll('.modulo').forEach((m) => m.dispatchEvent(new Event('modulo:reset')));
+		};
+
+		const chiudi = () => {
+			if (modal.open) modal.close();
+			pulisci();
+		};
+
+		modal.addEventListener('close', pulisci);
+
+		modal.querySelector('[data-mm-chiudi]')?.addEventListener('click', chiudi);
+
+		// Chiusura dallo sfondo: conta solo se anche la pressione e' partita dallo sfondo, cosi'
+		// selezionare del testo in un campo e rilasciare fuori non chiude e non cancella il modulo.
+		let pressioneSuSfondo = false;
+		modal.addEventListener('mousedown', (e) => {
+			pressioneSuSfondo = e.target === modal;
+		});
+		modal.addEventListener('click', (e) => {
+			if (e.target === modal && pressioneSuSfondo) chiudi();
+			pressioneSuSfondo = false;
+		});
+
+		// "No, grazie" dopo l'invio: chiude la finestra invece di portare alla home.
+		modal.addEventListener('click', (e) => {
+			const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('.fine__azioni a[href="/"]');
+			if (!a) return;
+			e.preventDefault();
+			chiudi();
+		});
+
+		document.addEventListener('click', (e) => {
+			if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+			const link = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href]');
+			if (!link || modal.contains(link)) return;
+			let url: URL;
+			try {
+				url = new URL(link.href, location.href);
+			} catch {
+				return;
+			}
+			if (url.origin !== location.origin) return;
+			const tipo = url.pathname === '/prova' ? 'prova' : url.pathname === '/contattaci' ? 'contatto' : null;
+			if (!tipo) return;
+			e.preventDefault();
+			corpi.forEach((c) => {
+				const attivo = c.dataset.mm === tipo;
+				c.hidden = !attivo;
+				const m = c.querySelector<HTMLElement>('.modulo');
+				if (attivo && m) m.dataset.medium = url.searchParams.get('medium') ?? '';
+			});
+			modal.showModal();
+			document.body.classList.add('mm-aperto');
+			modal.scrollTop = 0;
+			modal.querySelector<HTMLElement>('.mm__panel')!.scrollTop = 0;
+		});
+	}
+</script>
+
+<style is:global>
+	.mm {
+		width: min(480px, calc(100vw - 24px));
+		max-width: none;
+		max-height: min(900px, calc(100dvh - 24px));
+		padding: 0;
+		border: 1px solid var(--border-on-dark);
+		border-radius: var(--radius-lg);
+		background: var(--bg-dark-soft);
+		color: var(--text-on-dark);
+		overflow: hidden;
+	}
+
+	.mm::backdrop {
+		background: rgba(0, 0, 0, 0.7);
+	}
+
+	.mm[open] {
+		animation: mm-entra 0.25s var(--ease-out-crit, ease-out);
+	}
+
+	@keyframes mm-entra {
+		from {
+			opacity: 0;
+			transform: translateY(16px) scale(0.98);
+		}
+	}
+
+	/* Con la finestra aperta la pagina dietro non scorre. */
+	body.mm-aperto {
+		overflow: hidden;
+	}
+
+	.mm__panel {
+		position: relative;
+		max-height: inherit;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		padding: clamp(24px, 5vw, 40px);
+	}
+
+	/* Barra di scorrimento: sottile, binario scuro e cursore giallo (Firefox: scrollbar-color; gli altri: -webkit-). */
+	.mm__panel {
+		scrollbar-width: thin;
+		scrollbar-color: var(--accent) transparent;
+	}
+
+	.mm__panel::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	.mm__panel::-webkit-scrollbar-track {
+		margin-block: 18px;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.08);
+	}
+
+	.mm__panel::-webkit-scrollbar-thumb {
+		border: 2px solid transparent;
+		border-radius: 999px;
+		background: var(--accent) padding-box;
+	}
+
+	.mm__panel::-webkit-scrollbar-thumb:hover {
+		background: #fff padding-box;
+	}
+
+	.mm__corpo {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 16px;
+	}
+
+	.mm__corpo[hidden] {
+		display: none;
+	}
+
+	.mm__titolo {
+		margin: 0;
+		padding-right: 40px; /* non finisce sotto la × */
+		font-size: clamp(1.75rem, 6.5vw, 2.6rem);
+		line-height: 1;
+		color: var(--text-on-dark);
+	}
+
+	.mm__testo {
+		margin: 0;
+		line-height: 1.6;
+	}
+
+	.mm__chiudi {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		padding: 0;
+		border: 0;
+		border-radius: 50%;
+		background: none;
+		color: var(--text-on-dark);
+		font-size: 32px;
+		line-height: 1;
+		cursor: pointer;
+		transition: color 0.2s ease;
+	}
+
+	.mm__chiudi:hover {
+		color: var(--accent);
+	}
+
+	.mm__chiudi:focus-visible {
+		outline: 2px solid var(--accent);
+	}
+
+	/* Il modulo non ha una scatola propria: la scatola e' la finestra. */
+	.mm.mm .modulo {
+		max-width: none;
+	}
+
+	.mm.mm .modulo__form,
+	.mm.mm .modulo__fine {
+		padding: 0;
+		border: 0;
+		background: none;
+	}
+</style>

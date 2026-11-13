@@ -33,6 +33,9 @@ html {
      "hidden" fa da riserva per i browser che non supportano "clip". */
   overflow-x: hidden;
   overflow-x: clip;
+  /* Barra di scorrimento della pagina: sottile, binario nero e cursore giallo. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--bg-dark-deep);
 }
 
 @media (prefers-reduced-motion: no-preference) {
