@@ -197,6 +197,7 @@ const gruppi = [
 						<div class="ft-social">
 							{sedi.map((sede) => (
 								<div class="ft-social__sede">
+									<span class="ft-social__nome">{sede.nome}</span>
 									<div class="ft-social__icone">
 										{sede.social.map((x) => (
 											<a
@@ -211,7 +212,6 @@ const gruppi = [
 											</a>
 										))}
 									</div>
-									<span class="ft-social__nome">{sede.nome}</span>
 								</div>
 							))}
 						</div>
