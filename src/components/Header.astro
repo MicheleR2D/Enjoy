@@ -798,43 +798,54 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 			color: var(--accent);
 		}
 
-		/* I due bottoni sono figli diretti del menu: "Contattaci" giallo sotto le voci, "Prova ora" in
-		   una barra gialla che resta in fondo allo schermo. */
+		/* I due bottoni stanno affiancati in una barra gialla che resta in fondo allo schermo:
+		   "Contattaci" (contorno nero) e "Prova ora" (nero). */
 		.hd__actions {
-			display: contents;
+			position: sticky;
+			bottom: 0;
+			display: flex;
+			gap: 12px;
+			margin: auto -24px 0;
+			padding: 20px 24px max(20px, env(safe-area-inset-bottom));
+			background: var(--accent);
 		}
 
 		.hd__ico {
 			display: inline-block;
-			width: 20px;
-			height: 20px;
-			margin-right: 8px;
-			vertical-align: -4px;
+			width: 16px;
+			height: 16px;
+			margin-right: 5px;
+			vertical-align: -3px;
 		}
 
 		.hd__cta {
-			width: auto;
-			padding: 14px 18px;
-			font-size: 1.1rem;
+			width: 100%;
+			padding: 14px 4px;
+			font-size: 0.9rem;
+			letter-spacing: 0;
 			text-transform: uppercase;
 		}
 
-		.hd__cta--contact {
-			align-self: flex-start;
-			margin: 28px 0 32px;
-			--btn-border: var(--accent);
-			--btn-hover-text: var(--on-accent);
-			background: var(--accent);
-			color: var(--on-accent);
+		/* Il contenitore di "Prova ora" si allunga come "Contattaci": stessa altezza e stessa larghezza. */
+		.hd__prova {
+			display: flex;
+			flex: 1 1 0;
+			min-width: 0;
 		}
 
-		.hd__prova {
-			display: block;
-			position: sticky;
-			bottom: 0;
-			margin: auto -24px 0;
-			padding: 20px 24px max(20px, env(safe-area-inset-bottom));
-			background: var(--accent);
+		.hd__prova .hd__cta {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.hd__cta--contact {
+			flex: 1 1 0;
+			min-width: 0;
+			--btn-border: var(--bg-dark-deep);
+			--btn-hover-text: var(--accent);
+			background: transparent;
+			color: var(--bg-dark-deep);
 		}
 
 		.hd__cta--primary {
@@ -845,15 +856,13 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 		}
 
 		/* Ingresso a cascata dei contenuti */
-		.hd__col,
-		.hd__cta--contact {
+		.hd__col {
 			opacity: 0;
 			transform: translateY(14px);
 			transition: opacity 0.4s ease, transform 0.5s var(--ease-out-crit);
 		}
 
-		.hd__nav--aperto .hd__col,
-		.hd__nav--aperto .hd__cta--contact {
+		.hd__nav--aperto .hd__col {
 			opacity: 1;
 			transform: none;
 		}
@@ -862,13 +871,11 @@ const immagini = megaMenu.map((c) => (c.immagine ? imgSources(c.immagine) : null
 		.hd__nav--aperto .hd__col:nth-child(2) { transition-delay: 0.16s; }
 		.hd__nav--aperto .hd__col:nth-child(3) { transition-delay: 0.24s; }
 		.hd__nav--aperto .hd__col:nth-child(4) { transition-delay: 0.32s; }
-		.hd__nav--aperto .hd__cta--contact { transition-delay: 0.4s; }
 	}
 
 	@media (max-width: 900px) and (prefers-reduced-motion: reduce) {
 		.hd__nav,
 		.hd__col,
-		.hd__cta--contact,
 		.hd__panel {
 			transition: none !important;
 		}

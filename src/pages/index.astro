@@ -358,7 +358,7 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 	</section>
 
 	<section class="block--black section testimonianze sfuma" style="--da: var(--bg-dark); --a: var(--accent)">
-		<SectionTitle align="right" line="text" gap={40}>Non fidarti solo di quello che diciamo noi</SectionTitle>
+		<SectionTitle align="right" line="text" gap={40}>Parola di chi si allena qui</SectionTitle>
 		<div class="container-wide">
 			<div class="testimonianze__grid">
 				{
@@ -374,9 +374,31 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 					))
 				}
 			</div>
+			<div class="testimonianze__punti" aria-label="Scegli la recensione">
+				{
+					home.testimonianze.map((_, i) => (
+						<button class="testimonianze__punto" type="button" aria-label={`Recensione ${i + 1}`} aria-current={i === 0 ? 'true' : undefined} />
+					))
+				}
+			</div>
 		</div>
 	</section>
 </Layout>
+
+<script>
+	// Puntini delle recensioni: mostrano quale card e' in vista e, toccati, ci portano.
+	const fila = document.querySelector<HTMLElement>('.testimonianze__grid');
+	const punti = Array.from(document.querySelectorAll<HTMLButtonElement>('.testimonianze__punto'));
+	if (fila && punti.length > 1) {
+		const passo = () => (fila.children[1] as HTMLElement).offsetLeft - (fila.children[0] as HTMLElement).offsetLeft;
+		const aggiorna = () => {
+			const i = Math.max(0, Math.min(punti.length - 1, Math.round(fila.scrollLeft / passo())));
+			punti.forEach((p, k) => (k === i ? p.setAttribute('aria-current', 'true') : p.removeAttribute('aria-current')));
+		};
+		fila.addEventListener('scroll', aggiorna, { passive: true });
+		punti.forEach((p, k) => p.addEventListener('click', () => fila.scrollTo({ left: passo() * k, behavior: 'smooth' })));
+	}
+</script>
 
 <style>
 	.hero__title {
@@ -1333,28 +1355,51 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		text-align: left;
 	}
 
-	/* Card "recensione": voto in alto, testo e, in fondo, l'autore separato da una riga sottile. */
+	/* Card "recensione" in stile cartello: riquadro nero con due viti gialle, stelle gialle,
+	   testo bianco e, in fondo, l'autore separato da un filo. */
 	.testimonianza {
+		position: relative;
 		margin: 0;
 		display: flex;
 		flex-direction: column;
-		background: var(--bg-alt);
-		border-radius: var(--radius-lg);
-		padding: 28px;
-		box-shadow: 0 16px 32px -16px rgba(0, 0, 0, 0.5);
+		background: var(--bg-dark-deep);
+		border: 1px solid var(--border-on-dark);
+		border-radius: 18px;
+		padding: 32px 28px 26px;
+		box-shadow: 0 16px 32px -16px rgba(0, 0, 0, 0.7);
+	}
+
+	.testimonianza::before,
+	.testimonianza::after {
+		content: '';
+		position: absolute;
+		top: 10px;
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--accent);
+	}
+
+	.testimonianza::before {
+		left: 10px;
+	}
+
+	.testimonianza::after {
+		right: 10px;
 	}
 
 	.testimonianza__stars {
-		color: #e0a800;
+		color: var(--accent);
 		font-size: 20px;
 		letter-spacing: 3px;
 		margin-bottom: 18px;
 	}
 
 	.testimonianza__testo {
+		position: relative;
 		flex-grow: 1;
-		margin: 0 0 20px;
-		color: var(--text);
+		margin: 0 0 22px;
+		color: var(--text-on-dark);
 		font-size: var(--text-base);
 		line-height: 1.6;
 	}
@@ -1364,7 +1409,7 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 		align-items: center;
 		gap: 12px;
 		padding-top: 16px;
-		border-top: 1px solid var(--border);
+		border-top: 1px solid var(--border-on-dark);
 	}
 
 	.testimonianza__avatar {
@@ -1382,10 +1427,15 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 	}
 
 	.testimonianza__nome {
-		font-weight: 700;
-		color: var(--text);
+		font-weight: 800;
+		color: var(--accent);
 		text-transform: uppercase;
 		font-size: var(--text-base);
+	}
+
+	/* I puntini servono solo quando le card si scorrono di lato. */
+	.testimonianze__punti {
+		display: none;
 	}
 
 	@media (max-width: 900px) {
@@ -1479,8 +1529,53 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 			gap: 36px;
 		}
 
+		/* Le recensioni si scorrono di lato col dito: una card e un pezzo della successiva. La fila arriva ai bordi
+		   dello schermo (margini negativi pari al margine laterale) senza allargare la pagina. Solo orizzontale:
+		   pan-y lascia lo scorrimento verticale alla pagina. */
 		.testimonianze__grid {
-			grid-template-columns: 1fr 1fr;
+			display: flex;
+			gap: 14px;
+			margin-inline: calc(-1 * var(--gutter));
+			padding: 4px var(--gutter) 16px;
+			overflow-x: auto;
+			overflow-y: hidden;
+			overscroll-behavior-x: contain;
+			touch-action: pan-x pan-y;
+			scroll-snap-type: x mandatory;
+			scroll-padding-inline: var(--gutter);
+			scrollbar-width: none;
+		}
+
+		.testimonianze__grid::-webkit-scrollbar {
+			display: none;
+		}
+
+		.testimonianza {
+			flex: 0 0 min(80%, 22rem);
+			scroll-snap-align: start;
+		}
+
+		.testimonianze__punti {
+			display: flex;
+			justify-content: center;
+			gap: 10px;
+			margin-top: 8px;
+		}
+
+		.testimonianze__punto {
+			width: 10px;
+			height: 10px;
+			padding: 0;
+			border: 1.5px solid var(--accent);
+			border-radius: 50%;
+			background: transparent;
+			cursor: pointer;
+			transition: background-color 0.25s ease, transform 0.25s ease;
+		}
+
+		.testimonianze__punto[aria-current='true'] {
+			background: var(--accent);
+			transform: scale(1.25);
 		}
 
 		.planning__inner {
@@ -1496,14 +1591,32 @@ const introMetodo = home.metodo.intro.join('').replace(/<br\s*\/?>/g, ' ').repla
 			padding: 0 1.25rem 2.25rem 0;
 		}
 
-		/* In colonna le foto stanno sopra al testo: devono lasciargli abbastanza posto. */
+		/* In colonna: prima il cartello "I nostri orari", poi le foto, poi il bottone. Il contenitore del testo
+		   "sparisce" (display: contents) cosi' cartello e bottone si dispongono insieme alle foto. */
+		.planning__text {
+			display: contents;
+		}
+
+		.planning__blocco {
+			order: 1;
+		}
+
+		.planning__media {
+			order: 2;
+		}
+
+		.planning__cta {
+			order: 3;
+			justify-self: center;
+		}
+
+		/* Le foto lasciano abbastanza posto al cartello. */
 		.planning__media :global(.planning__img--main) {
 			height: clamp(170px, 26svh, 320px);
 		}
 	}
 
 	@media (max-width: 560px) {
-		.testimonianze__grid,
 		.metodo__punti {
 			grid-template-columns: 1fr;
 		}
