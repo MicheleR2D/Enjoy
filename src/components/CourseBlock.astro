@@ -119,7 +119,6 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 				</SectionTitle>
 			)}
 
-			{blocco.sottotitolo && <p class:list={['pill', { 'pill--dark': accento }, 'cb__sub']}>{blocco.sottotitolo}</p>}
 
 			{
 				elencoSchede.length > 1 && (
@@ -416,10 +415,6 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 	/* ---- Testo ---- */
 	.cb__text :global(.st__title) {
 		text-transform: uppercase;
-	}
-
-	.cb__sub {
-		margin: 0 0 16px;
 	}
 
 	.cb__desc {
@@ -822,8 +817,7 @@ const sfumo = !!sfumoA && coloreBlocco !== coloreSuccessivo;
 			order: 2;
 		}
 
-		.cb .cb__text > :global(.st),
-		.cb .cb__text > .cb__sub {
+		.cb .cb__text > :global(.st) {
 			order: 0;
 		}
 

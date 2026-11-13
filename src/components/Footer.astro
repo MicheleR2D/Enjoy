@@ -53,12 +53,21 @@ const colonneFoto = [
 		'/wp-content/uploads/2025/06/Piscina-Camuzzago-8-scaled.jpg',
 	],
 ];
+
+// Ordine delle colonne: Sedi, Seguici, Attivita' adulti, Attivita' junior con Health Fitness sotto (stessa colonna).
+// Info sta sotto, in una riga orizzontale.
+const colonna = (titolo: string) => megaMenu.find((c) => c.titolo === titolo)!;
+const gruppi = [
+	[colonna('Sedi')],
+	'social' as const,
+	[colonna('Attività Adulti')],
+	[colonna('Attività Junior'), colonna('Health Fitness')],
+];
 ---
 
 <footer class="ft">
 	<section class="cta-final" aria-labelledby="cta-final-title" id="prova">
 		<div class="cta-final__content">
-			<p class="pill pill--dark cta-final__eyebrow" data-anim="pop">Inizia oggi!</p>
 			<h2 class="display-title cta-final__title" id="cta-final-title" data-anim="up" data-anim-delay="120">
 				Prova <span class="cta-final__title-accent">ora</span><br />i nostri centri
 			</h2>
@@ -115,7 +124,6 @@ const colonneFoto = [
 
 	<section class="sedi" id="sedi" aria-labelledby="sedi-title">
 		<div class="sedi__head">
-			<p class="pill sedi__eyebrow" data-anim="pop">Dove siamo</p>
 			<h2 class="display-title sedi__title" id="sedi-title" data-anim="up" data-anim-delay="120">
 				Vieni a <span class="sedi__title-accent">trovarci</span>
 			</h2>
@@ -179,54 +187,55 @@ const colonneFoto = [
 				Enjoy Club è il tuo punto di riferimento per fitness, benessere e sport in Brianza. Allenati nelle sedi di Meda e
 				Camuzzago con attrezzature all'avanguardia, corsi per ogni livello e un'offerta completa per adulti e bambini.
 			</p>
-			<div class="ft-social">
-				{
-					sedi.flatMap((s) =>
-						s.social
-							.filter((x) => x.label !== 'YouTube')
-							.map((x) => (
-								<a
-									class="ft-social__btn"
-									href={x.href}
-									target="_blank"
-									rel="noopener"
-									aria-label={`Enjoy Club ${s.nome} su ${x.label}`}
-									title={`${x.label} ${s.nome}`}
-								>
-									<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" set:html={iconeSocial[x.label]} />
-								</a>
-							))
-					)
-				}
-				<a
-					class="ft-social__btn"
-					href={sedi[0].social.find((x) => x.label === 'YouTube')?.href}
-					target="_blank"
-					rel="noopener"
-					aria-label="Enjoy Club su YouTube"
-					title="YouTube"
-				>
-					<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" set:html={iconeSocial.YouTube} />
-				</a>
-			</div>
 		</div>
 
 		{
-			megaMenu.map((colonna, i) => (
-				<nav class="ft-col" aria-label={colonna.titolo} data-anim="up" data-anim-delay={String(80 + i * 80)}>
-					<p class="ft-heading">{colonna.titolo}</p>
-					<ul class="ft-links">
-						{colonna.voci.map((voce) => (
-							<li>
-								<a href={voce.href}>{voce.label}</a>
-							</li>
+			gruppi.map((gruppo, g) =>
+				gruppo === 'social' ? (
+					<div class="ft-col ft-seguici" data-anim="up" data-anim-delay={String(80 + g * 80)}>
+						<p class="ft-heading">Seguici</p>
+						<div class="ft-social">
+							{sedi.map((sede) => (
+								<div class="ft-social__sede">
+									<div class="ft-social__icone">
+										{sede.social.map((x) => (
+											<a
+												class="ft-social__btn"
+												href={x.href}
+												target="_blank"
+												rel="noopener"
+												aria-label={`Enjoy Club ${sede.nome} su ${x.label}`}
+												title={`${x.label} ${sede.nome}`}
+											>
+												<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" set:html={iconeSocial[x.label]} />
+											</a>
+										))}
+									</div>
+									<span class="ft-social__nome">{sede.nome}</span>
+								</div>
+							))}
+						</div>
+					</div>
+				) : (
+					<div class="ft-gruppo" data-anim="up" data-anim-delay={String(80 + g * 80)}>
+						{gruppo.map((colonna) => (
+							<nav class="ft-col" aria-label={colonna.titolo}>
+								<p class="ft-heading">{colonna.titolo}</p>
+								<ul class="ft-links">
+									{colonna.voci.map((voce) => (
+										<li>
+											<a href={voce.href}>{voce.label}</a>
+										</li>
+									))}
+								</ul>
+							</nav>
 						))}
-					</ul>
-				</nav>
-			))
+					</div>
+				)
+			)
 		}
 
-		<nav class="ft-col" aria-label="Info" data-anim="up" data-anim-delay="400">
+		<nav class="ft-col ft-info" aria-label="Info" data-anim="up" data-anim-delay="400">
 			<p class="ft-heading">Info</p>
 			<ul class="ft-links">
 				{
@@ -330,11 +339,6 @@ const colonneFoto = [
 		flex-direction: column;
 		justify-content: center;
 		padding: 60px 72px 60px var(--gutter);
-	}
-
-	.cta-final__eyebrow {
-		align-self: flex-start;
-		margin: 0 0 20px;
 	}
 
 	.ft .cta-final__title {
@@ -512,11 +516,6 @@ const colonneFoto = [
 			display: contents;
 		}
 
-		/* L'etichetta "Inizia oggi!" su mobile non c'e': si parte direttamente dal titolo. */
-		.cta-final__eyebrow {
-			display: none;
-		}
-
 		.ft .cta-final__title {
 			order: 2;
 		}
@@ -582,7 +581,7 @@ const colonneFoto = [
 	/* --- Colonne: brand + link del menu + info --- */
 	.ft-main {
 		display: grid;
-		grid-template-columns: minmax(0, 1.5fr) repeat(5, minmax(0, 1fr));
+		grid-template-columns: minmax(0, 1.5fr) repeat(4, minmax(0, 1fr));
 		gap: 40px;
 		padding: 64px var(--gutter) 48px;
 	}
@@ -602,11 +601,45 @@ const colonneFoto = [
 		color: var(--text-on-dark);
 	}
 
+	/* Sotto le sedi: titolo giallo come le altre colonne, poi per ogni sede le icone e, sotto, il nome. */
 	.ft-social {
+		display: grid;
+		gap: 18px;
+	}
+
+	/* Due titoli nella stessa colonna (Attivita' junior + Health Fitness): distanziati. */
+	.ft-gruppo {
+		display: grid;
+		align-content: start;
+		gap: 36px;
+	}
+
+	/* Info: sotto tutte le colonne, con le voci in fila. */
+	.ft-info {
+		grid-column: 1 / -1;
+		padding-top: 28px;
+		border-top: 1px solid var(--border-on-dark);
+	}
+
+	.ft-info .ft-links {
 		display: flex;
 		flex-wrap: wrap;
+		gap: 10px 32px;
+	}
+
+	.ft-social__sede {
+		display: grid;
 		gap: 8px;
-		margin-top: 24px;
+	}
+
+	.ft-social__icone {
+		display: flex;
+		gap: 8px;
+	}
+
+	.ft-social__nome {
+		font-size: var(--text-sm);
+		color: var(--text-on-dark);
 	}
 
 	.ft-social__btn {
@@ -783,7 +816,7 @@ const colonneFoto = [
 
 	@media (max-width: 1100px) {
 		.ft-main {
-			grid-template-columns: repeat(5, minmax(0, 1fr));
+			grid-template-columns: repeat(4, minmax(0, 1fr));
 		}
 
 		.ft-brand {
@@ -859,10 +892,6 @@ const colonneFoto = [
 	.sedi {
 		padding: 72px var(--gutter);
 		background: var(--bg-dark-soft);
-	}
-
-	.sedi__eyebrow {
-		margin: 0 0 20px;
 	}
 
 	.ft .sedi__title {
@@ -1052,6 +1081,10 @@ const colonneFoto = [
 	@media (pointer: coarse), (max-width: 900px) {
 		.ft-links {
 			gap: 0;
+		}
+
+		.ft-info .ft-links {
+			gap: 0 28px;
 		}
 
 		.ft-links a,
