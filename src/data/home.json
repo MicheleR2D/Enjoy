@@ -120,24 +120,6 @@
 			]
 		},
 		{
-			"titolo": "Health Fitness",
-			"html": "<p>Un programma dedicato al recupero e al benessere fisico, attivo in entrambe le sedi Enjoy Club, <strong>riconosciute come Palestra della Salute dalla Regione Lombardia</strong>. Grazie a macchinari specifici e al supporto di professionisti qualificati, questo percorso accompagna ogni persona nella fase di riabilitazione o post-riabilitazione, lavorando su mobilità, tono muscolare e funzionalità articolare in un ambiente sicuro, controllato e certificato.</p>",
-			"card": [
-				{
-					"titolo": "Wellness Lab Meda",
-					"descrizione": "Recupero, postura e benessere",
-					"href": "/wellness-lab-meda",
-					"immagine": "/wp-content/uploads/2025/06/Wellness-Meda-1-scaled.jpg"
-				},
-				{
-					"titolo": "Health Fitness Camuzzago",
-					"descrizione": "Recupero, postura e benessere",
-					"href": "/health-fitness-camuzzago",
-					"immagine": "/wp-content/uploads/2025/06/riabilitazione-in-acqua-1b3aacf4-enjoy.webp"
-				}
-			]
-		},
-		{
 			"titolo": "Le nostre attività per bambini",
 			"html": "<p>Scopri le attività dedicate ai più giovani: dalla <strong>scuola nuoto</strong> per imparare divertendosi alla <strong>ginnastica aerobica</strong> per sviluppare coordinazione, forza e passione per il movimento. Crescere attivi è il primo passo verso il benessere!</p>",
 			"card": [
@@ -170,6 +152,24 @@
 					"descrizione": "Eleganza, ritmo e armonia in acqua.",
 					"href": "/nuoto-sincronizzato",
 					"immagine": "/wp-content/uploads/2025/07/nuoto-sincronizzato-enjoy.jpg"
+				}
+			]
+		},
+		{
+			"titolo": "Health Fitness",
+			"html": "<p>Un programma dedicato al recupero e al benessere fisico, attivo in entrambe le sedi Enjoy Club, <strong>riconosciute come Palestra della Salute dalla Regione Lombardia</strong>. Grazie a macchinari specifici e al supporto di professionisti qualificati, questo percorso accompagna ogni persona nella fase di riabilitazione o post-riabilitazione, lavorando su mobilità, tono muscolare e funzionalità articolare in un ambiente sicuro, controllato e certificato.</p>",
+			"card": [
+				{
+					"titolo": "Wellness Lab Meda",
+					"descrizione": "Recupero, postura e benessere",
+					"href": "/wellness-lab-meda",
+					"immagine": "/wp-content/uploads/2025/06/Wellness-Meda-1-scaled.jpg"
+				},
+				{
+					"titolo": "Health Fitness Camuzzago",
+					"descrizione": "Recupero, postura e benessere",
+					"href": "/health-fitness-camuzzago",
+					"immagine": "/wp-content/uploads/2025/06/riabilitazione-in-acqua-1b3aacf4-enjoy.webp"
 				}
 			]
 		}
