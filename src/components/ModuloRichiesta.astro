@@ -169,7 +169,10 @@ const attivita = [
 		// Nel modal il punto di arrivo lo imposta chi lo apre; sulla pagina del modulo viene dall'indirizzo.
 		const medium = () => modulo.dataset.medium ?? new URLSearchParams(location.search).get('medium') ?? '';
 
-		// Il modal lo richiude e lo riapre: si riparte da un modulo vuoto.
+		const bottone = form.querySelector<HTMLButtonElement>('.modulo__invia')!;
+		const etichettaInvia = bottone.textContent;
+
+		// Il modal lo richiude e lo riapre: si riparte da un modulo vuoto (e dal pulsante com'era).
 		modulo.addEventListener('modulo:reset', () => {
 			form.reset();
 			form.hidden = false;
@@ -177,8 +180,9 @@ const attivita = [
 			form.querySelectorAll('[aria-invalid]').forEach((el) => el.removeAttribute('aria-invalid'));
 			form.querySelectorAll<HTMLElement>('[data-errore]').forEach((el) => (el.textContent = ''));
 			form.querySelector<HTMLElement>('[data-errore-generale]')!.textContent = '';
+			bottone.disabled = false;
+			bottone.textContent = etichettaInvia;
 		});
-		const bottone = form.querySelector<HTMLButtonElement>('.modulo__invia')!;
 		const erroreGenerale = form.querySelector<HTMLElement>('[data-errore-generale]')!;
 
 		const mostraErrori = (errori: Record<string, string>) => {
@@ -269,6 +273,12 @@ const attivita = [
 	.modulo {
 		width: 100%;
 		max-width: 30rem;
+	}
+
+	/* "display: grid" qui sotto batterebbe l'attributo hidden: senza questa riga il modulo restava
+	   visibile sopra il messaggio "Richiesta inviata". */
+	.modulo__form[hidden] {
+		display: none;
 	}
 
 	.modulo__form {
