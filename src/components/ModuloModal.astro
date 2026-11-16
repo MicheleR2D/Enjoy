@@ -79,7 +79,8 @@ import ElencoProva from './ElencoProva.astro';
 				return;
 			}
 			if (url.origin !== location.origin) return;
-			const tipo = url.pathname === '/prova' ? 'prova' : url.pathname === '/contattaci' ? 'contatto' : null;
+			// Anche con un prefisso davanti (l'anteprima su GitHub Pages sta in /Enjoy/prova): conta l'ultimo pezzo.
+			const tipo = /(^|\/)prova\/?$/.test(url.pathname) ? 'prova' : /(^|\/)contattaci\/?$/.test(url.pathname) ? 'contatto' : null;
 			if (!tipo) return;
 			e.preventDefault();
 			corpi.forEach((c) => {

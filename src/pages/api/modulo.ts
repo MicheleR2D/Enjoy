@@ -84,6 +84,8 @@ export const POST: APIRoute = async ({ request }) => {
 		cellulare,
 		attivita,
 		richiesta,
+		// Consenso facoltativo a comunicazioni commerciali (quello alla privacy e' obbligatorio e gia' verificato sopra).
+		marketing: dati.marketing === true,
 		source: 'SitoWeb',
 		medium: pulito(dati.medium, 80),
 	};

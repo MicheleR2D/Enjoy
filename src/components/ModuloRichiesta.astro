@@ -32,7 +32,7 @@ const attivita = [
 <div class="modulo" data-tipo={tipo}>
 	<form class="modulo__form" novalidate>
 		<fieldset class="campo campo--sede">
-			<legend>La sede di tuo interesse</legend>
+			<legend>La sede di tuo interesse <span class="obbl" aria-hidden="true">*</span></legend>
 			<div class="scelta">
 				{
 					sedi.map((s) => (
@@ -50,7 +50,7 @@ const attivita = [
 		{
 			tipo === 'contatto' && (
 				<div class="campo">
-					<label for={`${idp}-attivita`}>Qual è la tua principale attività di interesse?</label>
+					<label for={`${idp}-attivita`}>Qual è la tua principale attività di interesse? <span class="obbl" aria-hidden="true">*</span></label>
 					<select id={`${idp}-attivita`} name="attivita" required>
 						<option value="">Seleziona…</option>
 						{attivita.map((a) => (
@@ -64,12 +64,12 @@ const attivita = [
 
 		<div class="riga">
 			<div class="campo">
-				<label for={`${idp}-nome`}>Nome</label>
+				<label for={`${idp}-nome`}>Nome <span class="obbl" aria-hidden="true">*</span></label>
 				<input id={`${idp}-nome`} name="nome" type="text" autocomplete="given-name" required />
 				<p class="campo__errore" data-errore="nome" role="alert"></p>
 			</div>
 			<div class="campo">
-				<label for={`${idp}-cognome`}>Cognome</label>
+				<label for={`${idp}-cognome`}>Cognome <span class="obbl" aria-hidden="true">*</span></label>
 				<input id={`${idp}-cognome`} name="cognome" type="text" autocomplete="family-name" required />
 				<p class="campo__errore" data-errore="cognome" role="alert"></p>
 			</div>
@@ -77,12 +77,12 @@ const attivita = [
 
 		<div class="riga">
 			<div class="campo">
-				<label for={`${idp}-email`}>Email</label>
+				<label for={`${idp}-email`}>Email <span class="obbl" aria-hidden="true">*</span></label>
 				<input id={`${idp}-email`} name="email" type="email" autocomplete="email" required />
 				<p class="campo__errore" data-errore="email" role="alert"></p>
 			</div>
 			<div class="campo">
-				<label for={`${idp}-cellulare`}>Cellulare</label>
+				<label for={`${idp}-cellulare`}>Cellulare <span class="obbl" aria-hidden="true">*</span></label>
 				<input id={`${idp}-cellulare`} name="cellulare" type="tel" inputmode="tel" autocomplete="tel" required />
 				<p class="campo__errore" data-errore="cellulare" role="alert"></p>
 			</div>
@@ -91,7 +91,7 @@ const attivita = [
 		{
 			tipo === 'contatto' && (
 				<div class="campo">
-					<label for={`${idp}-richiesta`}>La tua richiesta</label>
+					<label for={`${idp}-richiesta`}>La tua richiesta <span class="obbl" aria-hidden="true">*</span></label>
 					<textarea id={`${idp}-richiesta`} name="richiesta" rows="5" required />
 					<p class="campo__errore" data-errore="richiesta" role="alert" />
 				</div>
@@ -105,13 +105,25 @@ const attivita = [
 
 		<div class="campo campo--privacy">
 			<label class="privacy">
-				<input type="checkbox" name="privacy" required />
+				<input type="checkbox" name="privacy" required aria-required="true" />
 				<span>
-					Inviando questo modulo acconsento al trattamento dei miei dati personali per le finalità indicate nell'<a href="/privacy" target="_blank" rel="noopener">informativa privacy</a>.
+					Inviando questo modulo acconsento al trattamento dei miei dati personali per le finalità indicate nell'<a href="/privacy" target="_blank" rel="noopener">informativa privacy</a>. <span class="obbl" aria-hidden="true">*</span>
 				</span>
 			</label>
 			<p class="campo__errore" data-errore="privacy" role="alert"></p>
 		</div>
+
+		<!-- Consenso facoltativo: non blocca l'invio. -->
+		<div class="campo campo--privacy">
+			<label class="privacy">
+				<input type="checkbox" name="marketing" />
+				<span>
+					Acconsento a ricevere comunicazioni commerciali e promozionali di Enjoy Club (novità, iniziative e offerte) via email, SMS o telefono. <em class="facolt">Facoltativo</em>
+				</span>
+			</label>
+		</div>
+
+		<p class="modulo__nota"><span class="obbl" aria-hidden="true">*</span> Campi obbligatori</p>
 
 		<p class="modulo__errore" data-errore-generale role="alert"></p>
 
@@ -206,6 +218,7 @@ const attivita = [
 				richiesta: String(f.get('richiesta') ?? '').trim(),
 				website: String(f.get('website') ?? ''),
 				privacy: f.get('privacy') === 'on',
+					marketing: f.get('marketing') === 'on',
 			};
 			const errori = valida(dati);
 			form.querySelectorAll('[aria-invalid]').forEach((el) => el.removeAttribute('aria-invalid'));
@@ -441,6 +454,27 @@ const attivita = [
 
 	.campo--sede:has([aria-invalid='true']) .scelta__op {
 		border-color: #ff6b6b;
+	}
+
+	/* Asterisco dei campi obbligatori e nota; "Facoltativo" per il consenso che non lo e'. */
+	.obbl {
+		margin-left: 2px;
+		color: var(--accent);
+		font-weight: 800;
+	}
+
+	.facolt {
+		font-style: normal;
+		font-weight: 800;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+
+	.modulo__nota {
+		margin: 0;
+		font-size: var(--text-sm);
+		color: var(--text-on-dark);
 	}
 
 	.campo__errore,
